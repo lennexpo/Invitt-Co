@@ -1013,14 +1013,6 @@ img { display: block; max-width: 100%; }
     color: #ccff00; /* Matching your lime green theme */
     margin-left: 2px;
 }
-.contact-link {
-    color: inherit; /* Keeps the color white like the rest of the text */
-    text-decoration: none; /* Removes the underline */
-}
-
-.contact-link:hover {
-    color: #ccff00; /* Turns lime green when someone hovers over it */
-}
 /* Keeps contact links white and removes the default underline */
 .contact-link {
     color: inherit;
