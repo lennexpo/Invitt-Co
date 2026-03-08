@@ -995,3 +995,21 @@ img { display: block; max-width: 100%; }
   .section { padding-top: 5rem; padding-bottom: 5rem; min-height: auto; }
   .about, .services, .portfolio, .testimonials, .contact { padding: 5rem 0; }
 }
+/* --- New Text Logo Styles --- */
+.logo-container {
+    display: flex;
+    align-items: center;
+    font-family: 'Bebas Neue', sans-serif; 
+    font-size: 28px;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+}
+
+.brand-name {
+    color: #ffffff;
+}
+
+.brand-co {
+    color: #ccff00; /* Matching your lime green theme */
+    margin-left: 2px;
+}
