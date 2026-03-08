@@ -1024,3 +1024,32 @@ img { display: block; max-width: 100%; }
 .contact-link:hover {
     color: #ccff00; 
 }
+/* Layout for the Contact Section */
+.contact-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 4rem; /* Adds space between the left and right sides */
+    padding: 4rem 0;
+}
+
+.contact-info {
+    flex: 1; /* Takes up 50% of the space */
+    max-width: 450px;
+}
+
+.contact-form {
+    flex: 1; /* Takes up the other 50% */
+    background: #1a1a1a; /* Dark background like your reference image */
+    padding: 2.5rem;
+    border-radius: 15px;
+    border: 1px solid #333;
+}
+
+/* Responsive fix: Stack them on top of each other on phones */
+@media (max-width: 768px) {
+    .contact-wrapper {
+        flex-direction: column;
+        gap: 2rem;
+    }
+}
