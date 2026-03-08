@@ -1,107 +1,72 @@
-// ============================
+// =============================
 // INVITT CO — script.js
-// ============================
+// =============================
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ============================
-  // NAVBAR SCROLL EFFECT
-  // ============================
+  // =============================
+  // NAVBAR SCROLL
+  // =============================
   const navbar = document.getElementById('navbar');
 
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  });
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
 
-  // ============================
-  // HAMBURGER / MOBILE MENU
-  // ============================
+  // =============================
+  // HAMBURGER MENU
+  // =============================
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
-  let menuOpen = false;
+  const mobileClose = document.getElementById('mobileClose');
 
-  hamburger.addEventListener('click', () => {
-    menuOpen = !menuOpen;
-    mobileMenu.classList.toggle('open', menuOpen);
+  function openMenu() {
+    mobileMenu.classList.add('open');
+    document.body.style.overflow = 'hidden';
     const spans = hamburger.querySelectorAll('span');
-    if (menuOpen) {
-      spans[0].style.transform = 'translateY(7px) rotate(45deg)';
-      spans[1].style.opacity = '0';
-      spans[2].style.transform = 'translateY(-7px) rotate(-45deg)';
-    } else {
-      spans[0].style.transform = '';
-      spans[1].style.opacity = '';
-      spans[2].style.transform = '';
-    }
-  });
-
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      menuOpen = false;
-      mobileMenu.classList.remove('open');
-      const spans = hamburger.querySelectorAll('span');
-      spans[0].style.transform = '';
-      spans[1].style.opacity = '';
-      spans[2].style.transform = '';
-    });
-  });
-
-  // ============================
-  // SCROLL REVEAL ANIMATION
-  // ============================
-  const revealElements = document.querySelectorAll('.about .reveal, .services .reveal, .portfolio .reveal, .testimonials .reveal, .contact .reveal');
-
-  function checkReveals() {
-    revealElements.forEach(el => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 50) {
-        el.classList.add('visible');
-      }
-    });
+    spans[0].style.transform = 'translateY(7px) rotate(45deg)';
+    spans[1].style.opacity = '0';
+    spans[2].style.transform = 'translateY(-7px) rotate(-45deg)';
   }
 
-  // Check on scroll
-  window.addEventListener('scroll', checkReveals, { passive: true });
+  function closeMenu() {
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+    const spans = hamburger.querySelectorAll('span');
+    spans[0].style.transform = '';
+    spans[1].style.opacity = '';
+    spans[2].style.transform = '';
+  }
 
-  // Check immediately on load
-  checkReveals();
+  hamburger.addEventListener('click', openMenu);
+  mobileClose.addEventListener('click', closeMenu);
+  mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
 
-  // Check after anchor link clicks (give scroll time to complete)
+  // =============================
+  // SMOOTH SCROLL
+  // =============================
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', () => {
-      setTimeout(checkReveals, 100);
-      setTimeout(checkReveals, 500);
-      setTimeout(checkReveals, 800);
+    anchor.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(anchor.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
 
-  // Trigger hero reveals immediately
-  const heroReveals = document.querySelectorAll('.hero .reveal');
-  setTimeout(() => {
-    heroReveals.forEach((el, i) => {
-      setTimeout(() => {
-        el.classList.add('visible');
-      }, i * 120);
-    });
-  }, 200);
-
-  // ============================
+  // =============================
   // TESTIMONIAL SLIDER
-  // ============================
-  const slider = document.getElementById('testimonialSlider');
+  // =============================
+  const track = document.getElementById('sliderTrack');
   const dotsContainer = document.getElementById('sliderDots');
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
 
-  if (slider) {
-    const cards = slider.querySelectorAll('.testimonial-card');
+  if (track) {
+    const cards = track.querySelectorAll('.testimonial-card');
     let current = 0;
     const total = cards.length;
 
+    // Build dots
     cards.forEach((_, i) => {
       const dot = document.createElement('div');
       dot.className = 'dot' + (i === 0 ? ' active' : '');
@@ -111,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function goTo(index) {
       current = (index + total) % total;
-      slider.style.transform = `translateX(-${current * 100}%)`;
+      track.style.transform = `translateX(-${current * 100}%)`;
       dotsContainer.querySelectorAll('.dot').forEach((d, i) => {
         d.classList.toggle('active', i === current);
       });
@@ -120,89 +85,89 @@ document.addEventListener('DOMContentLoaded', () => {
     prevBtn.addEventListener('click', () => goTo(current - 1));
     nextBtn.addEventListener('click', () => goTo(current + 1));
 
-    let autoSlide = setInterval(() => goTo(current + 1), 5000);
-    slider.parentElement.addEventListener('mouseenter', () => clearInterval(autoSlide));
-    slider.parentElement.addEventListener('mouseleave', () => {
-      autoSlide = setInterval(() => goTo(current + 1), 5000);
+    // Auto advance
+    let auto = setInterval(() => goTo(current + 1), 5000);
+    track.parentElement.addEventListener('mouseenter', () => clearInterval(auto));
+    track.parentElement.addEventListener('mouseleave', () => {
+      auto = setInterval(() => goTo(current + 1), 5000);
     });
 
+    // Touch swipe
     let startX = 0;
-    slider.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
-    slider.addEventListener('touchend', e => {
+    track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', e => {
       const diff = startX - e.changedTouches[0].clientX;
       if (Math.abs(diff) > 50) diff > 0 ? goTo(current + 1) : goTo(current - 1);
     });
   }
 
-  // ============================
+  // =============================
   // CONTACT FORM — Web3Forms
-  // ============================
+  // =============================
   const submitBtn = document.getElementById('submitBtn');
-  const formNote = document.getElementById('formNote');
+  const formStatus = document.getElementById('formStatus');
 
   if (submitBtn) {
     submitBtn.addEventListener('click', async () => {
-      const name = document.getElementById('nameInput').value.trim();
-      const email = document.getElementById('emailInput').value.trim();
+      const name    = document.getElementById('nameInput').value.trim();
+      const email   = document.getElementById('emailInput').value.trim();
       const business = document.getElementById('businessInput').value;
-      const packageChoice = document.getElementById('packageInput').value;
+      const pkg     = document.getElementById('packageInput').value;
       const message = document.getElementById('messageInput').value.trim();
 
-      // Validation
+      // Validate
       if (!name || !email || !message) {
-        formNote.textContent = 'Please fill in your name, email, and message.';
-        formNote.className = 'form-note error';
+        formStatus.textContent = 'Please fill in your name, email, and message.';
+        formStatus.className = 'form-status error';
         return;
       }
-
       if (!email.includes('@') || !email.includes('.')) {
-        formNote.textContent = 'Please enter a valid email address.';
-        formNote.className = 'form-note error';
+        formStatus.textContent = 'Please enter a valid email address.';
+        formStatus.className = 'form-status error';
         return;
       }
 
       submitBtn.textContent = 'Sending...';
       submitBtn.disabled = true;
-      formNote.textContent = '';
-      formNote.className = 'form-note';
+      formStatus.textContent = '';
+      formStatus.className = 'form-status';
 
       try {
-        const response = await fetch('https://api.web3forms.com/submit', {
+        const res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             access_key: '15d2032e-84ed-4a43-8860-43cb1757bb90',
             subject: `New Enquiry from ${name} — Invitt Co`,
-            from_name: 'Invitt Co',
-            name: name,
-            email: email,
+            from_name: 'Invitt Co Website',
+            name,
+            email,
             replyto: email,
             business_type: business || 'Not specified',
-            package: packageChoice || 'Not specified',
-            message: message,
+            package: pkg || 'Not specified',
+            message,
             autoresponse_subject: 'Thanks for reaching out to Invitt Co! 🚀',
-            autoresponse_message: `Hi ${name},\n\nThanks for getting in touch with Invitt Co!\n\nWe've received your message and will get back to you within 24 hours.\n\nIn the meantime, feel free to WhatsApp us at +263 772 338 862 if you need a faster response.\n\nLooking forward to helping your business get found online!\n\n— The Invitt Co Team\nhttps://invittco.netlify.app`,
+            autoresponse_message: `Hi ${name},\n\nThanks for getting in touch with Invitt Co!\n\nWe've received your message and will get back to you within 24 hours.\n\nFeel free to WhatsApp us at +263 772 338 862 for a faster response.\n\n— The Invitt Co Team\nhttps://invittco.netlify.app`,
           })
         });
 
-        const data = await response.json();
+        const data = await res.json();
 
         if (data.success) {
-          formNote.textContent = "✓ Message sent! We'll be in touch within 24 hours.";
-          formNote.className = 'form-note success';
-
+          formStatus.textContent = "✓ Message sent! We'll be in touch within 24 hours.";
+          formStatus.className = 'form-status success';
           document.getElementById('nameInput').value = '';
           document.getElementById('emailInput').value = '';
           document.getElementById('businessInput').value = '';
           document.getElementById('packageInput').value = '';
           document.getElementById('messageInput').value = '';
         } else {
-          formNote.textContent = 'Something went wrong. Please try again or WhatsApp us.';
-          formNote.className = 'form-note error';
+          formStatus.textContent = 'Something went wrong. Please try again or WhatsApp us.';
+          formStatus.className = 'form-status error';
         }
-      } catch (error) {
-        formNote.textContent = 'Network error. Please try again or WhatsApp us directly.';
-        formNote.className = 'form-note error';
+      } catch {
+        formStatus.textContent = 'Network error. Please try again or WhatsApp us directly.';
+        formStatus.className = 'form-status error';
       }
 
       submitBtn.textContent = 'Send Message →';
@@ -210,42 +175,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ============================
-  // ACTIVE NAV LINK ON SCROLL
-  // ============================
-  const sections = document.querySelectorAll('.section');
+  // =============================
+  // ACTIVE NAV ON SCROLL
+  // =============================
+  const sections = document.querySelectorAll('.section[id]');
   const navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
 
-  const sectionObserver = new IntersectionObserver((entries) => {
+  const activeObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         navLinks.forEach(link => {
-          link.style.color = '';
-          if (link.getAttribute('href') === '#' + entry.target.id) {
-            link.style.color = 'var(--lime)';
-          }
+          const isActive = link.getAttribute('href') === '#' + entry.target.id;
+          link.style.color = isActive ? 'var(--lime)' : '';
         });
       }
     });
-    }, { threshold: 0.5 });
+  }, { threshold: 0.4 });
 
-  sections.forEach(s => sectionObserver.observe(s));
-
-  // ============================
-  // SMOOTH ANCHOR SCROLL
-  // ============================
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', e => {
-      e.preventDefault();
-      const target = document.querySelector(anchor.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        // Trigger reveals after scroll completes
-        setTimeout(checkReveals, 100);
-        setTimeout(checkReveals, 500);
-        setTimeout(checkReveals, 800);
-      }
-    });
-  });
+  sections.forEach(s => activeObserver.observe(s));
 
 });
