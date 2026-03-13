@@ -887,7 +887,7 @@ img { display: block; max-width: 100%; }
 .pi-bg-1 { background: linear-gradient(135deg, #0d2200, #1a4a06, #2a6b0e); }
 .pi-bg-2 { background: linear-gradient(135deg, #040d1f, #081a3d, #0a2d5a); }
 .pi-bg-3 { background: linear-gradient(135deg, #1f0d00, #3d1a08, #5a2a0a); }
-.pi-bg-4 { background: linear-gradient(135deg, #1f0020, #3d0040, #200040); }
+.pi-bg-4 { background: linear-gradient(135deg, #001a2e, #003d5c, #004d40); }
 
 .pi-overlay {
   position: absolute;
