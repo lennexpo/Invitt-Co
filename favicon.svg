@@ -1,6 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <rect width="64" height="64" rx="14" fill="#0D0D0D"/>
-  <rect x="20" y="13" width="24" height="4" rx="2" fill="#C8F53E"/>
-  <rect x="28" y="23" width="8" height="28" rx="2" fill="#C8F53E"/>
-  <rect x="20" y="47" width="24" height="4" rx="2" fill="#C8F53E"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="6" fill="#1a1a1a"/>
+  <text x="4" y="24" font-family="Georgia, serif" font-size="18" font-weight="700" fill="#C8F53E" letter-spacing="-0.5">IC</text>
+  <rect x="4" y="26" width="24" height="0.75" rx="0.375" fill="#C8F53E" opacity="0.4"/>
 </svg>
