@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact & Book a Consultation | Invitt Co — Harare, Zimbabwe</title>
+  <meta name="description" content="Book a free consultation with Invitt Co — Harare's digital agency for web design, SEO, and Google Ads. Tell us about your business and let's get you found online."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:    #0e0e0e;
+      --dark-2:  #141414;
+      --dark-3:  #1a1a1a;
+      --dark-4:  #222;
+      --lime:    #C8F53E;
+      --lime-dim: rgba(200,245,62,.12);
+      --lime-border: rgba(200,245,62,.25);
+      --white:   #ffffff;
+      --white-70: rgba(255,255,255,.7);
+      --white-40: rgba(255,255,255,.4);
+      --white-10: rgba(255,255,255,.08);
+      --border:  rgba(255,255,255,.07);
+      --font:    'Space Grotesk', sans-serif;
+      --mono:    'Space Mono', monospace;
+      --radius:  12px;
+      --transition: .3s cubic-bezier(.4,0,.2,1);
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background: var(--dark);
+      color: var(--white);
+      font-family: var(--font);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    ::selection { background: var(--lime); color: var(--dark); }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--dark); }
+    ::-webkit-scrollbar-thumb { background: var(--lime); border-radius: 99px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 5%;
+      background: rgba(14,14,14,.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 1rem; font-weight: 700;
+      letter-spacing: .1em;
+      display: flex; align-items: center; gap: .15rem;
+    }
+    .nav-logo span:first-child { color: var(--lime); }
+    .nav-links {
+      display: flex; align-items: center; gap: 2rem;
+    }
+    .nav-links a {
+      font-size: .85rem; font-weight: 500;
+      color: var(--white-70);
+      letter-spacing: .04em;
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a.active { color: var(--lime); }
+    .nav-cta {
+      background: var(--lime) !important;
+      color: var(--dark) !important;
+      padding: .5rem 1.2rem;
+      border-radius: 6px;
+      font-weight: 700 !important;
+      font-size: .82rem !important;
+      letter-spacing: .06em;
+      transition: opacity var(--transition) !important;
+    }
+    .nav-cta:hover { opacity: .85 !important; }
+
+    /* ── HERO ── */
+    .contact-hero {
+      padding: 10rem 5% 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,245,62,.06), transparent 70%);
+      pointer-events: none;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-family: var(--mono);
+      font-size: .75rem; letter-spacing: .15em; text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 1.5rem;
+    }
+    .hero-tag::before {
+      content: '';
+      width: 24px; height: 1px; background: var(--lime);
+    }
+    .contact-hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -.02em;
+      margin-bottom: 1.2rem;
+    }
+    .contact-hero h1 em {
+      font-style: normal;
+      color: var(--lime);
+    }
+    .contact-hero p {
+      font-size: 1.05rem;
+      color: var(--white-70);
+      max-width: 520px;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    /* ── MAIN LAYOUT ── */
+    .contact-main {
+      padding: 3rem 5% 8rem;
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 5rem;
+      align-items: start;
+      max-width: 1200px;
+    }
+
+    /* ── INFO SIDE ── */
+    .info-block {
+      position: sticky; top: 100px;
+    }
+    .info-label {
+      font-family: var(--mono);
+      font-size: .7rem; letter-spacing: .15em; text-transform: uppercase;
+      color: var(--white-40);
+      margin-bottom: 2rem;
+    }
+    .info-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1.2rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 1rem;
+      background: var(--dark-2);
+      transition: border-color var(--transition);
+    }
+    .info-item:hover { border-color: var(--lime-border); }
+    .info-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      background: var(--lime-dim);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .info-item strong { display: block; font-size: .85rem; font-weight: 600; margin-bottom: .2rem; }
+    .info-item span, .info-item a {
+      font-size: .85rem; color: var(--white-70);
+      transition: color var(--transition);
+    }
+    .info-item a:hover { color: var(--lime); }
+
+    .response-badge {
+      margin-top: 1.5rem;
+      padding: 1rem 1.2rem;
+      background: var(--lime-dim);
+      border: 1px solid var(--lime-border);
+      border-radius: var(--radius);
+      display: flex; align-items: center; gap: .8rem;
+    }
+    .badge-dot {
+      width: 8px; height: 8px; flex-shrink: 0;
+      background: var(--lime); border-radius: 50%;
+      animation: blink 2s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+    .response-badge p {
+      font-size: .82rem; color: var(--white-70); line-height: 1.5;
+    }
+    .response-badge strong { color: var(--lime); }
+
+    /* ── FORM ── */
+    .contact-form-wrap {
+      background: var(--dark-2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem;
+    }
+    .form-heading {
+      font-size: 1.3rem; font-weight: 700;
+      margin-bottom: .4rem;
+    }
+    .form-sub {
+      font-size: .88rem; color: var(--white-40);
+      margin-bottom: 2rem;
+    }
+
+    .form-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem; margin-bottom: 1rem;
+    }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label {
+      display: block;
+      font-size: .75rem; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--white-40);
+      margin-bottom: .5rem;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: var(--dark-3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: .85rem 1rem;
+      color: var(--white);
+      font-family: var(--font);
+      font-size: .9rem;
+      transition: border-color var(--transition), box-shadow var(--transition);
+      resize: none;
+      appearance: none;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,255,255,.18); }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--lime);
+      box-shadow: 0 0 0 3px rgba(200,245,62,.1);
+    }
+    .form-group select option { background: var(--dark-3); }
+    .select-wrap { position: relative; }
+    .select-wrap::after {
+      content: '▾';
+      position: absolute; right: 1rem; top: 50%;
+      transform: translateY(-50%);
+      color: var(--white-40);
+      pointer-events: none; font-size: .8rem;
+    }
+
+    .form-group textarea { min-height: 120px; }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--lime);
+      color: var(--dark);
+      border: none;
+      border-radius: 8px;
+      padding: 1rem 2rem;
+      font-family: var(--font);
+      font-size: .9rem; font-weight: 700;
+      letter-spacing: .06em;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: .6rem;
+      transition: opacity var(--transition), transform var(--transition);
+      margin-top: .5rem;
+    }
+    .btn-submit:hover { opacity: .88; transform: translateY(-2px); }
+    .btn-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+    .form-note {
+      text-align: center;
+      font-size: .78rem; color: var(--white-40);
+      margin-top: .8rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo {
+      font-family: var(--mono);
+      font-size: .9rem; font-weight: 700; letter-spacing: .1em;
+    }
+    .footer-logo span { color: var(--lime); }
+    .footer-links {
+      display: flex; gap: 2rem;
+    }
+    .footer-links a {
+      font-size: .82rem; color: var(--white-40);
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy {
+      font-size: .78rem; color: var(--white-40);
+      width: 100%;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .contact-main { grid-template-columns: 1fr; gap: 3rem; }
+      .info-block { position: static; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 1rem 5%; }
+      .nav-links { display: none; }
+      .form-row { grid-template-columns: 1fr; }
+      .contact-form-wrap { padding: 1.5rem; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="https://invitt.co.zw" class="nav-logo">
+      <span>INVITT</span><span style="color:var(--white-40);margin:0 .1rem">/</span>CO
+    </a>
+    <ul class="nav-links">
+      <li><a href="https://invitt.co.zw/#about">About</a></li>
+      <li><a href="https://invitt.co.zw/#services">Services</a></li>
+      <li><a href="https://invitt.co.zw/#portfolio">Work</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+      <li><a href="contact.html" class="nav-cta">Book Free Call →</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="contact-hero">
+    <div class="hero-tag">Book a Consultation</div>
+    <h1>Let's Get You<br><em>Found Online.</em></h1>
+    <p>Tell us about your business and what you're trying to achieve. We'll put together the perfect digital strategy — no fluff, just results.</p>
+  </div>
+
+  <!-- MAIN -->
+  <div class="contact-main">
+
+    <!-- INFO -->
+    <div class="info-block">
+      <p class="info-label">How to reach us</p>
+
+      <div class="info-item">
+        <div class="info-icon">📍</div>
+        <div>
+          <strong>Location</strong>
+          <span>Electra House, Suite 301<br/>49 Samora Machel Ave, Harare</span>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon">📱</div>
+        <div>
+          <strong>WhatsApp / Call</strong>
+          <a href="https://wa.me/263787412809">+263 787 412 809</a>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon">📧</div>
+        <div>
+          <strong>Email</strong>
+          <a id="invitt-email"></a>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon">🕐</div>
+        <div>
+          <strong>Working Hours</strong>
+          <span>Mon – Fri, 8am – 5pm</span>
+        </div>
+      </div>
+
+      <div class="response-badge">
+        <div class="badge-dot"></div>
+        <p><strong>Fast response guaranteed.</strong> We typically reply within a few hours during business hours.</p>
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <div class="contact-form-wrap">
+      <h2 class="form-heading">Book a Free Consultation</h2>
+      <p class="form-sub">Fill in the form and we'll reach out to schedule your free strategy call.</p>
+
+      <!-- ⚠️ Web3Forms — replace YOUR_ACCESS_KEY with your Invitt Co key from web3forms.com -->
+      <form id="contact-form">
+        <input type="hidden" name="access_key" value="00a72773-ebe2-4649-9595-9c3bcb790ae9"/>
+        <input type="hidden" name="subject" value="New Booking — Invitt Co Website"/>
+        <input type="hidden" name="from_name" value="Invitt Co Booking Page"/>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Tatenda Moyo" required/>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="you@company.com" required/>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Phone / WhatsApp</label>
+            <input type="tel" id="phone" name="phone" placeholder="+263 7XX XXX XXX"/>
+          </div>
+          <div class="form-group">
+            <label for="business">Business Name</label>
+            <input type="text" id="business" name="business" placeholder="Your Business"/>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="industry">Industry</label>
+            <div class="select-wrap">
+              <select id="industry" name="industry" required>
+                <option value="" disabled selected>Select industry…</option>
+                <option>Retail</option>
+                <option>Restaurant / Food</option>
+                <option>Real Estate</option>
+                <option>Professional Services</option>
+                <option>Healthcare</option>
+                <option>Technology</option>
+                <option>Construction / Drilling</option>
+                <option>Education</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="package">Interested Package</label>
+            <div class="select-wrap">
+              <select id="package" name="package">
+                <option value="" disabled selected>Choose a package…</option>
+                <option>Basic — Foundation</option>
+                <option>Standard — Growth</option>
+                <option>Premium — Dominate</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Tell Us About Your Business</label>
+          <textarea id="message" name="message" placeholder="What does your business do? What are your goals? What challenges are you facing online?" required></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">
+          <span>Send Booking Request</span>
+          <span>→</span>
+        </button>
+        <p class="form-note">We'll respond within a few hours. No spam, ever.</p>
+      </form>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo"><span>INVITT</span> CO</div>
+    <ul class="footer-links">
+      <li><a href="https://invitt.co.zw/#about">About</a></li>
+      <li><a href="https://invitt.co.zw/#services">Services</a></li>
+      <li><a href="https://invitt.co.zw/#portfolio">Work</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <p class="footer-copy">© 2025 Invitt Co. All rights reserved. — Harare, Zimbabwe</p>
+  </footer>
+
+  <script>
+  (function(){
+    // Build email via JS
+    var el = document.getElementById('invitt-email');
+    if (el) el.textContent = 'hello' + '@' + 'invitt.co.zw';
+
+    // Web3Forms submission
+    var form = document.getElementById('contact-form');
+    if (!form) return;
+
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+      var btn  = form.querySelector('.btn-submit');
+      var note = form.querySelector('.form-note');
+      var orig = btn.innerHTML;
+
+      btn.innerHTML = '<span>Sending…</span>';
+      btn.disabled = true;
+
+      try {
+        var res  = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: new FormData(form)
+        });
+        var json = await res.json();
+
+        if (json.success) {
+          btn.innerHTML = '<span>Booking Sent! ✓</span>';
+          btn.style.background = '#25d366';
+          btn.style.color = '#fff';
+          if (note) { note.textContent = "We've received your request — we'll be in touch shortly!"; note.style.color = '#25d366'; }
+          form.reset();
+        } else {
+          throw new Error(json.message);
+        }
+      } catch(err) {
+        btn.innerHTML = '<span>Failed — Try Again</span>';
+        btn.style.background = '#cc0033';
+        btn.style.color = '#fff';
+        btn.disabled = false;
+        if (note) { note.textContent = 'Something went wrong. Please WhatsApp us directly.'; note.style.color = '#ff4444'; }
+      }
+
+      setTimeout(function(){
+        btn.innerHTML = orig;
+        btn.disabled = false;
+        btn.style.background = '';
+        btn.style.color = '';
+        if (note) { note.textContent = "We'll respond within a few hours. No spam, ever."; note.style.color = ''; }
+      }, 6000);
+    });
+  })();
+  </script>
+
+</body>
+</html>
