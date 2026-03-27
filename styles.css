@@ -1063,6 +1063,20 @@ img { display: block; max-width: 100%; }
 }
 .contact-link:hover { color: var(--lime); }
 
+.contact-map {
+  margin-top: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.contact-map iframe {
+  display: block;
+  width: 100%;
+  height: 320px;
+  border: 0;
+}
+
 .contact-right {
   display: flex;
   flex-direction: column;
