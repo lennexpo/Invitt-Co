@@ -43,6 +43,97 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Space+Mono&display=swap" rel="stylesheet" />
 
+  <style>
+    /* ── BLOG SECTION ── */
+    .blog { background: #0A0A0A; }
+    .blog-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    @media (max-width: 900px) {
+      .blog-row { grid-template-columns: 1fr; }
+    }
+    .blog-card {
+      background: #111;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform .3s ease, border-color .3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+    .blog-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(200,245,62,.35);
+    }
+    .blog-card-thumb {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      letter-spacing: .05em;
+      color: #C8F53E;
+    }
+    .thumb-1 { background: linear-gradient(135deg, #0f1a0a, #1c320e); }
+    .thumb-2 { background: linear-gradient(135deg, #0a0f1a, #0e1c32); }
+    .thumb-3 { background: linear-gradient(135deg, #1a0f0a, #32200e); }
+    .blog-card-body {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .blog-card-meta {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: .9rem;
+      font-size: .72rem;
+      color: rgba(255,255,255,.4);
+      font-family: 'Space Mono', monospace;
+    }
+    .blog-card-tag {
+      background: rgba(200,245,62,.1);
+      color: #C8F53E;
+      padding: .2rem .65rem;
+      border-radius: 99px;
+      font-size: .68rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .blog-card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: .03em;
+      line-height: 1.2;
+      margin-bottom: .75rem;
+    }
+    .blog-card p {
+      font-size: .9rem;
+      color: rgba(255,255,255,.55);
+      line-height: 1.65;
+      flex: 1;
+    }
+    .blog-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      color: #C8F53E;
+      font-family: 'Space Mono', monospace;
+      font-size: .75rem;
+      letter-spacing: .05em;
+      margin-top: 1.25rem;
+      transition: gap .2s ease;
+    }
+    .blog-card:hover .blog-card-link { gap: .7rem; }
+  </style>
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -69,6 +160,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#portfolio">Work</a></li>
+      <li><a href="#blog">Blog</a></li>
       <li><a href="#contact" class="nav-cta">Get Found →</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -313,6 +405,58 @@
           <div class="slider-dots" id="sliderDots"></div>
           <button class="slider-btn" id="nextBtn">›</button>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= BLOG ======= -->
+  <section class="section blog" id="blog">
+    <div class="container">
+      <div class="section-header sr">
+        <p class="section-label">Invitt Co Insights</p>
+        <h2 class="section-title">From The <span class="accent">Blog</span></h2>
+      </div>
+      <div class="blog-row">
+
+        <a href="/article-1.html" class="blog-card sr">
+          <div class="blog-card-thumb thumb-1">WEB</div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span class="blog-card-tag">Web Design</span>
+              <span>5 min read</span>
+            </div>
+            <h3>Why Every Small Business in Harare Needs a Website in 2026</h3>
+            <p>If your business isn't online, you're invisible to thousands of potential customers searching Google every day.</p>
+            <span class="blog-card-link">Read Article →</span>
+          </div>
+        </a>
+
+        <a href="/article-2.html" class="blog-card sr">
+          <div class="blog-card-thumb thumb-2">ADS</div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span class="blog-card-tag">Digital Marketing</span>
+              <span>6 min read</span>
+            </div>
+            <h3>5 Digital Marketing Mistakes Zimbabwean Businesses Make</h3>
+            <p>Most businesses in Zimbabwe are losing customers online without even knowing it. Here's how to fix it.</p>
+            <span class="blog-card-link">Read Article →</span>
+          </div>
+        </a>
+
+        <a href="/article-3.html" class="blog-card sr">
+          <div class="blog-card-thumb thumb-3">SEO</div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span class="blog-card-tag">SEO</span>
+              <span>7 min read</span>
+            </div>
+            <h3>How to Get Your Harare Business Found on Google</h3>
+            <p>A practical step-by-step SEO guide built specifically for Harare and Zimbabwe businesses.</p>
+            <span class="blog-card-link">Read Article →</span>
+          </div>
+        </a>
+
       </div>
     </div>
   </section>
