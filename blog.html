@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Blog | Invitt Co — Web Design & Digital Marketing Insights</title>
+  <meta name="description" content="Tips, guides and insights on web design, digital marketing and SEO for small businesses in Harare, Zimbabwe. Written by Invitt Co." />
+  <meta name="keywords" content="web design blog Zimbabwe, digital marketing tips Harare, SEO guide Zimbabwe, small business online Zimbabwe" />
+  <meta name="author" content="Invitt Co" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.invitt.co.zw/blog.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.invitt.co.zw/blog.html" />
+  <meta property="og:title" content="Blog | Invitt Co — Digital Marketing Insights for Zimbabwe" />
+  <meta property="og:description" content="Tips and guides on web design, SEO and digital marketing for Harare businesses." />
+  <meta property="og:image" content="https://www.invitt.co.zw/invitt_social_square.png" />
+
+  <link rel="icon" type="image/png" href="/invitt_social_square.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Space+Mono&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* ── BLOG PAGE STYLES ── */
+    .blog-hero {
+      padding: 10rem 0 5rem;
+      text-align: center;
+      position: relative;
+    }
+    .blog-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(200,245,62,.08), transparent);
+      pointer-events: none;
+    }
+    .blog-hero .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-family: 'Space Mono', monospace;
+      font-size: .75rem;
+      letter-spacing: .15em;
+      color: #C8F53E;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .blog-hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: 1;
+      letter-spacing: .02em;
+      margin-bottom: 1.5rem;
+    }
+    .blog-hero h1 span { color: #C8F53E; }
+    .blog-hero p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,.6);
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    .blog-grid-section {
+      padding: 5rem 0 8rem;
+    }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .blog-card {
+      background: #111;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform .3s ease, border-color .3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+    .blog-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(200,245,62,.3);
+    }
+    .blog-card-thumb {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      letter-spacing: .05em;
+      position: relative;
+      overflow: hidden;
+    }
+    .thumb-1 { background: linear-gradient(135deg, #0f1a0a 0%, #1a2e0d 100%); color: #C8F53E; }
+    .thumb-2 { background: linear-gradient(135deg, #0a0a1a 0%, #0d1a2e 100%); color: #C8F53E; }
+    .thumb-3 { background: linear-gradient(135deg, #1a0a0a 0%, #2e0d0d 100%); color: #C8F53E; }
+    .blog-card-body {
+      padding: 1.75rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .blog-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      font-size: .75rem;
+      color: rgba(255,255,255,.4);
+      font-family: 'Space Mono', monospace;
+    }
+    .blog-card-tag {
+      background: rgba(200,245,62,.1);
+      color: #C8F53E;
+      padding: .25rem .75rem;
+      border-radius: 99px;
+      font-size: .7rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .blog-card h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: .03em;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .blog-card p {
+      font-size: .95rem;
+      color: rgba(255,255,255,.6);
+      line-height: 1.7;
+      flex: 1;
+    }
+    .blog-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      color: #C8F53E;
+      font-family: 'Space Mono', monospace;
+      font-size: .8rem;
+      letter-spacing: .05em;
+      margin-top: 1.5rem;
+      transition: gap .2s ease;
+    }
+    .blog-card:hover .blog-card-link { gap: .8rem; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <a href="/index.html" class="nav-logo">
+      <span class="brand-name">INVITT</span><span class="brand-co">CO</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/index.html#about">About</a></li>
+      <li><a href="/index.html#services">Services</a></li>
+      <li><a href="/index.html#portfolio">Work</a></li>
+      <li><a href="/blog.html" style="color:#C8F53E;">Blog</a></li>
+      <li><a href="/index.html#contact" class="nav-cta">Get Found →</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" id="mobileClose">✕</button>
+    <ul>
+      <li><a href="/index.html#about">About</a></li>
+      <li><a href="/index.html#services">Services</a></li>
+      <li><a href="/index.html#portfolio">Work</a></li>
+      <li><a href="/blog.html">Blog</a></li>
+      <li><a href="/index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- BLOG HERO -->
+  <section class="blog-hero">
+    <div class="container">
+      <div class="eyebrow">
+        <span class="eyebrow-dot"></span>
+        Invitt Co Insights
+      </div>
+      <h1>TIPS TO GROW <span>ONLINE.</span></h1>
+      <p>Practical guides on web design, SEO and digital marketing for businesses in Harare, Zimbabwe.</p>
+    </div>
+  </section>
+
+  <!-- BLOG GRID -->
+  <section class="blog-grid-section">
+    <div class="blog-grid">
+
+      <a href="/article-1.html" class="blog-card">
+        <div class="blog-card-thumb thumb-1">WEB</div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-card-tag">Web Design</span>
+            <span>March 2026 · 5 min read</span>
+          </div>
+          <h2>Why Every Small Business in Harare Needs a Website in 2026</h2>
+          <p>If your business isn't online, you're invisible to thousands of potential customers searching Google every day. Here's why a website is no longer optional.</p>
+          <span class="blog-card-link">Read Article →</span>
+        </div>
+      </a>
+
+      <a href="/article-2.html" class="blog-card">
+        <div class="blog-card-thumb thumb-2">ADS</div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-card-tag">Digital Marketing</span>
+            <span>March 2026 · 6 min read</span>
+          </div>
+          <h2>5 Digital Marketing Mistakes Zimbabwean Businesses Make</h2>
+          <p>Most businesses in Zimbabwe are losing customers online without even knowing it. These are the five most common mistakes — and how to fix them.</p>
+          <span class="blog-card-link">Read Article →</span>
+        </div>
+      </a>
+
+      <a href="/article-3.html" class="blog-card">
+        <div class="blog-card-thumb thumb-3">SEO</div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-card-tag">SEO</span>
+            <span>March 2026 · 7 min read</span>
+          </div>
+          <h2>How to Get Your Harare Business Found on Google</h2>
+          <p>Getting to the top of Google search results doesn't require a huge budget. Here's a practical step-by-step guide built specifically for Harare businesses.</p>
+          <span class="blog-card-link">Read Article →</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <span class="footer-logo-name"><span class="brand-name">INVITT</span><span class="brand-co">CO</span></span>
+        <p class="footer-tagline">Helping Businesses Get Found Online</p>
+      </div>
+      <div class="footer-links">
+        <a href="/index.html#about">About</a>
+        <a href="/index.html#services">Services</a>
+        <a href="/index.html#portfolio">Work</a>
+        <a href="/blog.html">Blog</a>
+        <a href="/index.html#contact">Contact</a>
+      </div>
+      <p class="footer-copy">© 2026 Invitt Co. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
