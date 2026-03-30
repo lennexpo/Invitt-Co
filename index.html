@@ -81,18 +81,19 @@
       border-color: rgba(200,245,62,.35);
     }
     .blog-card-thumb {
-      height: 160px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 3.5rem;
-      letter-spacing: .05em;
-      color: #C8F53E;
+      height: 200px;
+      overflow: hidden;
     }
-    .thumb-1 { background: linear-gradient(135deg, #0f1a0a, #1c320e); }
-    .thumb-2 { background: linear-gradient(135deg, #0a0f1a, #0e1c32); }
-    .thumb-3 { background: linear-gradient(135deg, #1a0f0a, #32200e); }
+    .blog-card-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s ease;
+    }
+    .blog-card:hover .blog-card-thumb img {
+      transform: scale(1.05);
+    }
     .blog-card-body {
       padding: 1.5rem;
       flex: 1;
@@ -429,7 +430,9 @@
       <div class="blog-row">
 
         <a href="/article-1.html" class="blog-card sr">
-          <div class="blog-card-thumb thumb-1">WEB</div>
+          <div class="blog-card-thumb">
+            <img src="blog-images/carriza-maiquez-sUIdCvblysI-unsplash.jpg" alt="Laptop showing a website being built" />
+          </div>
           <div class="blog-card-body">
             <div class="blog-card-meta">
               <span class="blog-card-tag">Web Design</span>
@@ -442,7 +445,9 @@
         </a>
 
         <a href="/article-2.html" class="blog-card sr">
-          <div class="blog-card-thumb thumb-2">ADS</div>
+          <div class="blog-card-thumb">
+            <img src="blog-images/nathan-dumlao-kLmt1mpGJVg-unsplash.jpg" alt="Phone showing social media apps" />
+          </div>
           <div class="blog-card-body">
             <div class="blog-card-meta">
               <span class="blog-card-tag">Digital Marketing</span>
@@ -455,7 +460,9 @@
         </a>
 
         <a href="/article-3.html" class="blog-card sr">
-          <div class="blog-card-thumb thumb-3">SEO</div>
+          <div class="blog-card-thumb">
+            <img src="blog-images/sarah-b-evcG0YvLFoY-unsplash.jpg" alt="Google search screen" />
+          </div>
           <div class="blog-card-body">
             <div class="blog-card-meta">
               <span class="blog-card-tag">SEO</span>
