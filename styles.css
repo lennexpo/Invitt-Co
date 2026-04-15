@@ -4,15 +4,15 @@
    ============================= */
 
 :root {
-  --black:   #0D5B10;
-  --dark:    #187C19;
-  --card:    #69B31E;
-  --border:  #8DC71D;
-  --lime:    #C8F53E;
-  --lime-dim: rgba(200,245,62,0.12);
-  --white:   #FFFFFF;
-  --gray:    #666666;
-  --gray-lt: #999999;
+ --black:     #0A0A0A;
+--dark:      #111111;
+--card:      #1A1A1A;
+--border:    #2A2A2A;
+--lime:      #C8F53E;
+--lime-dim:  rgba(200, 245, 62, 0.12);
+--white:     #FFFFFF;
+--gray:      #A1A1AA;
+--gray-lt:   #6B7280;
   --font-display: 'Bebas Neue', sans-serif;
   --font-body:    'DM Sans', sans-serif;
   --font-mono:    'Space Mono', monospace;
