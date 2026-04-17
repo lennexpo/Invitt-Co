@@ -2002,3 +2002,8 @@ img { display: block; max-width: 100%; }
   .founder-card { flex-direction: column; }
   .pricing-scarcity { font-size: 0.78rem; padding: 0.6rem 1rem; }
 }
+@media (max-width: 1024px) {
+  .about-right {
+    display: flex;
+  }
+}
