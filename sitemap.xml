@@ -76,8 +76,8 @@
   </url>
 
   <url>
-    <loc>https://invitt.co.zw/article-3.html</loc>
-    <lastmod>2026-04-15</lastmod>
+    <loc>https://invitt.co.zw/blog/how-to-get-your-harare-business-found-on-google.html</loc>
+    <lastmod>2026-04-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -87,14 +87,21 @@
   </url>
 
   <url>
-    <loc>https://invitt.co.zw/article-4.html</loc>
-    <lastmod>2026-04-15</lastmod>
+    <loc>https://invitt.co.zw/blog/top-5-reasons-professional-website-boosts-business-harare.html</loc>
+    <lastmod>2026-04-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://invitt.co.zw/blog-images/article-4-hero.jpg</image:loc>
       <image:title>Top 5 Reasons Why a Professional Website Boosts Business in Harare</image:title>
     </image:image>
+  </url>
+
+  <url>
+    <loc>https://invitt.co.zw/blog/why-every-small-business-harare-needs-website-2026.html</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <!-- BLOG CATEGORY PAGES -->
