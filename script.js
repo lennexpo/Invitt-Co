@@ -306,26 +306,46 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =============================
-  // CONTACT FORM — Web3Forms
+  // FAQ ACCORDION
+  // =============================
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item   = btn.closest('.faq-item');
+      const answer = item.querySelector('.faq-a');
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+      // Close all
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+        i.querySelector('.faq-q').classList.remove('open');
+        i.querySelector('.faq-a').hidden = true;
+      });
+
+      // Open this one if it was closed
+      if (!isOpen) {
+        btn.setAttribute('aria-expanded', 'true');
+        btn.classList.add('open');
+        answer.hidden = false;
+      }
+    });
+  });
+
+  // =============================
+  // CONTACT FORM — Web3Forms (Free Audit)
   // =============================
   const submitBtn  = document.getElementById('submitBtn');
   const formStatus = document.getElementById('formStatus');
 
   if (submitBtn) {
     submitBtn.addEventListener('click', async () => {
-      const name     = document.getElementById('nameInput').value.trim();
-      const email    = document.getElementById('emailInput').value.trim();
-      const business = document.getElementById('businessInput').value;
-      const pkg      = document.getElementById('packageInput').value;
-      const message  = document.getElementById('messageInput').value.trim();
+      const name      = document.getElementById('nameInput').value.trim();
+      const waNum     = document.getElementById('waInput').value.trim();
+      const url       = document.getElementById('urlInput').value.trim();
+      const challenge = document.getElementById('challengeInput').value;
+      const email     = document.getElementById('emailInput') ? document.getElementById('emailInput').value.trim() : '';
 
-      if (!name || !email || !message) {
-        formStatus.textContent = 'Please fill in your name, email, and message.';
-        formStatus.className   = 'form-status error';
-        return;
-      }
-      if (!email.includes('@') || !email.includes('.')) {
-        formStatus.textContent = 'Please enter a valid email address.';
+      if (!name || !waNum || !url) {
+        formStatus.textContent = 'Please fill in your website URL, name, and WhatsApp number.';
         formStatus.className   = 'form-status error';
         return;
       }
@@ -341,35 +361,36 @@ document.addEventListener('DOMContentLoaded', () => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             access_key: '15d2032e-84ed-4a43-8860-43cb1757bb90',
-            subject: `New Enquiry from ${name} — Invitt Co`,
+            subject: `Free Website Audit Request from ${name} — Invitt Co`,
             from_name: 'Invitt Co Website',
-            name, email,
-            replyto: email,
-            business_type: business || 'Not specified',
-            package: pkg || 'Not specified',
-            message,
-            autoresponse_subject: 'Thanks for reaching out to Invitt Co! 🚀',
-            autoresponse_message: `Hi ${name},\n\nThanks for getting in touch with Invitt Co!\n\nWe've received your message and will get back to you within 24 hours.\n\nFeel free to WhatsApp us at +263 772 338 862 for a faster response.\n\n— The Invitt Co Team`,
+            name,
+            email: email || 'Not provided',
+            replyto: email || 'noreply@invitt.co.zw',
+            website_url: url || 'Not provided',
+            biggest_challenge: challenge || 'Not specified',
+            whatsapp: waNum,
+            autoresponse_subject: 'Your Free Website Audit is on the way! 🚀',
+            autoresponse_message: `Hi ${name},\n\nThanks for requesting your free website audit from Invitt Co!\n\nWe've received your details and will send your personalised audit to your WhatsApp (${waNum}) within 24 hours.\n\nCan't wait? WhatsApp us directly at +263 787 412 809.\n\n— The Invitt Co Team`,
           })
         });
 
         const data = await res.json();
 
         if (data.success) {
-          formStatus.textContent = "✓ Message sent! We'll be in touch within 24 hours.";
+          formStatus.textContent = "✓ Request received! Your free audit will be on your WhatsApp within 24 hours.";
           formStatus.className   = 'form-status success';
-          ['nameInput','emailInput','businessInput','packageInput','messageInput']
-            .forEach(id => { document.getElementById(id).value = ''; });
+          ['urlInput','nameInput','waInput','emailInput','challengeInput']
+            .forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
         } else {
-          formStatus.textContent = 'Something went wrong. Please try again or WhatsApp us.';
+          formStatus.textContent = 'Something went wrong. Please try again or WhatsApp us directly.';
           formStatus.className   = 'form-status error';
         }
       } catch {
-        formStatus.textContent = 'Network error. Please try again or WhatsApp us directly.';
+        formStatus.textContent = 'Network error. Please WhatsApp us directly at +263 787 412 809.';
         formStatus.className   = 'form-status error';
       }
 
-      submitBtn.textContent = 'Send Message →';
+      submitBtn.textContent = 'Send Me My Free Audit →';
       submitBtn.disabled    = false;
     });
   }

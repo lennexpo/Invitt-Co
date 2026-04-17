@@ -1602,3 +1602,403 @@ img { display: block; max-width: 100%; }
 @media (max-width: 768px) {
   .pricing, .guarantee { padding: 5rem 0; }
 }
+
+/* =============================
+   FOUNDER CARD (About section)
+   ============================= */
+
+.founder-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.1rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--lime);
+  border-radius: 12px;
+  padding: 1.25rem 1.4rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.founder-avatar {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--lime);
+  color: var(--black);
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  letter-spacing: 0.05em;
+}
+
+.founder-name {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 0.1rem;
+}
+
+.founder-role {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--lime);
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.6rem;
+}
+
+.founder-quote {
+  font-size: 0.84rem;
+  color: var(--gray-lt);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* =============================
+   PRICING SCARCITY BAR
+   ============================= */
+
+.pricing-scarcity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 1.2rem auto 0;
+  padding: 0.7rem 1.4rem;
+  background: rgba(200,245,62,0.06);
+  border: 1px solid rgba(200,245,62,0.22);
+  border-radius: 99px;
+  font-size: 0.84rem;
+  color: var(--gray-lt);
+  max-width: 520px;
+  text-align: center;
+}
+
+.ps-icon { font-size: 1rem; }
+
+.ps-highlight {
+  color: var(--lime);
+  font-weight: 600;
+}
+
+/* =============================
+   PORTFOLIO — RESULTS LIST
+   ============================= */
+
+.pc-results {
+  list-style: none;
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.pc-results li {
+  font-size: 0.75rem;
+  color: var(--gray);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  line-height: 1.4;
+}
+
+.pc-result-icon { font-size: 0.75rem; flex-shrink: 0; }
+
+/* Demo card thumbnail */
+.pc-thumb--demo {
+  background: linear-gradient(135deg, #050d1a 0%, #0a1e3d 50%, #0d2250 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.pc-demo-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 50%, rgba(80,140,255,0.12) 0%, transparent 70%);
+}
+
+.pc-demo-badge {
+  background: rgba(10,20,40,0.7);
+  border: 1px solid rgba(80,140,255,0.35);
+  color: rgba(140,180,255,0.9);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.45rem 1.1rem;
+  border-radius: 6px;
+}
+
+/* "Your business next" card */
+.pc-thumb--yours {
+  background: linear-gradient(135deg, #101a06, #162b08, #1c380a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.pc-yours-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pc-yours-plus {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: rgba(200,245,62,0.5);
+  line-height: 1;
+  transition: color 0.3s;
+}
+
+.portfolio-card--cta:hover .pc-yours-plus { color: var(--lime); }
+
+.pc-yours-text {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(200,245,62,0.4);
+  text-align: center;
+  line-height: 1.5;
+  transition: color 0.3s;
+}
+
+.portfolio-card--cta:hover .pc-yours-text { color: var(--lime); }
+
+/* =============================
+   TESTIMONIALS — STARS
+   ============================= */
+
+.t-stars {
+  color: #FFB800;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+
+/* =============================
+   BLOG — AUDIT CTA IN CARDS
+   ============================= */
+
+.blog-audit-cta {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: var(--lime);
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+  margin-top: 0.5rem;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.25s, transform 0.25s;
+}
+
+.blog-card:hover .blog-audit-cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =============================
+   CONTACT — AUDIT FORM
+   ============================= */
+
+.audit-form-header {
+  margin-bottom: 1.5rem;
+}
+
+.audit-badge {
+  display: inline-block;
+  background: var(--lime);
+  color: var(--black);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 0.3rem 0.9rem;
+  border-radius: 3px;
+  margin-bottom: 0.5rem;
+}
+
+.audit-form-sub {
+  font-size: 0.8rem;
+  color: var(--gray);
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+}
+
+.label-note {
+  font-weight: 400;
+  color: var(--gray);
+  font-size: 0.7rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.audit-promise {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.ap-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.88rem;
+  color: var(--gray-lt);
+}
+
+.ap-icon {
+  color: var(--lime);
+  font-weight: 700;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.form-privacy {
+  font-size: 0.74rem;
+  color: var(--gray);
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/* =============================
+   FAQ SECTION
+   ============================= */
+
+.faq {
+  background: var(--black);
+  padding: 8rem 0;
+}
+
+.faq-grid {
+  max-width: 740px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-item:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.faq-q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.97rem;
+  font-weight: 500;
+  text-align: left;
+  padding: 1.3rem 0;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.faq-q:hover { color: var(--lime); }
+
+.faq-q.open { color: var(--lime); }
+
+.faq-chevron {
+  font-size: 1rem;
+  color: var(--lime);
+  flex-shrink: 0;
+  transition: transform 0.3s var(--ease);
+}
+
+.faq-q.open .faq-chevron { transform: rotate(180deg); }
+
+.faq-a {
+  font-size: 0.9rem;
+  color: var(--gray-lt);
+  line-height: 1.75;
+  padding: 0 0 1.3rem 0;
+  max-width: 620px;
+}
+
+/* =============================
+   FLOATING WHATSAPP BUTTON
+   ============================= */
+
+.wa-float {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #25D366;
+  color: #fff;
+  border-radius: 50px;
+  padding: 0.85rem 1.3rem 0.85rem 1rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  text-decoration: none;
+  box-shadow: 0 6px 30px rgba(37,211,102,0.4);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s, padding 0.25s;
+  animation: wa-pop 0.5s 3s var(--ease-out) both;
+  overflow: hidden;
+  max-width: 220px;
+}
+
+@keyframes wa-pop {
+  from { transform: scale(0.6) translateY(20px); opacity: 0; }
+  to   { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.wa-float:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 12px 40px rgba(37,211,102,0.5);
+}
+
+.wa-float-label {
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .wa-float {
+    border-radius: 50%;
+    padding: 1rem;
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+  .wa-float-label { display: none; }
+}
+
+/* =============================
+   RESPONSIVE — NEW SECTIONS
+   ============================= */
+
+@media (max-width: 1024px) {
+  .faq { padding: 5rem 0; }
+}
+
+@media (max-width: 768px) {
+  .faq { padding: 4rem 0; }
+  .founder-card { flex-direction: column; }
+  .pricing-scarcity { font-size: 0.78rem; padding: 0.6rem 1rem; }
+}
