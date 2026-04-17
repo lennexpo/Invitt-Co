@@ -1,0 +1,111 @@
+// STEP 1: Find your LocalBusiness JSON-LD script tag in index.html
+// Replace the entire "review": [...] array with this:
+
+"review": [
+  {
+    "@type": "Review",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": 5,
+      "bestRating": 5,
+      "worstRating": 1
+    },
+    "author": {
+      "@type": "Person",
+      "name": "J. Nyamajiwa"
+    },
+    "reviewBody": "Invitt Co transformed our online presence completely. We went from being invisible on Google to getting daily enquiries within just 3 months. The investment paid for itself within the first week.",
+    "datePublished": "2026-01-15"
+  },
+  {
+    "@type": "Review",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": 5,
+      "bestRating": 5,
+      "worstRating": 1
+    },
+    "author": {
+      "@type": "Person",
+      "name": "T. Moyo"
+    },
+    "reviewBody": "The website they built for us is exactly what we envisioned. Professional, fast, and our customers love it. Worth every cent.",
+    "datePublished": "2026-02-03"
+  },
+  {
+    "@type": "Review",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": 5,
+      "bestRating": 5,
+      "worstRating": 1
+    },
+    "author": {
+      "@type": "Person",
+      "name": "S. Khumalo"
+    },
+    "reviewBody": "Best investment we made for our business. The SEO work alone has tripled our website traffic. Highly recommend Invitt Co.",
+    "datePublished": "2026-02-20"
+  },
+  {
+    "@type": "Review",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": 5,
+      "bestRating": 5,
+      "worstRating": 1
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Mavis Nicole"
+    },
+    "reviewBody": "Great service! They created a professional website for me and the whole process was smooth and efficient. They were responsive, understood my needs, and delivered exactly what I wanted. Highly recommend.",
+    "datePublished": "2026-03-05"
+  },
+  {
+    "@type": "Review",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": 5,
+      "bestRating": 5,
+      "worstRating": 1
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Romeo N."
+    },
+    "reviewBody": "Working with Invitt Co was one of the best decisions I made for my business. Professional, fast, and they delivered genuine results. If you want a real digital presence in Harare, these are the people to call.",
+    "datePublished": "2026-03-18"
+  },
+  {
+    "@type": "Review",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": 5,
+      "bestRating": 5,
+      "worstRating": 1
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Takudzwa Mavhima"
+    },
+    "reviewBody": "The website they built for us is exactly what we envisioned. Professional, fast, and our customers love it. We saw a 20% increase in leads and 12% revenue growth in just 3 months. Worth every cent.",
+    "datePublished": "2026-04-01"
+  }
+],
+
+
+// STEP 2: Delete the ENTIRE second <script type="application/ld+json"> block
+// that contains standalone Review items. It looks like this — delete the whole thing:
+//
+// <script type="application/ld+json">
+// {
+//   "@context": "https://schema.org",
+//   "@type": "Review",
+//   "reviewBody": "...",
+//   "author": { ... }
+// }
+// </script>
+//
+// You likely have 6 of these standalone blocks. Delete all of them.
+// Reviews should ONLY live inside the LocalBusiness schema.
