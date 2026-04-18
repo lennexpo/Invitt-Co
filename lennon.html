@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lennon Nyamajiwa | Founder & Lead Developer – Invitt Co</title>
+  <meta name="description" content="Lennon Nyamajiwa is a Harare-based digital entrepreneur and the founder of Invitt Co, a web design and digital marketing agency helping Zimbabwean businesses grow online." />
+  <meta name="author" content="Lennon Nyamajiwa" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230A0A0A'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='20' font-weight='bold' fill='%23C8F53E'>L</text></svg>" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Lennon Nyamajiwa | Founder – Invitt Co" />
+  <meta property="og:description" content="Harare-based digital entrepreneur. Founder of Invitt Co." />
+  <meta property="og:url" content="https://www.invitt.co.zw/lennon" />
+  <meta property="og:type" content="profile" />
+
+  <!-- Person Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Lennon Nyamajiwa",
+    "jobTitle": "Founder & Lead Developer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Invitt Co",
+      "url": "https://www.invitt.co.zw"
+    },
+    "url": "https://www.invitt.co.zw/lennon",
+    "sameAs": [
+      "https://www.linkedin.com/in/lennon-nyamajiwa"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Harare",
+      "addressCountry": "ZW"
+    },
+    "knowsAbout": ["Web Design", "Branding", "Digital Marketing", "SEO", "HTML", "CSS", "JavaScript"]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0A0A0A;
+      --surface: #111111;
+      --lime: #C8F53E;
+      --lime-dim: #a8d82e;
+      --muted: #A1A1AA;
+      --white: #F5F5F0;
+      --border: rgba(255,255,255,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 3rem;
+      background: rgba(10,10,10,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--lime); }
+
+    .nav-link {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover { color: var(--lime); }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      padding-top: 80px;
+    }
+
+    .hero-left {
+      padding: 6rem 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid var(--border);
+    }
+
+    .label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 8vw, 7rem);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      color: var(--white);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title {
+      font-size: 1rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-title strong { color: var(--white); font-weight: 400; }
+
+    .hero-bio {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(245,245,240,0.75);
+      max-width: 560px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-bio p + p { margin-top: 1rem; }
+
+    .contact-cta {
+      display: inline-block;
+      padding: 0.7rem 1.75rem;
+      background: var(--lime);
+      color: var(--black);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 700;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .contact-cta:hover { background: var(--lime-dim); transform: translateY(-1px); }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .hero-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      filter: grayscale(20%);
+    }
+
+    .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 600px;
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .photo-placeholder-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(200,245,62,0.08);
+      border: 1px solid rgba(200,245,62,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .photo-placeholder-icon svg {
+      width: 36px;
+      height: 36px;
+      fill: var(--lime);
+      opacity: 0.5;
+    }
+
+    .photo-placeholder p {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0.5;
+    }
+
+    .details-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .detail-item {
+      padding: 2rem 3rem;
+      border-right: 1px solid var(--border);
+    }
+
+    .detail-item:last-child { border-right: none; }
+
+    .detail-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 0.5rem;
+    }
+
+    .detail-value { font-size: 1rem; color: var(--white); font-weight: 400; }
+
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+    }
+
+    .content-main {
+      padding: 5rem 3rem;
+      border-right: 1px solid var(--border);
+    }
+
+    .content-sidebar { padding: 5rem 2.5rem; }
+
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 1.25rem;
+    }
+
+    .section-heading {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      letter-spacing: 0.03em;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    .body-text { color: rgba(245,245,240,0.72); line-height: 1.85; font-size: 1rem; }
+    .body-text p + p { margin-top: 1rem; }
+
+    .divider { width: 48px; height: 2px; background: var(--lime); margin: 3rem 0; }
+
+    .philosophy-block {
+      border-left: 2px solid var(--lime);
+      padding: 1.25rem 1.75rem;
+      background: rgba(200,245,62,0.04);
+      margin: 2rem 0;
+    }
+
+    .philosophy-block p {
+      font-size: 1.05rem;
+      color: rgba(245,245,240,0.85);
+      font-style: italic;
+      line-height: 1.7;
+    }
+
+    .sidebar-section { margin-bottom: 3rem; }
+
+    .sidebar-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .sidebar-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      color: rgba(245,245,240,0.72);
+      line-height: 1.5;
+    }
+
+    .sidebar-list li::before {
+      content: '';
+      display: block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--lime);
+      margin-top: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer-logo span { color: var(--lime); }
+
+    .footer-copy {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      opacity: 0.5;
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 5rem 1.5rem 3rem; border-right: none; border-bottom: 1px solid var(--border); }
+      .hero-right { min-height: 360px; }
+      .photo-placeholder { min-height: 360px; }
+      .details-strip { grid-template-columns: 1fr; }
+      .detail-item { padding: 1.5rem; border-right: none; border-bottom: 1px solid var(--border); }
+      .content { grid-template-columns: 1fr; }
+      .content-main { padding: 3rem 1.5rem; border-right: none; border-bottom: 1px solid var(--border); }
+      .content-sidebar { padding: 3rem 1.5rem; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="https://www.invitt.co.zw" class="nav-logo">INVITT<span>.</span>CO</a>
+    <a href="https://www.invitt.co.zw/#contact" class="nav-link">Work With Me →</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-left">
+      <p class="label">// Profile</p>
+      <h1 class="hero-name">Lennon<br>Nyamajiwa</h1>
+      <p class="hero-title"><strong>Founder &amp; Lead Developer</strong> — Invitt Co</p>
+      <div class="hero-bio">
+        <p>Lennon Nyamajiwa is a Harare-based digital entrepreneur and the founder of Invitt Co, a web design and digital marketing agency built to help Zimbabwean businesses establish a credible, competitive presence online.</p>
+        <p>His work sits at the intersection of design, code, and brand strategy, translating the identity of local businesses into digital assets that communicate professionalism and generate real-world results.</p>
+      </div>
+      <a href="https://www.invitt.co.zw/#contact" class="contact-cta">Work With Lennon →</a>
+    </div>
+
+    <div class="hero-right">
+      <!--
+        Replace placeholder with your photo:
+        <img src="images/lennon-photo.png" alt="Lennon Nyamajiwa" class="hero-photo" />
+      -->
+      <div class="photo-placeholder">
+        <div class="photo-placeholder-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+          </svg>
+        </div>
+        <p>Add your photo here</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="details-strip">
+    <div class="detail-item">
+      <p class="detail-label">Role</p>
+      <p class="detail-value">Founder &amp; Lead Developer</p>
+    </div>
+    <div class="detail-item">
+      <p class="detail-label">Location</p>
+      <p class="detail-value">Harare, Zimbabwe</p>
+    </div>
+    <div class="detail-item">
+      <p class="detail-label">Specialties</p>
+      <p class="detail-value">Web Design · Branding · Digital Marketing</p>
+    </div>
+  </div>
+
+  <div class="content">
+    <main class="content-main">
+
+      <p class="section-label">// Background</p>
+      <h2 class="section-heading">Building Digital Zimbabwe</h2>
+      <div class="body-text">
+        <p>Lennon Nyamajiwa grew up witnessing a clear gap in Harare's business landscape: talented, hardworking entrepreneurs running quality operations with almost no digital presence. Their businesses existed — they just could not be found. No website, no Google listing, no way for a potential customer searching online to discover them. That invisible majority became the founding problem Lennon set out to solve.</p>
+
+        <p>He began as a self-taught developer, building his first website for his father's business, Topiary Marketing, as a practical learning project. What started as a personal exercise quickly became a commercial offering. He taught himself HTML, CSS, and JavaScript through trial, iteration, and problem-solving — not through a classroom, but through the demanding discipline of shipping real work for real clients.</p>
+
+        <p>That experience became the blueprint for Invitt Co, a Harare-based digital agency founded with a clear mandate: give local businesses the digital infrastructure they need to compete in an economy that is rapidly moving online. Invitt Co offers web design and development, brand identity, search engine optimisation, and digital marketing strategy — a full suite of services tailored specifically to the Zimbabwean market.</p>
+
+        <div class="philosophy-block">
+          <p>"Most businesses in Harare are invisible online — not because they are not good at what they do, but because no one has built them the right digital tools. That is the gap Invitt Co exists to close."</p>
+        </div>
+
+        <p>Lennon built Invitt Co around a demo-first sales model: every prospective client receives a fully designed, functional website before any payment is discussed. The approach reflects a core belief — that the best way to earn trust is to demonstrate value first. It removes the friction of convincing someone to pay for something they cannot yet see, and it creates a conversation grounded in a real, tangible deliverable.</p>
+
+        <p>That model has worked. Invitt Co has acquired clients across multiple industries through a combination of cold outreach, referrals, and LinkedIn prospecting. Lennon personally handles every aspect of the business — from the initial pitch and brand discovery, through design and development, to deployment, SEO, and ongoing digital strategy.</p>
+
+        <p>Beyond individual client projects, Lennon has invested in building Invitt Co's own digital presence with the same rigour he applies to client work. The agency's website is live at invitt.co.zw, optimised for local search, equipped with Google Analytics, and structured with schema markup that helps search engines understand and surface the brand accurately. In 2026, Google's AI Overview began surfacing Lennon's name and profile directly in search results — a signal that Invitt Co's digital footprint had reached a level of authority that even the world's largest search engine took notice of.</p>
+
+        <p>Lennon's long-term vision is to establish Invitt Co as the go-to digital agency for growth-stage businesses across Zimbabwe — and eventually across the broader Southern African market. He believes that the next decade will be defined by which Zimbabwean businesses successfully make the transition to digital-first operations, and Invitt Co intends to be the partner that gets them there.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <p class="section-label">// Approach</p>
+      <h2 class="section-heading">How Lennon Works</h2>
+      <div class="body-text">
+        <p>Every Invitt Co engagement begins with understanding the client's business — their customers, their competitors, and the specific value their product or service delivers. Design and development decisions flow from that understanding, not from templates or generic solutions.</p>
+        <p>Lennon builds all sites in clean, hand-coded HTML, CSS, and JavaScript. No bloated website builders. No subscription platforms that lock clients in. Every site is fast, maintainable, and fully owned by the business it represents — hosted on a custom domain the client controls.</p>
+        <p>On delivery, every client receives not just a website, but a complete digital setup: Google Business Profile, Google Analytics, Search Console integration, and an SEO foundation built to rank in local Harare searches from day one.</p>
+      </div>
+
+    </main>
+
+    <aside class="content-sidebar">
+
+      <div class="sidebar-section">
+        <p class="section-label">// Services</p>
+        <ul class="sidebar-list">
+          <li>Website Design &amp; Development</li>
+          <li>Brand Identity &amp; Logo Design</li>
+          <li>Search Engine Optimisation (SEO)</li>
+          <li>Google Business Profile Setup</li>
+          <li>Social Media Branding</li>
+          <li>Digital Marketing Strategy</li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="section-label">// Connect</p>
+        <ul class="sidebar-list">
+          <li><a href="https://www.linkedin.com/in/lennon-nyamajiwa" style="color:var(--lime);text-decoration:none;">LinkedIn</a></li>
+          <li><a href="https://www.invitt.co.zw" style="color:var(--lime);text-decoration:none;">invitt.co.zw</a></li>
+        </ul>
+      </div>
+
+    </aside>
+  </div>
+
+  <footer>
+    <a href="https://www.invitt.co.zw" class="footer-logo">INVITT<span>.</span>CO</a>
+    <p class="footer-copy">© 2026 Invitt Co. Harare, Zimbabwe.</p>
+  </footer>
+
+</body>
+</html>
