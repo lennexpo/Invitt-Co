@@ -1267,6 +1267,7 @@ img { display: block; max-width: 100%; }
   .hamburger { display: flex; }
   .hero { padding: 8rem 1.5rem 4rem; min-height: 100svh; }
   .hero-scroll-hint { left: 1.5rem; }
+  .hero-headline { font-size: clamp(3rem, 16vw, 5rem); }
   .portfolio-split { grid-template-columns: 1fr; gap: 2.5rem; }
   .portfolio-left { position: static; }
   .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
@@ -1275,6 +1276,10 @@ img { display: block; max-width: 100%; }
   .about, .services, .portfolio, .testimonials, .contact { padding: 5rem 0; }
   body { cursor: auto; }
   .cursor, .cursor-dot { display: none; }
+  .section-title { overflow-wrap: break-word; word-break: break-word; }
+  .hero-sub { font-size: 0.95rem; }
+  .guarantee-title { font-size: clamp(1.8rem, 6vw, 3rem); overflow-wrap: break-word; }
+  .section-title { font-size: clamp(2rem, 10vw, 3.5rem); }
 }
 /* =============================
    PRICING
@@ -1987,6 +1992,10 @@ img { display: block; max-width: 100%; }
     right: 1.5rem;
   }
   .wa-float-label { display: none; }
+  .hero-headline { font-size: clamp(2.6rem, 17vw, 4rem); }
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions a { text-align: center; }
 }
 
 /* =============================
