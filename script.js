@@ -331,68 +331,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // =============================
-  // CONTACT FORM — Web3Forms (Free Audit)
+  // CONTACT FORM — EmailJS (Free Audit)
   // =============================
-  const submitBtn  = document.getElementById('submitBtn');
-  const formStatus = document.getElementById('formStatus');
-
-  if (submitBtn) {
-    submitBtn.addEventListener('click', async () => {
-      const name      = document.getElementById('nameInput').value.trim();
-      const waNum     = document.getElementById('waInput').value.trim();
-      const url       = document.getElementById('urlInput').value.trim();
-      const challenge = document.getElementById('challengeInput').value;
-      const email     = document.getElementById('emailInput') ? document.getElementById('emailInput').value.trim() : '';
-
-      if (!name || !waNum || !url) {
-        formStatus.textContent = 'Please fill in your website URL, name, and WhatsApp number.';
-        formStatus.className   = 'form-status error';
-        return;
-      }
-
-      submitBtn.textContent = 'Sending...';
-      submitBtn.disabled    = true;
-      formStatus.textContent = '';
-      formStatus.className   = 'form-status';
-
-      try {
-        const res = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            access_key: 'f6e14465-4cbe-43f0-9750-d104d32e2551',
-            subject: `Free Website Audit Request from ${name} — Invitt Co`,
-            from_name: 'Invitt Co Website',
-            name,
-            email: email || 'Not provided',
-            replyto: email || 'noreply@invitt.co.zw',
-            website_url: url || 'Not provided',
-            biggest_challenge: challenge || 'Not specified',
-            whatsapp: waNum,
-            autoresponse_subject: 'Your Free Website Audit is on the way! 🚀',
-            autoresponse_message: `Hi ${name},\n\nThanks for requesting your free website audit from Invitt Co!\n\nWe've received your details and will send your personalised audit to your WhatsApp (${waNum}) within 24 hours.\n\nCan't wait? WhatsApp us directly at +263 787 412 809.\n\n— The Invitt Co Team`,
-          })
-        });
-
-        const data = await res.json();
-
-        if (data.success) {
-          formStatus.textContent = "✓ Request received! Your free audit will be on your WhatsApp within 24 hours.";
-          formStatus.className   = 'form-status success';
-          ['urlInput','nameInput','waInput','emailInput','challengeInput']
-            .forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
-        } else {
-          formStatus.textContent = 'Something went wrong. Please try again or WhatsApp us directly.';
-          formStatus.className   = 'form-status error';
-        }
-      } catch {
-        formStatus.textContent = 'Network error. Please WhatsApp us directly at +263 787 412 809.';
-        formStatus.className   = 'form-status error';
-      }
-
-      submitBtn.textContent = 'Send Me My Free Audit →';
-      submitBtn.disabled    = false;
-    });
-  }
+  // Note: primary handler is the inline script in index.html
+  // This is a fallback in case the inline script doesn't load
 
 });

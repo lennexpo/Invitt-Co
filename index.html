@@ -746,6 +746,7 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="/script.js" defer></script>
   <script>
     (function() {
@@ -758,14 +759,16 @@
     })();
   </script>
 
-  <!-- FORM FIX: Reliable Web3Forms handler, overrides script.js listener -->
+  <!-- FORM HANDLER — EmailJS -->
   <script>
+    emailjs.init('JhktGML31Z5lzKsBK');
+
     window.addEventListener('load', function() {
       var btn = document.getElementById('submitBtn');
       var status = document.getElementById('formStatus');
       if (!btn || !status) return;
 
-      /* Clone button to strip any broken listeners from script.js */
+      /* Clone button to strip any previous listeners */
       var fresh = btn.cloneNode(true);
       btn.parentNode.replaceChild(fresh, btn);
 
@@ -789,32 +792,24 @@
         status.textContent = '';
 
         try {
-          var res = await fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify({
-              access_key: '15d2032e-84ed-4a43-8860-43cb1757bb90',
-              subject: 'Free Website Audit Request — Invitt Co',
-              from_name: 'Invitt Co Website',
-              name: name,
-              email: email || 'lennnyamajiwa@gmail.com',
-              message: 'WhatsApp: ' + wa + '\nWebsite: ' + (url || 'None provided') + '\nBiggest Challenge: ' + (challenge || 'Not selected')
-            })
+          await emailjs.send('service_f721n9g', 'template_ckh9e9d', {
+            name:              name,
+            email:             email || 'Not provided',
+            whatsapp:          wa,
+            website_url:       url || 'Not provided',
+            biggest_challenge: challenge || 'Not specified',
           });
-          var data = await res.json();
-          if (data.success) {
-            status.style.color = '#C8F53E';
-            status.textContent = '✓ Sent! We\'ll WhatsApp your free audit within 24 hours.';
-            fresh.textContent = 'Sent ✓';
-            ['nameInput','waInput','urlInput','challengeInput','emailInput'].forEach(function(id) {
-              var el = document.getElementById(id); if (el) el.value = '';
-            });
-          } else {
-            throw new Error(data.message || 'Submission failed');
-          }
+
+          status.style.color = '#C8F53E';
+          status.textContent = '✓ Sent! We\'ll WhatsApp your free audit within 24 hours.';
+          fresh.textContent = 'Sent ✓';
+          ['nameInput','waInput','urlInput','challengeInput','emailInput'].forEach(function(id) {
+            var el = document.getElementById(id); if (el) el.value = '';
+          });
+
         } catch(err) {
           status.style.color = '#E24B4A';
-          status.textContent = 'Something went wrong. Please try again or WhatsApp us directly.';
+          status.textContent = 'Something went wrong. Please WhatsApp us directly at +263 787 412 809.';
           fresh.disabled = false;
           fresh.textContent = 'Send Me My Free Audit →';
         }
