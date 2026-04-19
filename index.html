@@ -85,21 +85,26 @@
     .hero-bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0.55; z-index: 0; }
     .hero-bg-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.7) 100%); z-index: 1; }
     .about-img { width: 100%; height: 100%; object-fit: cover; border-radius: 16px; display: block; }
+    /* Latest Articles Strip */
     .blog { background: #0A0A0A; }
-    .blog-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
-    @media (max-width: 900px) { .blog-row { grid-template-columns: 1fr; } }
-    .blog-card { background: #111; border: 1px solid rgba(255,255,255,.07); border-radius: 12px; overflow: hidden; transition: transform .3s ease, border-color .3s ease; text-decoration: none; color: inherit; display: flex; flex-direction: column; }
-    .blog-card:hover { transform: translateY(-6px); border-color: rgba(200,245,62,.35); }
-    .blog-card-thumb { height: 200px; overflow: hidden; }
-    .blog-card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
-    .blog-card:hover .blog-card-thumb img { transform: scale(1.05); }
-    .blog-card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
-    .blog-card-meta { display: flex; align-items: center; gap: .75rem; margin-bottom: .9rem; font-size: .72rem; color: rgba(255,255,255,.4); font-family: 'Space Mono', monospace; }
-    .blog-card-tag { background: rgba(200,245,62,.1); color: #C8F53E; padding: .2rem .65rem; border-radius: 99px; font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; }
-    .blog-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: .03em; line-height: 1.2; margin-bottom: .75rem; }
-    .blog-card p { font-size: .9rem; color: rgba(255,255,255,.55); line-height: 1.65; flex: 1; }
-    .blog-card-link { display: inline-flex; align-items: center; gap: .4rem; color: #C8F53E; font-family: 'Space Mono', monospace; font-size: .75rem; letter-spacing: .05em; margin-top: 1.25rem; transition: gap .2s ease; }
-    .blog-card:hover .blog-card-link { gap: .7rem; }
+    .latest-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2.5rem; }
+    .latest-header h2.section-title { margin-bottom: 0; }
+    .view-all-link { font-family: 'Space Mono', monospace; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: #C8F53E; text-decoration: none; padding-bottom: 2px; border-bottom: 1px solid rgba(200,245,62,0.3); transition: border-color 0.2s, letter-spacing 0.2s; white-space: nowrap; margin-bottom: 0.3rem; }
+    .view-all-link:hover { border-color: #C8F53E; letter-spacing: 0.2em; }
+    .articles-strip { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid rgba(255,255,255,0.08); }
+    .strip-card { display: flex; flex-direction: column; text-decoration: none; color: inherit; border-right: 1px solid rgba(255,255,255,0.08); transition: background 0.2s; }
+    .strip-card:last-child { border-right: none; }
+    .strip-card:hover { background: rgba(255,255,255,0.025); }
+    .strip-thumb { height: 200px; overflow: hidden; }
+    .strip-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+    .strip-card:hover .strip-thumb img { transform: scale(1.05); }
+    .strip-body { padding: 1.75rem; display: flex; flex-direction: column; flex: 1; }
+    .strip-category { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: #C8F53E; margin-bottom: 0.7rem; }
+    .strip-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.45rem; line-height: 1.05; letter-spacing: 0.02em; color: #F5F5F0; margin-bottom: 0.7rem; transition: color 0.2s; }
+    .strip-card:hover .strip-title { color: #C8F53E; }
+    .strip-excerpt { font-size: 0.875rem; color: rgba(161,161,170,0.8); line-height: 1.65; flex: 1; margin-bottom: 1.25rem; }
+    .strip-meta { font-family: 'Space Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(161,161,170,0.4); border-top: 1px solid rgba(255,255,255,0.08); padding-top: 0.875rem; }
+    @media (max-width: 900px) { .articles-strip { grid-template-columns: 1fr; } .strip-card { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); } .strip-card:last-child { border-bottom: none; } .latest-header { flex-direction: column; align-items: flex-start; gap: 1rem; } }
   </style>
 
   <link rel="stylesheet" href="/styles.css" />
@@ -582,45 +587,55 @@
   </section>
 
   <!-- =====================
-       BLOG
+       LATEST ARTICLES
        ===================== -->
   <section class="section blog" id="blog" aria-label="Digital Marketing Blog — Tips for Zimbabwe and Harare Businesses">
     <div class="container">
-      <div class="section-header sr">
-        <p class="section-label">Invitt Co Insights</p>
-        <h2 class="section-title">From The <span class="accent">Blog</span></h2>
+      <div class="latest-header sr">
+        <div>
+          <p class="section-label">Invitt Co Insights</p>
+          <h2 class="section-title">Latest <span class="accent">Articles</span></h2>
+        </div>
+        <a href="blog.html" class="view-all-link">View all posts →</a>
       </div>
-      <div class="blog-row">
-        <a href="blog/why-every-small-business-in-harare-needs-a-website-in-2026.html" class="blog-card sr" aria-label="Read: Why Every Small Business in Harare Needs a Website in 2026">
-          <div class="blog-card-thumb"><img src="blog-images/Why Every Small Business in Harare Needs a Website in 2026.jpg" alt="Web designer building a small business website in Harare Zimbabwe" width="400" height="200" loading="lazy" /></div>
-          <div class="blog-card-body">
-            <div class="blog-card-meta"><span class="blog-card-tag">Web Design</span><span>5 min read</span></div>
-            <h3>Why Every Small Business in Harare Needs a Website in 2026</h3>
-            <p>If your business isn't online, you're invisible to thousands of potential customers searching Google every day in Harare and across Zimbabwe.</p>
-            <span class="blog-card-link">Read Article →</span>
-            <span class="blog-audit-cta">Get a free audit for your business →</span>
+      <div class="articles-strip">
+
+        <a href="blog/why-every-small-business-in-harare-needs-a-website-in-2026.html" class="strip-card sr" aria-label="Read: Why Every Small Business in Harare Needs a Website in 2026">
+          <div class="strip-thumb">
+            <img src="blog-images/Why Every Small Business in Harare Needs a Website in 2026.jpg" alt="Web designer building a small business website in Harare Zimbabwe" width="400" height="200" loading="lazy" />
+          </div>
+          <div class="strip-body">
+            <p class="strip-category">// Web Design</p>
+            <h3 class="strip-title">Why Every Small Business in Harare Needs a Website in 2026</h3>
+            <p class="strip-excerpt">If your business isn't online, you're invisible to thousands of potential customers searching Google every day in Harare and across Zimbabwe.</p>
+            <div class="strip-meta">2026 &nbsp;·&nbsp; 5 min read</div>
           </div>
         </a>
-        <a href="blog/Top%205%20Reasons%20Why%20a%20Professional%20Website%20Boosts%20Business%20in%20Harare.html" class="blog-card sr" aria-label="Read: Top 5 Reasons Why a Professional Website Boosts Business in Harare">
-          <div class="blog-card-thumb" style="padding:0; overflow:hidden;"><img src="/blog-images/Top 5 Reasons Why a Professional Website Boosts Business in Harare.jpg" alt="Professional website boosting a Harare business growth online" style="width:100%; height:100%; object-fit:cover; object-position:center top; display:block;" width="400" height="200" loading="lazy" /></div>
-          <div class="blog-card-body">
-            <div class="blog-card-meta"><span class="blog-card-tag">Web Design</span><span>April 2026 · 5 min read</span></div>
-            <h3>Top 5 Reasons Why a Professional Website Boosts Business in Harare</h3>
-            <p>A professional website is your most powerful business tool. Here's why Harare businesses that invest online are pulling ahead of the competition.</p>
-            <span class="blog-card-link">Read Article →</span>
-            <span class="blog-audit-cta">Get a free audit for your business →</span>
+
+        <a href="blog/Top%205%20Reasons%20Why%20a%20Professional%20Website%20Boosts%20Business%20in%20Harare.html" class="strip-card sr" aria-label="Read: Top 5 Reasons Why a Professional Website Boosts Business in Harare">
+          <div class="strip-thumb">
+            <img src="blog-images/Top 5 Reasons Why a Professional Website Boosts Business in Harare.jpg" alt="Professional website boosting a Harare business growth online" style="object-position:center top;" width="400" height="200" loading="lazy" />
+          </div>
+          <div class="strip-body">
+            <p class="strip-category">// Web Design</p>
+            <h3 class="strip-title">Top 5 Reasons Why a Professional Website Boosts Business in Harare</h3>
+            <p class="strip-excerpt">A professional website is your most powerful business tool. Here's why Harare businesses that invest online are pulling ahead of the competition.</p>
+            <div class="strip-meta">April 2026 &nbsp;·&nbsp; 5 min read</div>
           </div>
         </a>
-        <a href="/blog/How%20to%20Get%20Your%20Harare%20Business%20Found%20on%20Google.html" class="blog-card sr" aria-label="Read: How to Get Your Harare Business Found on Google">
-          <div class="blog-card-thumb"><img src="/blog-images/How to Get Your Harare Business Found on Google.jpg" alt="Google search screen showing Harare business SEO results" width="400" height="200" loading="lazy" /></div>
-          <div class="blog-card-body">
-            <div class="blog-card-meta"><span class="blog-card-tag">SEO</span><span>7 min read</span></div>
-            <h3>How to Get Your Harare Business Found on Google</h3>
-            <p>A practical step-by-step SEO guide built specifically for Harare and Zimbabwe businesses looking to dominate local search.</p>
-            <span class="blog-card-link">Read Article →</span>
-            <span class="blog-audit-cta">Get a free audit for your business →</span>
+
+        <a href="blog/How%20to%20Get%20Your%20Harare%20Business%20Found%20on%20Google.html" class="strip-card sr" aria-label="Read: How to Get Your Harare Business Found on Google">
+          <div class="strip-thumb">
+            <img src="blog-images/How to Get Your Harare Business Found on Google.jpg" alt="Google search screen showing Harare business SEO results" width="400" height="200" loading="lazy" />
+          </div>
+          <div class="strip-body">
+            <p class="strip-category">// SEO</p>
+            <h3 class="strip-title">How to Get Your Harare Business Found on Google</h3>
+            <p class="strip-excerpt">A practical step-by-step SEO guide built specifically for Harare and Zimbabwe businesses looking to dominate local search.</p>
+            <div class="strip-meta">2026 &nbsp;·&nbsp; 7 min read</div>
           </div>
         </a>
+
       </div>
     </div>
   </section>
@@ -963,7 +978,7 @@
       {"@type": "ListItem","position": 1,"name": "Home","item": "https://invitt.co.zw/"},
       {"@type": "ListItem","position": 2,"name": "Services","item": "https://invitt.co.zw/#services"},
       {"@type": "ListItem","position": 3,"name": "Portfolio","item": "https://invitt.co.zw/#portfolio"},
-      {"@type": "ListItem","position": 4,"name": "Blog","item": "https://invitt.co.zw/#blog"},
+      {"@type": "ListItem","position": 4,"name": "Blog","item": "https://invitt.co.zw/blog.html"},
       {"@type": "ListItem","position": 5,"name": "Contact","item": "https://invitt.co.zw/#contact"}
     ]
   }
