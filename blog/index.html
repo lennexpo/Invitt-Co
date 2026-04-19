@@ -52,21 +52,20 @@
     .post-meta .read-more{margin-left:auto;color:var(--navy);font-size:0.68rem;letter-spacing:0.14em;transition:letter-spacing 0.2s}
     .featured-post:hover .read-more{letter-spacing:0.22em}
 
-    .posts-grid{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--border)}
-    .post-card{display:flex;flex-direction:column;border-right:1px solid var(--border);text-decoration:none;background:var(--bg);transition:background 0.2s}
-    .post-card:last-child{border-right:none}
-    .post-card:hover{background:var(--surface)}
-    .card-thumb{height:220px;overflow:hidden;background:var(--surface)}
+    .posts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;padding:3rem;background:var(--bg)}
+    .post-card{display:flex;flex-direction:column;text-decoration:none;background:#EDF1F7;border-radius:14px;overflow:hidden;transition:transform 0.25s ease,box-shadow 0.25s ease}
+    .post-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(26,39,68,0.12)}
+    .card-thumb{height:220px;overflow:hidden;background:var(--surface);flex-shrink:0}
     .card-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s ease}
     .post-card:hover .card-thumb img{transform:scale(1.04)}
     .card-thumb.c1{background:linear-gradient(135deg,#1a1a2e 0%,#0f3460 100%)}
     .card-thumb.c2{background:linear-gradient(135deg,#1a2744 0%,#2d4a8a 100%)}
     .card-thumb.c3{background:linear-gradient(135deg,#0f2d1a 0%,#1a4d30 100%)}
-    .card-body{padding:2rem;display:flex;flex-direction:column;flex:1;border-top:1px solid var(--bl)}
-    .card-title{font-family:'Bebas Neue',sans-serif;font-size:1.55rem;line-height:1.05;letter-spacing:0.02em;color:var(--text);margin-bottom:0.75rem;transition:color 0.2s}
+    .card-body{padding:1.75rem 1.75rem 1.5rem;display:flex;flex-direction:column;flex:1}
+    .card-title{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;line-height:1.05;letter-spacing:0.02em;color:var(--text);margin-bottom:0.7rem;transition:color 0.2s}
     .post-card:hover .card-title{color:var(--navy)}
-    .card-excerpt{font-size:0.875rem;color:var(--muted);line-height:1.7;flex:1;margin-bottom:1.5rem}
-    .card-meta{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(107,114,128,0.5);border-top:1px solid var(--bl);padding-top:1rem}
+    .card-excerpt{font-size:0.875rem;color:var(--muted);line-height:1.7;flex:1;margin-bottom:1.25rem}
+    .card-meta{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(107,114,128,0.55);border-top:1px solid rgba(26,39,68,0.08);padding-top:1rem}
 
     .newsletter{padding:6rem 3rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface)}
     .newsletter-label{font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--navy);margin-bottom:1rem}
@@ -84,8 +83,8 @@
     .footer-logo span{color:var(--navy)}
     .footer-copy{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--muted);opacity:0.5}
 
-    @media(max-width:1024px){.posts-grid{grid-template-columns:repeat(2,1fr)}.post-card:nth-child(2n){border-right:none}.post-card:nth-child(n+3){border-top:1px solid var(--border)}}
-    @media(max-width:768px){nav{padding:1rem 1.5rem}.nav-links{gap:1.5rem}.blog-hero{grid-template-columns:1fr;padding:7rem 1.5rem 3rem;gap:1.5rem}.filter-bar{padding:1.25rem 1.5rem}.featured-post{grid-template-columns:1fr}.featured-thumb{height:260px}.featured-body{padding:2.5rem 1.5rem}.posts-grid{grid-template-columns:1fr}.post-card{border-right:none;border-bottom:1px solid var(--border)}.post-card:last-child{border-bottom:none}.post-card:nth-child(n+3){border-top:none}.newsletter{grid-template-columns:1fr;padding:4rem 1.5rem;gap:2rem}footer{flex-direction:column;gap:1rem;text-align:center;padding:2rem 1.5rem}}
+    @media(max-width:1024px){.posts-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:768px){nav{padding:1rem 1.5rem}.nav-links{gap:1.5rem}.blog-hero{grid-template-columns:1fr;padding:7rem 1.5rem 3rem;gap:1.5rem}.filter-bar{padding:1.25rem 1.5rem}.featured-post{grid-template-columns:1fr}.featured-thumb{height:260px}.featured-body{padding:2.5rem 1.5rem}.posts-grid{grid-template-columns:1fr;padding:1.5rem;gap:1.25rem}.newsletter{grid-template-columns:1fr;padding:4rem 1.5rem;gap:2rem}footer{flex-direction:column;gap:1rem;text-align:center;padding:2rem 1.5rem}}
   </style>
 </head>
 <body>
@@ -110,15 +109,15 @@
   </header>
 
   <div class="filter-bar">
-    <button class="filter-btn active">All Posts</button>
-    <button class="filter-btn">Web Design</button>
-    <button class="filter-btn">SEO</button>
-    <button class="filter-btn">Digital Strategy</button>
-    <button class="filter-btn">Google Business</button>
-    <button class="filter-btn">Case Studies</button>
+    <button class="filter-btn active" data-filter="all">All Posts</button>
+    <button class="filter-btn" data-filter="web-design">Web Design</button>
+    <button class="filter-btn" data-filter="seo">SEO</button>
+    <button class="filter-btn" data-filter="digital-strategy">Digital Strategy</button>
+    <button class="filter-btn" data-filter="google-business">Google Business</button>
+    <button class="filter-btn" data-filter="case-studies">Case Studies</button>
   </div>
 
-  <a href="how-much-does-a-website-cost-in-zimbabwe-2026.html" class="featured-post">
+  <a href="how-much-does-a-website-cost-in-zimbabwe-2026.html" class="featured-post" data-category="web-design">
     <div class="featured-thumb">
       <img src="../blog-images/Website Cost in Zimbabwe.jpg" alt="Website cost in Zimbabwe 2026" width="800" height="420" loading="eager" />
     </div>
@@ -136,7 +135,7 @@
 
   <section class="posts-grid">
 
-    <a href="why-your-harare-business-isnt-showing-up-on-google.html" class="post-card">
+    <a href="why-your-harare-business-isnt-showing-up-on-google.html" class="post-card" data-category="seo">
       <div class="card-thumb">
         <img src="../blog-images/Why You're Not on Google.jpg" alt="Why your Harare business isn't showing up on Google" width="400" height="220" loading="lazy" />
       </div>
@@ -148,7 +147,7 @@
       </div>
     </a>
 
-    <a href="how-to-set-up-google-business-profile-zimbabwe.html" class="post-card">
+    <a href="how-to-set-up-google-business-profile-zimbabwe.html" class="post-card" data-category="google-business">
       <div class="card-thumb">
         <img src="../blog-images/Google Business Profile Setup.jpg" alt="How to set up Google Business Profile in Zimbabwe" width="400" height="220" loading="lazy" />
       </div>
@@ -160,7 +159,7 @@
       </div>
     </a>
 
-    <a href="what-to-look-for-when-hiring-a-web-designer-harare.html" class="post-card">
+    <a href="what-to-look-for-when-hiring-a-web-designer-harare.html" class="post-card" data-category="web-design">
       <div class="card-thumb">
         <img src="../blog-images/Hiring a Web Designer.jpg" alt="What to look for when hiring a web designer in Harare" width="400" height="220" loading="lazy" />
       </div>
@@ -172,7 +171,7 @@
       </div>
     </a>
 
-    <a href="how-we-got-mwiwa-borehole-drilling-found-on-google.html" class="post-card">
+    <a href="how-we-got-mwiwa-borehole-drilling-found-on-google.html" class="post-card" data-category="case-studies">
       <div class="card-thumb">
         <img src="../blog-images/mwiwa.jpeg" alt="Mwiwa Borehole Drilling SEO case study Harare" width="400" height="220" loading="lazy" />
       </div>
@@ -184,8 +183,10 @@
       </div>
     </a>
 
-    <a href="wordpress-vs-custom-website-zimbabwe.html" class="post-card">
-      <div class="card-thumb c1"></div>
+    <a href="wordpress-vs-custom-website-zimbabwe.html" class="post-card" data-category="web-design">
+      <div class="card-thumb">
+        <img src="../blog-images/wordpress-vs-custom-website.jpg" alt="WordPress vs custom website comparison for Zimbabwe businesses" width="400" height="220" loading="lazy" />
+      </div>
       <div class="card-body">
         <p class="post-category">// Web Design</p>
         <h3 class="card-title">WordPress vs Custom Website: What's Right for Your Zimbabwe Business?</h3>
@@ -194,8 +195,10 @@
       </div>
     </a>
 
-    <a href="7-signs-your-harare-business-needs-a-new-website.html" class="post-card">
-      <div class="card-thumb c2"></div>
+    <a href="7-signs-your-harare-business-needs-a-new-website.html" class="post-card" data-category="web-design">
+      <div class="card-thumb">
+        <img src="../blog-images/signs-you-need-a-new-website.jpg" alt="Signs your Harare business needs a new website" width="400" height="220" loading="lazy" />
+      </div>
       <div class="card-body">
         <p class="post-category">// Web Design</p>
         <h3 class="card-title">7 Signs Your Harare Business Needs a New Website</h3>
@@ -204,8 +207,10 @@
       </div>
     </a>
 
-    <a href="5-free-seo-tools-zimbabwe-business.html" class="post-card">
-      <div class="card-thumb c3"></div>
+    <a href="5-free-seo-tools-zimbabwe-business.html" class="post-card" data-category="seo">
+      <div class="card-thumb">
+        <img src="../blog-images/free-seo-tools.jpg" alt="5 free SEO tools for Zimbabwe business owners" width="400" height="220" loading="lazy" />
+      </div>
       <div class="card-body">
         <p class="post-category">// SEO</p>
         <h3 class="card-title">5 Free SEO Tools Every Zimbabwe Business Owner Needs</h3>
@@ -214,8 +219,10 @@
       </div>
     </a>
 
-    <a href="facebook-ads-vs-google-ads-zimbabwe.html" class="post-card">
-      <div class="card-thumb c1"></div>
+    <a href="facebook-ads-vs-google-ads-zimbabwe.html" class="post-card" data-category="digital-strategy">
+      <div class="card-thumb">
+        <img src="../blog-images/facebook-ads-vs-google-ads.jpg" alt="Facebook Ads vs Google Ads for Zimbabwe businesses" width="400" height="220" loading="lazy" />
+      </div>
       <div class="card-body">
         <p class="post-category">// Digital Strategy</p>
         <h3 class="card-title">Facebook Ads vs Google Ads: Where Should Your Zimbabwe Business Advertise?</h3>
@@ -224,8 +231,10 @@
       </div>
     </a>
 
-    <a href="google-business-profile-vs-website-zimbabwe.html" class="post-card">
-      <div class="card-thumb c2"></div>
+    <a href="google-business-profile-vs-website-zimbabwe.html" class="post-card" data-category="google-business">
+      <div class="card-thumb">
+        <img src="../blog-images/google-business-vs-website.jpg" alt="Google Business Profile vs website for Zimbabwe businesses" width="400" height="220" loading="lazy" />
+      </div>
       <div class="card-body">
         <p class="post-category">// Google Business</p>
         <h3 class="card-title">Google Business Profile vs Website: Do You Need Both?</h3>
@@ -234,8 +243,10 @@
       </div>
     </a>
 
-    <a href="tiktok-for-business-zimbabwe-2026.html" class="post-card">
-      <div class="card-thumb c3"></div>
+    <a href="tiktok-for-business-zimbabwe-2026.html" class="post-card" data-category="digital-strategy">
+      <div class="card-thumb">
+        <img src="../blog-images/tiktok-for-business.jpg" alt="TikTok for business in Zimbabwe 2026" width="400" height="220" loading="lazy" />
+      </div>
       <div class="card-body">
         <p class="post-category">// Digital Strategy</p>
         <h3 class="card-title">TikTok for Business in Zimbabwe: Is It Worth It in 2026?</h3>
@@ -244,8 +255,10 @@
       </div>
     </a>
 
-    <a href="topiary-marketing-website-case-study.html" class="post-card">
-      <div class="card-thumb c1"></div>
+    <a href="topiary-marketing-website-case-study.html" class="post-card" data-category="case-studies">
+      <div class="card-thumb">
+        <img src="../blog-images/topiary-marketing-case-study.jpg" alt="Topiary Marketing website redesign case study" width="400" height="220" loading="lazy" />
+      </div>
       <div class="card-body">
         <p class="post-category">// Case Studies</p>
         <h3 class="card-title">Case Study: How We Rebuilt Topiary Marketing's Website and Digital Presence</h3>
@@ -284,6 +297,26 @@
       btn.addEventListener('click', () => {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        const cards = document.querySelectorAll('.post-card');
+        const featured = document.querySelector('.featured-post');
+
+        // Handle featured post
+        if (filter === 'all' || featured.dataset.category === filter) {
+          featured.style.display = '';
+        } else {
+          featured.style.display = 'none';
+        }
+
+        // Handle grid cards
+        cards.forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
       });
     });
 
