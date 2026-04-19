@@ -107,6 +107,22 @@
     @media (max-width: 900px) { .articles-strip { grid-template-columns: 1fr; } .strip-card { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); } .strip-card:last-child { border-bottom: none; } .latest-header { flex-direction: column; align-items: flex-start; gap: 1rem; } }
   </style>
 
+
+    /* ── EXIT INTENT / SCROLL POPUP ── */
+    .audit-popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:9000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s}
+    .audit-popup-overlay.visible{opacity:1;pointer-events:all}
+    .audit-popup{background:#111111;border:1px solid rgba(200,245,62,0.2);border-radius:8px;padding:2.5rem;max-width:460px;width:90%;position:relative}
+    .audit-popup-close{position:absolute;top:1rem;right:1.25rem;background:none;border:none;color:rgba(255,255,255,0.4);font-size:1.25rem;cursor:pointer;line-height:1;transition:color 0.2s}
+    .audit-popup-close:hover{color:#fff}
+    .audit-popup h3{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:0.03em;color:#fff;margin-bottom:0.5rem}
+    .audit-popup p{font-size:0.9rem;color:rgba(255,255,255,0.6);margin-bottom:1.5rem;line-height:1.65}
+    .audit-popup-form{display:flex;flex-direction:column;gap:0.75rem}
+    .audit-popup-form input{padding:0.75rem 1rem;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#fff;font-family:'DM Sans',sans-serif;font-size:0.9rem;border-radius:4px;outline:none;transition:border-color 0.2s}
+    .audit-popup-form input:focus{border-color:rgba(200,245,62,0.5)}
+    .audit-popup-form input::placeholder{color:rgba(255,255,255,0.3)}
+    .audit-popup-btn{padding:0.8rem 1.5rem;background:#C8F53E;color:#0A0A0A;font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;border:none;border-radius:4px;cursor:pointer;transition:opacity 0.2s}
+    .audit-popup-btn:hover{opacity:0.88}
+    .audit-popup-note{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.08em;color:rgba(255,255,255,0.3);text-align:center;margin-top:0.5rem}
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body itemscope itemtype="https://schema.org/WebPage">
@@ -740,8 +756,12 @@
             <p class="audit-form-sub">3 questions · 2 minutes · delivered in 24hrs</p>
           </div>
           <div class="form-group">
-            <label for="urlInput">What's your website URL? <span class="label-note">(or "I don't have one yet")</span></label>
-            <input type="text" id="urlInput" name="website_url" placeholder="e.g. mybusiness.co.zw or I don't have one yet" autocomplete="url" />
+            <label for="nameInput">Your Name</label>
+            <input type="text" id="nameInput" name="name" placeholder="John Doe" autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="waInput">Your WhatsApp Number <span class="label-note">(we'll send the audit here)</span></label>
+            <input type="tel" id="waInput" name="whatsapp" placeholder="+263 7XX XXX XXX" autocomplete="tel" />
           </div>
           <div class="form-group">
             <label for="challengeInput">What's your biggest online challenge?</label>
@@ -756,12 +776,8 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="nameInput">Your Name</label>
-            <input type="text" id="nameInput" name="name" placeholder="John Doe" autocomplete="name" />
-          </div>
-          <div class="form-group">
-            <label for="waInput">Your WhatsApp Number <span class="label-note">(we'll send the audit here)</span></label>
-            <input type="tel" id="waInput" name="whatsapp" placeholder="+263 7XX XXX XXX" autocomplete="tel" />
+            <label for="urlInput">Your Website URL <span class="label-note">(or "I don't have one yet")</span></label>
+            <input type="text" id="urlInput" name="website_url" placeholder="e.g. mybusiness.co.zw or I don't have one yet" autocomplete="url" />
           </div>
           <div class="form-group">
             <label for="emailInput">Email Address <span class="label-note">(optional — for your audit report)</span></label>
@@ -774,6 +790,22 @@
       </div>
     </div>
   </section>
+
+
+  <!-- SCROLL DEPTH AUDIT POPUP -->
+  <div class="audit-popup-overlay" id="auditPopup" role="dialog" aria-modal="true" aria-label="Free website audit offer">
+    <div class="audit-popup">
+      <button class="audit-popup-close" id="auditPopupClose" aria-label="Close">&#x2715;</button>
+      <h3>Before You Go —<br>Get Your Free Audit</h3>
+      <p>Drop your name and WhatsApp number. We'll send you a personalised audit of your digital presence within 24 hours. Zero cost, zero obligation.</p>
+      <div class="audit-popup-form">
+        <input type="text" id="popupName" placeholder="Your name" autocomplete="name" />
+        <input type="tel" id="popupWa" placeholder="WhatsApp number (+263 7XX XXX XXX)" autocomplete="tel" />
+        <button class="audit-popup-btn" id="popupSubmitBtn">Send Me My Free Audit →</button>
+        <p class="audit-popup-note" id="popupStatus">🔒 No spam. We'll WhatsApp you within 24 hours.</p>
+      </div>
+    </div>
+  </div>
 
   <!-- FLOATING WHATSAPP BUTTON -->
   <a href="https://wa.me/263787412809?text=Hi%20Invitt%20Co!%20I%20found%20you%20on%20your%20website%20and%20I%27d%20like%20to%20chat." target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="Chat with Invitt Co on WhatsApp">
@@ -1034,5 +1066,74 @@
   }
   </script>
 
+
+  <!-- SCROLL POPUP + MOBILE PARTICLE FIX -->
+  <script>
+    // ── Disable particles on mobile ──
+    (function() {
+      if (window.innerWidth <= 768) {
+        var canvas = document.getElementById('heroParticles');
+        if (canvas) canvas.style.display = 'none';
+        // Override the draw loop if script.js has already started it
+        window.__mobileParticlesDisabled = true;
+      }
+    })();
+
+    // ── Scroll depth popup (fires once at 70% scroll) ──
+    (function() {
+      var fired = false;
+      var dismissed = sessionStorage.getItem('auditPopupDismissed');
+      if (dismissed) return;
+
+      function checkScroll() {
+        if (fired) return;
+        var scrolled = window.scrollY + window.innerHeight;
+        var total = document.documentElement.scrollHeight;
+        if (scrolled / total >= 0.70) {
+          fired = true;
+          document.getElementById('auditPopup').classList.add('visible');
+          window.removeEventListener('scroll', checkScroll);
+        }
+      }
+      window.addEventListener('scroll', checkScroll, { passive: true });
+
+      document.getElementById('auditPopupClose').addEventListener('click', function() {
+        document.getElementById('auditPopup').classList.remove('visible');
+        sessionStorage.setItem('auditPopupDismissed', '1');
+      });
+
+      document.getElementById('auditPopup').addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.classList.remove('visible');
+          sessionStorage.setItem('auditPopupDismissed', '1');
+        }
+      });
+
+      document.getElementById('popupSubmitBtn').addEventListener('click', function() {
+        var name = document.getElementById('popupName').value.trim();
+        var wa   = document.getElementById('popupWa').value.trim();
+        var status = document.getElementById('popupStatus');
+        if (!name || !wa) {
+          status.style.color = '#E24B4A';
+          status.textContent = 'Please enter your name and WhatsApp number.';
+          return;
+        }
+        this.disabled = true;
+        this.textContent = 'Sending…';
+        emailjs.send('service_f721n9g', 'template_ckh9e9d', {
+          name: name, whatsapp: wa,
+          email: 'Not provided', website_url: 'Popup submission', biggest_challenge: 'Not specified'
+        }).then(function() {
+          document.getElementById('auditPopup').classList.remove('visible');
+          sessionStorage.setItem('auditPopupDismissed', '1');
+        }, function() {
+          status.style.color = '#E24B4A';
+          status.textContent = 'Error — WhatsApp us at +263 787 412 809';
+          document.getElementById('popupSubmitBtn').disabled = false;
+          document.getElementById('popupSubmitBtn').textContent = 'Send Me My Free Audit →';
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
