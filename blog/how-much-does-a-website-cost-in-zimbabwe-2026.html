@@ -173,7 +173,7 @@
       var status=document.getElementById('newsletter-status');
       if(!email||!/^[^@]+@[^@]+\.[^@]+$/.test(email)){status.style.color='#E24B4A';status.textContent='Please enter a valid email address.';return;}
       btn.disabled=true;btn.textContent='Subscribing…';status.textContent='';
-      emailjs.send('service_f721n9g','template_uten0af',{email:email}).then(function(){status.style.color='#1A2744';status.textContent='✓ You’re in! One email a month, no spam.';btn.textContent='Subscribed ✓';document.getElementById('newsletter-email').value='';},function(){status.style.color='#E24B4A';status.textContent='Something went wrong. Try again or WhatsApp us.';btn.disabled=false;btn.textContent='Subscribe →';});
+      emailjs.send('service_f721n9g','template_uten0af',{email:email}).then(function(){status.style.color='#1A2744';status.textContent='✓ You're in! One email a month, no spam.';btn.textContent='Subscribed ✓';document.getElementById('newsletter-email').value='';},function(){status.style.color='#E24B4A';status.textContent='Something went wrong. Try again or WhatsApp us.';btn.disabled=false;btn.textContent='Subscribe →';});
     }
     document.getElementById('newsletter-email').addEventListener('keydown',function(e){if(e.key==='Enter')handleSubscribe();});
   </script>
