@@ -107,23 +107,24 @@
     @media (max-width: 900px) { .articles-strip { grid-template-columns: 1fr; } .strip-card { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); } .strip-card:last-child { border-bottom: none; } .latest-header { flex-direction: column; align-items: flex-start; gap: 1rem; } }
   </style>
 
-
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
     /* ── EXIT INTENT / SCROLL POPUP ── */
-    .audit-popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:9000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s}
-    .audit-popup-overlay.visible{opacity:1;pointer-events:all}
-    .audit-popup{background:#111111;border:1px solid rgba(200,245,62,0.2);border-radius:8px;padding:2.5rem;max-width:460px;width:90%;position:relative}
+    .audit-popup-overlay{position:fixed!important;inset:0!important;background:rgba(0,0,0,0.65)!important;z-index:99999!important;display:flex!important;align-items:center!important;justify-content:center!important;opacity:0;pointer-events:none;transition:opacity 0.3s}
+    .audit-popup-overlay.visible{opacity:1!important;pointer-events:all!important}
+    .audit-popup{background:#111111;border:1px solid rgba(200,245,62,0.2);border-radius:12px;padding:2.5rem;max-width:460px;width:90%;position:relative}
     .audit-popup-close{position:absolute;top:1rem;right:1.25rem;background:none;border:none;color:rgba(255,255,255,0.4);font-size:1.25rem;cursor:pointer;line-height:1;transition:color 0.2s}
     .audit-popup-close:hover{color:#fff}
-    .audit-popup h3{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:0.03em;color:#fff;margin-bottom:0.5rem}
+    .audit-popup h3{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:0.03em;color:#fff;margin-bottom:0.5rem;line-height:1.1}
     .audit-popup p{font-size:0.9rem;color:rgba(255,255,255,0.6);margin-bottom:1.5rem;line-height:1.65}
     .audit-popup-form{display:flex;flex-direction:column;gap:0.75rem}
-    .audit-popup-form input{padding:0.75rem 1rem;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#fff;font-family:'DM Sans',sans-serif;font-size:0.9rem;border-radius:4px;outline:none;transition:border-color 0.2s}
+    .audit-popup-form input{padding:0.75rem 1rem;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#fff;font-family:'DM Sans',sans-serif;font-size:0.9rem;border-radius:4px;outline:none;transition:border-color 0.2s;width:100%}
     .audit-popup-form input:focus{border-color:rgba(200,245,62,0.5)}
     .audit-popup-form input::placeholder{color:rgba(255,255,255,0.3)}
-    .audit-popup-btn{padding:0.8rem 1.5rem;background:#C8F53E;color:#0A0A0A;font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;border:none;border-radius:4px;cursor:pointer;transition:opacity 0.2s}
+    .audit-popup-btn{padding:0.8rem 1.5rem;background:#C8F53E;color:#0A0A0A;font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;border:none;border-radius:4px;cursor:pointer;transition:opacity 0.2s;width:100%}
     .audit-popup-btn:hover{opacity:0.88}
     .audit-popup-note{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.08em;color:rgba(255,255,255,0.3);text-align:center;margin-top:0.5rem}
-  <link rel="stylesheet" href="/styles.css" />
+  </style>
 </head>
 <body itemscope itemtype="https://schema.org/WebPage">
 
