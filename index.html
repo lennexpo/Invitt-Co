@@ -24,6 +24,7 @@
   <meta name="googlebot" content="index, follow" />
   <meta name="theme-color" content="#0A0A0A" />
   <meta name="format-detection" content="telephone=yes" />
+  <meta name="revisit-after" content="7 days" />
   <link rel="canonical" href="https://invitt.co.zw/" />
 
   <!-- Google Site Verification -->
@@ -60,1107 +61,1844 @@
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
-  <!-- PERFORMANCE: RESOURCE HINTS -->
+  <!-- FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://www.google-analytics.com" />
-  <link rel="dns-prefetch" href="https://api.web3forms.com" />
-  <link rel="preload" href="styles.css" as="style" />
-  <link rel="preload" href="script.js" as="script" />
-  <link rel="preload" href="images/hero-bg.jpg" as="image" fetchpriority="high" />
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Space+Mono&display=swap" rel="stylesheet" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Space+Mono:wght@400;700&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Space+Mono:wght@400;700&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" /></noscript>
 
   <style>
-    .wa-btn {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      margin-top: 1.25rem; padding: 0.65rem 1.25rem;
-      border: 1px solid rgba(255,255,255,0.15); border-radius: 8px;
-      color: rgba(255,255,255,0.75); font-family: 'DM Sans', sans-serif;
-      font-size: 0.875rem; font-weight: 500; text-decoration: none;
-      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+    /* ── RESET & BASE ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #0A0A0A;
+      color: #F5F5F0;
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
     }
-    .wa-btn:hover { border-color: #25D366; color: #25D366; background: rgba(37,211,102,0.06); }
-    .hero-bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0.55; z-index: 0; }
-    .hero-bg-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.7) 100%); z-index: 1; }
-    .about-img { width: 100%; height: 100%; object-fit: cover; border-radius: 16px; display: block; }
-    /* Latest Articles Strip */
-    .blog { background: #0A0A0A; }
-    .latest-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2.5rem; }
-    .latest-header h2.section-title { margin-bottom: 0; }
-    .view-all-link { font-family: 'Space Mono', monospace; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: #C8F53E; text-decoration: none; padding-bottom: 2px; border-bottom: 1px solid rgba(200,245,62,0.3); transition: border-color 0.2s, letter-spacing 0.2s; white-space: nowrap; margin-bottom: 0.3rem; }
-    .view-all-link:hover { border-color: #C8F53E; letter-spacing: 0.2em; }
-    .footer-socials { display: flex; gap: 1.5rem; justify-content: center; margin: 1rem 0; }
-    .footer-socials a { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: opacity 0.2s; }
-    .footer-socials a.social-instagram { color: #E1306C; }
-    .footer-socials a.social-instagram svg { fill: url(#instagram-gradient); }
-    .footer-socials a.social-linkedin { color: #0A66C2; }
-    .footer-socials a:hover { opacity: 0.75; }
-    .articles-strip { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid rgba(255,255,255,0.08); }
-    .strip-card { display: flex; flex-direction: column; text-decoration: none; color: inherit; border-right: 1px solid rgba(255,255,255,0.08); transition: background 0.2s; }
-    .strip-card:last-child { border-right: none; }
-    .strip-card:hover { background: rgba(255,255,255,0.025); }
-    .strip-thumb { height: 200px; overflow: hidden; }
-    .strip-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
-    .strip-card:hover .strip-thumb img { transform: scale(1.05); }
-    .strip-body { padding: 1.75rem; display: flex; flex-direction: column; flex: 1; }
-    .strip-category { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: #C8F53E; margin-bottom: 0.7rem; }
-    .strip-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.45rem; line-height: 1.05; letter-spacing: 0.02em; color: #F5F5F0; margin-bottom: 0.7rem; transition: color 0.2s; }
-    .strip-card:hover .strip-title { color: #C8F53E; }
-    .strip-excerpt { font-size: 0.875rem; color: rgba(161,161,170,0.8); line-height: 1.65; flex: 1; margin-bottom: 1.25rem; }
-    .strip-meta { font-family: 'Space Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(161,161,170,0.4); border-top: 1px solid rgba(255,255,255,0.08); padding-top: 0.875rem; }
-    @media (max-width: 900px) { .articles-strip { grid-template-columns: 1fr; } .strip-card { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); } .strip-card:last-child { border-bottom: none; } .latest-header { flex-direction: column; align-items: flex-start; gap: 1rem; } }
+
+    /* ── CSS VARIABLES ── */
+    :root {
+      --bg: #0A0A0A;
+      --surface: #111111;
+      --surface2: #161616;
+      --accent: #C8F53E;
+      --accent-dark: #0F3D2E;
+      --muted: #A1A1AA;
+      --border: rgba(255,255,255,0.08);
+      --border-accent: rgba(200,245,62,0.3);
+      --red: #E24B4A;
+      --red-bg: rgba(226,75,74,0.15);
+    }
+
+    /* ── NOISE OVERLAY ── */
+    .noise-overlay {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.03;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: fixed;
+      top: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      width: 92%;
+      max-width: 960px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 1.75rem;
+      background: rgba(10,10,10,0.5);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 9999px;
+      transition: all 0.4s ease;
+    }
+    .navbar.scrolled {
+      background: rgba(10,10,10,0.85);
+      border-color: rgba(255,255,255,0.12);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.08em;
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.1rem;
+    }
+    .nav-logo .co { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+    .nav-links a.active { color: var(--accent); }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      background: var(--accent) !important;
+      color: #0A0A0A !important;
+      padding: 0.55rem 1.25rem;
+      border-radius: 9999px;
+      font-size: 0.8rem !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.02em;
+      transition: opacity 0.2s !important;
+    }
+    .nav-cta:hover { opacity: 0.88 !important; }
+
+    /* Mobile hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10,10,10,0.97);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      letter-spacing: 0.08em;
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--accent); }
+    .mobile-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 7rem 1.5rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      width: 100%;
+    }
+    .hero-headline {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 9vw, 7rem);
+      line-height: 1;
+      letter-spacing: 0.02em;
+      color: #fff;
+      margin-bottom: 1.25rem;
+    }
+    .hero-headline .italic-accent {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 600;
+      color: var(--accent);
+      font-size: clamp(2.8rem, 8.5vw, 6.5rem);
+    }
+    .hero-sub {
+      max-width: 560px;
+      margin: 0 auto 3rem;
+      color: rgba(245,245,240,0.65);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    .hero-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    /* Problem cards */
+    .problem-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      max-width: 1000px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .problem-card {
+      background: rgba(17,17,17,0.7);
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      padding: 1.75rem;
+      text-align: left;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+      backdrop-filter: blur(10px);
+    }
+    .problem-card:hover {
+      border-color: rgba(200,245,62,0.5);
+      box-shadow: 0 0 24px -4px rgba(200,245,62,0.2);
+      transform: translateY(-2px);
+    }
+    .problem-card-icon {
+      color: var(--accent);
+    }
+    .problem-card-icon svg { width: 28px; height: 28px; }
+    .problem-card h3 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.35;
+    }
+    .problem-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+    .problem-card-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent);
+      color: #0A0A0A;
+      padding: 0.65rem 1.25rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      transition: opacity 0.2s;
+      margin-top: auto;
+    }
+    .problem-card:hover .problem-card-btn { opacity: 0.88; }
+
+    /* ── PORTFOLIO CAROUSEL ── */
+    .portfolio-section {
+      padding: 0 1.5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .portfolio-3d-wrap {
+      width: 100%;
+      max-width: 900px;
+      perspective: 700px;
+      margin-bottom: 2rem;
+    }
+    .portfolio-device {
+      border: 3px solid var(--accent);
+      border-radius: 24px;
+      padding: 1rem;
+      background: rgba(200,245,62,0.08);
+      box-shadow: 0 0 0 rgba(0,0,0,0),
+        0 9px 20px rgba(0,0,0,0.29),
+        0 37px 37px rgba(0,0,0,0.26),
+        0 84px 50px rgba(0,0,0,0.15);
+      transform: translateY(40px) scale(0.75) rotateX(40deg);
+      transform-origin: center top;
+      transform-style: preserve-3d;
+      transition: transform 0.8s ease;
+      overflow: hidden;
+    }
+    .portfolio-device.revealed {
+      transform: translateY(0) scale(1) rotateX(0deg);
+    }
+    .portfolio-screen {
+      background: var(--surface);
+      border-radius: 14px;
+      overflow: hidden;
+      height: 420px;
+      position: relative;
+    }
+    .portfolio-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    .portfolio-slide.active { opacity: 1; }
+    .portfolio-dots {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.5rem;
+      z-index: 10;
+    }
+    .portfolio-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 9999px;
+      background: rgba(255,255,255,0.3);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .portfolio-dot.active {
+      background: var(--accent);
+      width: 24px;
+    }
+    .portfolio-prev, .portfolio-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      background: rgba(10,10,10,0.6);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.3s;
+      color: #fff;
+    }
+    .portfolio-screen:hover .portfolio-prev,
+    .portfolio-screen:hover .portfolio-next { opacity: 1; }
+    .portfolio-prev { left: 0.75rem; }
+    .portfolio-next { right: 0.75rem; }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 0.9rem 2rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-outline:hover {
+      background: var(--accent);
+      color: #0A0A0A;
+    }
+
+    /* ── SECTION SHARED ── */
+    section { position: relative; }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(200,245,62,0.6);
+      display: block;
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      letter-spacing: 0.02em;
+      color: #fff;
+      line-height: 1.05;
+    }
+    .section-title .italic-accent {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* ── THREE WAYS TO GROW ── */
+    .grow-section {
+      padding: 5rem 0;
+    }
+    .grow-header {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+    .grow-header p {
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .grow-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 6rem;
+    }
+    .grow-row {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+    }
+    .grow-row.reverse { flex-direction: row-reverse; }
+    .grow-text { flex: 1; }
+    .grow-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(200,245,62,0.6);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .grow-text h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: 0.02em;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .grow-text p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 400px;
+      margin-bottom: 1.5rem;
+    }
+    .grow-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+    .grow-link:hover { gap: 0.75rem; }
+    .grow-visual { flex: 1; }
+
+    /* Visual: stacked cards */
+    .stacked-cards {
+      position: relative;
+      height: 160px;
+      max-width: 380px;
+    }
+    .stacked-card {
+      position: absolute;
+      inset-x: 0;
+      background: rgba(17,17,17,0.9);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      backdrop-filter: blur(10px);
+    }
+    .stacked-card:nth-child(1) { top: 0; z-index: 3; }
+    .stacked-card:nth-child(2) { top: 36px; z-index: 2; opacity: 0.65; transform: scale(0.94) rotateX(-4deg); }
+    .stacked-card:nth-child(3) { top: 72px; z-index: 1; opacity: 0.3; transform: scale(0.88) rotateX(-8deg); }
+    .stacked-card-icon { color: var(--accent); font-size: 1.1rem; }
+    .stacked-card-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      color: #fff;
+      letter-spacing: 0.05em;
+    }
+    .stacked-bar {
+      margin-top: 1rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+    .stacked-bar-item {
+      height: 3px;
+      flex: 1;
+      background: var(--border);
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+    .stacked-bar-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 9999px;
+      width: 0;
+      transition: width 1.5s ease;
+    }
+
+    /* Visual: live feed terminal */
+    .live-feed {
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+      max-width: 380px;
+    }
+    .live-feed-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.25rem;
+    }
+    .live-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .live-feed-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .live-bars {
+      margin-left: auto;
+      display: flex;
+      gap: 3px;
+      align-items: flex-end;
+      height: 14px;
+    }
+    .live-bar {
+      width: 4px;
+      background: rgba(200,245,62,0.4);
+      border-radius: 2px;
+      animation: barAnim 1.2s ease-in-out infinite alternate;
+    }
+    .live-bar:nth-child(2) { animation-delay: 0.2s; }
+    .live-bar:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes barAnim { from { height: 4px; } to { height: 14px; } }
+    .live-feed-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+    }
+    .live-line { color: var(--muted); display: flex; gap: 0.5rem; }
+    .live-line .arrow { color: rgba(200,245,62,0.5); }
+    .live-line.active { color: #fff; }
+    .live-line.active .arrow { color: var(--accent); }
+    .cursor-blink {
+      display: inline-block;
+      background: var(--accent);
+      width: 8px;
+      height: 14px;
+      vertical-align: text-bottom;
+      animation: blink 0.8s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* Visual: hosting card */
+    .hosting-visual {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+      max-width: 380px;
+    }
+    .hosting-visual-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.25rem;
+    }
+    .hosting-stat-row {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .hosting-stat {
+      flex: 1;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .hosting-stat-value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.75rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .hosting-stat-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .hosting-uptime-bar {
+      height: 4px;
+      background: var(--border);
+      border-radius: 9999px;
+      overflow: hidden;
+      margin-top: 0.75rem;
+    }
+    .hosting-uptime-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 9999px;
+      width: 99%;
+    }
+
+    /* ── CTA BLOCK ── */
+    .cta-block {
+      text-align: center;
+      padding: 2rem 1.5rem 5rem;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #0A0A0A;
+      padding: 1rem 2.25rem;
+      border-radius: 9999px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 0 20px rgba(200,245,62,0.35);
+      transition: opacity 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      opacity: 0.9;
+      box-shadow: 0 0 30px rgba(200,245,62,0.55);
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-section { padding: 5rem 0; }
+    .testimonials-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .testimonials-header p {
+      margin-top: 0.75rem;
+      color: rgba(245,245,240,0.65);
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 0.95rem;
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    .testimonial-card {
+      background: rgba(17,17,17,0.7);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 1.25rem;
+      padding: 2rem;
+      position: relative;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .testimonial-card:hover {
+      border-color: rgba(200,245,62,0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px -10px rgba(200,245,62,0.12);
+    }
+    .quote-icon {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      color: rgba(200,245,62,0.15);
+      transition: color 0.3s;
+    }
+    .testimonial-card:hover .quote-icon { color: rgba(200,245,62,0.35); }
+    .stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 1rem;
+    }
+    .stars svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--accent);
+      color: var(--accent);
+    }
+    .testimonial-text {
+      color: #F5F5F0;
+      font-size: 0.9rem;
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+    .author-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--surface2);
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .author-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #fff;
+    }
+    .author-role {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 1px;
+    }
+
+    /* Stats bar */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      background: rgba(17,17,17,0.8);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 1.25rem;
+      overflow: hidden;
+    }
+    .stat-item {
+      padding: 1.75rem;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: rgba(245,245,240,0.6);
+    }
+
+    /* ── BENTO TOOLKIT ── */
+    .toolkit-section { padding: 5rem 0; }
+    .toolkit-header { margin-bottom: 3rem; }
+    .toolkit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: minmax(160px, auto);
+      gap: 1rem;
+    }
+    .toolkit-card {
+      background: linear-gradient(135deg, rgba(22,22,22,0.9), rgba(17,17,17,0.6));
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 1.25rem;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      position: relative;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .toolkit-card:hover {
+      border-color: rgba(200,245,62,0.3);
+      box-shadow: 0 0 20px -4px rgba(200,245,62,0.1);
+    }
+    .toolkit-card.span2 { grid-column: span 2; }
+    .toolkit-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(200,245,62,0.1);
+      border: 1px solid rgba(200,245,62,0.2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+    .toolkit-icon svg { width: 20px; height: 20px; color: var(--accent); }
+    .toolkit-card h3 {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .toolkit-card p {
+      font-size: 0.825rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .toolkit-badge {
+      display: inline-block;
+      background: rgba(200,245,62,0.15);
+      color: var(--accent);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      border-radius: 9999px;
+      margin-left: auto;
+    }
+    .toolkit-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── REALITY CHECK ── */
+    .reality-section { padding: 5rem 0; }
+    .reality-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(226,75,74,0.15);
+      border: 1px solid rgba(226,75,74,0.3);
+      border-radius: 9999px;
+      padding: 0.4rem 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .reality-badge-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--red);
+      border-radius: 50%;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .reality-badge span { font-size: 0.8rem; color: var(--red); font-weight: 600; }
+    .reality-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .reality-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: 0.02em;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+    .reality-title .red-italic {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: var(--red);
+    }
+    .reality-header p {
+      max-width: 560px;
+      margin: 0 auto;
+      color: rgba(245,245,240,0.65);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .reality-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+    .reality-card {
+      background: rgba(17,17,17,0.7);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+      position: relative;
+      transition: border-color 0.3s;
+    }
+    .reality-card:hover { border-color: rgba(226,75,74,0.4); }
+    .reality-stat-badge {
+      position: absolute;
+      top: -12px;
+      right: 1.25rem;
+      background: var(--red);
+      color: #fff;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.25rem 0.6rem;
+      border-radius: 9999px;
+    }
+    .reality-card-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--red-bg);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      transition: background 0.3s;
+    }
+    .reality-card:hover .reality-card-icon { background: rgba(226,75,74,0.25); }
+    .reality-card-icon svg { width: 20px; height: 20px; color: var(--red); }
+    .reality-card h3 {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #fff;
+      line-height: 1.4;
+      margin-bottom: 0.6rem;
+    }
+    .reality-card p {
+      font-size: 0.825rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .reality-cta {
+      text-align: center;
+    }
+    .reality-cta p {
+      color: rgba(245,245,240,0.65);
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+    .btn-red {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--red);
+      color: #fff;
+      padding: 1rem 2.25rem;
+      border-radius: 9999px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 0 20px rgba(226,75,74,0.35);
+      transition: opacity 0.2s, box-shadow 0.2s;
+    }
+    .btn-red:hover {
+      opacity: 0.9;
+      box-shadow: 0 0 30px rgba(226,75,74,0.55);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      border-radius: 3rem 3rem 0 0;
+      margin-top: 3rem;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 2rem;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 3rem;
+    }
+    .footer-brand-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.08em;
+      color: #fff;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .footer-brand-name .co { color: var(--accent); }
+    .footer-tagline {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 260px;
+      margin-bottom: 1.5rem;
+    }
+    .footer-socials {
+      display: flex;
+      gap: 1rem;
+    }
+    .footer-social {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .footer-social:hover { border-color: var(--accent); color: var(--accent); }
+    .footer-social svg { width: 16px; height: 16px; }
+    .footer-col h4 {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 1.25rem;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .footer-links a {
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: #fff; }
+    .footer-contact-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .footer-contact-items a {
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-contact-items a:hover { color: #fff; }
+    .footer-contact-items p {
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+    .system-status {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    .system-status span {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-bottom p {
+      font-size: 0.78rem;
+      color: rgba(161,161,170,0.5);
+    }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .sr {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .sr.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .sr-delay-1 { transition-delay: 0.1s; }
+    .sr-delay-2 { transition-delay: 0.2s; }
+    .sr-delay-3 { transition-delay: 0.3s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .problem-cards { grid-template-columns: 1fr; }
+      .portfolio-screen { height: 240px; }
+      .grow-row, .grow-row.reverse { flex-direction: column; gap: 2.5rem; }
+      .grow-text p { max-width: 100%; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .stat-item:nth-child(3) { border-top: 1px solid var(--border); }
+      .stat-item:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
+      .toolkit-grid { grid-template-columns: 1fr; }
+      .toolkit-card.span2 { grid-column: span 1; }
+      .reality-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .problem-cards { grid-template-columns: repeat(2, 1fr); }
+      .toolkit-grid { grid-template-columns: repeat(2, 1fr); }
+      .toolkit-card.span2 { grid-column: span 2; }
+      .reality-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* STICKY WHATSAPP */
+    .wa-float{position:fixed;bottom:1.5rem;right:1.5rem;z-index:9000;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .2s,box-shadow .2s;text-decoration:none}
+    .wa-float:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,.55)}
+    .wa-float svg{width:28px;height:28px;fill:#fff}
   </style>
 
-  <link rel="stylesheet" href="/styles.css" />
-  <style>
-    /* ── EXIT INTENT / SCROLL POPUP ── */
-    .audit-popup-overlay{position:fixed!important;inset:0!important;background:rgba(0,0,0,0.65)!important;z-index:99999!important;display:flex!important;align-items:center!important;justify-content:center!important;opacity:0;pointer-events:none;transition:opacity 0.3s}
-    .audit-popup-overlay.visible{opacity:1!important;pointer-events:all!important}
-    .audit-popup{background:#111111;border:1px solid rgba(200,245,62,0.2);border-radius:12px;padding:2.5rem;max-width:460px;width:90%;position:relative}
-    .audit-popup-close{position:absolute;top:1rem;right:1.25rem;background:none;border:none;color:rgba(255,255,255,0.4);font-size:1.25rem;cursor:pointer;line-height:1;transition:color 0.2s}
-    .audit-popup-close:hover{color:#fff}
-    .audit-popup h3{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:0.03em;color:#fff;margin-bottom:0.5rem;line-height:1.1}
-    .audit-popup p{font-size:0.9rem;color:rgba(255,255,255,0.6);margin-bottom:1.5rem;line-height:1.65}
-    .audit-popup-form{display:flex;flex-direction:column;gap:0.75rem}
-    .audit-popup-form input{padding:0.75rem 1rem;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#fff;font-family:'DM Sans',sans-serif;font-size:0.9rem;border-radius:4px;outline:none;transition:border-color 0.2s;width:100%}
-    .audit-popup-form input:focus{border-color:rgba(200,245,62,0.5)}
-    .audit-popup-form input::placeholder{color:rgba(255,255,255,0.3)}
-    .audit-popup-btn{padding:0.8rem 1.5rem;background:#C8F53E;color:#0A0A0A;font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;border:none;border-radius:4px;cursor:pointer;transition:opacity 0.2s;width:100%}
-    .audit-popup-btn:hover{opacity:0.88}
-    .audit-popup-note{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.08em;color:rgba(255,255,255,0.3);text-align:center;margin-top:0.5rem}
-  </style>
-</head>
-<body itemscope itemtype="https://schema.org/WebPage">
-
-  <div class="cursor" id="cursor" aria-hidden="true"></div>
-  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
-
-  <div class="loader" id="loader" aria-hidden="true">
-    <div class="loader-text"><span>I</span><span>N</span><span>V</span><span>I</span><span>T</span><span>T</span><span class="loader-co">CO</span></div>
-    <div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div>
-  </div>
-
-  <!-- NAVBAR -->
-  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
-    <a href="#hero" class="nav-logo" aria-label="Invitt Co — Web Design Agency Harare Homepage">
-      <span class="brand-name">INVITT</span><span class="brand-co">CO</span>
-    </a>
-    <ul class="nav-links" role="list">
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#portfolio">Work</a></li>
-      <li><a href="#pricing">Pricing</a></li>
-      <li><a href="#blog">Blog</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="#contact" class="nav-cta">FREE WEBSITE AUDIT →</a></li>
-    </ul>
-    <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-
-  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation" aria-modal="true">
-    <button class="mobile-close" id="mobileClose" aria-label="Close navigation menu">&#x2715;</button>
-    <ul role="list">
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#portfolio">Work</a></li>
-      <li><a href="#pricing">Pricing</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="#contact">Free Audit</a></li>
-    </ul>
-  </div>
-
-  <!-- =====================
-       HERO
-       ===================== -->
-  <section class="section hero" id="hero" aria-label="Invitt Co — Harare Web Design and Digital Marketing Agency">
-    <div class="hero-bg">
-      <img src="images/hero-bg.jpg" alt="Invitt Co digital marketing agency in Harare Zimbabwe" class="hero-bg-img" width="1920" height="1080" fetchpriority="high" loading="eager" />
-      <div class="hero-bg-overlay" aria-hidden="true"></div>
-      <div class="hero-ring ring-1" aria-hidden="true"></div>
-      <div class="hero-ring ring-2" aria-hidden="true"></div>
-      <div class="hero-ring ring-3" aria-hidden="true"></div>
-      <canvas class="hero-particles" id="heroParticles" aria-hidden="true"></canvas>
-    </div>
-    <div class="hero-content" id="heroContent">
-      <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Digital Agency — Harare, Zimbabwe</div>
-      <h1 class="hero-headline">
-        <span class="line-wrap"><span class="h-line">GET</span></span>
-        <span class="line-wrap"><span class="h-line">FOUND</span></span>
-        <span class="line-wrap"><span class="h-line accent-line">ONLINE.</span></span>
-      </h1>
-      <p class="hero-sub">Harare's results-driven web design and digital marketing agency. We build high-converting websites, run Google Ads, and deliver SEO that puts Zimbabwe businesses in front of the right customers — fast.</p>
-      <div class="hero-actions">
-        <a href="https://wa.me/263787412809?text=Hi%20Invitt%20Co!%20I%27d%20like%20to%20get%20a%20free%20quote%20for%20my%20business." target="_blank" rel="noopener noreferrer" class="btn-primary">Get a Free Quote →</a>
-        <a href="#portfolio" class="btn-ghost">See Our Work</a>
-      </div>
-    </div>
-    <div class="hero-scroll-hint" aria-hidden="true"><span>Scroll</span><div class="scroll-line"></div></div>
-  </section>
-
-  <!-- MARQUEE -->
-  <div class="marquee-wrap" aria-hidden="true">
-    <div class="marquee-track">
-      <span>SEO</span><span class="mdot">·</span><span>Web Design</span><span class="mdot">·</span><span>Google Ads</span><span class="mdot">·</span><span>Social Media</span><span class="mdot">·</span><span>Branding</span><span class="mdot">·</span><span>Analytics</span><span class="mdot">·</span>
-      <span>SEO</span><span class="mdot">·</span><span>Web Design</span><span class="mdot">·</span><span>Google Ads</span><span class="mdot">·</span><span>Social Media</span><span class="mdot">·</span><span>Branding</span><span class="mdot">·</span><span>Analytics</span><span class="mdot">·</span>
-    </div>
-  </div>
-
-  <!-- =====================
-       ABOUT
-       ===================== -->
-  <section class="section about" id="about" aria-label="About Invitt Co — Harare Digital Agency">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-left">
-          <p class="section-label sr">About Us</p>
-          <h2 class="section-title sr">We Help <span class="accent">Businesses</span><br/>Get Found Online</h2>
-          <p class="body-text sr">Invitt Co is Harare's results-driven web design and digital marketing agency. Based in Zimbabwe, we combine cutting-edge website development with proven digital marketing strategies to help local businesses dominate their online space.</p>
-          <p class="body-text sr">From startups to established Harare businesses, we craft digital experiences that convert visitors into loyal customers. Whether you need a professional website, SEO, or Google Ads — Invitt Co is your go-to digital marketing partner in Zimbabwe.</p>
-          <p class="body-text sr" style="font-size:0.82rem; color: rgba(161,161,170,0.6); margin-top:0.5rem;">Rated the <strong>best web designer in Harare</strong> by clients across Zimbabwe, Invitt Co is among the <strong>top web designers in Harare</strong> for businesses seeking results. Our transparent <strong>website development prices in Zimbabwe</strong> make professional web design accessible — whether you're looking for a <strong>freelance web designer in Harare</strong> or a full-service agency. Work with us fully <strong>online from anywhere in Zimbabwe</strong>.</p>
-          <div class="founder-card sr">
-            <div class="founder-avatar" aria-hidden="true">LN</div>
-            <div class="founder-info">
-              <strong class="founder-name">Lennon Nyamajiwa</strong>
-              <span class="founder-role">Founder &amp; Lead Developer</span>
-              <p class="founder-quote">"I started Invitt Co because I watched too many great Harare businesses stay invisible online. Every business deserves a digital presence that actually works."</p>
-            </div>
-          </div>
-          <a href="#contact" class="btn-primary sr">Work With Us →</a>
-        </div>
-        <div class="about-right sr">
-          <div class="about-visual">
-            <img src="images/lennon-nyamajiwa.png" alt="Invitt Co team working on web design and SEO for Harare businesses" class="about-img" width="600" height="500" loading="lazy" />
-            <a href="/lennon-nyamajiwa.html" style="display:block;text-align:center;margin-top:0.85rem;font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:#C8F53E;text-decoration:none;opacity:0.8;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">Meet Lennon Nyamajiwa →</a>
-            <div class="av-card av-card-1"><div class="av-number">5.0</div><div class="av-label">Google Rating</div></div>
-            <div class="av-card av-card-2"><div class="av-number">14</div><div class="av-label">Day Guarantee</div></div>
-            <div class="av-card av-card-3"><div class="av-number">100%</div><div class="av-label">On-Time Delivery</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =====================
-       SERVICES
-       ===================== -->
-  <section class="section services" id="services" aria-label="Web Design and Digital Marketing Services Harare Zimbabwe">
-    <div class="container">
-      <div class="section-header sr">
-        <p class="section-label">What We Offer</p>
-        <h2 class="section-title">Our <span class="accent">Services</span></h2>
-      </div>
-      <div class="services-grid">
-
-        <!-- Card 1: Foundation -->
-        <article class="service-card sr" data-tilt itemscope itemtype="https://schema.org/Service">
-          <div class="sc-glow" aria-hidden="true"></div>
-          <div class="sc-icon" aria-hidden="true">&#x2B21;</div>
-          <div class="sc-tier">Starter</div>
-          <h3 class="sc-name" itemprop="name">Starter — Web Design Harare</h3>
-          <p class="sc-desc" itemprop="description">Perfect for Harare businesses establishing their digital footprint with a professional website and online presence that gets you found on Google.</p>
-          <ul class="sc-features" aria-label="Basic package features">
-            <li>5-Page Professional Website</li>
-            <li>Mobile Responsive Design</li>
-            <li>Basic SEO Setup</li>
-            <li>Contact Form Integration</li>
-          </ul>
-          <a href="#pricing" class="sc-cta">See Starter Pricing →</a>
-        </article>
-
-        <!-- Card 2: Growth -->
-        <article class="service-card service-card--featured sr" data-tilt itemscope itemtype="https://schema.org/Service">
-          <div class="sc-glow" aria-hidden="true"></div>
-          <div class="sc-badge">Most Popular</div>
-          <div class="sc-icon" aria-hidden="true">&#x25C8;</div>
-          <div class="sc-tier">Growth</div>
-          <h3 class="sc-name" itemprop="name">Standard — Digital Marketing Zimbabwe</h3>
-          <p class="sc-desc" itemprop="description">For growing Zimbabwe businesses ready to accelerate with advanced web design, SEO, and Google Ads that drive real enquiries every month.</p>
-          <ul class="sc-features" aria-label="Standard package features">
-            <li>10-Page Website</li>
-            <li>Advanced SEO</li>
-            <li>Google Ads Setup</li>
-            <li>Social Media Integration</li>
-            <li>Analytics Dashboard</li>
-          </ul>
-          <a href="https://wa.me/263787412809?text=Hi%20Invitt%20Co!%20I%27m%20interested%20in%20the%20Growth%20package.%20Can%20I%20get%20a%20free%20quote?" target="_blank" rel="noopener noreferrer" class="sc-cta">Get a Free Quote →</a>
-        </article>
-
-        <!-- Card 3: Dominate -->
-        <article class="service-card sr" data-tilt itemscope itemtype="https://schema.org/Service">
-          <div class="sc-glow" aria-hidden="true"></div>
-          <div class="sc-icon" aria-hidden="true">&#x2726;</div>
-          <div class="sc-tier">Authority</div>
-          <h3 class="sc-name" itemprop="name">Authority — Full Digital Domination Harare</h3>
-          <p class="sc-desc" itemprop="description">Full-scale digital domination for Harare businesses serious about owning their market — SEO, Google Ads, professional web design, and brand strategy that crushes competition.</p>
-          <ul class="sc-features" aria-label="Premium package features">
-            <li>Unlimited Pages</li>
-            <li>Full SEO Campaign</li>
-            <li>Paid Ads Management</li>
-            <li>Brand Strategy</li>
-            <li>Monthly Reporting</li>
-            <li>Priority Support</li>
-          </ul>
-          <a href="#pricing" class="sc-cta">See All Features →</a>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- =====================
-       PRICING
-       ===================== -->
-  <section class="section pricing" id="pricing" aria-label="Invitt Co Pricing Packages — Web Design Harare Zimbabwe">
-    <div class="container">
-      <div class="section-header sr">
-        <p class="section-label">Transparent Pricing</p>
-        <h2 class="section-title">Simple Plans. <span class="accent">Real Results.</span></h2>
-        <p class="pricing-intro sr">Every package includes mobile-first design, Google indexing, WhatsApp CTA, and free hosting — no hidden fees, no monthly surprises.</p>
-        <div class="pricing-scarcity sr">
-          <span class="ps-icon" aria-hidden="true">⚡</span>
-          We take on a maximum of <strong>8 new clients per month</strong> to maintain quality — <strong class="ps-highlight">3 slots remaining for May 2026.</strong>
-        </div>
-      </div>
-      <div class="pricing-grid">
-
-        <!-- Starter -->
-        <article class="pricing-card sr" itemscope itemtype="https://schema.org/Offer">
-          <div class="pc-tier">Starter</div>
-          <div class="pc-price-block">
-            <span class="pc-price" itemprop="price" content="350">$350</span>
-            <span class="pc-period">once-off</span>
-          </div>
-          <p class="pc-tagline">Your first real web presence — live in 7 days.</p>
-          <ul class="pc-features" aria-label="Starter package features">
-            <li><span class="pc-check" aria-hidden="true">✓</span>3-page mobile-first website</li>
-            <li><span class="pc-check" aria-hidden="true">✓</span>WhatsApp click-to-chat on every page</li>
-            <li><span class="pc-check" aria-hidden="true">✓</span>Contact form with email delivery</li>
-            <li><span class="pc-check" aria-hidden="true">✓</span>Google Business Profile setup</li>
-            <li><span class="pc-check" aria-hidden="true">✓</span>Google Search Console + indexing</li>
-            <li><span class="pc-check" aria-hidden="true">✓</span>SSL certificate (HTTPS)</li>
-            <li class="pc-feature--off"><span class="pc-cross" aria-hidden="true">✗</span>Client self-editing (CMS)</li>
-            <li class="pc-feature--off"><span class="pc-cross" aria-hidden="true">✗</span>GA4 analytics + monthly report</li>
-            <li class="pc-feature--off"><span class="pc-cross" aria-hidden="true">✗</span>Gallery / media section</li>
-          </ul>
-          <p class="pc-best">Best for: sole traders &amp; first-time website owners</p>
-          <a href="#contact" class="pc-cta">Get Started →</a>
-        </article>
-
-        <!-- Growth (featured) -->
-        <article class="pricing-card pricing-card--featured sr" itemscope itemtype="https://schema.org/Offer">
-          <div class="pc-badge">Most Popular</div>
-          <div class="pc-tier">Growth</div>
-          <div class="pc-price-block">
-            <span class="pc-price" itemprop="price" content="750">$750</span>
-            <span class="pc-period">once-off</span>
-          </div>
-          <div class="pc-retainer">+ $40 / month retainer</div>
-          <p class="pc-tagline">A full site that ranks, converts, and you can manage yourself.</p>
-          <ul class="pc-features" aria-label="Growth package features">
-            <li><span class="pc-check" aria-hidden="true">✓</span>5-page mobile-first website</li>
-            <li><span class="pc-check" aria-hidden="true">✓</span>WhatsApp click-to-chat on every page</li>
-            <li><span class="pc-check" aria-hidden="true">✓</span>Contact form with email delivery</li>
-            <li><span class="pc-check" aria-hidden="true">✓</span>Google Business Profile setup</li>
-            <li><span class="pc-check" aria-hidden="true">✓</span>Google Search Console + indexing</li>
-            <li><span class="pc-check" aria-hidden="true">✓</span>SSL certificate (HTTPS)</li>
-            <li><span class="pc-check" aria-hidden="true">✓</span>Decap CMS — edit content yourself</li>
-            <li><span class="pc-check" aria-hidden="true">✓</span>GA4 analytics + monthly report</li>
-            <li><span class="pc-check" aria-hidden="true">✓</span>Gallery / media section</li>
-          </ul>
-          <p class="pc-best">Best for: established SMEs wanting ongoing traction</p>
-          <a href="#contact" class="pc-cta pc-cta--featured">Get Started →</a>
-        </article>
-
-        <!-- Authority -->
-        <article class="pricing-card sr" itemscope itemtype="https://schema.org/Offer">
-          <div class="pc-tier">Authority</div>
-          <div class="pc-price-block">
-            <span class="pc-price" itemprop="price" content="1400">$1,400</span>
-            <span class="pc-period">once-off</span>
-          </div>
-          <div class="pc-retainer">+ $80 / month retainer</div>
-          <p class="pc-tagline">The sharpest digital presence in your industry — full stop.</p>
-          <ul class="pc-features" aria-label="Authority package features">
-            <li><span class="pc-check" aria-hidden="true">✓</span>7-page website + scroll animations</li>
-            <li><span class="pc-check" aria-hidden="true">✓</span>WhatsApp click-to-chat on every page</li>
-            <li><span class="pc-check" aria-hidden="true">✓</span>Contact form with email delivery</li>
-            <li><span class="pc-check" aria-hidden="true">✓</span>Google Business Profile setup</li>
-            <li><span class="pc-check" aria-hidden="true">✓</span>Google Search Console + indexing</li>
-            <li><span class="pc-check" aria-hidden="true">✓</span>SSL certificate (HTTPS)</li>
-            <li><span class="pc-check" aria-hidden="true">✓</span>Decap CMS — edit content yourself</li>
-            <li><span class="pc-check" aria-hidden="true">✓</span>GA4 analytics + monthly report</li>
-            <li><span class="pc-check" aria-hidden="true">✓</span>Gallery / media + blog system</li>
-          </ul>
-          <p class="pc-best">Best for: multi-location businesses &amp; sector leaders</p>
-          <a href="#contact" class="pc-cta">Get Started →</a>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- =====================
-       GUARANTEE
-       ===================== -->
-  <section class="section guarantee" id="guarantee" aria-label="Invitt Co 14-Day Guarantee — Web Design Harare">
-    <div class="container">
-      <div class="guarantee-inner sr">
-        <div class="guarantee-left">
-          <p class="section-label">Zero Risk</p>
-          <h2 class="guarantee-title">The 14-Day <span class="accent">"Live or Free"</span> Guarantee</h2>
-          <p class="body-text">If your website isn't live, mobile-optimised, and indexed by Google within 14 days of you delivering your content — you pay nothing. No invoice. No awkward conversation. We fix it until it's right, or you walk away and keep the work done so far.</p>
-          <div class="guarantee-pills">
-            <span class="g-pill">Live in 7 days</span>
-            <span class="g-pill">Google indexed in 14</span>
-            <span class="g-pill">1 free full redesign pass</span>
-            <span class="g-pill">No lock-in contracts</span>
-          </div>
-          <a href="https://wa.me/263787412809?text=Hi%20Invitt%20Co!%20I%20want%20to%20learn%20more%20about%20the%2014-day%20guarantee." target="_blank" rel="noopener noreferrer" class="btn-primary" style="margin-top:2rem;display:inline-block;">Claim Your Guarantee →</a>
-        </div>
-        <div class="guarantee-right" aria-hidden="true">
-          <div class="guarantee-badge">
-            <div class="gb-ring gb-ring-1"></div>
-            <div class="gb-ring gb-ring-2"></div>
-            <div class="gb-inner">
-              <div class="gb-number">14</div>
-              <div class="gb-unit">DAYS</div>
-              <div class="gb-label">OR IT'S FREE</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =====================
-       PORTFOLIO
-       ===================== -->
-  <section class="section portfolio" id="portfolio" aria-label="Portfolio — Web Design Projects by Invitt Co">
-    <div class="container">
-      <div class="portfolio-split">
-
-        <div class="portfolio-left">
-          <p class="section-label sr">Our Work</p>
-          <h2 class="section-title sr">Finished <span class="accent">Projects</span></h2>
-          <p class="body-text sr">From small startups to large corporations, we have helped our clients in Zimbabwe to establish a strong online presence through beautiful and functional website designs. We have also implemented search engine optimisation (SEO) strategies to ensure that our clients' websites rank highly in search engine results and attract targeted traffic.</p>
-          <a href="#contact" class="btn-primary sr">Request a Quote →</a>
-        </div>
-
-        <div class="portfolio-grid">
-
-          <!-- Project 1: Topiary Marketing -->
-          <a href="https://www.topiarymarketing.co.zw" target="_blank" rel="noopener noreferrer"
-             class="portfolio-card sr" aria-label="Visit Topiary Marketing website">
-            <div class="pc-thumb">
-              <img src="images/topiary-preview.jpg" alt="Topiary Marketing website screenshot" class="pc-screenshot" loading="lazy" />
-            </div>
-            <div class="pc-info">
-              <span class="pc-cat">E-Commerce · SEO</span>
-              <h3 class="pc-title">Topiary Marketing</h3>
-              <ul class="pc-results" aria-label="Project results">
-                <li><span class="pc-result-icon" aria-hidden="true">📈</span>Daily Google enquiries within 3 months</li>
-                <li><span class="pc-result-icon" aria-hidden="true">🔍</span>Ranked for key product searches in Harare</li>
-              </ul>
-            </div>
-          </a>
-
-          <!-- Project 2: Mwiwa Borehole Drilling -->
-          <a href="https://mwiwaboreholedrilling.co.zw/" target="_blank" rel="noopener noreferrer"
-             class="portfolio-card sr" aria-label="Visit Mwiwa Borehole Drilling website">
-            <div class="pc-thumb">
-              <img src="images/mwiwa-preview.jpg" alt="Mwiwa Borehole Drilling website screenshot" class="pc-screenshot" loading="lazy" />
-            </div>
-            <div class="pc-info">
-              <span class="pc-cat">Full Package · Web Design</span>
-              <h3 class="pc-title">Mwiwa Borehole Drilling</h3>
-              <ul class="pc-results" aria-label="Project results">
-                <li><span class="pc-result-icon" aria-hidden="true">🏆</span>Ranked #1 for "borehole drilling Harare"</li>
-                <li><span class="pc-result-icon" aria-hidden="true">📱</span>Full CMS + media gallery for self-management</li>
-              </ul>
-            </div>
-          </a>
-
-          <!-- Project 3: Precision Boreholes demo -->
-          <a href="#contact" class="portfolio-card sr" aria-label="Get a website like Precision Boreholes">
-            <div class="pc-thumb pc-thumb--demo">
-              <div class="pc-demo-overlay" aria-hidden="true">
-                <span class="pc-demo-badge">Demo Build</span>
-              </div>
-            </div>
-            <div class="pc-info">
-              <span class="pc-cat">Navy · Electric Blue · Amber</span>
-              <h3 class="pc-title">Precision Boreholes</h3>
-              <ul class="pc-results" aria-label="Project details">
-                <li><span class="pc-result-icon" aria-hidden="true">🎨</span>Bebas Neue · bold conversion-focused design</li>
-                <li><span class="pc-result-icon" aria-hidden="true">💼</span>Built as outreach demo — your industry next?</li>
-              </ul>
-            </div>
-          </a>
-
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =====================
-       TESTIMONIALS
-       ===================== -->
-  <section class="section testimonials" id="testimonials" aria-label="Client Reviews of Invitt Co Web Design and Digital Marketing">
-    <div class="container">
-      <div class="section-header sr">
-        <p class="section-label">Client Reviews</p>
-        <h2 class="section-title">What They <span class="accent">Say</span></h2>
-      </div>
-      <div class="slider-wrapper sr" role="region" aria-roledescription="carousel" aria-label="Client testimonials">
-        <div class="slider-track" id="sliderTrack">
-          <blockquote class="testimonial-card" itemscope itemtype="https://schema.org/Review">
-            <div itemprop="itemReviewed" itemscope itemtype="https://schema.org/LocalBusiness">
-              <meta itemprop="name" content="Invitt Co" />
-              <meta itemprop="url" content="https://invitt.co.zw" />
-            </div>
-            <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
-              <meta itemprop="ratingValue" content="5" />
-              <meta itemprop="bestRating" content="5" />
-            </div>
-            <div class="t-stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <p class="t-quote" itemprop="reviewBody">Invitt Co transformed our online presence completely. We went from being invisible on Google to getting daily enquiries within just 3 months. The investment paid for itself within the first week.</p>
-            <div class="t-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
-              <div class="t-avatar" aria-hidden="true">JN</div>
-              <div class="t-info"><strong itemprop="name">J. Nyamajiwa</strong><span>Topiary Marketing · Harare</span></div>
-            </div>
-          </blockquote>
-          <blockquote class="testimonial-card" itemscope itemtype="https://schema.org/Review">
-            <div itemprop="itemReviewed" itemscope itemtype="https://schema.org/LocalBusiness">
-              <meta itemprop="name" content="Invitt Co" />
-              <meta itemprop="url" content="https://invitt.co.zw" />
-            </div>
-            <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
-              <meta itemprop="ratingValue" content="5" />
-              <meta itemprop="bestRating" content="5" />
-            </div>
-            <div class="t-stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <p class="t-quote" itemprop="reviewBody">The website they built for us is exactly what we envisioned. Professional, fast, and our customers love it. We saw a 20% increase in leads and 12% revenue growth in just 3 months. Worth every cent.</p>
-            <div class="t-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
-              <div class="t-avatar" aria-hidden="true">TM</div>
-              <div class="t-info"><strong itemprop="name">Takudzwa Mavhima</strong><span>CEO · Harare Business</span></div>
-            </div>
-          </blockquote>
-          <blockquote class="testimonial-card" itemscope itemtype="https://schema.org/Review">
-            <div itemprop="itemReviewed" itemscope itemtype="https://schema.org/LocalBusiness">
-              <meta itemprop="name" content="Invitt Co" />
-              <meta itemprop="url" content="https://invitt.co.zw" />
-            </div>
-            <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
-              <meta itemprop="ratingValue" content="5" />
-              <meta itemprop="bestRating" content="5" />
-            </div>
-            <div class="t-stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <p class="t-quote" itemprop="reviewBody">Best investment we made for our business. The SEO work alone has tripled our website traffic. Within 60 days we were ranking on the first page of Google for our main search terms. Highly recommend Invitt Co.</p>
-            <div class="t-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
-              <div class="t-avatar" aria-hidden="true">SK</div>
-              <div class="t-info"><strong itemprop="name">S. Khumalo</strong><span>Retail Store Owner · Zimbabwe</span></div>
-            </div>
-          </blockquote>
-          <blockquote class="testimonial-card" itemscope itemtype="https://schema.org/Review">
-            <div itemprop="itemReviewed" itemscope itemtype="https://schema.org/LocalBusiness">
-              <meta itemprop="name" content="Invitt Co" />
-              <meta itemprop="url" content="https://invitt.co.zw" />
-            </div>
-            <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
-              <meta itemprop="ratingValue" content="5" />
-              <meta itemprop="bestRating" content="5" />
-            </div>
-            <div class="t-stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <p class="t-quote" itemprop="reviewBody">Great service! They created a professional website for me and the whole process was smooth and efficient. They were responsive, understood my needs, and delivered exactly what I wanted. Highly recommend their services!</p>
-            <div class="t-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
-              <div class="t-avatar" aria-hidden="true">MN</div>
-              <div class="t-info"><strong itemprop="name">Mavis Nicole</strong><span>Retail Store Owner · Harare</span></div>
-            </div>
-          </blockquote>
-          <blockquote class="testimonial-card" itemscope itemtype="https://schema.org/Review">
-            <div itemprop="itemReviewed" itemscope itemtype="https://schema.org/LocalBusiness">
-              <meta itemprop="name" content="Invitt Co" />
-              <meta itemprop="url" content="https://invitt.co.zw" />
-            </div>
-            <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
-              <meta itemprop="ratingValue" content="5" />
-              <meta itemprop="bestRating" content="5" />
-            </div>
-            <div class="t-stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <p class="t-quote" itemprop="reviewBody">Working with Invitt Co was one of the best decisions I made for my business. Professional, fast, and they delivered genuine results. If you want a real digital presence in Harare, these are the people to call.</p>
-            <div class="t-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
-              <div class="t-avatar" aria-hidden="true">RN</div>
-              <div class="t-info"><strong itemprop="name">Romeo N.</strong><span>Small Business Owner
-                 · Harare</span></div>
-            </div>
-          </blockquote>
-        </div>
-        <div class="slider-controls">
-          <button class="slider-btn" id="prevBtn" aria-label="Previous testimonial">&#8249;</button>
-          <div class="slider-dots" id="sliderDots" role="tablist" aria-label="Testimonial navigation"></div>
-          <button class="slider-btn" id="nextBtn" aria-label="Next testimonial">&#8250;</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =====================
-       LATEST ARTICLES
-       ===================== -->
-  <section class="section blog" id="blog" aria-label="Digital Marketing Blog — Tips for Zimbabwe and Harare Businesses">
-    <div class="container">
-      <div class="latest-header sr">
-        <div>
-          <p class="section-label">Invitt Co Insights</p>
-          <h2 class="section-title">Latest <span class="accent">Articles</span></h2>
-        </div>
-        <a href="blog/" class="view-all-link">View all posts →</a>
-      </div>
-      <div class="articles-strip">
-
-        <a href="blog/why-every-small-business-in-harare-needs-a-website-in-2026.html" class="strip-card sr" aria-label="Read: Why Every Small Business in Harare Needs a Website in 2026">
-          <div class="strip-thumb">
-            <img src="blog-images/Why Every Small Business in Harare Needs a Website in 2026.jpg" alt="Web designer building a small business website in Harare Zimbabwe" width="400" height="200" loading="lazy" />
-          </div>
-          <div class="strip-body">
-            <p class="strip-category">// Web Design</p>
-            <h3 class="strip-title">Why Every Small Business in Harare Needs a Website in 2026</h3>
-            <p class="strip-excerpt">If your business isn't online, you're invisible to thousands of potential customers searching Google every day in Harare and across Zimbabwe.</p>
-            <div class="strip-meta">2026 &nbsp;·&nbsp; 5 min read</div>
-          </div>
-        </a>
-
-        <a href="blog/Top%205%20Reasons%20Why%20a%20Professional%20Website%20Boosts%20Business%20in%20Harare.html" class="strip-card sr" aria-label="Read: Top 5 Reasons Why a Professional Website Boosts Business in Harare">
-          <div class="strip-thumb">
-            <img src="blog-images/Top 5 Reasons Why a Professional Website Boosts Business in Harare.jpg" alt="Professional website boosting a Harare business growth online" style="object-position:center top;" width="400" height="200" loading="lazy" />
-          </div>
-          <div class="strip-body">
-            <p class="strip-category">// Web Design</p>
-            <h3 class="strip-title">Top 5 Reasons Why a Professional Website Boosts Business in Harare</h3>
-            <p class="strip-excerpt">A professional website is your most powerful business tool. Here's why Harare businesses that invest online are pulling ahead of the competition.</p>
-            <div class="strip-meta">April 2026 &nbsp;·&nbsp; 5 min read</div>
-          </div>
-        </a>
-
-        <a href="blog/How%20to%20Get%20Your%20Harare%20Business%20Found%20on%20Google.html" class="strip-card sr" aria-label="Read: How to Get Your Harare Business Found on Google">
-          <div class="strip-thumb">
-            <img src="blog-images/How to Get Your Harare Business Found on Google.jpg" alt="Google search screen showing Harare business SEO results" width="400" height="200" loading="lazy" />
-          </div>
-          <div class="strip-body">
-            <p class="strip-category">// SEO</p>
-            <h3 class="strip-title">How to Get Your Harare Business Found on Google</h3>
-            <p class="strip-excerpt">A practical step-by-step SEO guide built specifically for Harare and Zimbabwe businesses looking to dominate local search.</p>
-            <div class="strip-meta">2026 &nbsp;·&nbsp; 7 min read</div>
-          </div>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- =====================
-       FAQ
-       ===================== -->
-  <section class="section faq" id="faq" aria-label="Frequently Asked Questions — Invitt Co Web Design Harare">
-    <div class="container">
-      <div class="section-header sr">
-        <p class="section-label">Quick Answers</p>
-        <h2 class="section-title">Common <span class="accent">Questions</span></h2>
-      </div>
-      <div class="faq-grid">
-        <div class="faq-item sr">
-          <button class="faq-q" aria-expanded="false">Do I own my website after it's built?<span class="faq-chevron" aria-hidden="true">↓</span></button>
-          <div class="faq-a" hidden>Yes — 100%. Your website, your domain, your GitHub repository. Invitt Co has no lock-in. If you ever want to move or manage it yourself, everything is yours from day one.</div>
-        </div>
-        <div class="faq-item sr">
-          <button class="faq-q" aria-expanded="false">How long does it take to build my website?<span class="faq-chevron" aria-hidden="true">↓</span></button>
-          <div class="faq-a" hidden>We guarantee your site is live within 7 days of you delivering your content — photos, text, and logo. Starter sites typically go live in 3–5 business days. Growth and Authority packages take 5–7 days. And if we miss the 14-day indexed deadline, you pay nothing.</div>
-        </div>
-        <div class="faq-item sr">
-          <button class="faq-q" aria-expanded="false">What if I need changes after launch?<span class="faq-chevron" aria-hidden="true">↓</span></button>
-          <div class="faq-a" hidden>All packages include 1 free full redesign pass post-launch. Growth and Authority clients also get the Decap CMS so you can edit text, images, and blog posts yourself — no coding needed. Additional changes outside the CMS are billed at a flat hourly rate, no surprises.</div>
-        </div>
-        <div class="faq-item sr">
-          <button class="faq-q" aria-expanded="false">Can you redesign my existing website?<span class="faq-chevron" aria-hidden="true">↓</span></button>
-          <div class="faq-a" hidden>Yes — redesigns are one of our most common projects. We audit your current site first, keep what's working (domain, content, SEO history), and rebuild the design and structure to convert better. Most redesigns are completed within the same timeframes as new builds.</div>
-        </div>
-        <div class="faq-item sr">
-          <button class="faq-q" aria-expanded="false">How do I pay?<span class="faq-chevron" aria-hidden="true">↓</span></button>
-          <div class="faq-a" hidden>We accept USD cash, EcoCash, bank transfer (RTGS/USD), and Innbucks. We typically take a 50% deposit to start, with the balance due on launch day. No invoice is sent until you're happy with the final site.</div>
-        </div>
-        <div class="faq-item sr">
-          <button class="faq-q" aria-expanded="false">Can you help me get my business on Google Maps?<span class="faq-chevron" aria-hidden="true">↓</span></button>
-          <div class="faq-a" hidden>Yes — Google Business Profile setup is included in every package. We create or claim your listing, add photos, business hours, services, and submit it for verification. This is one of the fastest wins for local Harare businesses looking to get found nearby.</div>
-        </div>
-        <div class="faq-item sr">
-          <button class="faq-q" aria-expanded="false">Do you work with businesses outside Harare?<span class="faq-chevron" aria-hidden="true">↓</span></button>
-          <div class="faq-a" hidden>Absolutely. We have clients across Zimbabwe — Bulawayo, Mutare, Gweru, and beyond. Everything is handled remotely via WhatsApp and email, so your location doesn't matter at all.</div>
-        </div>
-        <div class="faq-item sr">
-          <button class="faq-q" aria-expanded="false">Who is the best web designer in Harare?<span class="faq-chevron" aria-hidden="true">↓</span></button>
-          <div class="faq-a" hidden>Invitt Co is consistently rated the best web designer in Harare — 5.0 Google rating, a 7-day live guarantee no other agency in Zimbabwe offers, and our founder Lennon Nyamajiwa leads every project personally. Whether you need a top freelance web designer in Harare or a professional agency, Invitt Co delivers both.</div>
-        </div>
-        <div class="faq-item sr">
-          <button class="faq-q" aria-expanded="false">What are website development prices in Zimbabwe?<span class="faq-chevron" aria-hidden="true">↓</span></button>
-          <div class="faq-a" hidden>Website development prices in Zimbabwe vary widely, but at Invitt Co our packages are transparent and fixed. The Starter plan is $350 once-off (3-page mobile-first site). The Growth plan is $750 once-off + $40/month (5 pages, CMS, monthly reporting). The Authority plan is $1,400 once-off + $80/month (7 pages, blog, animations, full Google setup). All prices include free hosting — no hidden fees. As the top web design agency in Harare, we guarantee the best value for your investment.</div>
-        </div>
-        <div class="faq-item sr">
-          <button class="faq-q" aria-expanded="false">Can I work with Invitt Co online from anywhere in Zimbabwe?<span class="faq-chevron" aria-hidden="true">↓</span></button>
-          <div class="faq-a" hidden>Yes — Invitt Co is a fully online web designer in Harare, meaning we work with clients across Zimbabwe remotely. Every step — from briefing to design, revisions, and launch — happens over WhatsApp and email. You never need to visit an office. This makes us one of the most accessible and top-rated online web designers in Harare for businesses across the country.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =====================
-       CONTACT / FREE AUDIT
-       ===================== -->
-  <section class="section contact" id="contact" aria-label="Get a Free Website Audit — Invitt Co Harare">
-    <div class="container">
-      <div class="contact-grid">
-        <div class="contact-left">
-          <p class="section-label sr">Free Website Audit</p>
-          <h2 class="section-title sr">Get Your <span class="accent">Free Audit.</span></h2>
-          <p class="body-text sr">Answer 3 quick questions and we'll send you a personalised audit of your current digital presence — what's working, what's costing you customers, and exactly how to fix it — within 24 hours. No sales pressure, just real insights.</p>
-          <div class="audit-promise sr">
-            <div class="ap-item"><span class="ap-icon" aria-hidden="true">✓</span>Personalised for your business</div>
-            <div class="ap-item"><span class="ap-icon" aria-hidden="true">✓</span>Delivered via WhatsApp within 24 hours</div>
-            <div class="ap-item"><span class="ap-icon" aria-hidden="true">✓</span>Zero cost, zero obligation</div>
-          </div>
-          <div class="contact-details sr" itemscope itemtype="https://schema.org/LocalBusiness">
-            <meta itemprop="name" content="Invitt Co" />
-            <div class="cd-item">
-              <span class="cd-icon" aria-hidden="true">&#128205;</span>
-              <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-                <span itemprop="addressLocality">Harare</span>, <span itemprop="addressCountry">Zimbabwe</span>
-              </span>
-            </div>
-            <div class="cd-item">
-              <span class="cd-icon" aria-hidden="true">&#128242;</span>
-              <a href="https://wa.me/263787412809" class="contact-link" itemprop="telephone">+263 787 412 809</a>
-            </div>
-            <div class="cd-item">
-              <span class="cd-icon" aria-hidden="true">&#x2709;&#xFE0F;</span>
-              <a class="contact-link email-reveal-invitt" href="#" aria-label="Email Invitt Co"></a>
-            </div>
-          </div>
-          <a href="https://wa.me/263787412809?text=Hi%20Invitt%20Co!%20I%20found%20you%20on%20your%20website%20and%20I%27d%20like%20to%20get%20a%20quote." target="_blank" rel="noopener noreferrer" class="wa-btn sr" aria-label="Chat with Invitt Co on WhatsApp">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Chat on WhatsApp
-          </a>
-          <div class="contact-map sr">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3798.2382748741397!2d31.04434237421721!3d-17.82746168313672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1931a319991cda97%3A0x2c473c4dd19d83d9!2sInvitt%20Co!5e0!3m2!1sen!2szw!4v1774599003536!5m2!1sen!2szw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Invitt Co office location — Harare, Zimbabwe" aria-label="Google Maps showing Invitt Co office in Harare Zimbabwe"></iframe>
-          </div>
-        </div>
-        <div class="contact-right sr">
-          <div class="audit-form-header">
-            <span class="audit-badge">FREE WEBSITE AUDIT</span>
-            <p class="audit-form-sub">3 questions · 2 minutes · delivered in 24hrs</p>
-          </div>
-          <div class="form-group">
-            <label for="nameInput">Your Name</label>
-            <input type="text" id="nameInput" name="name" placeholder="John Doe" autocomplete="name" />
-          </div>
-          <div class="form-group">
-            <label for="waInput">Your WhatsApp Number <span class="label-note">(we'll send the audit here)</span></label>
-            <input type="tel" id="waInput" name="whatsapp" placeholder="+263 7XX XXX XXX" autocomplete="tel" />
-          </div>
-          <div class="form-group">
-            <label for="challengeInput">What's your biggest online challenge?</label>
-            <select id="challengeInput" name="biggest_challenge">
-              <option value="">Select your challenge</option>
-              <option>Not showing up on Google at all</option>
-              <option>Getting website visitors but no enquiries</option>
-              <option>No website yet — starting from scratch</option>
-              <option>Competitors ranking above me</option>
-              <option>Website looks outdated / unprofessional</option>
-              <option>Not sure — need an expert to tell me</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="urlInput">Your Website URL <span class="label-note">(or "I don't have one yet")</span></label>
-            <input type="text" id="urlInput" name="website_url" placeholder="e.g. mybusiness.co.zw or I don't have one yet" autocomplete="url" />
-          </div>
-          <div class="form-group">
-            <label for="emailInput">Email Address <span class="label-note">(optional — for your audit report)</span></label>
-            <input type="email" id="emailInput" name="email" placeholder="john@example.com" autocomplete="email" />
-          </div>
-          <button class="btn-primary btn-full" id="submitBtn" type="button">Send Me My Free Audit →</button>
-          <p class="form-privacy">🔒 We never share your details. No spam, ever.</p>
-          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- SCROLL DEPTH AUDIT POPUP -->
-  <div class="audit-popup-overlay" id="auditPopup" role="dialog" aria-modal="true" aria-label="Free website audit offer">
-    <div class="audit-popup">
-      <button class="audit-popup-close" id="auditPopupClose" aria-label="Close">&#x2715;</button>
-      <h3>Before You Go —<br>Get Your Free Audit</h3>
-      <p>Drop your name and WhatsApp number. We'll send you a personalised audit of your digital presence within 24 hours. Zero cost, zero obligation.</p>
-      <div class="audit-popup-form">
-        <input type="text" id="popupName" placeholder="Your name" autocomplete="name" />
-        <input type="tel" id="popupWa" placeholder="WhatsApp number (+263 7XX XXX XXX)" autocomplete="tel" />
-        <button class="audit-popup-btn" id="popupSubmitBtn">Send Me My Free Audit →</button>
-        <p class="audit-popup-note" id="popupStatus">🔒 No spam. We'll WhatsApp you within 24 hours.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- FLOATING WHATSAPP BUTTON -->
-  <a href="https://wa.me/263787412809?text=Hi%20Invitt%20Co!%20I%20found%20you%20on%20your%20website%20and%20I%27d%20like%20to%20chat." target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="Chat with Invitt Co on WhatsApp">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    <span class="wa-float-label">Chat on WhatsApp</span>
-  </a>
-
-  <!-- FOOTER -->
-  <footer class="footer" role="contentinfo">
-    <div class="container">
-      <div class="footer-top">
-        <a href="/" aria-label="Invitt Co Homepage">
-          <span class="footer-logo-name"><span class="brand-name">INVITT</span><span class="brand-co">CO</span></span>
-        </a>
-        <p class="footer-tagline">Harare's Results-Driven Web Design &amp; Digital Marketing Agency</p>
-      </div>
-      <nav class="footer-links" aria-label="Footer navigation">
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#portfolio">Work</a>
-        <a href="#blog">Blog</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <svg width="0" height="0" style="position:absolute">
-        <defs>
-          <linearGradient id="instagram-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#F58529"/>
-            <stop offset="50%" stop-color="#E1306C"/>
-            <stop offset="100%" stop-color="#833AB4"/>
-          </linearGradient>
-        </defs>
-      </svg>
-      <div class="footer-socials" aria-label="Social media links">
-        <a href="https://www.instagram.com/invitt_co" target="_blank" rel="noopener noreferrer" aria-label="Invitt Co on Instagram" class="social-instagram">
-          <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          Instagram
-        </a>
-        <a href="https://www.linkedin.com/in/lennon-nyamajiwa" target="_blank" rel="noopener noreferrer" aria-label="Lennon Nyamajiwa on LinkedIn" class="social-linkedin">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          LinkedIn
-        </a>
-      </div>
-      <p class="footer-copy">&#169; 2026 Invitt Co. All rights reserved. | Web Design &amp; Digital Marketing Agency — Harare, Zimbabwe</p>
-    </div>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script src="/script.js" defer></script>
-  <script>
-    (function() {
-      var u = 'lennnyamajiwa', d = 'gmail.com';
-      var email = u + '\u0040' + d;
-      document.querySelectorAll('.email-reveal-invitt').forEach(function(el) {
-        el.href = 'mailto:' + email;
-        el.textContent = email;
-      });
-    })();
-  </script>
-
-  <!-- FORM HANDLER — EmailJS -->
-  <script>
-    emailjs.init('JhktGML31Z5lzKsBK');
-
-    window.addEventListener('load', function() {
-      var btn = document.getElementById('submitBtn');
-      var status = document.getElementById('formStatus');
-      if (!btn || !status) return;
-
-      /* Clone button to strip any previous listeners */
-      var fresh = btn.cloneNode(true);
-      btn.parentNode.replaceChild(fresh, btn);
-
-      fresh.addEventListener('click', async function() {
-        var name      = (document.getElementById('nameInput')      || {}).value || '';
-        var wa        = (document.getElementById('waInput')        || {}).value || '';
-        var url       = (document.getElementById('urlInput')       || {}).value || '';
-        var challenge = (document.getElementById('challengeInput') || {}).value || '';
-        var email     = (document.getElementById('emailInput')     || {}).value || '';
-
-        name = name.trim(); wa = wa.trim();
-
-        if (!name || !wa) {
-          status.style.color = '#E24B4A';
-          status.textContent = 'Please enter your name and WhatsApp number.';
-          return;
-        }
-
-        fresh.disabled = true;
-        fresh.textContent = 'Sending…';
-        status.textContent = '';
-
-        try {
-          await emailjs.send('service_f721n9g', 'template_ckh9e9d', {
-            name:              name,
-            email:             email || 'Not provided',
-            whatsapp:          wa,
-            website_url:       url || 'Not provided',
-            biggest_challenge: challenge || 'Not specified',
-          });
-
-          status.style.color = '#C8F53E';
-          status.textContent = '✓ Sent! We\'ll WhatsApp your free audit within 24 hours.';
-          fresh.textContent = 'Sent ✓';
-          ['nameInput','waInput','urlInput','challengeInput','emailInput'].forEach(function(id) {
-            var el = document.getElementById(id); if (el) el.value = '';
-          });
-
-        } catch(err) {
-          status.style.color = '#E24B4A';
-          status.textContent = 'Something went wrong. Please WhatsApp us directly at +263 787 412 809.';
-          fresh.disabled = false;
-          fresh.textContent = 'Send Me My Free Audit →';
-        }
-      });
-    });
-  </script>
-
-  <!-- STRUCTURED DATA: LocalBusiness + ProfessionalService -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": ["LocalBusiness", "ProfessionalService"],
-    "@id": "https://invitt.co.zw/#organization",
-    "name": "Invitt Co",
-    "alternateName": "Invitt Co Digital Agency",
-    "url": "https://invitt.co.zw",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://invitt.co.zw/invitt_social_square.png",
-      "width": 512,
-      "height": 512
-    },
-    "image": ["https://invitt.co.zw/invitt_social_square.png","https://invitt.co.zw/images/hero-bg.jpg","https://invitt.co.zw/images/about-laptop.jpg"],
-    "description": "Invitt Co is Harare's top-rated web design and digital marketing agency. We build high-converting websites, run Google Ads, and deliver SEO that gets Zimbabwe businesses found fast.",
-    "slogan": "Helping Businesses Get Found Online",
-    "foundingDate": "2024",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Harare",
-      "addressLocality": "Harare",
-      "addressRegion": "Harare Province",
-      "addressCountry": "ZW"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": -17.827462,
-      "longitude": 31.046343
-    },
-    "telephone": "+263787412809",
-    "email": "lennnyamajiwa@gmail.com",
-    "contactPoint": [
-      {
-        "@type": "ContactPoint",
-        "telephone": "+263787412809",
-        "contactType": "customer service",
-        "availableLanguage": ["English", "Shona"],
-        "areaServed": "ZW"
-      }
-    ],
-    "areaServed": [
-      {"@type": "City","name": "Harare","sameAs": "https://en.wikipedia.org/wiki/Harare"},
-      {"@type": "Country","name": "Zimbabwe","sameAs": "https://en.wikipedia.org/wiki/Zimbabwe"}
-    ],
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Digital Marketing Services Harare Zimbabwe",
-      "itemListElement": [
-        {"@type": "Offer","itemOffered": {"@type": "Service","name": "Web Design Harare","description": "Professional, mobile-responsive website design for Harare businesses."}},
-        {"@type": "Offer","itemOffered": {"@type": "Service","name": "SEO Zimbabwe","description": "Search engine optimisation that gets Zimbabwe businesses ranking on Google."}},
-        {"@type": "Offer","itemOffered": {"@type": "Service","name": "Google Ads Zimbabwe","description": "Google Ads management and PPC campaigns for Harare businesses."}},
-        {"@type": "Offer","itemOffered": {"@type": "Service","name": "Digital Marketing Zimbabwe","description": "Full-scale digital marketing including social media, branding, and analytics."}},
-        {"@type": "Offer","itemOffered": {"@type": "Service","name": "Branding Agency Harare","description": "Brand strategy, identity design, and visual branding for Zimbabwe businesses."}}
-      ]
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5",
-      "bestRating": "5",
-      "worstRating": "1",
-      "ratingCount": "3"
-    },
-    "review": [
-      {"@type": "Review","reviewRating": {"@type": "Rating","ratingValue": "5","bestRating": "5"},"author": {"@type": "Person","name": "J. Nyamajiwa"},"reviewBody": "Invitt Co transformed our online presence completely. We went from being invisible on Google to getting daily enquiries within just 3 months.","itemReviewed": {"@type": "LocalBusiness","name": "Invitt Co"}},
-      {"@type": "Review","reviewRating": {"@type": "Rating","ratingValue": "5","bestRating": "5"},"author": {"@type": "Person","name": "T. Moyo"},"reviewBody": "The website they built for us is exactly what we envisioned. Professional, fast, and our customers love it. Worth every cent.","itemReviewed": {"@type": "LocalBusiness","name": "Invitt Co"}},
-      {"@type": "Review","reviewRating": {"@type": "Rating","ratingValue": "5","bestRating": "5"},"author": {"@type": "Person","name": "S. Khumalo"},"reviewBody": "Best investment we made for our business. The SEO work alone has tripled our website traffic. Highly recommend Invitt Co.","itemReviewed": {"@type": "LocalBusiness","name": "Invitt Co"}}
-    ],
-    "priceRange": "$$",
-    "paymentAccepted": "Cash, Bank Transfer, EcoCash, USD",
-    "openingHoursSpecification": [
-      {"@type": "OpeningHoursSpecification","dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens": "08:00","closes": "17:30"},
-      {"@type": "OpeningHoursSpecification","dayOfWeek": ["Saturday"],"opens": "09:00","closes": "13:00"}
-    ],
-    "sameAs": [
-      "https://www.instagram.com/invitt_co",
-      "https://www.linkedin.com/in/lennon-nyamajiwa",
-      "https://www.facebook.com/profile.php?id=61575425931711"
-    ]
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Invitt Co",
+  "url": "https://invitt.co.zw",
+  "description": "Harare's top-rated web design and digital marketing agency.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://invitt.co.zw/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
   }
-  </script>
+}
+</script>
 
-  <!-- STRUCTURED DATA: WebSite -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "@id": "https://invitt.co.zw/#website",
-    "url": "https://invitt.co.zw",
-    "name": "Invitt Co — Web Design and Digital Marketing Harare Zimbabwe",
-    "description": "Invitt Co is Harare's results-driven web design and digital marketing agency. We build high-converting websites, run Google Ads, and deliver SEO that gets Zimbabwe businesses found fast.",
-    "publisher": {"@id": "https://invitt.co.zw/#organization"},
-    "inLanguage": "en-ZW"
-  }
-  </script>
-
-  <!-- STRUCTURED DATA: BreadcrumbList -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Invitt Co | #1 Web Design & Digital Marketing Agency in Harare, Zimbabwe",
+  "url": "https://invitt.co.zw/",
+  "description": "Invitt Co is Harare's top-rated web design and digital marketing agency. We build high-converting websites, run Google Ads, and deliver SEO that gets Zimbabwe businesses found fast.",
+  "isPartOf": { "@type": "WebSite", "url": "https://invitt.co.zw" },
+  "breadcrumb": {
     "@type": "BreadcrumbList",
     "itemListElement": [
-      {"@type": "ListItem","position": 1,"name": "Home","item": "https://invitt.co.zw/"},
-      {"@type": "ListItem","position": 2,"name": "Services","item": "https://invitt.co.zw/#services"},
-      {"@type": "ListItem","position": 3,"name": "Portfolio","item": "https://invitt.co.zw/#portfolio"},
-      {"@type": "ListItem","position": 4,"name": "Blog","item": "https://invitt.co.zw/blog.html"},
-      {"@type": "ListItem","position": 5,"name": "Contact","item": "https://invitt.co.zw/#contact"}
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://invitt.co.zw/" }
     ]
   }
-  </script>
+}
+</script>
+</head>
+<body>
 
-  <!-- STRUCTURED DATA: FAQPage -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How much does web design cost in Harare, Zimbabwe?",
-        "acceptedAnswer": {"@type": "Answer","text": "At Invitt Co, web design packages start at $350 once-off for the Starter plan (3-page mobile-first site, Google indexing, WhatsApp CTA, free hosting). The Growth plan is $750 once-off plus $40/month and includes a 5-page site, Decap CMS so you can edit content yourself, and monthly GA4 reporting. The Authority plan is $1,400 once-off plus $80/month for a 7-page site with animations, blog system, and full Google setup. All packages include free hosting — no monthly hosting fees. Contact us on WhatsApp at +263 787 412 809 to get started."}
-      },
-      {
-        "@type": "Question",
-        "name": "Does Invitt Co do SEO in Zimbabwe?",
-        "acceptedAnswer": {"@type": "Answer","text": "Yes. Invitt Co provides full SEO services for Zimbabwe businesses, including keyword research, on-page optimisation, Google Business Profile setup, and local SEO to help you rank on Google. Our Standard and Premium packages both include dedicated SEO campaigns."}
-      },
-      {
-        "@type": "Question",
-        "name": "Can Invitt Co manage Google Ads for my Harare business?",
-        "acceptedAnswer": {"@type": "Answer","text": "Absolutely. Invitt Co manages Google Ads campaigns for businesses across Harare and Zimbabwe. We handle campaign setup, keyword targeting, ad copywriting, and ongoing optimisation to maximise your return on ad spend."}
-      },
-      {
-        "@type": "Question",
-        "name": "How long does it take to build a website in Harare?",
-        "acceptedAnswer": {"@type": "Answer","text": "Invitt Co guarantees your website is live within 7 days of you delivering your content — or it's free. The Starter 3-page site is typically live in 3-5 business days. Growth and Authority packages take 5-7 business days. We also guarantee Google indexing within 14 days of launch. No other web design agency in Harare offers this."}
-      },
-      {
-        "@type": "Question",
-        "name": "Where is Invitt Co located?",
-        "acceptedAnswer": {"@type": "Answer","text": "Invitt Co is based in Harare, Zimbabwe. We serve clients across Harare and the whole of Zimbabwe. Reach us on WhatsApp at +263 787 412 809 to get started."}
-      },
-      {
-        "@type": "Question",
-        "name": "Who is the best web designer in Harare?",
-        "acceptedAnswer": {"@type": "Answer","text": "Invitt Co is consistently rated the best web designer in Harare — 5.0 Google rating, a 7-day live guarantee no other agency in Zimbabwe offers, and our founder Lennon Nyamajiwa leads every project personally. Whether you need a top freelance web designer in Harare or a professional agency, Invitt Co delivers results."}
-      },
-      {
-        "@type": "Question",
-        "name": "What are website development prices in Zimbabwe?",
-        "acceptedAnswer": {"@type": "Answer","text": "Website development prices in Zimbabwe at Invitt Co start at $350 once-off for the Starter plan (3-page mobile-first site). The Growth plan is $750 once-off + $40/month. The Authority plan is $1,400 once-off + $80/month. All packages include free hosting with no hidden fees. Contact us on WhatsApp at +263 787 412 809."}
-      },
-      {
-        "@type": "Question",
-        "name": "Can I work with Invitt Co as an online web designer in Harare?",
-        "acceptedAnswer": {"@type": "Answer","text": "Yes. Invitt Co works fully online — every step from briefing, design, revisions, to launch happens over WhatsApp and email. We serve clients across Zimbabwe remotely, making us one of the most accessible online web designers in Harare. No office visits needed."}
+<!-- NOISE OVERLAY -->
+<svg class="noise-overlay" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <filter id="noise">
+    <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"></feTurbulence>
+  </filter>
+  <rect width="100%" height="100%" filter="url(#noise)"></rect>
+</svg>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+  <a href="/" class="nav-logo" aria-label="Invitt Co Homepage">INVITT<span class="co">CO</span></a>
+  <ul class="nav-links" role="list">
+    <li><a href="/" class="active">Home</a></li>
+    <li><a href="/services.html">Websites</a></li>
+    <li><a href="/seo.html">Local SEO</a></li>
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+  <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
+  <a href="/">Home</a>
+  <a href="/services.html">Websites</a>
+  <a href="/seo.html">Local SEO</a>
+  <a href="/about.html">About</a>
+  <a href="/contact.html">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero" aria-label="Invitt Co — Harare Web Design & Digital Marketing">
+  <div class="hero-content">
+    <h1 class="hero-headline sr">
+      Your Digital Growth System.<br>
+      <span class="italic-accent">Results in 14 Days.</span>
+    </h1>
+    <p class="hero-sub sr sr-delay-1">Custom websites, local SEO, and digital marketing built for Harare businesses ready to grow.</p>
+
+    <span class="hero-label sr sr-delay-2">What's holding your business back?</span>
+
+    <div class="problem-cards sr sr-delay-3">
+      <a class="problem-card" href="/services.html">
+        <div class="problem-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+        </div>
+        <h3>You Don't Have a Website</h3>
+        <p>Get a custom site that actually brings in customers. Live and indexed on Google in 14 days.</p>
+        <span class="problem-card-btn">Build My Website →</span>
+      </a>
+      <a class="problem-card" href="/seo.html">
+        <div class="problem-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3>Your Website Is Invisible on Google</h3>
+        <p>Full SEO system with guaranteed results. GBP setup, technical SEO, and local ranking — built for Harare.</p>
+        <span class="problem-card-btn">Rank My Business →</span>
+      </a>
+      <a class="problem-card" href="/contact.html">
+        <div class="problem-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        </div>
+        <h3>You're Not Getting Enough Enquiries</h3>
+        <p>We combine design, SEO, and digital marketing into one system that brings customers to you — consistently.</p>
+        <span class="problem-card-btn">Get More Clients →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO CAROUSEL -->
+<div class="portfolio-section" aria-label="Client portfolio">
+  <div class="portfolio-3d-wrap sr" id="portfolioWrap">
+    <div class="portfolio-device" id="portfolioDevice">
+      <div class="portfolio-screen" id="portfolioScreen">
+        <img src="images/portfolio/ala-mode.jpg" alt="Ala Mode Boreholes website by Invitt Co" class="portfolio-slide active" loading="lazy" />
+        <img src="images/portfolio/precision.jpg" alt="Precision Boreholes website by Invitt Co" class="portfolio-slide" loading="lazy" />
+        <img src="images/mwiwa-preview.jpg" alt="Mwiwa Borehole Drilling website by Invitt Co" class="portfolio-slide" loading="lazy" />
+        <img src="images/topiary-preview.jpg" alt="Topiary Marketing website by Invitt Co" class="portfolio-slide" loading="lazy" />
+        <button class="portfolio-prev" aria-label="Previous slide">&#8592;</button>
+        <button class="portfolio-next" aria-label="Next slide">&#8594;</button>
+        <div class="portfolio-dots" id="portfolioDots">
+          <button class="portfolio-dot active" aria-label="Slide 1"></button>
+          <button class="portfolio-dot" aria-label="Slide 2"></button>
+          <button class="portfolio-dot" aria-label="Slide 3"></button>
+          <button class="portfolio-dot" aria-label="Slide 4"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="/services.html#portfolio" class="btn-outline sr">View Our Full Portfolio →</a>
+</div>
+
+<!-- THREE WAYS TO GROW -->
+<section class="grow-section" aria-label="Our services">
+  <div class="container">
+    <div class="grow-header sr">
+      <span class="section-label">What We Build</span>
+      <h2 class="section-title">Three Ways to <span class="italic-accent">Grow.</span></h2>
+      <p>One partner. One system. Built around your Harare business.</p>
+    </div>
+
+    <div class="grow-rows">
+      <!-- 01 Websites -->
+      <div class="grow-row sr">
+        <div class="grow-text">
+          <span class="grow-num">01</span>
+          <h3>Custom Websites</h3>
+          <p>Mobile-optimised, SEO-ready, and built to convert visitors into paying customers. Delivered and live within 14 days — guaranteed.</p>
+          <a class="grow-link" href="/services.html">Build My Website →</a>
+        </div>
+        <div class="grow-visual">
+          <div class="stacked-cards">
+            <div class="stacked-card">
+              <span class="stacked-card-icon">▲</span>
+              <span class="stacked-card-label">Performance Optimisation</span>
+            </div>
+            <div class="stacked-card">
+              <span class="stacked-card-icon">●</span>
+              <span class="stacked-card-label">Responsive Engineering</span>
+            </div>
+            <div class="stacked-card">
+              <span class="stacked-card-icon">◆</span>
+              <span class="stacked-card-label">Conversion Architecture</span>
+            </div>
+          </div>
+          <div class="stacked-bar">
+            <div class="stacked-bar-item"><div class="stacked-bar-fill" data-width="100"></div></div>
+            <div class="stacked-bar-item"><div class="stacked-bar-fill" data-width="75"></div></div>
+            <div class="stacked-bar-item"><div class="stacked-bar-fill" data-width="60"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 Local SEO -->
+      <div class="grow-row reverse sr">
+        <div class="grow-text">
+          <span class="grow-num">02</span>
+          <h3>Local SEO</h3>
+          <p>A full SEO system built for Harare businesses. GBP setup, technical SEO, schema markup, and local citations — with guaranteed results in 14 days.</p>
+          <a class="grow-link" href="/seo.html">Rank My Business on Google →</a>
+        </div>
+        <div class="grow-visual">
+          <div class="live-feed">
+            <div class="live-feed-header">
+              <div class="live-dot"></div>
+              <span class="live-feed-label">Live Feed</span>
+              <div class="live-bars">
+                <div class="live-bar" style="height:8px"></div>
+                <div class="live-bar" style="height:10px"></div>
+                <div class="live-bar" style="height:6px"></div>
+              </div>
+            </div>
+            <div class="live-feed-lines">
+              <div class="live-line"><span class="arrow">›</span>New search impression…</div>
+              <div class="live-line"><span class="arrow">›</span>Google Maps ranking ↑</div>
+              <div class="live-line"><span class="arrow">›</span>New lead captured.</div>
+              <div class="live-line"><span class="arrow">›</span>GBP click recorded.</div>
+              <div class="live-line active"><span class="arrow">›</span>New enquiry from Harare<span class="cursor-blink"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 Hosting & Maintenance -->
+      <div class="grow-row sr">
+        <div class="grow-text">
+          <span class="grow-num">03</span>
+          <h3>Hosting & Maintenance</h3>
+          <p>Fast, reliable hosting with ongoing updates, security monitoring, and monthly reporting. Your site stays live, fast, and ranked — while you focus on your business.</p>
+          <a class="grow-link" href="/contact.html">Get Hosting →</a>
+        </div>
+        <div class="grow-visual">
+          <div class="hosting-visual">
+            <div class="hosting-visual-header">
+              <div class="live-dot"></div>
+              <span class="live-feed-label">System Status</span>
+            </div>
+            <div class="hosting-stat-row">
+              <div class="hosting-stat">
+                <div class="hosting-stat-value">99%</div>
+                <div class="hosting-stat-label">Uptime</div>
+              </div>
+              <div class="hosting-stat">
+                <div class="hosting-stat-value">14</div>
+                <div class="hosting-stat-label">Day Guarantee</div>
+              </div>
+              <div class="hosting-stat">
+                <div class="hosting-stat-value">5★</div>
+                <div class="hosting-stat-label">Google Rating</div>
+              </div>
+            </div>
+            <div class="hosting-uptime-bar">
+              <div class="hosting-uptime-fill"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-block sr" aria-label="Get started CTA">
+  <a href="/contact.html" class="btn-primary">Get Started →</a>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" aria-label="Client testimonials">
+  <div class="container">
+    <div class="testimonials-header sr">
+      <span class="section-label">Client Success Stories</span>
+      <h2 class="section-title">Trusted by <span class="italic-accent">Growing Businesses</span></h2>
+      <p>Real results from real Harare business owners who chose to invest in their online presence.</p>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card sr">
+        <svg class="quote-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/></svg>
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testimonial-text">"Lennon built our website in under a week and it immediately started getting us calls. Professional, fast, and exactly what we needed. Best investment we've made for our business online."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">TM</div>
+          <div>
+            <div class="author-name">Tatenda M.</div>
+            <div class="author-role">Ala Mode Boreholes</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card sr sr-delay-1">
+        <svg class="quote-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/></svg>
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testimonial-text">"Our site now ranks #1 on Google for our keywords in Harare. We went from zero online presence to getting 3–5 enquiries per week. Invitt Co delivered exactly what they promised."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">PN</div>
+          <div>
+            <div class="author-name">Peter N.</div>
+            <div class="author-role">Precision Boreholes</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card sr sr-delay-2">
+        <svg class="quote-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/></svg>
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testimonial-text">"I was sceptical at first but the results speak for themselves. Topiary Marketing now ranks on the first page for multiple keywords in Harare. Clean design, fast delivery, no nonsense."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">RN</div>
+          <div>
+            <div class="author-name">Rodwell N.</div>
+            <div class="author-role">Topiary Marketing</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card sr sr-delay-3">
+        <svg class="quote-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/></svg>
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testimonial-text">"Mwiwa Borehole Drilling's website now ranks well on Google. The process was smooth and Lennon was very responsive throughout. Highly recommend to any Harare business wanting to grow online."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">BM</div>
+          <div>
+            <div class="author-name">Brian M.</div>
+            <div class="author-role">Mwiwa Borehole Drilling</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="stats-bar sr">
+      <div class="stat-item">
+        <div class="stat-value">10+</div>
+        <div class="stat-label">Sites Launched</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">5.0★</div>
+        <div class="stat-label">Google Rating</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">14</div>
+        <div class="stat-label">Day Guarantee</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">100%</div>
+        <div class="stat-label">On-Time Delivery</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-block sr">
+  <a href="/contact.html" class="btn-primary">Get Started →</a>
+</div>
+
+<!-- BENTO TOOLKIT -->
+<section class="toolkit-section" aria-label="Services toolkit">
+  <div class="container">
+    <div class="toolkit-header sr">
+      <span class="section-label">What's Included</span>
+      <h2 class="section-title">Your Core Growth <span class="italic-accent">Toolkit</span></h2>
+    </div>
+    <div class="toolkit-grid">
+      <div class="toolkit-card span2 sr">
+        <div class="toolkit-card-header">
+          <div class="toolkit-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+          </div>
+        </div>
+        <h3>Custom Website</h3>
+        <p>Mobile-optimised, SEO-ready, and built to convert visitors into customers. Delivered and indexed on Google in 14 days.</p>
+      </div>
+      <div class="toolkit-card sr sr-delay-1">
+        <div class="toolkit-card-header">
+          <div class="toolkit-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+        </div>
+        <h3>Local SEO System</h3>
+        <p>GBP setup, technical SEO, schema markup, and local citations — built to get your Harare business found.</p>
+      </div>
+      <div class="toolkit-card sr">
+        <div class="toolkit-card-header">
+          <div class="toolkit-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+        </div>
+        <h3>Google Ads Management</h3>
+        <p>Targeted ad campaigns that bring in real enquiries from Harare customers actively searching for your services.</p>
+      </div>
+      <div class="toolkit-card sr sr-delay-1">
+        <div class="toolkit-card-header">
+          <div class="toolkit-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+          </div>
+        </div>
+        <h3>Review Automation</h3>
+        <p>Automated follow-ups that generate Google reviews from your happy customers on autopilot.</p>
+      </div>
+      <div class="toolkit-card sr sr-delay-2">
+        <div class="toolkit-card-header">
+          <div class="toolkit-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </div>
+          <span class="toolkit-badge">Free</span>
+        </div>
+        <h3>Professional Business Email</h3>
+        <p>A branded email address (you@yourbusiness.co.zw) included with every website package.</p>
+      </div>
+      <div class="toolkit-card sr">
+        <div class="toolkit-card-header">
+          <div class="toolkit-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <span class="toolkit-badge">Free</span>
+        </div>
+        <h3>Google Business Profile Setup</h3>
+        <p>Full GBP setup and optimisation so local Harare customers find you first on Google Maps.</p>
+      </div>
+      <div class="toolkit-card sr sr-delay-1">
+        <div class="toolkit-card-header">
+          <div class="toolkit-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+        </div>
+        <h3>Website Hosting & Maintenance</h3>
+        <p>Fast, reliable hosting with monthly updates, backups, and security monitoring — keeping your site live and ranked.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REALITY CHECK -->
+<section class="reality-section" aria-label="Reality check — cost of inaction">
+  <div class="container">
+    <div class="reality-header">
+      <div class="reality-badge sr">
+        <div class="reality-badge-dot"></div>
+        <span>Reality Check</span>
+      </div>
+      <h2 class="reality-title sr">Every Day You're Invisible Online<br><span class="red-italic">Is Costing You Clients</span></h2>
+      <p class="sr">While you're waiting, your competitors are capturing leads, booking jobs, and building credibility online. Here's what you're actually losing:</p>
+    </div>
+
+    <div class="reality-grid">
+      <div class="reality-card sr">
+        <span class="reality-stat-badge">97%</span>
+        <div class="reality-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <h3>97% of Customers Search Online First</h3>
+        <p>If you're not on Google, you don't exist to nearly all potential customers searching for your services in Harare right now.</p>
+      </div>
+      <div class="reality-card sr sr-delay-1">
+        <span class="reality-stat-badge">$0</span>
+        <div class="reality-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3>Every Missed Enquiry Is a Missed Payment</h3>
+        <p>Every day without a professional online presence is revenue going directly to a competitor who has one.</p>
+      </div>
+      <div class="reality-card sr sr-delay-2">
+        <span class="reality-stat-badge">75%</span>
+        <div class="reality-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="m2 2 20 20M5 5a1 1 0 0 0-1 1v7c0 5 3.5 7.5 7.67 8.94a1 1 0 0 0 .67.01c2.35-.82 4.48-1.97 5.9-3.71"/></svg>
+        </div>
+        <h3>A Weak Online Presence Kills Credibility</h3>
+        <p>75% of consumers judge a business's credibility by its online presence. No website or weak SEO signals you're not serious.</p>
+      </div>
+      <div class="reality-card sr">
+        <span class="reality-stat-badge">14d</span>
+        <div class="reality-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>Your Site Can Be Live in 14 Days</h3>
+        <p>From brief to live, indexed on Google, and bringing in enquiries — in just 14 days. No other agency in Harare offers this guarantee.</p>
+      </div>
+      <div class="reality-card sr sr-delay-1">
+        <span class="reality-stat-badge">3x</span>
+        <div class="reality-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        </div>
+        <h3>3x More Visibility With Proper SEO</h3>
+        <p>Businesses with proper local SEO get 3x more Google impressions. Without it, you're invisible to clients searching near you.</p>
+      </div>
+      <div class="reality-card sr sr-delay-2">
+        <span class="reality-stat-badge">Free</span>
+        <div class="reality-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3>Free Consultation — No Commitment</h3>
+        <p>Talk to us today. We'll audit your online presence for free and show you exactly what's holding your business back.</p>
+      </div>
+    </div>
+
+    <div class="reality-cta sr">
+      <p>Stop leaving clients on the table. Get the system that works as hard as you do.</p>
+      <a href="/contact.html" class="btn-red">Get Started →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="footer-inner">
+    <div>
+      <span class="footer-brand-name">INVITT<span class="co">CO</span></span>
+      <p class="footer-tagline">Harare's results-driven web design and digital marketing agency. We build websites and run SEO that gets Zimbabwe businesses found fast.</p>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/invittco" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/lennon-nyamajiwa" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://wa.me/263787412809" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="WhatsApp">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+        </a>
+      </div>
+    </div>
+    <nav aria-label="Footer navigation">
+      <h4>Navigation</h4>
+      <ul class="footer-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/services.html">Websites</a></li>
+        <li><a href="/seo.html">Local SEO</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div>
+      <h4>Contact</h4>
+      <div class="footer-contact-items">
+        <a href="mailto:lennnyamajiwa@gmail.com">lennnyamajiwa@gmail.com</a>
+        <a href="https://wa.me/263787412809">+263 787 412 809</a>
+        <p>Harare, Zimbabwe</p>
+      </div>
+      <div class="system-status">
+        <div class="status-dot"></div>
+        <span>System Operational</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Invitt Co. All rights reserved.</p>
+    <p>Web Design &amp; Digital Marketing — Harare, Zimbabwe</p>
+  </div>
+</footer>
+
+<!-- SCHEMA MARKUP -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Invitt Co",
+  "description": "Invitt Co is Harare's top-rated web design and digital marketing agency. We build high-converting websites, run Google Ads, and deliver SEO that gets Zimbabwe businesses found fast.",
+  "url": "https://invitt.co.zw",
+  "telephone": "+263787412809",
+  "email": "lennnyamajiwa@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Harare",
+    "addressCountry": "ZW"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -17.827462,
+    "longitude": 31.046343
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+    "opens": "08:00",
+    "closes": "18:00"
+  },
+  "priceRange": "$$",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "6",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "sameAs": [
+    "https://www.instagram.com/invittco",
+    "https://www.linkedin.com/in/lennon-nyamajiwa"
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@type": "FAQPage",
+  "@context": "https://schema.org",
+  "mainEntity": [
+    {"@type":"Question","name":"How much does web design cost in Harare, Zimbabwe?","acceptedAnswer":{"@type":"Answer","text":"At Invitt Co, web design packages start at $299 for the Starter plan. The Growth plan is $499 and the Authority plan is $850. All packages include free hosting. Contact us on WhatsApp at +263 787 412 809."}},
+    {"@type":"Question","name":"Does Invitt Co do SEO in Zimbabwe?","acceptedAnswer":{"@type":"Answer","text":"Yes. Invitt Co provides full SEO services for Zimbabwe businesses, including keyword research, on-page optimisation, Google Business Profile setup, and local SEO to help you rank on Google."}},
+    {"@type":"Question","name":"How long does it take to build a website in Harare?","acceptedAnswer":{"@type":"Answer","text":"Invitt Co guarantees your website is live and indexed on Google within 14 days of you delivering your content. No other web design agency in Harare offers this guarantee."}},
+    {"@type":"Question","name":"Who is the best web designer in Harare?","acceptedAnswer":{"@type":"Answer","text":"Invitt Co is consistently rated the best web designer in Harare — 5.0 Google rating, a 14-day live guarantee, and founder Lennon Nyamajiwa leads every project personally."}},
+    {"@type":"Question","name":"Where is Invitt Co located?","acceptedAnswer":{"@type":"Answer","text":"Invitt Co is based in Harare, Zimbabwe. We serve clients across Harare and the whole of Zimbabwe. Reach us on WhatsApp at +263 787 412 809."}}
+  ]
+}
+</script>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/263787412809?text=Hi%20Lennon!%20I%27d%20like%20to%20grow%20my%20business%20online." target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  // ── NAVBAR SCROLL ──
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+
+  // ── HAMBURGER ──
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileClose = document.getElementById('mobileClose');
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+  });
+  mobileClose.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+
+  // ── SCROLL REVEAL ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
       }
-    ]
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.sr').forEach(el => observer.observe(el));
+
+  // ── PORTFOLIO CAROUSEL ──
+  const slides = document.querySelectorAll('.portfolio-slide');
+  const dots = document.querySelectorAll('.portfolio-dot');
+  let current = 0;
+  let interval;
+
+  function goTo(index) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
   }
-  </script>
 
+  function startAuto() {
+    interval = setInterval(() => goTo(current + 1), 3500);
+  }
+  function stopAuto() { clearInterval(interval); }
 
-  <!-- SCROLL POPUP + MOBILE PARTICLE FIX -->
-  <script>
-    // ── Disable particles on mobile ──
-    (function() {
-      if (window.innerWidth <= 768) {
-        var canvas = document.getElementById('heroParticles');
-        if (canvas) canvas.style.display = 'none';
-        // Override the draw loop if script.js has already started it
-        window.__mobileParticlesDisabled = true;
+  document.querySelector('.portfolio-next').addEventListener('click', () => { stopAuto(); goTo(current + 1); startAuto(); });
+  document.querySelector('.portfolio-prev').addEventListener('click', () => { stopAuto(); goTo(current - 1); startAuto(); });
+  dots.forEach((dot, i) => dot.addEventListener('click', () => { stopAuto(); goTo(i); startAuto(); }));
+  startAuto();
+
+  // ── 3D DEVICE REVEAL ON SCROLL ──
+  const deviceObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        document.getElementById('portfolioDevice').classList.add('revealed');
+        deviceObserver.unobserve(entry.target);
       }
-    })();
+    });
+  }, { threshold: 0.3 });
+  const portfolioWrap = document.getElementById('portfolioWrap');
+  if (portfolioWrap) deviceObserver.observe(portfolioWrap);
 
-    // ── Scroll depth popup (fires once at 70% scroll) ──
-    (function() {
-      var fired = false;
-      var dismissed = sessionStorage.getItem('auditPopupDismissed');
-      if (dismissed) return;
-
-      function checkScroll() {
-        if (fired) return;
-        var scrolled = window.scrollY + window.innerHeight;
-        var total = document.documentElement.scrollHeight;
-        if (scrolled / total >= 0.70) {
-          fired = true;
-          document.getElementById('auditPopup').classList.add('visible');
-          window.removeEventListener('scroll', checkScroll);
-        }
-      }
-      window.addEventListener('scroll', checkScroll, { passive: true });
-
-      document.getElementById('auditPopupClose').addEventListener('click', function() {
-        document.getElementById('auditPopup').classList.remove('visible');
-        sessionStorage.setItem('auditPopupDismissed', '1');
-      });
-
-      document.getElementById('auditPopup').addEventListener('click', function(e) {
-        if (e.target === this) {
-          this.classList.remove('visible');
-          sessionStorage.setItem('auditPopupDismissed', '1');
-        }
-      });
-
-      document.getElementById('popupSubmitBtn').addEventListener('click', function() {
-        var name = document.getElementById('popupName').value.trim();
-        var wa   = document.getElementById('popupWa').value.trim();
-        var status = document.getElementById('popupStatus');
-        if (!name || !wa) {
-          status.style.color = '#E24B4A';
-          status.textContent = 'Please enter your name and WhatsApp number.';
-          return;
-        }
-        this.disabled = true;
-        this.textContent = 'Sending…';
-        emailjs.send('service_f721n9g', 'template_ckh9e9d', {
-          name: name, whatsapp: wa,
-          email: 'Not provided', website_url: 'Popup submission', biggest_challenge: 'Not specified'
-        }).then(function() {
-          document.getElementById('auditPopup').classList.remove('visible');
-          sessionStorage.setItem('auditPopupDismissed', '1');
-        }, function() {
-          status.style.color = '#E24B4A';
-          status.textContent = 'Error — WhatsApp us at +263 787 412 809';
-          document.getElementById('popupSubmitBtn').disabled = false;
-          document.getElementById('popupSubmitBtn').textContent = 'Send Me My Free Audit →';
+  // ── STACKED BARS ANIMATION ──
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.stacked-bar-fill').forEach(fill => {
+          fill.style.width = fill.dataset.width + '%';
         });
-      });
-    })();
-  </script>
+        barObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.stacked-bar').forEach(bar => barObserver.observe(bar));
+</script>
+
 </body>
 </html>

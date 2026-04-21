@@ -1,36 +1,4 @@
-# ================================================
-# robots.txt — Invitt Co (invitt.co.zw)
-# ================================================
-
 User-agent: *
 Allow: /
 
-# Block crawling of backend/utility files
-Disallow: /admin/
-Disallow: /wp-admin/
-Disallow: /*.json$
-Disallow: /node_modules/
-Disallow: /.git/
-
-# Allow all major crawlers full access
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 0
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: LinkedInBot
-Allow: /
-
-User-agent: WhatsApp
-Allow: /
-
-# Sitemap location
 Sitemap: https://invitt.co.zw/sitemap.xml

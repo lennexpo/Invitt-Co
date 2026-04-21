@@ -1,156 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
-  <!-- HOMEPAGE — highest priority, crawled frequently -->
   <url>
     <loc>https://invitt.co.zw/</loc>
-    <lastmod>2026-04-15</lastmod>
+    <lastmod>2026-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://invitt.co.zw/invitt_social_square.png</image:loc>
-      <image:title>Invitt Co — Web Design and Digital Marketing Agency Harare Zimbabwe</image:title>
-      <image:caption>Invitt Co: Harare's #1 web design and digital marketing agency helping Zimbabwe businesses get found online.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://invitt.co.zw/images/hero-bg.jpg</image:loc>
-      <image:title>Invitt Co Digital Agency Harare</image:title>
+      <image:title>Invitt Co — Web Design &amp; Digital Marketing Agency Harare Zimbabwe</image:title>
     </image:image>
   </url>
 
-  <!-- SERVICES — high value commercial page -->
   <url>
-    <loc>https://invitt.co.zw/#services</loc>
-    <lastmod>2026-04-15</lastmod>
+    <loc>https://invitt.co.zw/services.html</loc>
+    <lastmod>2026-04-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-  </url>
-
-  <!-- ABOUT -->
-  <url>
-    <loc>https://invitt.co.zw/#about</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- PORTFOLIO -->
-  <url>
-    <loc>https://invitt.co.zw/#portfolio</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- CONTACT — conversion page -->
-  <url>
-    <loc>https://invitt.co.zw/#contact</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- BLOG ARTICLES -->
-  <url>
-    <loc>https://invitt.co.zw/article-1.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
     <image:image>
-      <image:loc>https://invitt.co.zw/blog-images/carriza-maiquez-sUIdCvblysI-unsplash.jpg</image:loc>
-      <image:title>Why Every Small Business in Harare Needs a Website in 2026</image:title>
+      <image:loc>https://invitt.co.zw/invitt_social_square.png</image:loc>
+      <image:title>Web Design Harare — Custom Websites Zimbabwe | Invitt Co</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://invitt.co.zw/article-2.html</loc>
-    <lastmod>2026-04-15</lastmod>
+    <loc>https://invitt.co.zw/seo.html</loc>
+    <lastmod>2026-04-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
     <image:image>
-      <image:loc>https://invitt.co.zw/blog-images/nathan-dumlao-kLmt1mpGJVg-unsplash.jpg</image:loc>
-      <image:title>5 Digital Marketing Mistakes Zimbabwean Businesses Make</image:title>
+      <image:loc>https://invitt.co.zw/invitt_social_square.png</image:loc>
+      <image:title>Local SEO Harare — Get Found on Google | Invitt Co</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://invitt.co.zw/blog/how-to-get-your-harare-business-found-on-google.html</loc>
-    <lastmod>2026-04-17</lastmod>
+    <loc>https://invitt.co.zw/about.html</loc>
+    <lastmod>2026-04-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
     <image:image>
-      <image:loc>https://invitt.co.zw/blog-images/sarah-b-evcG0YvLFoY-unsplash.jpg</image:loc>
-      <image:title>How to Get Your Harare Business Found on Google</image:title>
+      <image:loc>https://invitt.co.zw/invitt_social_square.png</image:loc>
+      <image:title>About Lennon Nyamajiwa — Founder of Invitt Co, Harare</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://invitt.co.zw/blog/top-5-reasons-professional-website-boosts-business-harare.html</loc>
-    <lastmod>2026-04-17</lastmod>
+    <loc>https://invitt.co.zw/contact.html</loc>
+    <lastmod>2026-04-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://invitt.co.zw/blog-images/article-4-hero.jpg</image:loc>
-      <image:title>Top 5 Reasons Why a Professional Website Boosts Business in Harare</image:title>
+      <image:loc>https://invitt.co.zw/invitt_social_square.png</image:loc>
+      <image:title>Contact Invitt Co — Web Design &amp; SEO Harare Zimbabwe</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://invitt.co.zw/blog/why-every-small-business-in-harare-needs-website-2026.html</loc>
-    <lastmod>2026-04-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- BLOG CATEGORY PAGES -->
-  <url>
-    <loc>https://invitt.co.zw/blog/how-to-build-website-small-business-zimbabwe.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://invitt.co.zw/blog/how-much-does-a-website-cost-in-zimbabwe-2026.html</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://invitt.co.zw/blog/best-website-builder-zimbabwe.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://invitt.co.zw/blog/7-signs-your-harare-business-needs-a-new-website.html</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://invitt.co.zw/blog/how-to-get-more-customers-online-harare.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://invitt.co.zw/blog/google-business-profile-vs-website-zimbabwe.html</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://invitt.co.zw/blog/social-media-marketing-harare.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://invitt.co.zw/blog/what-to-look-for-when-hiring-a-web-designer-harare.html</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://invitt.co.zw/blog/seo-tips-zimbabwe-2026.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://invitt.co.zw/blog/5-free-seo-tools-zimbabwe-business.html</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
   </url>
-
-  <url>
-    <loc>https://invitt.co.zw/blog/google-ads-harare-businesses.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-  <loc>https://invitt.co.zw/lennon.html</loc>
-  <changefreq>monthly</changefreq>
-  <priority>0.7</priority>
-</url>
 
 </urlset>
