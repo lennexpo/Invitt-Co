@@ -263,6 +263,8 @@
   }
 }
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init('JhktGML31Z5lzKsBK');</script>
 </head>
 <body>
 
@@ -591,32 +593,28 @@
     const gbp=document.querySelector('input[name="gbp"]:checked')?.value||'Not specified';
     const website=document.querySelector('input[name="website"]:checked')?.value||'Not specified';
     const contact=document.querySelector('input[name="contact"]:checked')?.value||'Not specified';
-    const payload={
-      access_key:'15d2032e-84ed-4a43-8860-43cb1757bb90',
-      subject:'New SEO Enquiry — '+document.getElementById('sBiz').value,
-      from_name:'Invitt Co SEO Form',
-      name:document.getElementById('sName').value,
-      business:document.getElementById('sBiz').value,
-      industry:document.getElementById('sNiche').value,
-      phone:document.getElementById('sPhone').value,
-      email:document.getElementById('sEmail').value,
-      gbp_status:gbp,
-      has_website:website,
-      main_goal:goal,
-      notes:document.getElementById('sExtra').value,
-      preferred_contact:contact,
-      form_source:'seo.html'
-    };
     const btn=document.getElementById('submitForm');
     btn.textContent='Sending...';btn.disabled=true;
+    const payload={
+      name:document.getElementById('sName').value,
+      email:document.getElementById('sEmail').value,
+      whatsapp:document.getElementById('sPhone').value,
+      website_url:'Not applicable',
+      biggest_challenge:
+        'Business: '+document.getElementById('sBiz').value+' | '+
+        'Industry: '+document.getElementById('sNiche').value+' | '+
+        'Main goal: '+goal+' | '+
+        'Has GBP: '+gbp+' | '+
+        'Has website: '+website+' | '+
+        'Preferred contact: '+contact+' | '+
+        'Notes: '+(document.getElementById('sExtra').value||'None')+' | '+
+        'Source: seo.html'
+    };
     try{
-      const res=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-      const data=await res.json();
-      if(data.success){
-        step2.style.display='none';
-        document.getElementById('formSuccess').style.display='block';
-        document.querySelector('.step-ind').style.display='none';
-      }else{throw new Error('Failed')}
+      await emailjs.send('service_f721n9g','template_ckh9e9d',payload);
+      step2.style.display='none';
+      document.getElementById('formSuccess').style.display='block';
+      document.querySelector('.step-ind').style.display='none';
     }catch(e){
       alert('Something went wrong. Please WhatsApp us directly at +263 787 412 809');
       btn.textContent='Submit →';btn.disabled=false;

@@ -373,6 +373,8 @@
   }
 }
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init('JhktGML31Z5lzKsBK');</script>
 </head>
 <body>
 
@@ -777,30 +779,27 @@
     btn.disabled=true;btn.textContent='Sending…';
     const goals=[...document.querySelectorAll('input[name="goal"]:checked')].map(i=>i.value).join(', ');
     const payload={
-      access_key:'15d2032e-84ed-4a43-8860-43cb1757bb90',
-      subject:'New Website Request — Invitt Co',
       name:document.getElementById('fName').value,
       email:document.getElementById('fEmail').value||'Not provided',
-      phone:document.getElementById('fPhone').value,
-      business_name:document.getElementById('fBiz').value,
-      business_type:document.getElementById('fType').value,
-      goals:goals||'Not specified',
-      has_website:document.querySelector('input[name="hasWeb"]:checked')?.value||'Not specified',
-      package:document.querySelector('input[name="pkg"]:checked')?.value||'Not specified',
-      ref_sites:document.getElementById('fRef').value||'Not provided',
-      brand_vibe:document.getElementById('fVibe').value||'Not specified',
-      contact_method:contact.value,
-      from_page:'services.html'
+      whatsapp:document.getElementById('fPhone').value,
+      website_url:'Not applicable',
+      biggest_challenge:
+        'Business: '+document.getElementById('fBiz').value+' | '+
+        'Type: '+document.getElementById('fType').value+' | '+
+        'Goals: '+(goals||'Not specified')+' | '+
+        'Has website: '+(document.querySelector('input[name="hasWeb"]:checked')?.value||'Not specified')+' | '+
+        'Package: '+(document.querySelector('input[name="pkg"]:checked')?.value||'Not specified')+' | '+
+        'Reference sites: '+(document.getElementById('fRef').value||'Not provided')+' | '+
+        'Brand vibe: '+(document.getElementById('fVibe').value||'Not specified')+' | '+
+        'Contact via: '+contact.value+' | '+
+        'Source: services.html'
     };
     try{
-      const res=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-      const data=await res.json();
-      if(data.success){
-        step2.classList.remove('active');
-        success.style.display='block';
-        stepWrap.style.display='none';
-        document.querySelector('.step-labs').style.display='none';
-      }else{throw new Error()}
+      await emailjs.send('service_f721n9g','template_ckh9e9d',payload);
+      step2.classList.remove('active');
+      success.style.display='block';
+      stepWrap.style.display='none';
+      document.querySelector('.step-labs').style.display='none';
     }catch(e){
       alert('Something went wrong. Please WhatsApp us directly at +263 787 412 809');
       btn.disabled=false;btn.textContent='Submit →';
