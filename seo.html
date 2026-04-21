@@ -86,13 +86,14 @@
     .nav-links a.active{color:var(--accent)}
     .nav-cta{display:none;background:var(--accent);color:#0A0A0A;padding:.55rem 1.25rem;border-radius:9999px;font-size:.8rem;font-weight:700;text-decoration:none;transition:opacity .2s}
     .nav-cta:hover{opacity:.88}
-    .hamburger{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+    @media(min-width:768px){.nav-cta{display:inline-flex}}
+    .hamburger{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;min-width:44px;min-height:44px;align-items:center;justify-content:center}
     .hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
     .mobile-menu{display:none;position:fixed;inset:0;background:rgba(10,10,10,.97);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem}
     .mobile-menu.open{display:flex}
-    .mobile-menu a{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:.08em;color:#fff;text-decoration:none;transition:color .2s}
+    .mobile-menu a{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:.08em;color:#fff;text-decoration:none;transition:color .2s;min-height:44px;display:flex;align-items:center}
     .mobile-menu a:hover,.mobile-menu a.active{color:var(--accent)}
-    .mobile-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:var(--muted);font-size:1.5rem;cursor:pointer}
+    .mobile-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:var(--muted);font-size:1.5rem;cursor:pointer;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
 
     /* SCROLL REVEAL */
     .sr{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
@@ -139,6 +140,8 @@
 
     /* INCLUDED */
     .inc-grid{display:grid;grid-template-columns:1fr;gap:1rem;margin-top:2.5rem}
+    @media(min-width:600px){.inc-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(min-width:1024px){.inc-grid{grid-template-columns:repeat(4,1fr)}}
     .inc-card{background:var(--surface);border:1px solid var(--border);border-radius:1.25rem;padding:1.5rem;transition:border-color .3s,transform .3s}
     .inc-card:hover{border-color:var(--border-accent);transform:translateY(-2px)}
     .inc-icon{width:44px;height:44px;background:rgba(200,245,62,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;color:var(--accent)}
@@ -153,6 +156,7 @@
     .g-heading{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,7vw,3rem);letter-spacing:.02em;color:#fff;margin-bottom:2rem}
     .g-heading .ia{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;color:var(--accent);font-size:clamp(1.9rem,6.5vw,2.8rem)}
     .g-cards{display:grid;grid-template-columns:1fr;gap:1rem}
+    @media(min-width:640px){.g-cards{grid-template-columns:repeat(2,1fr)}}
     .g-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:1rem;padding:1.5rem;text-align:left}
     .g-label{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;display:block}
     .g-card h3{font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:.5rem}
@@ -517,7 +521,7 @@
       <ul class="f-links">
         <li><a href="/">Home</a></li>
         <li><a href="/services.html">Websites</a></li>
-        <li><a href="/seo.html">Local SEO</a></li>
+        <li><a href="/seo.html" class="active">Local SEO</a></li>
         <li><a href="/about.html">About</a></li>
         <li><a href="/contact.html">Contact</a></li>
       </ul>
@@ -554,6 +558,7 @@
   const closeMenu=document.getElementById('closeMenu');
   hamburger.addEventListener('click',()=>{mobileMenu.classList.add('open');hamburger.setAttribute('aria-expanded','true')});
   closeMenu.addEventListener('click',()=>{mobileMenu.classList.remove('open');hamburger.setAttribute('aria-expanded','false')});
+  mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobileMenu.classList.remove('open');hamburger.setAttribute('aria-expanded','false')}));
 
   // SCROLL REVEAL
   const srEls=document.querySelectorAll('.sr');
