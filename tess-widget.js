@@ -27,7 +27,7 @@
     bgPanel: '#111111',
     textPrimary: '#ffffff',
     textMuted: '#888888',
-    popupDelay: 4000,
+    popupDelay: 2000,
     popupReshowDelay: 45000,
     storageKey: 'tess_session',
   }, window.TESS_CONFIG || {});
@@ -259,6 +259,13 @@ Rules:
         background: ${CFG.accentColor}; padding: 16px 20px;
         display: flex; align-items: center; gap: 12px; flex-shrink: 0;
       }
+      #tess-header-back {
+        background: none; border: none; cursor: pointer; padding: 4px;
+        display: none; align-items: center; justify-content: center;
+        color: ${CFG.bgDark}; opacity: 0.7; margin-right: 4px;
+      }
+      #tess-header-back.show { display: flex; }
+      #tess-header-back:hover { opacity: 1; }
       #tess-header-avatar {
         width: 40px; height: 40px; border-radius: 50%;
         background: ${CFG.bgDark}; display: flex; align-items: center; justify-content: center;
@@ -273,6 +280,8 @@ Rules:
         display: flex; flex-direction: column; gap: 10px;
         scrollbar-width: thin; scrollbar-color: #ddd transparent;
         background: #f7f7f7;
+        min-height: 0;
+        max-height: 340px;
       }
       .tess-msg { display: flex; gap: 8px; animation: tess-fade-in 0.2s ease; }
       .tess-msg-avatar {
@@ -345,7 +354,33 @@ Rules:
       @keyframes tess-slide-up { from { opacity: 0; transform: translateY(20px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
       @keyframes tess-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
       @keyframes tess-bounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-5px); } }
-      @media (max-width: 420px) { #tess-panel { width: calc(100vw - 16px); right: 8px; bottom: 80px; } }
+      @media (max-width: 480px) {
+        #tess-panel {
+          width: 100vw;
+          right: 0;
+          bottom: 0;
+          border-radius: 20px 20px 0 0;
+          max-height: 85vh;
+        }
+        #tess-messages {
+          max-height: calc(85vh - 220px);
+        }
+        #tess-bubble {
+          bottom: 16px;
+          right: 16px;
+        }
+        #tess-popup {
+          right: 16px;
+          bottom: 84px;
+          max-width: calc(100vw - 80px);
+        }
+      }
+      @media (max-width: 360px) {
+        #tess-panel-header { padding: 12px 16px; }
+        #tess-messages { padding: 12px; }
+        #tess-options { padding: 0 12px 12px; }
+        #tess-input-area { padding: 10px 12px; }
+      }
     `;
     document.head.appendChild(style);
   }
@@ -374,6 +409,11 @@ Rules:
       <!-- Main panel -->
       <div id="tess-panel" role="dialog" aria-label="Tess - Invitt Co AI Receptionist">
         <div id="tess-panel-header">
+          <button id="tess-header-back" aria-label="Go back">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="${CFG.bgDark}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"/>
+            </svg>
+          </button>
           <div id="tess-header-avatar">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:22px;height:22px">
               <circle cx="12" cy="8" r="4" fill="${CFG.accentColor}"/>
@@ -674,13 +714,26 @@ Rules:
         const action = btn.dataset.action;
         if (action === 'livechat') {
           document.getElementById('tess-options').style.display = 'none';
+          document.getElementById('tess-header-back').classList.add('show');
           showInputArea();
           addMessage("Tess here. Invitt Co AI assistant. What do you need?");
           state.mode = 'chat';
         } else if (action === 'voice') {
+          document.getElementById('tess-header-back').classList.add('show');
           handleVoice();
         }
       });
+    });
+
+    // Back button — return to options screen
+    document.getElementById('tess-header-back').addEventListener('click', () => {
+      // Reset to options view
+      document.getElementById('tess-options').style.display = 'flex';
+      document.getElementById('tess-input-area').style.display = 'none';
+      document.getElementById('tess-messages').innerHTML = '';
+      document.getElementById('tess-header-back').classList.remove('show');
+      state.mode = 'select';
+      state.messages = [];
     });
 
     // Send button
