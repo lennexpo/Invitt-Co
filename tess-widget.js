@@ -192,18 +192,70 @@ Rules:
     return "I'll flag this for Lennon — he'll have a precise answer within 24 hours. Want to leave your contact details so he can reach out directly?";
   }
 
-  // ─── LEAD STORAGE (localStorage for persistence) ──────────────────────────
-  function saveLead(lead) {
+  // ─── LEAD STORAGE ────────────────────────────────────────────────────────
+  async function saveLead(lead) {
+    const scored = { ...lead, score: scoreLead(lead), timestamp: new Date().toISOString(), sessionId: state.sessionId, messages: state.messages.length };
+    // Save to localStorage as backup
     try {
       const leads = JSON.parse(localStorage.getItem('tess_leads') || '[]');
-      leads.push({
-        ...lead,
-        score: scoreLead(lead),
-        timestamp: new Date().toISOString(),
-        sessionId: state.sessionId,
-        messages: state.messages.length
-      });
+      leads.push(scored);
       localStorage.setItem('tess_leads', JSON.stringify(leads));
+    } catch (e) {}
+    // Save to backend API
+    if (CFG.backendUrl) {
+      try {
+        await fetch(CFG.backendUrl + '/leads', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            session_id: state.sessionId,
+            name: lead.name || null,
+            email: lead.email || null,
+            phone: lead.phone || null,
+            business: lead.business || null,
+            budget: lead.budget || null,
+            score: scoreLead(lead),
+            messages_count: state.messages.length
+          })
+        });
+        // Also save to bookings if intent is booking or voice callback
+        if (lead.intent === 'booking' || lead.intent === 'voice_callback') {
+          await fetch(CFG.backendUrl + '/bookings', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              session_id: state.sessionId,
+              name: lead.name || null,
+              email: lead.email || null,
+              phone: lead.phone || null,
+              preferred_time: lead.preferred_time || null,
+              status: 'pending'
+            })
+          });
+        }
+      } catch (e) {}
+    }
+  }
+
+  async function saveMessageToBackend(role, content) {
+    if (!CFG.backendUrl) return;
+    try {
+      await fetch(CFG.backendUrl + '/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ session_id: state.sessionId, role, content })
+      });
+    } catch (e) {}
+  }
+
+  async function trackEvent(event_type, data = {}) {
+    if (!CFG.backendUrl) return;
+    try {
+      await fetch(CFG.backendUrl + '/events', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ session_id: state.sessionId, event_type, data: JSON.stringify(data) })
+      });
     } catch (e) {}
   }
 
@@ -481,6 +533,7 @@ Rules:
     saveSession();
     renderMessage(msg);
     scrollToBottom();
+    saveMessageToBackend(role, content);
   }
 
   function renderMessage(msg) {
@@ -658,14 +711,15 @@ Rules:
   }
 
   function openWhatsApp() {
+    trackEvent('whatsapp_click');
     const text = encodeURIComponent("Hi! I was chatting with Tess on the Invitt Co website and would like to continue here.");
     window.open(`https://wa.me/${CFG.whatsappNumber.replace(/\D/g, '')}?text=${text}`, '_blank');
   }
 
   function handleVoice() {
-    // Display voice info — in production integrate Twilio here
     document.getElementById('tess-options').style.display = 'none';
     showInputArea();
+    trackEvent('voice_request');
     addMessage("Chat with Voice selected. Lennon will call you back within the hour during business hours (Mon–Fri 9am–5pm CAT). Leave your number and I'll flag it now.");
     state.mode = 'voice';
     setTimeout(() => {
@@ -716,6 +770,7 @@ Rules:
           document.getElementById('tess-options').style.display = 'none';
           document.getElementById('tess-header-back').classList.add('show');
           showInputArea();
+          trackEvent('livechat_start');
           addMessage("Tess here. Invitt Co AI assistant. What do you need?");
           state.mode = 'chat';
         } else if (action === 'voice') {
