@@ -87,24 +87,15 @@
     .nav-cta{display:none;background:var(--accent);color:#0A0A0A;padding:.55rem 1.25rem;border-radius:9999px;font-size:.8rem;font-weight:700;text-decoration:none;transition:opacity .2s}
     .nav-cta:hover{opacity:.88}
     @media(min-width:768px){.nav-cta{display:inline-flex}}
-    .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;min-width:44px;min-height:44px;align-items:center;justify-content:center}
+    .hamburger{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;min-width:44px;min-height:44px;align-items:center;justify-content:center}
     .hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
-    /* ── MOBILE MENU (card style) ── */
-    .mobile-menu{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:999;padding:1rem;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-    .mobile-menu.open{display:block}
-    .mobile-menu-card{background:#1A1A1A;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);box-shadow:0 20px 60px rgba(0,0,0,0.5)}
-    .mobile-menu-header{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.25rem;border-bottom:1px solid rgba(255,255,255,0.07)}
-    .mobile-menu-logo{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.08em;color:#fff;text-decoration:none}
-    .mobile-menu-logo .co{color:var(--accent)}
-    .mobile-close{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:#fff;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;transition:background .2s}
-    .mobile-close:hover{background:rgba(255,255,255,.14)}
-    .mobile-menu-nav{display:flex;flex-direction:column}
-    .mobile-menu-nav a{font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:500;color:rgba(245,245,240,.75);text-decoration:none;padding:1rem 1.25rem;border-bottom:1px solid rgba(255,255,255,.05);transition:color .2s,background .2s;display:flex;align-items:center;min-height:52px}
-    .mobile-menu-nav a:hover{color:#fff;background:rgba(255,255,255,.04)}
-    .mobile-menu-nav a.active{color:var(--accent)}
-    .mobile-menu-footer{padding:1rem 1.25rem 1.25rem}
-    .mobile-menu-cta-link{display:flex;align-items:center;justify-content:center;background:var(--accent);color:#0A0A0A!important;font-family:'DM Sans',sans-serif!important;font-weight:700!important;font-size:.95rem!important;border-radius:9999px;padding:.9rem 1.25rem;text-decoration:none;transition:opacity .2s;min-height:52px}
-    .mobile-menu-cta-link:hover{opacity:.88}
+    .mobile-menu{display:none;position:fixed;inset:0;background:rgba(10,10,10,.97);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem}
+    .mobile-menu.open{display:flex}
+    .mobile-menu a{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:.08em;color:#fff;text-decoration:none;transition:color .2s;min-height:44px;display:flex;align-items:center}
+    .mobile-menu a:hover,.mobile-menu a.active{color:var(--accent)}
+    .mobile-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:var(--muted);font-size:1.5rem;cursor:pointer;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
+
+    /* SCROLL REVEAL */
     .sr{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
     .sr.visible{opacity:1;transform:translateY(0)}
     .d1{transition-delay:.05s}.d2{transition-delay:.15s}.d3{transition-delay:.25s}.d4{transition-delay:.35s}
@@ -287,6 +278,7 @@
   <rect width="100%" height="100%" filter="url(#n)"/>
 </svg>
 
+<!-- Mobile Menu -->
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
   <div class="mobile-menu-card">
@@ -294,18 +286,6 @@
       <a href="/" class="mobile-menu-logo">INVITT<span class="co">CO</span></a>
       <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
     </div>
-    <nav class="mobile-menu-nav">
-      <a href="/">Home</a>
-      <a href="/services.html">Websites</a>
-      <a href="/seo.html" class="active">Local SEO</a>
-      <a href="/about.html">About</a>
-    </nav>
-    <div class="mobile-menu-footer">
-      <a href="/contact.html" class="mobile-menu-cta-link">Contact</a>
-    </div>
-  </div>
-</div>
-
     <nav class="mobile-menu-nav">
       <a href="/">Home</a>
       <a href="/services.html">Websites</a>
@@ -585,7 +565,7 @@
   // HAMBURGER
   const hamburger=document.getElementById('hamburger');
   const mobileMenu=document.getElementById('mobileMenu');
-  const closeMenu=document.getElementById('closeMenu');
+  const closeMenu=document.getElementById('mobileClose');
   hamburger.addEventListener('click',()=>{mobileMenu.classList.add('open');hamburger.setAttribute('aria-expanded','true')});
   closeMenu.addEventListener('click',()=>{mobileMenu.classList.remove('open');hamburger.setAttribute('aria-expanded','false')});
   mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobileMenu.classList.remove('open');hamburger.setAttribute('aria-expanded','false')}));
