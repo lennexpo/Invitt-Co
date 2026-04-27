@@ -113,7 +113,7 @@
   // ─── STATE ────────────────────────────────────────────────────────────────
   let state = {
     isOpen: false,
-    mode: 'select', // select | chat | voice | lead | booking
+    mode: 'select',
     messages: [],
     lead: {},
     leadStep: 0,
@@ -125,6 +125,7 @@
     ws: null,
     wsReady: false,
     wsRetries: 0,
+    pendingImage: null,  // base64 data URL of image to send
   };
 
   const leadSteps = [
@@ -554,7 +555,35 @@ Rules:
       #tess-input-area {
         padding: 12px 16px; border-top: 1px solid #e8e8e8;
         display: flex; gap: 8px; flex-shrink: 0; background: #ffffff;
+        flex-wrap: wrap;
       }
+      #tess-img-preview-row {
+        width: 100%; display: none; padding-bottom: 8px;
+      }
+      #tess-img-preview-row.show { display: block; }
+      #tess-img-preview-wrap {
+        position: relative; display: inline-block;
+      }
+      #tess-img-preview {
+        width: 72px; height: 72px; object-fit: cover;
+        border-radius: 10px; border: 2px solid ${CFG.accentColor};
+        display: block;
+      }
+      #tess-img-remove {
+        position: absolute; top: -6px; right: -6px;
+        width: 20px; height: 20px; border-radius: 50%;
+        background: #333; border: none; cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        color: #fff; font-size: 11px; font-weight: 700; line-height: 1;
+      }
+      #tess-img-btn {
+        width: 40px; height: 40px; border-radius: 10px;
+        background: #f5f5f5; border: 1.5px solid #e0e0e0; cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background 0.15s, border-color 0.15s; flex-shrink: 0;
+      }
+      #tess-img-btn:hover { background: rgba(200,245,62,0.15); border-color: ${CFG.accentColor}; }
+      #tess-img-input { display: none; }
       #tess-input {
         flex: 1; background: #f5f5f5; border: 1.5px solid #e0e0e0;
         border-radius: 10px; padding: 10px 14px; color: #111; font-size: 14px;
@@ -587,6 +616,11 @@ Rules:
         margin: 8px 16px; background: rgba(200,245,62,0.12); border: 1px solid rgba(200,245,62,0.4);
         border-radius: 8px; padding: 8px 12px; font-size: 12px; color: #5a7a00;
         display: none; text-align: center; font-weight: 600;
+      }
+      .tess-msg-img {
+        max-width: 200px; max-height: 180px; border-radius: 10px;
+        display: block; margin-top: 6px; object-fit: cover;
+        border: 1px solid rgba(0,0,0,0.08);
       }
       @keyframes tess-fade-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
       @keyframes tess-slide-up { from { opacity: 0; transform: translateY(20px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
@@ -699,6 +733,20 @@ Rules:
         </button>
 
         <div id="tess-input-area" style="display:none">
+          <div id="tess-img-preview-row">
+            <div id="tess-img-preview-wrap">
+              <img id="tess-img-preview" src="" alt="Preview"/>
+              <button id="tess-img-remove" aria-label="Remove image">×</button>
+            </div>
+          </div>
+          <input type="file" id="tess-img-input" accept="image/*"/>
+          <button id="tess-img-btn" aria-label="Attach image">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21 15 16 10 5 21"/>
+            </svg>
+          </button>
           <textarea id="tess-input" placeholder="Type a message..." rows="1" maxlength="500"></textarea>
           <button id="tess-send" aria-label="Send">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="${CFG.bgDark}" stroke-width="2.5" stroke-linecap="round">
@@ -722,8 +770,8 @@ Rules:
   }
 
   // ─── UI HELPERS ───────────────────────────────────────────────────────────
-  function addMessage(content, role = 'assistant') {
-    const msg = { role, content, time: Date.now() };
+  function addMessage(content, role = 'assistant', imageDataUrl = null) {
+    const msg = { role, content, time: Date.now(), image: imageDataUrl || null };
     state.messages.push(msg);
     saveSession();
     renderMessage(msg);
@@ -741,9 +789,13 @@ Rules:
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
       .replace(/\n/g, '<br>');
 
+    const imgHtml = msg.image
+      ? `<img class="tess-msg-img" src="${msg.image}" alt="Uploaded image"/>`
+      : '';
+
     div.innerHTML = `
       <div class="tess-msg-avatar">${avatarText}</div>
-      <div class="tess-msg-bubble">${formattedContent}</div>
+      <div class="tess-msg-bubble">${formattedContent ? formattedContent : ''}${imgHtml}</div>
     `;
     container.appendChild(div);
   }
@@ -810,10 +862,18 @@ Rules:
   // ─── EVENT HANDLERS ───────────────────────────────────────────────────────
   function handleSend(text) {
     const input = (text || document.getElementById('tess-input').value).trim();
-    if (!input) return;
+    const image = state.pendingImage;
+    if (!input && !image) return;
 
     document.getElementById('tess-input').value = '';
-    addMessage(input, 'user');
+    // Clear image preview
+    if (image) {
+      state.pendingImage = null;
+      document.getElementById('tess-img-preview-row').classList.remove('show');
+      document.getElementById('tess-img-preview').src = '';
+    }
+
+    addMessage(input, 'user', image);
 
     // Admin takeover check
     if (input === '/admin ' + CFG.adminPassword) {
@@ -848,7 +908,11 @@ Rules:
 
     // Normal AI response
     showTyping();
-    getAIResponse(input).then(response => {
+    const aiInput = input || (image ? '[User sent an image]' : '');
+    const aiPromise = image && !input
+      ? Promise.resolve("Thanks for sharing that image! If you have a question about it or anything else, feel free to ask — I'm happy to help.")
+      : getAIResponse(aiInput);
+    aiPromise.then(response => {
       hideTyping();
       addMessage(response);
 
@@ -996,6 +1060,38 @@ Rules:
         e.preventDefault();
         handleSend();
       }
+    });
+
+    // Image upload button — open file picker
+    document.getElementById('tess-img-btn').addEventListener('click', () => {
+      document.getElementById('tess-img-input').click();
+    });
+
+    // File selected — read as base64 and show preview
+    document.getElementById('tess-img-input').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      // 5 MB guard
+      if (file.size > 5 * 1024 * 1024) {
+        addMessage("That image is over 5 MB. Please choose a smaller one.");
+        e.target.value = '';
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        state.pendingImage = ev.target.result;
+        document.getElementById('tess-img-preview').src = ev.target.result;
+        document.getElementById('tess-img-preview-row').classList.add('show');
+      };
+      reader.readAsDataURL(file);
+      e.target.value = ''; // reset so same file can be reselected
+    });
+
+    // Remove preview
+    document.getElementById('tess-img-remove').addEventListener('click', () => {
+      state.pendingImage = null;
+      document.getElementById('tess-img-preview').src = '';
+      document.getElementById('tess-img-preview-row').classList.remove('show');
     });
 
     // WhatsApp button
