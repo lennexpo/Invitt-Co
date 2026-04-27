@@ -130,10 +130,12 @@
     .portfolio-header{text-align:center;margin-bottom:2rem}
     .portfolio-header p{color:var(--muted);font-size:.9rem;margin-top:.5rem}
     .portfolio-grid{display:flex;flex-direction:column;gap:1.5rem}
-    .portfolio-card{background:#1A1A1A;border:1px solid rgba(255,255,255,0.1);border-radius:1.25rem;overflow:hidden;transition:border-color .3s,transform .3s}
-    .portfolio-card:hover{border-color:var(--border-accent);transform:translateY(-3px)}
-    .portfolio-thumb{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top;display:block;background:var(--surface2)}
-    .portfolio-placeholder{width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,var(--surface2),#1a1a1a);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.08em;color:rgba(200,245,62,.25)}
+    .portfolio-card{background:#1A1A1A;border:1px solid rgba(255,255,255,0.1);border-radius:1.25rem;overflow:hidden;transition:border-color .3s,transform .3s,box-shadow .3s;display:flex;flex-direction:column}
+    .portfolio-card:hover{border-color:var(--border-accent);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+    .portfolio-thumb-wrap{width:100%;height:200px;overflow:hidden;flex-shrink:0;background:var(--surface2)}
+    .portfolio-thumb{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform .4s ease}
+    .portfolio-card:hover .portfolio-thumb{transform:scale(1.03)}
+    .portfolio-placeholder{width:100%;height:200px;background:linear-gradient(135deg,var(--surface2),#1a1a1a);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.08em;color:rgba(200,245,62,.25)}
     .portfolio-info{padding:1.25rem}
     .portfolio-info h3{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.04em;color:#fff;margin-bottom:.2rem}
     .p-industry{font-size:.78rem;color:var(--accent);font-weight:600;margin-bottom:.5rem}
@@ -449,7 +451,7 @@
     <div class="portfolio-grid">
 
       <article class="portfolio-card sr" itemscope itemtype="https://schema.org/CreativeWork">
-        <div class="portfolio-placeholder">ALA MODE BOREHOLES</div>
+        <div class="portfolio-thumb-wrap"><img src="/images/ala-mode.jpg" alt="Ala Mode Boreholes website — built by Invitt Co Harare" class="portfolio-thumb" loading="lazy"></div>
         <div class="portfolio-info">
           <h3 itemprop="name">Ala Mode Boreholes</h3>
           <p class="p-industry">Borehole Drilling — Harare</p>
@@ -463,7 +465,7 @@
       </article>
 
       <article class="portfolio-card sr d1" itemscope itemtype="https://schema.org/CreativeWork">
-        <div class="portfolio-placeholder">PRECISION BOREHOLES</div>
+        <div class="portfolio-thumb-wrap"><img src="/images/precision.jpg" alt="Precision Boreholes website — built by Invitt Co Harare" class="portfolio-thumb" loading="lazy"></div>
         <div class="portfolio-info">
           <h3 itemprop="name">Precision Boreholes</h3>
           <p class="p-industry">Borehole Services — Harare</p>
@@ -477,7 +479,7 @@
       </article>
 
       <article class="portfolio-card sr d2" itemscope itemtype="https://schema.org/CreativeWork">
-        <div class="portfolio-placeholder">MWIWA BOREHOLE DRILLING</div>
+        <div class="portfolio-thumb-wrap"><img src="/images/mwiwa-preview.jpg" alt="Mwiwa Borehole Drilling website — built by Invitt Co" class="portfolio-thumb" loading="lazy"></div>
         <div class="portfolio-info">
           <h3 itemprop="name">Mwiwa Borehole Drilling</h3>
           <p class="p-industry">Borehole Drilling — Zimbabwe</p>
@@ -491,7 +493,7 @@
       </article>
 
       <article class="portfolio-card sr" itemscope itemtype="https://schema.org/CreativeWork">
-        <div class="portfolio-placeholder">TOPIARY MARKETING</div>
+        <div class="portfolio-thumb-wrap"><img src="/images/topiary-preview.jpg" alt="Topiary Marketing website — built by Invitt Co Harare" class="portfolio-thumb" loading="lazy"></div>
         <div class="portfolio-info">
           <h3 itemprop="name">Topiary Marketing</h3>
           <p class="p-industry">Marketing & Supplies — Harare</p>
