@@ -92,4 +92,16 @@
     <priority>0.7</priority>
   </url>
 
+  <url>
+  <loc>https://www.invitt.co.zw/blog/</loc>
+  <lastmod>2026-04-27</lastmod>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://www.invitt.co.zw/blog/how-much-does-a-website-cost-in-zimbabwe-2026.html</loc>
+  <lastmod>2026-04-19</lastmod>
+  <priority>0.7</priority>
+</url>
+<!-- ...repeat for all 12 articles -->
+
 </urlset>
