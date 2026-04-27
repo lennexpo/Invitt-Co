@@ -1,33 +1,17 @@
 /**
- * TESS — Invitt Co AI Receptionist Widget v3.0
- * Stage 3: 54-entry FAQ engine, smart KB scorer, WebSocket live chat,
- *          admin takeover, unanswered question logging, dynamic KB loading.
+ * TESS — Invitt Co AI Receptionist Widget
+ * Drop this script into any page to activate Tess.
+ * Requires: TESS_CONFIG to be defined before this script, or defaults are used.
  *
- * ── HOW TO EMBED ON invitt.co.zw ──────────────────────────────────────────
- * Add this BEFORE the closing </body> tag on every page:
- *
+ * Usage:
  *   <script>
  *     window.TESS_CONFIG = {
- *       whatsappNumber: '+263787303732',
- *       backendUrl: 'https://YOUR-TUNNEL.trycloudflare.com',
- *       calendlyUrl: 'https://calendly.com/invittco',
- *       storageKey: 'tess_session'
+ *       whatsappNumber: '+263781234567',
+ *       adminPassword: 'your-admin-password',
+ *       backendUrl: 'https://your-tunnel.trycloudflare.com' // your local backend tunnel URL
  *     };
  *   </script>
  *   <script src="tess-widget.js"></script>
- *
- * ── GETTING A PUBLIC backendUrl ────────────────────────────────────────────
- * Your backend runs on localhost:8000. For visitors on invitt.co.zw to reach
- * it, run this in a separate terminal while Tess is running:
- *
- *   cloudflared tunnel --url http://localhost:8000
- *
- * It will print a URL like: https://abc-xyz.trycloudflare.com
- * Copy that into backendUrl above. Run it every time you start Tess.
- *
- * ── WITHOUT backendUrl ─────────────────────────────────────────────────────
- * The widget still works — 54 FAQ entries answer locally with no backend.
- * Leads, analytics, live chat and KB sync require backendUrl to be set.
  */
 
 (function () {
@@ -35,7 +19,8 @@
 
   // ─── CONFIG ──────────────────────────────────────────────────────────────────
   const CFG = Object.assign({
-    whatsappNumber: '+263787303732',
+    whatsappNumber: '+263781234567',
+    adminPassword: 'invitt2024',
     accentColor: '#C8F53E',
     accentDark: '#a8d42e',
     bgDark: '#1a1a1a',
@@ -45,7 +30,6 @@
     popupDelay: 2000,
     popupReshowDelay: 45000,
     storageKey: 'tess_session',
-    calendlyUrl: 'https://calendly.com/invittco',
   }, window.TESS_CONFIG || {});
 
   // ─── KNOWLEDGE BASE (inline — expanded to 55+ entries for 85% FAQ coverage) ─
@@ -492,7 +476,7 @@ Rules:
       #tess-popup-body { font-size: 13px; color: #444; line-height: 1.5; }
       #tess-panel {
         position: fixed; bottom: 92px; right: 24px; z-index: 999998;
-        width: 380px; max-height: min(580px, calc(100vh - 110px));
+        width: 380px; max-height: 580px;
         background: #ffffff; border-radius: 20px;
         box-shadow: 0 16px 64px rgba(0,0,0,0.18);
         display: none; flex-direction: column; overflow: hidden;
@@ -503,13 +487,23 @@ Rules:
         background: ${CFG.accentColor}; padding: 16px 20px;
         display: flex; align-items: center; gap: 12px; flex-shrink: 0;
       }
-      #tess-header-back {
+      #tess-header-close {
         background: none; border: none; cursor: pointer; padding: 4px;
-        display: none; align-items: center; justify-content: center;
-        color: ${CFG.bgDark}; opacity: 0.7; margin-right: 4px;
+        display: flex; align-items: center; justify-content: center;
+        color: ${CFG.bgDark}; opacity: 0.7; margin-left: auto; flex-shrink: 0;
       }
-      #tess-header-back.show { display: flex; }
-      #tess-header-back:hover { opacity: 1; }
+      #tess-header-close:hover { opacity: 1; }
+      #tess-back-row {
+        padding: 10px 16px 0; display: none; flex-shrink: 0; background: #ffffff;
+      }
+      #tess-back-row.show { display: block; }
+      #tess-header-back {
+        background: #ffffff; border: 1.5px solid #d0d0d0; cursor: pointer;
+        padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600;
+        color: #333; display: inline-flex; align-items: center; gap: 6px;
+        transition: background 0.15s, border-color 0.15s;
+      }
+      #tess-header-back:hover { background: #f5f5f5; border-color: #bbb; }
       #tess-header-avatar {
         width: 40px; height: 40px; border-radius: 50%;
         background: ${CFG.bgDark}; display: flex; align-items: center; justify-content: center;
@@ -525,7 +519,7 @@ Rules:
         scrollbar-width: thin; scrollbar-color: #ddd transparent;
         background: #f7f7f7;
         min-height: 0;
-        max-height: none;
+        max-height: 340px;
       }
       .tess-msg { display: flex; gap: 8px; animation: tess-fade-in 0.2s ease; }
       .tess-msg-avatar {
@@ -604,10 +598,10 @@ Rules:
           right: 0;
           bottom: 0;
           border-radius: 20px 20px 0 0;
-          max-height: min(85vh, calc(100vh - 0px));
+          max-height: 85vh;
         }
         #tess-messages {
-          max-height: calc(min(85vh, 100vh) - 220px);
+          max-height: calc(85vh - 220px);
         }
         #tess-bubble {
           bottom: 16px;
@@ -653,11 +647,6 @@ Rules:
       <!-- Main panel -->
       <div id="tess-panel" role="dialog" aria-label="Tess - Invitt Co AI Receptionist">
         <div id="tess-panel-header">
-          <button id="tess-header-back" aria-label="Go back">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="${CFG.bgDark}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="15 18 9 12 15 6"/>
-            </svg>
-          </button>
           <div id="tess-header-avatar">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:22px;height:22px">
               <circle cx="12" cy="8" r="4" fill="${CFG.accentColor}"/>
@@ -669,6 +658,20 @@ Rules:
             <div id="tess-header-sub">Ivie</div>
           </div>
           <div id="tess-header-status"><span id="tess-header-dot"></span> Online</div>
+          <button id="tess-header-close" aria-label="Close chat">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="${CFG.bgDark}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+        </div>
+
+        <div id="tess-back-row">
+          <button id="tess-header-back" aria-label="Go back">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"/>
+            </svg>
+            Back
+          </button>
         </div>
 
         <div id="tess-messages"></div>
@@ -864,11 +867,7 @@ Rules:
     state.isOpen = true;
     document.getElementById('tess-panel').style.display = 'flex';
     document.getElementById('tess-popup').style.display = 'none';
-    document.getElementById('tess-bubble').innerHTML = `
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="${CFG.bgDark}" stroke-width="2.5" stroke-linecap="round">
-        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-      </svg>
-    `;
+    document.getElementById('tess-bubble').style.display = 'none';
 
     if (state.messages.length === 0) {
       // Reload previous messages
@@ -891,11 +890,7 @@ Rules:
   function closePanel() {
     state.isOpen = false;
     document.getElementById('tess-panel').style.display = 'none';
-    document.getElementById('tess-bubble').innerHTML = `
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" fill="${CFG.bgDark}"/>
-      </svg>
-    `;
+    document.getElementById('tess-bubble').style.display = 'flex';
     // Always show popup immediately when chat is closed
     document.getElementById('tess-popup').style.display = 'block';
   }
@@ -966,17 +961,20 @@ Rules:
         const action = btn.dataset.action;
         if (action === 'livechat') {
           document.getElementById('tess-options').style.display = 'none';
-          document.getElementById('tess-header-back').classList.add('show');
+          document.getElementById('tess-back-row').classList.add('show');
           showInputArea();
           trackEvent('livechat_start');
           addMessage("Tess here. Invitt Co AI assistant. What do you need?");
           state.mode = 'chat';
         } else if (action === 'voice') {
-          document.getElementById('tess-header-back').classList.add('show');
+          document.getElementById('tess-back-row').classList.add('show');
           handleVoice();
         }
       });
     });
+
+    // Close button (chevron-down in header)
+    document.getElementById('tess-header-close').addEventListener('click', () => closePanel());
 
     // Back button — return to options screen
     document.getElementById('tess-header-back').addEventListener('click', () => {
@@ -984,7 +982,7 @@ Rules:
       document.getElementById('tess-options').style.display = 'flex';
       document.getElementById('tess-input-area').style.display = 'none';
       document.getElementById('tess-messages').innerHTML = '';
-      document.getElementById('tess-header-back').classList.remove('show');
+      document.getElementById('tess-back-row').classList.remove('show');
       state.mode = 'select';
       state.messages = [];
     });
