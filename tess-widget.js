@@ -685,7 +685,7 @@ Rules:
           </div>
           <div id="tess-header-info">
             <div id="tess-header-name">HAVE A QUESTION?</div>
-            <div id="tess-header-sub">Ivie</div>
+            <div id="tess-header-sub">Tess</div>
           </div>
           <div id="tess-header-status"><span id="tess-header-dot"></span> Online</div>
           <button id="tess-header-close" aria-label="Close chat">
