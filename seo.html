@@ -91,6 +91,10 @@
     .hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
         .hamburger{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;min-width:44px;min-height:44px;align-items:center;justify-content:center}
     .hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
+        /* Hamburger → X animation */
+    .hamburger.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.is-open span:nth-child(2){opacity:0;transform:scaleX(0)}
+    .hamburger.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
     /* ── MOBILE MENU (card style) ── */
     .mobile-menu{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:999;padding:1rem;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
     .mobile-menu.open{display:block}
@@ -578,9 +582,9 @@
   const hamburger=document.getElementById('hamburger');
   const mobileMenu=document.getElementById('mobileMenu');
   const closeMenu=document.getElementById('mobileClose');
-  hamburger.addEventListener('click',()=>{mobileMenu.classList.add('open');hamburger.setAttribute('aria-expanded','true')});
-  closeMenu.addEventListener('click',()=>{mobileMenu.classList.remove('open');hamburger.setAttribute('aria-expanded','false')});
-  mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobileMenu.classList.remove('open');hamburger.setAttribute('aria-expanded','false')}));
+  hamburger.addEventListener('click',()=>{const isOpen=mobileMenu.classList.toggle('open');hamburger.classList.toggle('is-open',isOpen);hamburger.setAttribute('aria-expanded',isOpen)});
+  closeMenu.addEventListener('click',()=>{mobileMenu.classList.remove('open');hamburger.classList.remove('is-open');hamburger.setAttribute('aria-expanded','false')});
+  mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobileMenu.classList.remove('open');hamburger.classList.remove('is-open');hamburger.setAttribute('aria-expanded','false')}));
 
   // SCROLL REVEAL
   const srEls=document.querySelectorAll('.sr');
