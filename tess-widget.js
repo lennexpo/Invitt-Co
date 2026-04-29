@@ -39,16 +39,16 @@
     company: "Invitt Co is Harare's #1 web design agency. We build custom websites, local SEO, and digital marketing systems for Zimbabwe SMEs. Results guaranteed in 14 days. Website: invitt.co.zw",
     founder: "Lennon founded Invitt Co at 17. He personally handles every project — direct founder-level attention on every build.",
     services: [
-      { name: "Starter Website", price: "$350", desc: "5 pages, mobile responsive, contact form, Google Business Profile, basic SEO, 14-day delivery, 1 month support." },
-      { name: "Growth Website", price: "$750", desc: "8-10 pages, advanced SEO, local SEO, analytics, CMS for self-editing, 3 months support." },
-      { name: "Digital Growth System", price: "$1,400", desc: "Full unlimited website + complete SEO strategy + social media + monthly reports + 6 months support. Best for scaling businesses." }
+      { name: "Starter Website", price: "$399", desc: "5 pages, mobile responsive, contact form, Google Business Profile, basic SEO, 14-day delivery, 1 month support." },
+      { name: "Growth Website", price: "$599", desc: "8-10 pages, advanced SEO, local SEO, analytics, CMS for self-editing, 3 months support." },
+      { name: "Authority Website", price: "$799", desc: "Full unlimited website + complete SEO strategy + social media + monthly reports + 6 months support. Best for scaling businesses." }
     ],
     faqs: [
       // ── PRICING ──────────────────────────────────────────────────────────
-      { q: "price|cost|how much|pricing|fee|charge|rate|package|tier|afford", a: "Three packages: Starter $350 (5 pages, SEO basics, 14-day delivery), Growth $750 (full SEO, CMS, local optimization), Digital Growth System $1,400 (everything + ongoing management). All include a 14-day delivery guarantee." },
-      { q: "starter|basic|cheapest|entry level|smallest|simple website|five page", a: "The Starter package is $350 — 5 pages, mobile responsive, contact form, Google Business Profile setup, basic SEO, delivered in 14 days, with 1 month of support." },
-      { q: "growth package|mid|middle|750|eight page|ten page|advanced seo", a: "The Growth package is $750 — 8-10 pages, advanced SEO, local SEO, Google Analytics, CMS so you can edit content yourself, 3 months support." },
-      { q: "premium|digital growth|1400|best package|full package|complete|top tier|everything", a: "The Digital Growth System is $1,400 — unlimited pages, complete SEO strategy, social media setup, monthly performance reports, 6 months of support. Best for businesses serious about scaling." },
+      { q: "price|cost|how much|pricing|fee|charge|rate|package|tier|afford", a: "Three packages: Starter $399 (5 pages, SEO basics, 14-day delivery), Growth $599 (full SEO, CMS, local optimization), Authority $799 (everything + ongoing management). All include a 14-day delivery guarantee." },
+      { q: "starter|basic|cheapest|entry level|smallest|simple website|five page", a: "The Starter package is $399 — 5 pages, mobile responsive, contact form, Google Business Profile setup, basic SEO, delivered in 14 days, with 1 month of support." },
+      { q: "growth package|mid|middle|599|eight page|ten page|advanced seo", a: "The Growth package is $599 — 8-10 pages, advanced SEO, local SEO, Google Analytics, CMS so you can edit content yourself, 3 months support." },
+      { q: "authority|premium|799|best package|full package|complete|top tier|everything", a: "The Authority package is $799 — unlimited pages, complete SEO strategy, social media setup, monthly performance reports, 6 months of support. Best for businesses serious about scaling." },
       { q: "payment plan|installment|deposit|split|pay later|part payment|lay-by", a: "Yes, flexible payment arrangements are available. Typically a deposit upfront and the remainder on delivery. Message Lennon on WhatsApp to set up your plan." },
       { q: "refund|money back|guarantee|if you fail|miss deadline|not delivered", a: "If we miss the agreed deadline, you get your full deposit back — no questions asked. That's our delivery guarantee." },
       { q: "discount|cheaper|negotiate|reduce|lower price|special offer|promo", a: "Packages are priced to deliver real value, not padded for negotiation. That said, Lennon personally handles every client — reach out on WhatsApp and have a direct conversation." },
@@ -66,7 +66,7 @@
       // ── SERVICES ─────────────────────────────────────────────────────────
       { q: "what do you do|services|offer|what can you|capabilities|specialise|specialize", a: "We build custom websites, set up local SEO (Google Business Profile, local ranking), run digital marketing, and create complete digital growth systems for Zimbabwe businesses." },
       { q: "ecommerce|online store|sell online|shop|products|woocommerce|shopify|selling", a: "Yes, we build ecommerce sites — from simple product showcases to full online stores with payment integration. Tell Lennon your requirements for a custom quote." },
-      { q: "social media|facebook|instagram|tiktok|twitter|linkedin|posting|content", a: "Social media management is included in the Digital Growth System ($1,400). We set up your profiles and can manage monthly content. Ask about standalone social packages too." },
+      { q: "social media|facebook|instagram|tiktok|twitter|linkedin|posting|content", a: "Social media management is included in the Authority package ($799). We set up your profiles and can manage monthly content. Ask about standalone social packages too." },
       { q: "google ads|paid ads|ppc|advertising|facebook ads|sponsored|boost|run ads", a: "We set up and manage Google Ads and Facebook Ads campaigns. This is a separate service — reach out for a custom quote based on your budget and goals." },
       { q: "seo|google|ranking|search|found online|appear|organic|keyword", a: "All packages include SEO. The Growth and Premium packages include full local SEO — optimizing your Google Business Profile so locals find you first for searches like 'plumber Harare'." },
       { q: "local seo|google business|gbp|gmb|maps|harare|local search|near me", a: "We fully optimize your Google Business Profile — name, photos, categories, reviews setup, and local keyword targeting. This alone drives massive local traffic." },
@@ -261,7 +261,7 @@
       return "I'll route you to WhatsApp now. [Click the button below to continue the conversation with Lennon directly.]";
     }
     if (intent === 'pricing' || intent === 'services') {
-      return `Three packages:\n\n• **Starter** $350 — 5-page website, SEO basics, 14-day delivery\n• **Growth** $750 — Full SEO, local optimization, CMS, analytics\n• **Digital Growth System** $1,400 — Everything + ongoing management\n\nAll come with a 14-day delivery guarantee. Which fits your stage?`;
+      return `Three packages:\n\n• **Starter** $399 — 5-page website, SEO basics, 14-day delivery\n• **Growth** $599 — Full SEO, local optimization, CMS, analytics\n• **Authority** $799 — Everything + ongoing management\n\nAll come with a 14-day delivery guarantee. Which fits your stage?`;
     }
     if (intent === 'about') {
       return "Lennon founded Invitt Co at 17 — building Harare's best digital presence agency for SMEs. He personally handles every project. No middlemen. Direct founder attention on your business.";
@@ -478,7 +478,7 @@ Rules:
       #tess-popup-body { font-size: 13px; color: #444; line-height: 1.5; }
       #tess-panel {
         position: fixed; bottom: 92px; right: 24px; z-index: 999998;
-        width: 380px; max-height: 580px;
+        width: 380px; max-width: calc(100vw - 32px); max-height: 580px;
         background: #ffffff; border-radius: 20px;
         box-shadow: 0 16px 64px rgba(0,0,0,0.18);
         display: none; flex-direction: column; overflow: hidden;
