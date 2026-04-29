@@ -248,7 +248,7 @@
     const faqMatch = matchFAQ(userMessage);
     if (faqMatch) {
       if (faqMatch.id) trackKBHit(faqMatch.id); // track hits for admin-added entries
-      return `Got it. Here's a precise answer — ${faqMatch.a}`;
+      return faqMatch.a;
     }
 
     // 2. Intent routing for action-based requests
@@ -261,7 +261,7 @@
       return "I'll route you to WhatsApp now. [Click the button below to continue the conversation with Lennon directly.]";
     }
     if (intent === 'pricing' || intent === 'services') {
-      return `Got it. Here's a precise answer — Three packages:\n\n• **Starter** $350 — 5-page website, SEO basics, 14-day delivery\n• **Growth** $750 — Full SEO, local optimization, CMS, analytics\n• **Digital Growth System** $1,400 — Everything + ongoing management\n\nAll come with a 14-day delivery guarantee. Which fits your stage?`;
+      return `Three packages:\n\n• **Starter** $350 — 5-page website, SEO basics, 14-day delivery\n• **Growth** $750 — Full SEO, local optimization, CMS, analytics\n• **Digital Growth System** $1,400 — Everything + ongoing management\n\nAll come with a 14-day delivery guarantee. Which fits your stage?`;
     }
     if (intent === 'about') {
       return "Lennon founded Invitt Co at 17 — building Harare's best digital presence agency for SMEs. He personally handles every project. No middlemen. Direct founder attention on your business.";
@@ -287,7 +287,7 @@ Founder: ${JSON.stringify(KB.founder)}
 ${dynamicKB ? `\nCustom Knowledge Base:\n${dynamicKB}` : ''}
 
 Rules:
-- For FAQs: start with "Got it. Here's a precise answer —"
+- Answer questions directly and concisely.
 - For lead capture: say "Please share your details. I'll log this."
 - For bookings: say "Let's lock a slot."
 - For WhatsApp: say "I'll route you to WhatsApp now."
