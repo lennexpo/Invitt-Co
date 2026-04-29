@@ -1265,6 +1265,82 @@
     }
 
     /* Tess widget styles are self-contained in tess-widget.js */
+
+    /* ── PRELOADER ── */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: #0A0A0A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                  visibility 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    #preloader.done {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .pre-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .pre-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 10vw, 5.5rem);
+      letter-spacing: 0.1em;
+      color: #fff;
+      overflow: hidden;
+      clip-path: inset(0 100% 0 0);
+      animation: preLogoReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+    }
+    .pre-co {
+      color: #C8F53E;
+    }
+    @keyframes preLogoReveal {
+      to { clip-path: inset(0 0% 0 0); }
+    }
+    .pre-tagline {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(0.55rem, 1.5vw, 0.68rem);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(161, 161, 170, 0.5);
+      opacity: 0;
+      animation: preFadeIn 0.5s ease 0.7s forwards;
+    }
+    @keyframes preFadeIn {
+      to { opacity: 1; }
+    }
+    .pre-bar-track {
+      width: min(240px, 55vw);
+      height: 2px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 9999px;
+      overflow: hidden;
+      opacity: 0;
+      animation: preFadeIn 0.4s ease 0.85s forwards;
+    }
+    .pre-bar {
+      height: 100%;
+      width: 0%;
+      background: #C8F53E;
+      border-radius: 9999px;
+      box-shadow: 0 0 10px rgba(200, 245, 62, 0.6);
+      transition: width 0.04s linear;
+    }
+    .pre-percent {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: rgba(200, 245, 62, 0.5);
+      opacity: 0;
+      animation: preFadeIn 0.4s ease 0.9s forwards;
+    }
   </style>
 
 <script type="application/ld+json">
@@ -1303,6 +1379,16 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 </head>
 <body>
+
+<!-- PRELOADER -->
+<div id="preloader" aria-hidden="true">
+  <div class="pre-inner">
+    <div class="pre-logo">INVITT<span class="pre-co">CO</span></div>
+    <div class="pre-tagline">Web Design &amp; Digital Marketing · Harare</div>
+    <div class="pre-bar-track"><div class="pre-bar" id="preBar"></div></div>
+    <div class="pre-percent" id="prePercent">0%</div>
+  </div>
+</div>
 
 <!-- NOISE OVERLAY -->
 <svg class="noise-overlay" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -1897,6 +1983,41 @@
 <script src="tess-widget.js"></script>
 
 <script>
+  // ── PRELOADER ──
+  (function () {
+    const loader  = document.getElementById('preloader');
+    const bar     = document.getElementById('preBar');
+    const pct     = document.getElementById('prePercent');
+    if (!loader || !bar) return;
+
+    // Lock scroll while loading
+    document.body.style.overflow = 'hidden';
+
+    let progress = 0;
+    const TICK = 35;       // ms per tick
+    const DURATION = 1600; // total fill duration ms
+    const steps = DURATION / TICK;
+    const base  = 100 / steps;
+
+    const timer = setInterval(() => {
+      // Add a tiny random variance so it feels organic
+      progress = Math.min(progress + base + (Math.random() * base * 0.6), 100);
+      bar.style.width  = progress + '%';
+      if (pct) pct.textContent = Math.floor(progress) + '%';
+
+      if (progress >= 100) {
+        clearInterval(timer);
+        if (pct) pct.textContent = '100%';
+        setTimeout(() => {
+          loader.classList.add('done');
+          document.body.style.overflow = '';
+          // Unlock scroll and let page animations fire
+          loader.addEventListener('transitionend', () => loader.remove(), { once: true });
+        }, 350);
+      }
+    }, TICK);
+  })();
+
   // ── NAVBAR SCROLL ──
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
