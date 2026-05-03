@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-ZW">
 <head>
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CYD2HR2K8Q"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -13,8 +12,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-  <!-- PRIMARY SEO META TAGS -->
   <title>Invitt Co | #1 Web Design &amp; Digital Marketing Agency in Harare, Zimbabwe</title>
   <meta name="title" content="Invitt Co | #1 Web Design &amp; Digital Marketing Agency in Harare, Zimbabwe" />
   <meta name="description" content="Invitt Co is Harare's top-rated web design and digital marketing agency. We build high-converting websites, run Google Ads, and deliver SEO that gets Zimbabwe businesses found fast. Call +263 787 412 809." />
@@ -26,11 +23,7 @@
   <meta name="format-detection" content="telephone=yes" />
   <meta name="revisit-after" content="7 days" />
   <link rel="canonical" href="https://invitt.co.zw/" />
-
-  <!-- Google Site Verification -->
   <meta name="google-site-verification" content="google5b5421bf88c510ed" />
-
-  <!-- OPEN GRAPH -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://invitt.co.zw/" />
   <meta property="og:title" content="Invitt Co | #1 Web Design &amp; Digital Marketing Agency in Harare" />
@@ -41,1208 +34,269 @@
   <meta property="og:image:alt" content="Invitt Co — Web Design and Digital Marketing Agency Harare Zimbabwe" />
   <meta property="og:locale" content="en_ZW" />
   <meta property="og:site_name" content="Invitt Co" />
-
-  <!-- TWITTER CARD -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://invitt.co.zw/" />
   <meta name="twitter:title" content="Invitt Co | Web Design &amp; Digital Marketing — Harare, Zimbabwe" />
   <meta name="twitter:description" content="Harare's top-rated digital agency. Websites, Google Ads &amp; SEO that gets Zimbabwe businesses found. 5★ rated." />
   <meta name="twitter:image" content="https://invitt.co.zw/invitt_social_square.png" />
   <meta name="twitter:image:alt" content="Invitt Co — Web Design and Digital Marketing Agency Harare Zimbabwe" />
-
-  <!-- GEO / LOCAL SEO -->
   <meta name="geo.region" content="ZW-HA" />
   <meta name="geo.placename" content="Harare, Zimbabwe" />
   <meta name="geo.position" content="-17.827462;31.046343" />
   <meta name="ICBM" content="-17.827462, 31.046343" />
-
-  <!-- FAVICON -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-
-  <!-- FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Space+Mono:wght@400;700&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Space+Mono:wght@400;700&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" /></noscript>
 
   <style>
-    /* ── RESET & BASE ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      background: #0A0A0A;
-      color: #F5F5F0;
-      font-family: 'DM Sans', sans-serif;
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
+    body { background: #0A0A0A; color: #F5F5F0; font-family: 'DM Sans', sans-serif; overflow-x: hidden; min-height: 100vh; }
 
-    /* ── CSS VARIABLES ── */
     :root {
-      --bg: #0A0A0A;
-      --surface: #111111;
-      --surface2: #161616;
-      --accent: #C8F53E;
-      --accent-dark: #0F3D2E;
-      --muted: #A1A1AA;
-      --border: rgba(255,255,255,0.08);
-      --border-accent: rgba(200,245,62,0.3);
-      --red: #E24B4A;
-      --red-bg: rgba(226,75,74,0.15);
+      --bg: #0A0A0A; --surface: #111111; --surface2: #161616;
+      --accent: #C8F53E; --accent-dark: #0F3D2E; --muted: #A1A1AA;
+      --border: rgba(255,255,255,0.08); --border-accent: rgba(200,245,62,0.3);
+      --red: #E24B4A; --red-bg: rgba(226,75,74,0.15);
     }
 
-    /* ── NOISE OVERLAY ── */
-    .noise-overlay {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0.03;
-    }
+    .noise-overlay { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; opacity: 0.03; }
 
-    /* ── NAVBAR ── */
     .navbar {
-      position: fixed;
-      top: 1rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 1000;
-      width: 92%;
-      max-width: 960px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      position: fixed; top: 1rem; left: 50%; transform: translateX(-50%);
+      z-index: 1000; width: 92%; max-width: 960px;
+      display: flex; align-items: center; justify-content: space-between;
       padding: 0.85rem 1.75rem;
-      background: rgba(10,10,10,0.5);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--border);
-      border-radius: 9999px;
-      transition: all 0.4s ease;
+      background: rgba(10,10,10,0.5); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border); border-radius: 9999px; transition: all 0.4s ease;
     }
-    .navbar.scrolled {
-      background: rgba(10,10,10,0.85);
-      border-color: rgba(255,255,255,0.12);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-    }
-    .nav-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.4rem;
-      letter-spacing: 0.08em;
-      color: #fff;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 0.1rem;
-    }
+    .navbar.scrolled { background: rgba(10,10,10,0.85); border-color: rgba(255,255,255,0.12); box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
+    .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.08em; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 0.1rem; }
     .nav-logo .co { color: var(--accent); }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 1.75rem;
-      list-style: none;
-    }
-    .nav-links a {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
+    .nav-links { display: flex; align-items: center; gap: 1.75rem; list-style: none; }
+    .nav-links a { font-size: 0.875rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: #fff; }
     .nav-links a.active { color: var(--accent); }
-    .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      background: var(--accent) !important;
-      color: #0A0A0A !important;
-      padding: 0.55rem 1.25rem;
-      border-radius: 9999px;
-      font-size: 0.8rem !important;
-      font-weight: 700 !important;
-      letter-spacing: 0.02em;
-      transition: opacity 0.2s !important;
-    }
+    .nav-cta { display: inline-flex; align-items: center; background: var(--accent) !important; color: #0A0A0A !important; padding: 0.55rem 1.25rem; border-radius: 9999px; font-size: 0.8rem !important; font-weight: 700 !important; letter-spacing: 0.02em; transition: opacity 0.2s !important; }
     .nav-cta:hover { opacity: 0.88 !important; }
 
-        /* Mobile hamburger */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
-    }
-    .hamburger span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: #fff;
-      border-radius: 2px;
-      transition: all 0.3s;
-    }
-        /* Hamburger → X animation */
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s; }
     .hamburger.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
     .hamburger.is-open span:nth-child(2){opacity:0;transform:scaleX(0)}
     .hamburger.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-    /* ── MOBILE MENU (card style) ── */
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.55);
-      z-index: 999;
-      padding: 1rem;
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-    }
+
+    .mobile-menu { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 999; padding: 1rem; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
     .mobile-menu.open { display: block; }
-    .mobile-menu-card {
-      background: #1A1A1A;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-    }
-    .mobile-menu-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.1rem 1.25rem;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-    }
-    .mobile-menu-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.3rem;
-      letter-spacing: 0.08em;
-      color: #fff;
-      text-decoration: none;
-    }
+    .mobile-menu-card { background: #1A1A1A; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+    .mobile-menu-header { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .mobile-menu-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 0.08em; color: #fff; text-decoration: none; }
     .mobile-menu-logo .co { color: var(--accent); }
-    .mobile-close {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
-      color: #fff;
-      font-size: 1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      line-height: 1;
-      transition: background 0.2s;
-    }
+    .mobile-close { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); color: #fff; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1; transition: background 0.2s; }
     .mobile-close:hover { background: rgba(255,255,255,0.14); }
-    .mobile-menu-nav {
-      display: flex;
-      flex-direction: column;
-    }
-    .mobile-menu-nav a {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 1rem;
-      font-weight: 500;
-      color: rgba(245,245,240,0.75);
-      text-decoration: none;
-      padding: 1rem 1.25rem;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      transition: color 0.2s, background 0.2s;
-      display: block;
-      min-height: 52px;
-      display: flex;
-      align-items: center;
-    }
+    .mobile-menu-nav { display: flex; flex-direction: column; }
+    /* FIX: removed duplicate display:block on mobile nav links (conflicted with display:flex) */
+    .mobile-menu-nav a { font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 500; color: rgba(245,245,240,0.75); text-decoration: none; padding: 1rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.05); transition: color 0.2s, background 0.2s; display: flex; align-items: center; min-height: 52px; }
     .mobile-menu-nav a:hover { color: #fff; background: rgba(255,255,255,0.04); }
     .mobile-menu-nav a.active { color: var(--accent); }
-    .mobile-menu-footer {
-      padding: 1rem 1.25rem 1.25rem;
-    }
-    .mobile-menu-cta-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--accent);
-      color: #0A0A0A !important;
-      font-family: 'DM Sans', sans-serif !important;
-      font-weight: 700 !important;
-      font-size: 0.95rem !important;
-      border-radius: 9999px;
-      padding: 0.9rem 1.25rem;
-      text-decoration: none;
-      transition: opacity 0.2s;
-      min-height: 52px;
-      letter-spacing: 0;
-    }
-    .mobile-menu-cta-link:hover { opacity: 0.88; background: var(--accent) !important; }
+    .mobile-menu-footer { padding: 1rem 1.25rem 1.25rem; }
+    .mobile-menu-cta-link { display: flex; align-items: center; justify-content: center; background: var(--accent); color: #0A0A0A !important; font-family: 'DM Sans', sans-serif !important; font-weight: 700 !important; font-size: 0.95rem !important; border-radius: 9999px; padding: 0.9rem 1.25rem; text-decoration: none; transition: opacity 0.2s; min-height: 52px; }
+    .mobile-menu-cta-link:hover { opacity: 0.88; }
 
+    .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 7rem 1.5rem 3rem; text-align: center; position: relative; overflow: hidden; }
+    .hero-content { position: relative; z-index: 2; max-width: 900px; width: 100%; }
+    .hero-headline { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 9vw, 7rem); line-height: 1; letter-spacing: 0.02em; color: #fff; margin-bottom: 1.25rem; }
+    .hero-headline .italic-accent { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; color: var(--accent); font-size: clamp(2.8rem, 8.5vw, 6.5rem); }
+    .hero-sub { max-width: 560px; margin: 0 auto 3rem; color: rgba(245,245,240,0.65); font-size: 1rem; line-height: 1.7; }
+    .hero-label { font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; display: block; }
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 7rem 1.5rem 3rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 900px;
-      width: 100%;
-    }
-    .hero-headline {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(3rem, 9vw, 7rem);
-      line-height: 1;
-      letter-spacing: 0.02em;
-      color: #fff;
-      margin-bottom: 1.25rem;
-    }
-    .hero-headline .italic-accent {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-weight: 600;
-      color: var(--accent);
-      font-size: clamp(2.8rem, 8.5vw, 6.5rem);
-    }
-    .hero-sub {
-      max-width: 560px;
-      margin: 0 auto 3rem;
-      color: rgba(245,245,240,0.65);
-      font-size: 1rem;
-      line-height: 1.7;
-    }
-    .hero-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1.5rem;
-      display: block;
-    }
-
-    /* Problem cards */
-    .problem-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-      max-width: 1000px;
-      width: 100%;
-      margin: 0 auto;
-    }
-    .problem-card {
-      background: #1A1A1A;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 1.25rem;
-      padding: 1.75rem;
-      text-align: left;
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
-      backdrop-filter: blur(10px);
-    }
-     .problem-card:hover {
-      border-color: rgba(200,245,62,0.5);
-      box-shadow: 0 0 24px -4px rgba(200,245,62,0.2);
-      transform: translateY(-2px);
-    }
-    .problem-card-icon {
-      color: var(--accent);
-    }
+    .problem-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; max-width: 1000px; width: 100%; margin: 0 auto; }
+    .problem-card { background: #1A1A1A; border: 1px solid rgba(255,255,255,0.1); border-radius: 1.25rem; padding: 1.75rem; text-align: left; text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 1rem; transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s; backdrop-filter: blur(10px); }
+    .problem-card:hover { border-color: rgba(200,245,62,0.5); box-shadow: 0 0 24px -4px rgba(200,245,62,0.2); transform: translateY(-2px); }
+    .problem-card-icon { color: var(--accent); }
     .problem-card-icon svg { width: 28px; height: 28px; }
-    .problem-card h3 {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #fff;
-      line-height: 1.35;
-    }
-    .problem-card p {
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.6;
-      flex: 1;
-    }
-    .problem-card-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--accent);
-      color: #0A0A0A;
-      padding: 0.65rem 1.25rem;
-      border-radius: 9999px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      transition: opacity 0.2s;
-      margin-top: auto;
-    }
+    .problem-card h3 { font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 700; color: #fff; line-height: 1.35; }
+    .problem-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; flex: 1; }
+    .problem-card-btn { display: inline-flex; align-items: center; justify-content: center; background: var(--accent); color: #0A0A0A; padding: 0.65rem 1.25rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 700; transition: opacity 0.2s; margin-top: auto; }
     .problem-card:hover .problem-card-btn { opacity: 0.88; }
 
-    /* ── PORTFOLIO CAROUSEL ── */
-    .portfolio-section {
-      padding: 0 1.5rem 4rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .portfolio-3d-wrap {
-      width: 100%;
-      max-width: 900px;
-      perspective: 700px;
-      margin-bottom: 2rem;
-    }
-    .portfolio-device {
-      border: 3px solid var(--accent);
-      border-radius: 24px;
-      padding: 1rem;
-      background: rgba(200,245,62,0.08);
-      box-shadow: 0 0 0 rgba(0,0,0,0),
-        0 9px 20px rgba(0,0,0,0.29),
-        0 37px 37px rgba(0,0,0,0.26),
-        0 84px 50px rgba(0,0,0,0.15);
-      transform: translateY(40px) scale(0.75) rotateX(40deg);
-      transform-origin: center top;
-      transform-style: preserve-3d;
-      transition: transform 0.8s ease;
-      overflow: hidden;
-    }
-    .portfolio-device.revealed {
-      transform: translateY(0) scale(1) rotateX(0deg);
-    }
-    .portfolio-screen {
-      background: var(--surface);
-      border-radius: 14px;
-      overflow: hidden;
-      height: 420px;
-      position: relative;
-    }
-    .portfolio-slide {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top;
-      opacity: 0;
-      transition: opacity 0.6s ease;
-    }
+    .portfolio-section { padding: 0 1.5rem 4rem; display: flex; flex-direction: column; align-items: center; }
+    .portfolio-3d-wrap { width: 100%; max-width: 900px; perspective: 700px; margin-bottom: 2rem; }
+    .portfolio-device { border: 3px solid var(--accent); border-radius: 24px; padding: 1rem; background: rgba(200,245,62,0.08); box-shadow: 0 9px 20px rgba(0,0,0,0.29), 0 37px 37px rgba(0,0,0,0.26), 0 84px 50px rgba(0,0,0,0.15); transform: translateY(40px) scale(0.75) rotateX(40deg); transform-origin: center top; transform-style: preserve-3d; transition: transform 0.8s ease; overflow: hidden; }
+    .portfolio-device.revealed { transform: translateY(0) scale(1) rotateX(0deg); }
+    .portfolio-screen { background: var(--surface); border-radius: 14px; overflow: hidden; height: 420px; position: relative; }
+    .portfolio-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; opacity: 0; transition: opacity 0.6s ease; }
     .portfolio-slide.active { opacity: 1; }
-    .portfolio-dots {
-      position: absolute;
-      bottom: 1rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 0.5rem;
-      z-index: 10;
-    }
-    .portfolio-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 9999px;
-      background: rgba(255,255,255,0.3);
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .portfolio-dot.active {
-      background: var(--accent);
-      width: 24px;
-    }
-    .portfolio-prev, .portfolio-next {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 10;
-      background: rgba(10,10,10,0.6);
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      opacity: 0;
-      transition: opacity 0.3s;
-      color: #fff;
-    }
-    .portfolio-screen:hover .portfolio-prev,
-    .portfolio-screen:hover .portfolio-next { opacity: 1; }
+    .portfolio-dots { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); display: flex; gap: 0.5rem; z-index: 10; }
+    .portfolio-dot { width: 8px; height: 8px; border-radius: 9999px; background: rgba(255,255,255,0.3); border: none; cursor: pointer; transition: all 0.3s; }
+    .portfolio-dot.active { background: var(--accent); width: 24px; }
+    .portfolio-prev, .portfolio-next { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; background: rgba(10,10,10,0.6); border: 1px solid var(--border); border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; transition: opacity 0.3s; color: #fff; }
+    .portfolio-screen:hover .portfolio-prev, .portfolio-screen:hover .portfolio-next { opacity: 1; }
     .portfolio-prev { left: 0.75rem; }
     .portfolio-next { right: 0.75rem; }
-    .btn-outline {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      padding: 0.9rem 2rem;
-      border-radius: 9999px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background 0.2s, color 0.2s;
-    }
-    .btn-outline:hover {
-      background: var(--accent);
-      color: #0A0A0A;
-    }
+    .btn-outline { display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid var(--accent); color: var(--accent); padding: 0.9rem 2rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 600; text-decoration: none; transition: background 0.2s, color 0.2s; }
+    .btn-outline:hover { background: var(--accent); color: #0A0A0A; }
 
-    /* ── SECTION SHARED ── */
     section { position: relative; }
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-    .section-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: rgba(200,245,62,0.6);
-      display: block;
-      margin-bottom: 1rem;
-    }
-    .section-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      letter-spacing: 0.02em;
-      color: #fff;
-      line-height: 1.05;
-    }
-    .section-title .italic-accent {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-weight: 600;
-      color: var(--accent);
-    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+    .section-label { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(200,245,62,0.6); display: block; margin-bottom: 1rem; }
+    .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: 0.02em; color: #fff; line-height: 1.05; }
+    .section-title .italic-accent { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; color: var(--accent); }
 
-    /* ── THREE WAYS TO GROW ── */
-    .grow-section {
-      padding: 5rem 0;
-    }
-    .grow-header {
-      text-align: center;
-      margin-bottom: 5rem;
-    }
-    .grow-header p {
-      margin-top: 1rem;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-    .grow-rows {
-      display: flex;
-      flex-direction: column;
-      gap: 6rem;
-    }
-    .grow-row {
-      display: flex;
-      align-items: center;
-      gap: 4rem;
-    }
+    .grow-section { padding: 5rem 0; }
+    .grow-header { text-align: center; margin-bottom: 5rem; }
+    .grow-header p { margin-top: 1rem; color: var(--muted); font-size: 0.95rem; }
+    .grow-rows { display: flex; flex-direction: column; gap: 6rem; }
+    .grow-row { display: flex; align-items: center; gap: 4rem; }
     .grow-row.reverse { flex-direction: row-reverse; }
     .grow-text { flex: 1; }
-    .grow-num {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: rgba(200,245,62,0.6);
-      margin-bottom: 0.75rem;
-      display: block;
-    }
-    .grow-text h3 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      letter-spacing: 0.02em;
-      color: #fff;
-      line-height: 1.1;
-      margin-bottom: 1rem;
-    }
-    .grow-text p {
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.7;
-      max-width: 400px;
-      margin-bottom: 1.5rem;
-    }
-    .grow-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--accent);
-      font-size: 0.875rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: gap 0.2s;
-    }
+    .grow-num { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(200,245,62,0.6); margin-bottom: 0.75rem; display: block; }
+    .grow-text h3 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: 0.02em; color: #fff; line-height: 1.1; margin-bottom: 1rem; }
+    .grow-text p { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 400px; margin-bottom: 1.5rem; }
+    .grow-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent); font-size: 0.875rem; font-weight: 600; text-decoration: none; transition: gap 0.2s; }
     .grow-link:hover { gap: 0.75rem; }
     .grow-visual { flex: 1; }
 
-     /* Visual: stacked cards */
-    .stacked-cards {
-      position: relative;
-      height: 160px;
-      max-width: 380px;
-    }
-    .stacked-card {
-      position: absolute;
-      inset-x: 0;
-      background: #1A1A1A;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 14px;
-      padding: 1.25rem 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      backdrop-filter: blur(10px);
-    }
+    .stacked-cards { position: relative; height: 160px; max-width: 380px; }
+    .stacked-card { position: absolute; inset-x: 0; background: #1A1A1A; border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem; backdrop-filter: blur(10px); }
     .stacked-card:nth-child(1) { top: 0; z-index: 3; opacity: 1; transform: scale(1) translateY(0); }
     .stacked-card:nth-child(2) { top: 0; z-index: 2; opacity: 0.55; transform: scale(0.93) translateY(36px); }
     .stacked-card:nth-child(3) { top: 0; z-index: 1; opacity: 0.25; transform: scale(0.86) translateY(68px); }
-    .stacked-card { transition: none; }
     .stacked-card-icon { color: var(--accent); font-size: 1.1rem; }
-    .stacked-card-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.8rem;
-      color: #fff;
-      letter-spacing: 0.05em;
-    }
-    .stacked-bar {
-      margin-top: 1rem;
-      display: flex;
-      gap: 0.5rem;
-    }
-    .stacked-bar-item {
-      height: 3px;
-      flex: 1;
-      background: var(--border);
-      border-radius: 9999px;
-      overflow: hidden;
-    }
-    .stacked-bar-fill {
-      height: 100%;
-      background: var(--accent);
-      border-radius: 9999px;
-      width: 0;
-      transition: width 1.5s ease;
-    }
+    .stacked-card-label { font-family: 'Space Mono', monospace; font-size: 0.8rem; color: #fff; letter-spacing: 0.05em; }
+    .stacked-bar { margin-top: 1rem; display: flex; gap: 0.5rem; }
+    .stacked-bar-item { height: 3px; flex: 1; background: var(--border); border-radius: 9999px; overflow: hidden; }
+    /* FIX #3: Removed CSS transition on stacked-bar-fill — GSAP handles animation exclusively to avoid flash conflict */
+    .stacked-bar-fill { height: 100%; background: var(--accent); border-radius: 9999px; width: 0; }
 
-    /* Visual: live feed terminal */
-    .live-feed {
-      background: #1A1A1A;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 1.25rem;
-      padding: 1.5rem;
-      max-width: 380px;
-    }
-    .live-feed-header {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 1.25rem;
-    }
-    .live-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
-    .live-feed-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 700;
-    }
-    .live-bars {
-      margin-left: auto;
-      display: flex;
-      gap: 3px;
-      align-items: flex-end;
-      height: 14px;
-    }
-    .live-bar {
-      width: 4px;
-      background: rgba(200,245,62,0.4);
-      border-radius: 2px;
-      animation: barAnim 1.2s ease-in-out infinite alternate;
-    }
+    .live-feed { background: #1A1A1A; border: 1px solid rgba(255,255,255,0.1); border-radius: 1.25rem; padding: 1.5rem; max-width: 380px; }
+    .live-feed-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.25rem; }
+    .live-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+    .live-feed-label { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+    .live-bars { margin-left: auto; display: flex; gap: 3px; align-items: flex-end; height: 14px; }
+    .live-bar { width: 4px; background: rgba(200,245,62,0.4); border-radius: 2px; animation: barAnim 1.2s ease-in-out infinite alternate; }
     .live-bar:nth-child(2) { animation-delay: 0.2s; }
     .live-bar:nth-child(3) { animation-delay: 0.4s; }
     @keyframes barAnim { from { height: 4px; } to { height: 14px; } }
-    .live-feed-lines {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.78rem;
-    }
-    .live-line { color: var(--muted); display: flex; gap: 0.5rem; opacity: 0; transform: translateX(-12px); }
+    .live-feed-lines { display: flex; flex-direction: column; gap: 0.6rem; font-family: 'Space Mono', monospace; font-size: 0.78rem; }
+    /* FIX #7: Removed dead .live-line.revealed rule — GSAP animates via fromTo(), not a class toggle */
+    .live-line { color: var(--muted); display: flex; gap: 0.5rem; opacity: 0; }
     .live-line .arrow { color: rgba(200,245,62,0.5); }
     .live-line.active { color: #fff; }
     .live-line.active .arrow { color: var(--accent); }
-    .live-line.revealed { opacity: 1; transform: translateX(0); }
-    .cursor-blink {
-      display: inline-block;
-      background: var(--accent);
-      width: 8px;
-      height: 14px;
-      vertical-align: text-bottom;
-      animation: blink 0.8s step-end infinite;
-    }
+    .cursor-blink { display: inline-block; background: var(--accent); width: 8px; height: 14px; vertical-align: text-bottom; animation: blink 0.8s step-end infinite; }
     @keyframes blink { 50% { opacity: 0; } }
 
-    /* Visual: hosting card */
-    .hosting-visual {
-      background: #1A1A1A;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 1.25rem;
-      padding: 1.5rem;
-      max-width: 380px;
-    }
-    .hosting-visual-header {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 1.25rem;
-    }
-    .hosting-stat-row {
-      display: flex;
-      gap: 0.75rem;
-      margin-bottom: 0.75rem;
-    }
-    .hosting-stat {
-      flex: 1;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem;
-      text-align: center;
-    }
-    .hosting-stat-value {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.75rem;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-      line-height: 1;
-      margin-bottom: 0.25rem;
-    }
-    .hosting-stat-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.55rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .hosting-uptime-bar {
-      height: 4px;
-      background: var(--border);
-      border-radius: 9999px;
-      overflow: hidden;
-      margin-top: 0.75rem;
-    }
-    .hosting-uptime-fill {
-      height: 100%;
-      background: var(--accent);
-      border-radius: 9999px;
-      width: 99%;
-    }
+    .hosting-visual { background: #1A1A1A; border: 1px solid rgba(255,255,255,0.1); border-radius: 1.25rem; padding: 1.5rem; max-width: 380px; }
+    .hosting-visual-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.25rem; }
+    .hosting-stat-row { display: flex; gap: 0.75rem; margin-bottom: 0.75rem; }
+    .hosting-stat { flex: 1; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; text-align: center; }
+    .hosting-stat-value { font-family: 'Bebas Neue', sans-serif; font-size: 1.75rem; color: var(--accent); letter-spacing: 0.05em; line-height: 1; margin-bottom: 0.25rem; }
+    .hosting-stat-label { font-family: 'Space Mono', monospace; font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+    .hosting-uptime-bar { height: 4px; background: var(--border); border-radius: 9999px; overflow: hidden; margin-top: 0.75rem; }
+    .hosting-uptime-fill { height: 100%; background: var(--accent); border-radius: 9999px; width: 0; }
 
-    /* ── CTA BLOCK ── */
-    .cta-block {
-      text-align: center;
-      padding: 2rem 1.5rem 5rem;
-    }
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--accent);
-      color: #0A0A0A;
-      padding: 1rem 2.25rem;
-      border-radius: 9999px;
-      font-size: 1rem;
-      font-weight: 700;
-      text-decoration: none;
-      box-shadow: 0 0 20px rgba(200,245,62,0.35);
-      transition: opacity 0.2s, box-shadow 0.2s;
-    }
-    .btn-primary:hover {
-      opacity: 0.9;
-      box-shadow: 0 0 30px rgba(200,245,62,0.55);
-    }
+    .cta-block { text-align: center; padding: 2rem 1.5rem 5rem; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent); color: #0A0A0A; padding: 1rem 2.25rem; border-radius: 9999px; font-size: 1rem; font-weight: 700; text-decoration: none; box-shadow: 0 0 20px rgba(200,245,62,0.35); transition: opacity 0.2s, box-shadow 0.2s; }
+    .btn-primary:hover { opacity: 0.9; box-shadow: 0 0 30px rgba(200,245,62,0.55); }
 
-     /* ── TESTIMONIALS ── */
     .testimonials-section { padding: 5rem 0; }
-    .testimonials-header {
-      text-align: center;
-      margin-bottom: 3.5rem;
-    }
-    .testimonials-header p {
-      margin-top: 0.75rem;
-      color: rgba(245,245,240,0.65);
-      max-width: 480px;
-      margin-left: auto;
-      margin-right: auto;
-      font-size: 0.95rem;
-    }
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.25rem;
-      margin-bottom: 2rem;
-    }
-    .testimonial-card {
-      background: #1A1A1A;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 1.25rem;
-      padding: 2rem;
-      position: relative;
-      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-    }
-    .testimonial-card:hover {
-      border-color: rgba(200,245,62,0.4);
-      transform: translateY(-4px);
-      box-shadow: 0 8px 30px -10px rgba(200,245,62,0.12);
-    }
-    .quote-icon {
-      position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-      color: rgba(200,245,62,0.15);
-      transition: color 0.3s;
-    }
+    .testimonials-header { text-align: center; margin-bottom: 3.5rem; }
+    .testimonials-header p { margin-top: 0.75rem; color: rgba(245,245,240,0.65); max-width: 480px; margin-left: auto; margin-right: auto; font-size: 0.95rem; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-bottom: 2rem; }
+    .testimonial-card { background: #1A1A1A; border: 1px solid rgba(255,255,255,0.1); border-radius: 1.25rem; padding: 2rem; position: relative; transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s; }
+    .testimonial-card:hover { border-color: rgba(200,245,62,0.4); transform: translateY(-4px); box-shadow: 0 8px 30px -10px rgba(200,245,62,0.12); }
+    .quote-icon { position: absolute; top: 1.5rem; right: 1.5rem; color: rgba(200,245,62,0.15); transition: color 0.3s; }
     .testimonial-card:hover .quote-icon { color: rgba(200,245,62,0.35); }
-    .stars {
-      display: flex;
-      gap: 3px;
-      margin-bottom: 1rem;
-    }
-    .stars svg {
-      width: 16px;
-      height: 16px;
-      fill: var(--accent);
-      color: var(--accent);
-    }
-    .testimonial-text {
-      color: #F5F5F0;
-      font-size: 0.9rem;
-      line-height: 1.75;
-      margin-bottom: 1.5rem;
-    }
-    .testimonial-author {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding-top: 1.25rem;
-      border-top: 1px solid var(--border);
-    }
-    .author-avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: var(--surface2);
-      border: 2px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1rem;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-      flex-shrink: 0;
-      overflow: hidden;
-    }
+    .stars { display: flex; gap: 3px; margin-bottom: 1rem; }
+    .stars svg { width: 16px; height: 16px; fill: var(--accent); color: var(--accent); }
+    .testimonial-text { color: #F5F5F0; font-size: 0.9rem; line-height: 1.75; margin-bottom: 1.5rem; }
+    .testimonial-author { display: flex; align-items: center; gap: 1rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
+    .author-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--surface2); border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: var(--accent); letter-spacing: 0.05em; flex-shrink: 0; overflow: hidden; }
     .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .author-name {
-      font-weight: 700;
-      font-size: 0.95rem;
-      color: #fff;
-    }
-    .author-role {
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-top: 1px;
-    }
+    .author-name { font-weight: 700; font-size: 0.95rem; color: #fff; }
+    .author-role { font-size: 0.78rem; color: var(--muted); margin-top: 1px; }
 
-    /* Stats bar */
-    .stats-bar {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      background: #1A1A1A;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 1.25rem;
-      overflow: hidden;
-    }
-    .stat-item {
-      padding: 1.75rem;
-      text-align: center;
-      border-right: 1px solid var(--border);
-    }
+    .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); background: #1A1A1A; border: 1px solid rgba(255,255,255,0.1); border-radius: 1.25rem; overflow: hidden; }
+    .stat-item { padding: 1.75rem; text-align: center; border-right: 1px solid var(--border); }
     .stat-item:last-child { border-right: none; }
-    .stat-value {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.5rem;
-      letter-spacing: 0.04em;
-      color: var(--accent);
-      line-height: 1;
-      margin-bottom: 0.35rem;
-    }
-    .stat-label {
-      font-size: 0.8rem;
-      color: rgba(245,245,240,0.6);
-    }
+    .stat-value { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 0.04em; color: var(--accent); line-height: 1; margin-bottom: 0.35rem; }
+    .stat-label { font-size: 0.8rem; color: rgba(245,245,240,0.6); }
 
-    /* ── BENTO TOOLKIT ── */
     .toolkit-section { padding: 5rem 0; }
     .toolkit-header { margin-bottom: 3rem; }
-    .toolkit-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-auto-rows: minmax(160px, auto);
-      gap: 1rem;
-    }
-    .toolkit-card {
-      background: #1A1A1A;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 1.25rem;
-      padding: 1.75rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      overflow: hidden;
-      position: relative;
-      transition: border-color 0.3s, box-shadow 0.3s;
-    }
-    .toolkit-card:hover {
-      border-color: rgba(200,245,62,0.3);
-      box-shadow: 0 0 20px -4px rgba(200,245,62,0.1);
-    }
+    .toolkit-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: minmax(160px, auto); gap: 1rem; }
+    .toolkit-card { background: #1A1A1A; border: 1px solid rgba(255,255,255,0.1); border-radius: 1.25rem; padding: 1.75rem; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; position: relative; transition: border-color 0.3s, box-shadow 0.3s; }
+    .toolkit-card:hover { border-color: rgba(200,245,62,0.3); box-shadow: 0 0 20px -4px rgba(200,245,62,0.1); }
     .toolkit-card.span2 { grid-column: span 2; }
-    .toolkit-icon {
-      width: 44px;
-      height: 44px;
-      background: rgba(200,245,62,0.1);
-      border: 1px solid rgba(200,245,62,0.2);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.25rem;
-    }
+    .toolkit-icon { width: 44px; height: 44px; background: rgba(200,245,62,0.1); border: 1px solid rgba(200,245,62,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; }
     .toolkit-icon svg { width: 20px; height: 20px; color: var(--accent); }
-    .toolkit-card h3 {
-      font-weight: 700;
-      font-size: 0.95rem;
-      color: #fff;
-      margin-bottom: 0.5rem;
-    }
-    .toolkit-card p {
-      font-size: 0.825rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-    .toolkit-badge {
-      display: inline-block;
-      background: rgba(200,245,62,0.15);
-      color: var(--accent);
-      font-family: 'Space Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.3rem 0.7rem;
-      border-radius: 9999px;
-      margin-left: auto;
-    }
-    .toolkit-card-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      margin-bottom: 1.25rem;
-    }
+    .toolkit-card h3 { font-weight: 700; font-size: 0.95rem; color: #fff; margin-bottom: 0.5rem; }
+    .toolkit-card p { font-size: 0.825rem; color: var(--muted); line-height: 1.6; }
+    .toolkit-badge { display: inline-block; background: rgba(200,245,62,0.15); color: var(--accent); font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.3rem 0.7rem; border-radius: 9999px; margin-left: auto; }
+    .toolkit-card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1.25rem; }
 
-    /* ── REALITY CHECK ── */
     .reality-section { padding: 5rem 0; }
-    .reality-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(226,75,74,0.15);
-      border: 1px solid rgba(226,75,74,0.3);
-      border-radius: 9999px;
-      padding: 0.4rem 1rem;
-      margin-bottom: 1.5rem;
-    }
-    .reality-badge-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--red);
-      border-radius: 50%;
-      animation: pulse 1.5s ease-in-out infinite;
-    }
+    .reality-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(226,75,74,0.15); border: 1px solid rgba(226,75,74,0.3); border-radius: 9999px; padding: 0.4rem 1rem; margin-bottom: 1.5rem; }
+    .reality-badge-dot { width: 8px; height: 8px; background: var(--red); border-radius: 50%; animation: pulse 1.5s ease-in-out infinite; }
     @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
     .reality-badge span { font-size: 0.8rem; color: var(--red); font-weight: 600; }
-    .reality-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-    .reality-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      letter-spacing: 0.02em;
-      color: #fff;
-      line-height: 1.1;
-      margin-bottom: 1.25rem;
-    }
-    .reality-title .red-italic {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      color: var(--red);
-    }
-    .reality-header p {
-      max-width: 560px;
-      margin: 0 auto;
-      color: rgba(245,245,240,0.65);
-      font-size: 0.95rem;
-      line-height: 1.7;
-    }
-    .reality-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-      margin-bottom: 3rem;
-    }
-    .reality-card {
-      background: #1A1A1A;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 1.25rem;
-      padding: 1.5rem;
-      position: relative;
-      transition: border-color 0.3s;
-    }
+    .reality-header { text-align: center; margin-bottom: 4rem; }
+    .reality-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: 0.02em; color: #fff; line-height: 1.1; margin-bottom: 1.25rem; }
+    .reality-title .red-italic { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--red); }
+    .reality-header p { max-width: 560px; margin: 0 auto; color: rgba(245,245,240,0.65); font-size: 0.95rem; line-height: 1.7; }
+    .reality-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 3rem; }
+    .reality-card { background: #1A1A1A; border: 1px solid rgba(255,255,255,0.1); border-radius: 1.25rem; padding: 1.5rem; position: relative; transition: border-color 0.3s; }
     .reality-card:hover { border-color: rgba(226,75,74,0.4); }
-    .reality-stat-badge {
-      position: absolute;
-      top: -12px;
-      right: 1.25rem;
-      background: var(--red);
-      color: #fff;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 0.25rem 0.6rem;
-      border-radius: 9999px;
-    }
-    .reality-card-icon {
-      width: 44px;
-      height: 44px;
-      background: var(--red-bg);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1rem;
-      transition: background 0.3s;
-    }
+    .reality-stat-badge { position: absolute; top: -12px; right: 1.25rem; background: var(--red); color: #fff; font-family: 'Space Mono', monospace; font-size: 0.7rem; font-weight: 700; padding: 0.25rem 0.6rem; border-radius: 9999px; }
+    .reality-card-icon { width: 44px; height: 44px; background: var(--red-bg); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; transition: background 0.3s; }
     .reality-card:hover .reality-card-icon { background: rgba(226,75,74,0.25); }
     .reality-card-icon svg { width: 20px; height: 20px; color: var(--red); }
-    .reality-card h3 {
-      font-weight: 700;
-      font-size: 0.95rem;
-      color: #fff;
-      line-height: 1.4;
-      margin-bottom: 0.6rem;
-    }
-    .reality-card p {
-      font-size: 0.825rem;
-      color: var(--muted);
-      line-height: 1.65;
-    }
-    .reality-cta {
-      text-align: center;
-    }
-    .reality-cta p {
-      color: rgba(245,245,240,0.65);
-      margin-bottom: 1.5rem;
-      font-size: 0.95rem;
-    }
-    .btn-red {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--red);
-      color: #fff;
-      padding: 1rem 2.25rem;
-      border-radius: 9999px;
-      font-size: 1rem;
-      font-weight: 700;
-      text-decoration: none;
-      box-shadow: 0 0 20px rgba(226,75,74,0.35);
-      transition: opacity 0.2s, box-shadow 0.2s;
-    }
-    .btn-red:hover {
-      opacity: 0.9;
-      box-shadow: 0 0 30px rgba(226,75,74,0.55);
-    }
+    .reality-card h3 { font-weight: 700; font-size: 0.95rem; color: #fff; line-height: 1.4; margin-bottom: 0.6rem; }
+    .reality-card p { font-size: 0.825rem; color: var(--muted); line-height: 1.65; }
+    .reality-cta { text-align: center; }
+    .reality-cta p { color: rgba(245,245,240,0.65); margin-bottom: 1.5rem; font-size: 0.95rem; }
+    .btn-red { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--red); color: #fff; padding: 1rem 2.25rem; border-radius: 9999px; font-size: 1rem; font-weight: 700; text-decoration: none; box-shadow: 0 0 20px rgba(226,75,74,0.35); transition: opacity 0.2s, box-shadow 0.2s; }
+    .btn-red:hover { opacity: 0.9; box-shadow: 0 0 30px rgba(226,75,74,0.55); }
 
-    /* ── FOOTER ── */
-    footer {
-      background: var(--bg);
-      border-top: 1px solid var(--border);
-      border-radius: 3rem 3rem 0 0;
-      margin-top: 3rem;
-    }
-    .footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 4rem 1.5rem 2rem;
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr;
-      gap: 3rem;
-    }
-    .footer-brand-name {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.5rem;
-      letter-spacing: 0.08em;
-      color: #fff;
-      margin-bottom: 0.75rem;
-      display: block;
-    }
+    footer { background: var(--bg); border-top: 1px solid var(--border); border-radius: 3rem 3rem 0 0; margin-top: 3rem; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; padding: 4rem 1.5rem 2rem; display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; }
+    .footer-brand-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.08em; color: #fff; margin-bottom: 0.75rem; display: block; }
     .footer-brand-name .co { color: var(--accent); }
-    .footer-tagline {
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.65;
-      max-width: 260px;
-      margin-bottom: 1.5rem;
-    }
-    .footer-socials {
-      display: flex;
-      gap: 1rem;
-    }
-    .footer-social {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--muted);
-      text-decoration: none;
-      transition: border-color 0.2s, color 0.2s;
-    }
+    .footer-tagline { font-size: 0.85rem; color: var(--muted); line-height: 1.65; max-width: 260px; margin-bottom: 1.5rem; }
+    .footer-socials { display: flex; gap: 1rem; }
+    .footer-social { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--muted); text-decoration: none; transition: border-color 0.2s, color 0.2s; }
     .footer-social:hover { border-color: var(--accent); color: var(--accent); }
     .footer-social svg { width: 16px; height: 16px; }
-    .footer-col h4 {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #fff;
-      margin-bottom: 1.25rem;
-    }
-    .footer-links {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-    .footer-links a {
-      font-size: 0.875rem;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
+    .footer-col h4 { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: #fff; margin-bottom: 1.25rem; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-links a { font-size: 0.875rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .footer-links a:hover { color: #fff; }
-    .footer-contact-items {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-    .footer-contact-items a {
-      font-size: 0.875rem;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
+    .footer-contact-items { display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-contact-items a { font-size: 0.875rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .footer-contact-items a:hover { color: #fff; }
-    .footer-contact-items p {
-      font-size: 0.875rem;
-      color: var(--muted);
-    }
-    .system-status {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-top: 1.25rem;
-    }
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--accent);
-      border-radius: 50%;
-      animation: pulse 2s ease-in-out infinite;
-    }
-    .system-status span {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-    }
-    .footer-bottom {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 1.5rem;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .footer-bottom p {
-      font-size: 0.78rem;
-      color: rgba(161,161,170,0.5);
-    }
+    .footer-contact-items p { font-size: 0.875rem; color: var(--muted); }
+    .system-status { display: flex; align-items: center; gap: 0.5rem; margin-top: 1.25rem; }
+    .status-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+    .system-status span { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted); }
+    .footer-bottom { max-width: 1100px; margin: 0 auto; padding: 1.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .footer-bottom p { font-size: 0.78rem; color: rgba(161,161,170,0.5); }
 
-    /* ── SCROLL ANIMATIONS ── */
-    .sr {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .sr.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .sr { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .sr.visible { opacity: 1; transform: translateY(0); }
     .sr-delay-1 { transition-delay: 0.1s; }
     .sr-delay-2 { transition-delay: 0.2s; }
     .sr-delay-3 { transition-delay: 0.3s; }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
-      .problem-cards { grid-template-columns: 1fr; }
+      .problem-cards { grid-template-columns: 1fr; gap: 0.875rem; }
+      .problem-card { padding: 1.35rem; }
       .portfolio-screen { height: 240px; }
       .grow-row, .grow-row.reverse { flex-direction: column; gap: 2.5rem; }
       .grow-text p { max-width: 100%; }
@@ -1256,13 +310,8 @@
       .reality-grid { grid-template-columns: 1fr; }
       .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
       .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
-      /* Hero 3D — reduce opacity on mobile so text stays crisp */
       #inv-hero-3d { opacity: 0.3; }
-      /* Hero — tighter top padding on small screens */
       .hero { padding: 6rem 1.25rem 2.5rem; }
-      /* Problem cards — full width single column with smaller gap */
-      .problem-cards { gap: 0.875rem; }
-      .problem-card { padding: 1.35rem; }
     }
     @media (min-width: 769px) and (max-width: 1024px) {
       .problem-cards { grid-template-columns: repeat(2, 1fr); }
@@ -1271,284 +320,63 @@
       .reality-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
-    /* Tess widget styles are self-contained in tess-widget.js */
-
     /* ── PRELOADER ── */
-    #preloader {
-      position: fixed;
-      inset: 0;
-      z-index: 99999;
-      background: #0A0A0A;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
-                  visibility 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    #preloader.done {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    /* Logo animation stage — centred, fills most of screen */
-    #pre-logo-stage {
-      flex: 1;
-      width: 100%;
-      position: relative;
-      overflow: hidden;
-    }
-    #pre-logo-scene {
-      position: absolute;
-      inset: 0;
-      perspective: 900px;
-      perspective-origin: 50% 48%;
-    }
-    #pre-logo-group {
-      position: absolute;
-      left: 50%; top: 50%;
-      transform-style: preserve-3d;
-    }
-    #pre-logo-glow {
-      position: absolute; inset: 0;
-      pointer-events: none; opacity: 0;
-      background: radial-gradient(ellipse 55% 45% at 50% 48%, rgba(200,245,62,.28) 0%, transparent 100%);
-    }
-    /* Bottom bar hidden */
-    .pre-inner--bar { display: none; }
-    .pre-tagline, .pre-bar-track, .pre-bar, .pre-percent { display: none; }
-    .pre-tagline {
-      font-family: 'Space Mono', monospace;
-      font-size: clamp(0.55rem, 1.5vw, 0.68rem);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(161, 161, 170, 0.5);
-      opacity: 0;
-      animation: preFadeIn 0.5s ease 0.3s forwards;
-    }
-    @keyframes preFadeIn {
-      to { opacity: 1; }
-    }
-    .pre-bar-track {
-      width: min(240px, 55vw);
-      height: 2px;
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 9999px;
-      overflow: hidden;
-      opacity: 0;
-      animation: preFadeIn 0.4s ease 0.4s forwards;
-    }
-    .pre-bar {
-      height: 100%;
-      width: 0%;
-      background: #C8F53E;
-      border-radius: 9999px;
-      box-shadow: 0 0 10px rgba(200, 245, 62, 0.6);
-      transition: width 0.04s linear;
-    }
-    .pre-percent {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      color: rgba(200, 245, 62, 0.5);
-      opacity: 0;
-      animation: preFadeIn 0.4s ease 0.45s forwards;
-    }
-    /* Piece classes */
+    #preloader { position: fixed; inset: 0; z-index: 99999; background: #0A0A0A; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), visibility 0.7s cubic-bezier(0.4,0,0.2,1); }
+    #preloader.done { opacity: 0; visibility: hidden; pointer-events: none; }
+    #pre-logo-stage { flex: 1; width: 100%; position: relative; overflow: hidden; }
+    #pre-logo-scene { position: absolute; inset: 0; perspective: 900px; perspective-origin: 50% 48%; }
+    #pre-logo-group { position: absolute; left: 50%; top: 50%; transform-style: preserve-3d; }
+    #pre-logo-glow { position: absolute; inset: 0; pointer-events: none; opacity: 0; background: radial-gradient(ellipse 55% 45% at 50% 48%, rgba(200,245,62,.28) 0%, transparent 100%); }
     .plp { position: absolute; transform-style: preserve-3d; }
-    .pl-tile {
-      border-radius: 16px;
-      background: linear-gradient(148deg,#dcff68 0%,#C8F53E 46%,#a6cc28 84%,#8cb418 100%);
-      box-shadow: 0 0 40px rgba(200,245,62,.55),
-        inset 0 1.5px 0 rgba(255,255,255,.38),
-        inset 0 -3px 8px rgba(0,0,0,.22);
-    }
-    .pl-line {
-      height: 9px; border-radius: 4px;
-      background: linear-gradient(180deg,#1c1c1c 0%,#080808 100%);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.09);
-    }
-    .pl-invitt {
-      font-family: 'Bebas Neue', sans-serif;
-      font-weight: 900;
-      color: #fff; white-space: nowrap;
-      letter-spacing: .16em;
-      text-shadow: 0 0 40px rgba(255,255,255,.5);
-      line-height: 1;
-    }
-    .pl-co {
-      font-family: 'Space Mono', monospace;
-      color: #C8F53E;
-      letter-spacing: .72em;
-      text-shadow: 0 0 20px rgba(200,245,62,.75);
-    }
-    .pl-streak {
-      position: absolute; left: 50%; top: 50%;
-      height: 1.5px; transform-origin: 0 50%;
-      opacity: 0; pointer-events: none; border-radius: 1px;
-    }
-  </style>
+    .pl-tile { border-radius: 16px; background: linear-gradient(148deg,#dcff68 0%,#C8F53E 46%,#a6cc28 84%,#8cb418 100%); box-shadow: 0 0 40px rgba(200,245,62,.55), inset 0 1.5px 0 rgba(255,255,255,.38), inset 0 -3px 8px rgba(0,0,0,.22); }
+    .pl-line { height: 9px; border-radius: 4px; background: linear-gradient(180deg,#1c1c1c 0%,#080808 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.09); }
+    .pl-invitt { font-family: 'Bebas Neue', sans-serif; font-weight: 900; color: #fff; white-space: nowrap; letter-spacing: .16em; text-shadow: 0 0 40px rgba(255,255,255,.5); line-height: 1; }
+    .pl-co { font-family: 'Space Mono', monospace; color: #C8F53E; letter-spacing: .72em; text-shadow: 0 0 20px rgba(200,245,62,.75); }
+    .pl-streak { position: absolute; left: 50%; top: 50%; height: 1.5px; transform-origin: 0 50%; opacity: 0; pointer-events: none; border-radius: 1px; }
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Invitt Co",
-  "url": "https://invitt.co.zw",
-  "description": "Harare's top-rated web design and digital marketing agency.",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://invitt.co.zw/?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
-}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Invitt Co | #1 Web Design & Digital Marketing Agency in Harare, Zimbabwe",
-  "url": "https://invitt.co.zw/",
-  "description": "Invitt Co is Harare's top-rated web design and digital marketing agency. We build high-converting websites, run Google Ads, and deliver SEO that gets Zimbabwe businesses found fast.",
-  "isPartOf": { "@type": "WebSite", "url": "https://invitt.co.zw" },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://invitt.co.zw/" }
-    ]
-  }
-}
-</script>
-  <!-- GSAP + ScrollTrigger -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-  <!-- Three.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-  <style>
     /* ── CUSTOM CURSOR ── */
     body { cursor: none; }
-    #inv-cursor {
-      position: fixed;
-      width: 10px; height: 10px;
-      background: var(--accent);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 99999;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 0 14px rgba(200,245,62,0.9), 0 0 28px rgba(200,245,62,0.4);
-      transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
-      will-change: left, top;
-    }
-    #inv-cursor-ring {
-      position: fixed;
-      width: 32px; height: 32px;
-      border: 1.5px solid rgba(200,245,62,0.4);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 99998;
-      transform: translate(-50%, -50%);
-      transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease;
-      will-change: left, top;
-    }
-    body:has(a:hover) #inv-cursor,
-    body:has(button:hover) #inv-cursor {
-      width: 18px; height: 18px;
-    }
-    body:has(a:hover) #inv-cursor-ring,
-    body:has(button:hover) #inv-cursor-ring {
-      width: 44px; height: 44px;
-      border-color: rgba(200,245,62,0.7);
-    }
-    @media (pointer: coarse) {
-      body { cursor: auto !important; }
-      #inv-cursor, #inv-cursor-ring { display: none !important; }
-    }
+    #inv-cursor { position: fixed; width: 10px; height: 10px; background: var(--accent); border-radius: 50%; pointer-events: none; z-index: 99999; transform: translate(-50%,-50%); box-shadow: 0 0 14px rgba(200,245,62,0.9), 0 0 28px rgba(200,245,62,0.4); transition: width 0.2s ease, height 0.2s ease; will-change: left, top; }
+    #inv-cursor-ring { position: fixed; width: 32px; height: 32px; border: 1.5px solid rgba(200,245,62,0.4); border-radius: 50%; pointer-events: none; z-index: 99998; transform: translate(-50%,-50%); transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease; will-change: left, top; }
+    body:has(a:hover) #inv-cursor, body:has(button:hover) #inv-cursor { width: 18px; height: 18px; }
+    body:has(a:hover) #inv-cursor-ring, body:has(button:hover) #inv-cursor-ring { width: 44px; height: 44px; border-color: rgba(200,245,62,0.7); }
+    @media (pointer: coarse) { body { cursor: auto !important; } #inv-cursor, #inv-cursor-ring { display: none !important; } }
 
-    /* ── THREE.JS CANVAS ── */
-    #inv-three-canvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    /* Make sure all content stays above canvas */
-    .noise-overlay,
-    .navbar,
-    #preloader,
-    .mobile-menu { z-index: 99999 !important; }
-
+    #inv-three-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+    .noise-overlay, .navbar, #preloader, .mobile-menu { z-index: 99999 !important; }
     nav.navbar { z-index: 10000 !important; }
+    .hero, .portfolio-section, .grow-section, .cta-block, .testimonials-section, .toolkit-section, .reality-section, footer { position: relative; z-index: 2; }
 
-    .hero,
-    .portfolio-section,
-    .grow-section,
-    .cta-block,
-    .testimonials-section,
-    .toolkit-section,
-    .reality-section,
-    footer { position: relative; z-index: 2; }
+    #inv-hero-3d { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; opacity: 0.55; }
 
-    /* ── HERO 3D OBJECT positioning ── */
-    #inv-hero-3d {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: 1;
-      opacity: 0.55;
-    }
-
-    /* ── GSAP HERO ENTRANCE — set initial hidden state ── */
-    .hero-headline,
-    .hero-sub,
-    .hero-label,
-    .problem-cards {
-      opacity: 0;
-      transform: translateY(40px);
-    }
-
-    /* ── ENHANCED SECTION REVEAL (works alongside existing .sr) ── */
-    .gsap-reveal {
-      opacity: 0;
-      transform: translateY(50px);
-    }
+    /*
+     * FIX #1: Hero elements DO NOT use .sr — they are animated exclusively by GSAP
+     * with a 2.1s delay (post-preloader). The IntersectionObserver fires immediately
+     * for in-viewport elements, which would set opacity:1 before GSAP runs and
+     * break the entrance animation. Initial state is set via gsap.set() in JS instead.
+     */
   </style>
 </head>
 <body>
 
-<!-- CUSTOM CURSOR -->
 <div id="inv-cursor" aria-hidden="true"></div>
 <div id="inv-cursor-ring" aria-hidden="true"></div>
-
-<!-- THREE.JS BACKGROUND CANVAS -->
 <canvas id="inv-three-canvas" aria-hidden="true"></canvas>
 
-<!-- PRELOADER -->
 <div id="preloader" aria-hidden="true">
-  <!-- 3D Logo Deconstruction Stage -->
   <div id="pre-logo-stage">
     <div id="pre-logo-scene">
       <div id="pre-logo-group"></div>
       <div id="pre-logo-glow"></div>
     </div>
   </div>
-  <!-- Bottom bar removed -->
 </div>
 
-<!-- NOISE OVERLAY -->
 <svg class="noise-overlay" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <filter id="noise">
-    <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"></feTurbulence>
-  </filter>
+  <filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"></feTurbulence></filter>
   <rect width="100%" height="100%" filter="url(#noise)"></rect>
 </svg>
 
-<!-- NAVBAR -->
 <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
   <a href="/" class="nav-logo" aria-label="Invitt Co Homepage">INVITT<span class="co">CO</span></a>
   <ul class="nav-links" role="list">
@@ -1563,7 +391,6 @@
   </button>
 </nav>
 
-<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
   <div class="mobile-menu-card">
     <div class="mobile-menu-header">
@@ -1582,19 +409,20 @@
   </div>
 </div>
 
-<!-- HERO -->
+<!--
+  FIX #1 (HTML): .sr / .sr-delay-* removed from hero inner elements.
+  GSAP controls their entrance with a 2.1s delay via gsap.set() + fromTo().
+-->
 <section class="hero" id="hero" aria-label="Invitt Co — Harare Web Design & Digital Marketing">
   <canvas id="inv-hero-3d" aria-hidden="true"></canvas>
   <div class="hero-content">
-    <h1 class="hero-headline sr">
+    <h1 class="hero-headline">
       Your Digital Growth System.<br>
       <span class="italic-accent">Results in 14 Days.</span>
     </h1>
-    <p class="hero-sub sr sr-delay-1">Custom websites, local SEO, and digital marketing built for Harare businesses ready to grow.</p>
-
-    <span class="hero-label sr sr-delay-2">What's holding your business back?</span>
-
-    <div class="problem-cards sr sr-delay-3">
+    <p class="hero-sub">Custom websites, local SEO, and digital marketing built for Harare businesses ready to grow.</p>
+    <span class="hero-label">What's holding your business back?</span>
+    <div class="problem-cards">
       <a class="problem-card" href="/services">
         <div class="problem-card-icon">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
@@ -1623,7 +451,6 @@
   </div>
 </section>
 
-<!-- PORTFOLIO CAROUSEL -->
 <div class="portfolio-section" aria-label="Client portfolio">
   <div class="portfolio-3d-wrap sr" id="portfolioWrap">
     <div class="portfolio-device" id="portfolioDevice">
@@ -1646,7 +473,6 @@
   <a href="/services#portfolio" class="btn-outline sr">View Our Full Portfolio →</a>
 </div>
 
-<!-- THREE WAYS TO GROW -->
 <section class="grow-section" aria-label="Our services">
   <div class="container">
     <div class="grow-header sr">
@@ -1654,9 +480,7 @@
       <h2 class="section-title">Three Ways to <span class="italic-accent">Grow.</span></h2>
       <p>One partner. One system. Built around your Harare business.</p>
     </div>
-
     <div class="grow-rows">
-      <!-- 01 Websites -->
       <div class="grow-row sr">
         <div class="grow-text">
           <span class="grow-num">01</span>
@@ -1666,18 +490,9 @@
         </div>
         <div class="grow-visual">
           <div class="stacked-cards">
-            <div class="stacked-card">
-              <span class="stacked-card-icon">▲</span>
-              <span class="stacked-card-label">Performance Optimisation</span>
-            </div>
-            <div class="stacked-card">
-              <span class="stacked-card-icon">●</span>
-              <span class="stacked-card-label">Responsive Engineering</span>
-            </div>
-            <div class="stacked-card">
-              <span class="stacked-card-icon">◆</span>
-              <span class="stacked-card-label">Conversion Architecture</span>
-            </div>
+            <div class="stacked-card"><span class="stacked-card-icon">▲</span><span class="stacked-card-label">Performance Optimisation</span></div>
+            <div class="stacked-card"><span class="stacked-card-icon">●</span><span class="stacked-card-label">Responsive Engineering</span></div>
+            <div class="stacked-card"><span class="stacked-card-icon">◆</span><span class="stacked-card-label">Conversion Architecture</span></div>
           </div>
           <div class="stacked-bar">
             <div class="stacked-bar-item"><div class="stacked-bar-fill" data-width="100"></div></div>
@@ -1686,8 +501,6 @@
           </div>
         </div>
       </div>
-
-      <!-- 02 Local SEO -->
       <div class="grow-row reverse sr">
         <div class="grow-text">
           <span class="grow-num">02</span>
@@ -1716,38 +529,22 @@
           </div>
         </div>
       </div>
-
-      <!-- 03 Hosting & Maintenance -->
       <div class="grow-row sr">
         <div class="grow-text">
           <span class="grow-num">03</span>
-          <h3>Hosting & Maintenance</h3>
+          <h3>Hosting &amp; Maintenance</h3>
           <p>Fast, reliable hosting with ongoing updates, security monitoring, and monthly reporting. Your site stays live, fast, and ranked — while you focus on your business.</p>
           <a class="grow-link" href="/contact">Get Hosting →</a>
         </div>
         <div class="grow-visual">
           <div class="hosting-visual">
-            <div class="hosting-visual-header">
-              <div class="live-dot"></div>
-              <span class="live-feed-label">System Status</span>
-            </div>
+            <div class="hosting-visual-header"><div class="live-dot"></div><span class="live-feed-label">System Status</span></div>
             <div class="hosting-stat-row">
-              <div class="hosting-stat">
-                <div class="hosting-stat-value">99%</div>
-                <div class="hosting-stat-label">Uptime</div>
-              </div>
-              <div class="hosting-stat">
-                <div class="hosting-stat-value">14</div>
-                <div class="hosting-stat-label">Day Guarantee</div>
-              </div>
-              <div class="hosting-stat">
-                <div class="hosting-stat-value">5★</div>
-                <div class="hosting-stat-label">Google Rating</div>
-              </div>
+              <div class="hosting-stat"><div class="hosting-stat-value">99%</div><div class="hosting-stat-label">Uptime</div></div>
+              <div class="hosting-stat"><div class="hosting-stat-value">14</div><div class="hosting-stat-label">Day Guarantee</div></div>
+              <div class="hosting-stat"><div class="hosting-stat-value">5★</div><div class="hosting-stat-label">Google Rating</div></div>
             </div>
-            <div class="hosting-uptime-bar">
-              <div class="hosting-uptime-fill"></div>
-            </div>
+            <div class="hosting-uptime-bar"><div class="hosting-uptime-fill"></div></div>
           </div>
         </div>
       </div>
@@ -1755,12 +552,8 @@
   </div>
 </section>
 
-<!-- CTA -->
-<div class="cta-block sr" aria-label="Get started CTA">
-  <a href="/contact" class="btn-primary">Get Started →</a>
-</div>
+<div class="cta-block sr" aria-label="Get started CTA"><a href="/contact" class="btn-primary">Get Started →</a></div>
 
-<!-- TESTIMONIALS -->
 <section class="testimonials-section" aria-label="Client testimonials">
   <div class="container">
     <div class="testimonials-header sr">
@@ -1768,113 +561,43 @@
       <h2 class="section-title">Trusted by <span class="italic-accent">Growing Businesses</span></h2>
       <p>Real results from real Harare business owners who chose to invest in their online presence.</p>
     </div>
-
     <div class="testimonials-grid">
       <div class="testimonial-card sr">
         <svg class="quote-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/></svg>
-        <div class="stars">
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </div>
+        <div class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
         <p class="testimonial-text">"Lennon built our website in under a week and it immediately started getting us calls. Professional, fast, and exactly what we needed. Best investment we've made for our business online."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">TM</div>
-          <div>
-            <div class="author-name">Tatenda M.</div>
-            <div class="author-role">Ala Mode Boreholes</div>
-          </div>
-        </div>
+        <div class="testimonial-author"><div class="author-avatar">TM</div><div><div class="author-name">Tatenda M.</div><div class="author-role">Ala Mode Boreholes</div></div></div>
       </div>
-
       <div class="testimonial-card sr sr-delay-1">
         <svg class="quote-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/></svg>
-        <div class="stars">
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </div>
+        <div class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
         <p class="testimonial-text">"Our site now ranks #1 on Google for our keywords in Harare. We went from zero online presence to getting 3–5 enquiries per week. Invitt Co delivered exactly what they promised."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">PN</div>
-          <div>
-            <div class="author-name">Peter N.</div>
-            <div class="author-role">Precision Boreholes</div>
-          </div>
-        </div>
+        <div class="testimonial-author"><div class="author-avatar">PN</div><div><div class="author-name">Peter N.</div><div class="author-role">Precision Boreholes</div></div></div>
       </div>
-
       <div class="testimonial-card sr sr-delay-2">
         <svg class="quote-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/></svg>
-        <div class="stars">
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </div>
+        <div class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
         <p class="testimonial-text">"I was sceptical at first but the results speak for themselves. Topiary Marketing now ranks on the first page for multiple keywords in Harare. Clean design, fast delivery, no nonsense."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">RN</div>
-          <div>
-            <div class="author-name">Rodwell N.</div>
-            <div class="author-role">Topiary Marketing</div>
-          </div>
-        </div>
+        <div class="testimonial-author"><div class="author-avatar">RN</div><div><div class="author-name">Rodwell N.</div><div class="author-role">Topiary Marketing</div></div></div>
       </div>
-
       <div class="testimonial-card sr sr-delay-3">
         <svg class="quote-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/></svg>
-        <div class="stars">
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </div>
+        <div class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
         <p class="testimonial-text">"Mwiwa Borehole Drilling's website now ranks well on Google. The process was smooth and Lennon was very responsive throughout. Highly recommend to any Harare business wanting to grow online."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">BM</div>
-          <div>
-            <div class="author-name">Brian M.</div>
-            <div class="author-role">Mwiwa Borehole Drilling</div>
-          </div>
-        </div>
+        <div class="testimonial-author"><div class="author-avatar">BM</div><div><div class="author-name">Brian M.</div><div class="author-role">Mwiwa Borehole Drilling</div></div></div>
       </div>
     </div>
-
-    <!-- Stats bar -->
     <div class="stats-bar sr">
-      <div class="stat-item">
-        <div class="stat-value">10+</div>
-        <div class="stat-label">Sites Launched</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value">5.0★</div>
-        <div class="stat-label">Google Rating</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value">14</div>
-        <div class="stat-label">Day Guarantee</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value">100%</div>
-        <div class="stat-label">On-Time Delivery</div>
-      </div>
+      <div class="stat-item"><div class="stat-value">10+</div><div class="stat-label">Sites Launched</div></div>
+      <div class="stat-item"><div class="stat-value">5.0★</div><div class="stat-label">Google Rating</div></div>
+      <div class="stat-item"><div class="stat-value">14</div><div class="stat-label">Day Guarantee</div></div>
+      <div class="stat-item"><div class="stat-value">100%</div><div class="stat-label">On-Time Delivery</div></div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<div class="cta-block sr">
-  <a href="/contact" class="btn-primary">Get Started →</a>
-</div>
+<div class="cta-block sr"><a href="/contact" class="btn-primary">Get Started →</a></div>
 
-<!-- BENTO TOOLKIT -->
 <section class="toolkit-section" aria-label="Services toolkit">
   <div class="container">
     <div class="toolkit-header sr">
@@ -1883,169 +606,72 @@
     </div>
     <div class="toolkit-grid">
       <div class="toolkit-card span2 sr">
-        <div class="toolkit-card-header">
-          <div class="toolkit-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-          </div>
-        </div>
-        <h3>Custom Website</h3>
-        <p>Mobile-optimised, SEO-ready, and built to convert visitors into customers. Delivered and indexed on Google in 14 days.</p>
+        <div class="toolkit-card-header"><div class="toolkit-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></div></div>
+        <h3>Custom Website</h3><p>Mobile-optimised, SEO-ready, and built to convert visitors into customers. Delivered and indexed on Google in 14 days.</p>
       </div>
       <div class="toolkit-card sr sr-delay-1">
-        <div class="toolkit-card-header">
-          <div class="toolkit-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
-        </div>
-        <h3>Local SEO System</h3>
-        <p>GBP setup, technical SEO, schema markup, and local citations — built to get your Harare business found.</p>
+        <div class="toolkit-card-header"><div class="toolkit-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></div></div>
+        <h3>Local SEO System</h3><p>GBP setup, technical SEO, schema markup, and local citations — built to get your Harare business found.</p>
       </div>
       <div class="toolkit-card sr">
-        <div class="toolkit-card-header">
-          <div class="toolkit-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          </div>
-        </div>
-        <h3>Google Ads Management</h3>
-        <p>Targeted ad campaigns that bring in real enquiries from Harare customers actively searching for your services.</p>
+        <div class="toolkit-card-header"><div class="toolkit-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div></div>
+        <h3>Google Ads Management</h3><p>Targeted ad campaigns that bring in real enquiries from Harare customers actively searching for your services.</p>
       </div>
       <div class="toolkit-card sr sr-delay-1">
-        <div class="toolkit-card-header">
-          <div class="toolkit-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
-          </div>
-        </div>
-        <h3>Review Automation</h3>
-        <p>Automated follow-ups that generate Google reviews from your happy customers on autopilot.</p>
+        <div class="toolkit-card-header"><div class="toolkit-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg></div></div>
+        <h3>Review Automation</h3><p>Automated follow-ups that generate Google reviews from your happy customers on autopilot.</p>
       </div>
       <div class="toolkit-card sr sr-delay-2">
-        <div class="toolkit-card-header">
-          <div class="toolkit-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-          </div>
-          <span class="toolkit-badge">Free</span>
-        </div>
-        <h3>Professional Business Email</h3>
-        <p>A branded email address (you@yourbusiness.co.zw) included with every website package.</p>
+        <div class="toolkit-card-header"><div class="toolkit-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div><span class="toolkit-badge">Free</span></div>
+        <h3>Professional Business Email</h3><p>A branded email address (you@yourbusiness.co.zw) included with every website package.</p>
       </div>
       <div class="toolkit-card sr">
-        <div class="toolkit-card-header">
-          <div class="toolkit-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-          </div>
-          <span class="toolkit-badge">Free</span>
-        </div>
-        <h3>Google Business Profile Setup</h3>
-        <p>Full GBP setup and optimisation so local Harare customers find you first on Google Maps.</p>
+        <div class="toolkit-card-header"><div class="toolkit-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><span class="toolkit-badge">Free</span></div>
+        <h3>Google Business Profile Setup</h3><p>Full GBP setup and optimisation so local Harare customers find you first on Google Maps.</p>
       </div>
       <div class="toolkit-card sr sr-delay-1">
-        <div class="toolkit-card-header">
-          <div class="toolkit-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-        </div>
-        <h3>Website Hosting & Maintenance</h3>
-        <p>Fast, reliable hosting with monthly updates, backups, and security monitoring — keeping your site live and ranked.</p>
+        <div class="toolkit-card-header"><div class="toolkit-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div></div>
+        <h3>Website Hosting &amp; Maintenance</h3><p>Fast, reliable hosting with monthly updates, backups, and security monitoring — keeping your site live and ranked.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- REALITY CHECK -->
 <section class="reality-section" aria-label="Reality check — cost of inaction">
   <div class="container">
     <div class="reality-header">
-      <div class="reality-badge sr">
-        <div class="reality-badge-dot"></div>
-        <span>Reality Check</span>
-      </div>
+      <div class="reality-badge sr"><div class="reality-badge-dot"></div><span>Reality Check</span></div>
       <h2 class="reality-title sr">Every Day You're Invisible Online<br><span class="red-italic">Is Costing You Clients</span></h2>
       <p class="sr">While you're waiting, your competitors are capturing leads, booking jobs, and building credibility online. Here's what you're actually losing:</p>
     </div>
-
     <div class="reality-grid">
-      <div class="reality-card sr">
-        <span class="reality-stat-badge">97%</span>
-        <div class="reality-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
-        </div>
-        <h3>97% of Customers Search Online First</h3>
-        <p>If you're not on Google, you don't exist to nearly all potential customers searching for your services in Harare right now.</p>
-      </div>
-      <div class="reality-card sr sr-delay-1">
-        <span class="reality-stat-badge">$0</span>
-        <div class="reality-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        </div>
-        <h3>Every Missed Enquiry Is a Missed Payment</h3>
-        <p>Every day without a professional online presence is revenue going directly to a competitor who has one.</p>
-      </div>
-      <div class="reality-card sr sr-delay-2">
-        <span class="reality-stat-badge">75%</span>
-        <div class="reality-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="m2 2 20 20M5 5a1 1 0 0 0-1 1v7c0 5 3.5 7.5 7.67 8.94a1 1 0 0 0 .67.01c2.35-.82 4.48-1.97 5.9-3.71"/></svg>
-        </div>
-        <h3>A Weak Online Presence Kills Credibility</h3>
-        <p>75% of consumers judge a business's credibility by its online presence. No website or weak SEO signals you're not serious.</p>
-      </div>
-      <div class="reality-card sr">
-        <span class="reality-stat-badge">14d</span>
-        <div class="reality-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        </div>
-        <h3>Your Site Can Be Live in 14 Days</h3>
-        <p>From brief to live, indexed on Google, and bringing in enquiries — in just 14 days. No other agency in Harare offers this guarantee.</p>
-      </div>
-      <div class="reality-card sr sr-delay-1">
-        <span class="reality-stat-badge">3x</span>
-        <div class="reality-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-        </div>
-        <h3>3x More Visibility With Proper SEO</h3>
-        <p>Businesses with proper local SEO get 3x more Google impressions. Without it, you're invisible to clients searching near you.</p>
-      </div>
-      <div class="reality-card sr sr-delay-2">
-        <span class="reality-stat-badge">Free</span>
-        <div class="reality-card-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        </div>
-        <h3>Free Consultation — No Commitment</h3>
-        <p>Talk to us today. We'll audit your online presence for free and show you exactly what's holding your business back.</p>
-      </div>
+      <div class="reality-card sr"><span class="reality-stat-badge">97%</span><div class="reality-card-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg></div><h3>97% of Customers Search Online First</h3><p>If you're not on Google, you don't exist to nearly all potential customers searching for your services in Harare right now.</p></div>
+      <div class="reality-card sr sr-delay-1"><span class="reality-stat-badge">$0</span><div class="reality-card-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h3>Every Missed Enquiry Is a Missed Payment</h3><p>Every day without a professional online presence is revenue going directly to a competitor who has one.</p></div>
+      <div class="reality-card sr sr-delay-2"><span class="reality-stat-badge">75%</span><div class="reality-card-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="m2 2 20 20M5 5a1 1 0 0 0-1 1v7c0 5 3.5 7.5 7.67 8.94a1 1 0 0 0 .67.01c2.35-.82 4.48-1.97 5.9-3.71"/></svg></div><h3>A Weak Online Presence Kills Credibility</h3><p>75% of consumers judge a business's credibility by its online presence. No website or weak SEO signals you're not serious.</p></div>
+      <div class="reality-card sr"><span class="reality-stat-badge">14d</span><div class="reality-card-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><h3>Your Site Can Be Live in 14 Days</h3><p>From brief to live, indexed on Google, and bringing in enquiries — in just 14 days. No other agency in Harare offers this guarantee.</p></div>
+      <div class="reality-card sr sr-delay-1"><span class="reality-stat-badge">3x</span><div class="reality-card-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div><h3>3x More Visibility With Proper SEO</h3><p>Businesses with proper local SEO get 3x more Google impressions. Without it, you're invisible to clients searching near you.</p></div>
+      <div class="reality-card sr sr-delay-2"><span class="reality-stat-badge">Free</span><div class="reality-card-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h3>Free Consultation — No Commitment</h3><p>Talk to us today. We'll audit your online presence for free and show you exactly what's holding your business back.</p></div>
     </div>
-
-    <div class="reality-cta sr">
-      <p>Stop leaving clients on the table. Get the system that works as hard as you do.</p>
-      <a href="/contact" class="btn-red">Get Started →</a>
-    </div>
+    <div class="reality-cta sr"><p>Stop leaving clients on the table. Get the system that works as hard as you do.</p><a href="/contact" class="btn-red">Get Started →</a></div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer role="contentinfo">
   <div class="footer-inner">
     <div>
       <span class="footer-brand-name">INVITT<span class="co">CO</span></span>
       <p class="footer-tagline">Harare's results-driven web design and digital marketing agency. We build websites and run SEO that gets Zimbabwe businesses found fast.</p>
       <div class="footer-socials">
-        <a href="https://www.instagram.com/invitt_co" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Instagram">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-        </a>
-        <a href="https://www.linkedin.com/in/lennon-nyamajiwa" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="LinkedIn">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
-        <a href="https://wa.me/263787412809" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="WhatsApp">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-        </a>
+        <a href="https://www.instagram.com/invitt_co" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
+        <a href="https://www.linkedin.com/in/lennon-nyamajiwa" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="https://wa.me/263787412809" target="_blank" rel="noopener noreferrer" class="footer-social" aria-label="WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
       </div>
     </div>
     <nav aria-label="Footer navigation">
       <h4>Navigation</h4>
       <ul class="footer-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/services">Websites</a></li>
-        <li><a href="/seo">Local SEO</a></li>
-        <li><a href="/about">About</a></li>
+        <li><a href="/">Home</a></li><li><a href="/services">Websites</a></li>
+        <li><a href="/seo">Local SEO</a></li><li><a href="/about">About</a></li>
         <li><a href="/contact">Contact</a></li>
       </ul>
     </nav>
@@ -2056,10 +682,7 @@
         <a href="https://wa.me/263787412809">+263 787 412 809</a>
         <p>Harare, Zimbabwe</p>
       </div>
-      <div class="system-status">
-        <div class="status-dot"></div>
-        <span>System Operational</span>
-      </div>
+      <div class="system-status"><div class="status-dot"></div><span>System Operational</span></div>
     </div>
   </div>
   <div class="footer-bottom">
@@ -2068,760 +691,369 @@
   </div>
 </footer>
 
-<!-- SCHEMA MARKUP -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Invitt Co",
-  "description": "Invitt Co is Harare's top-rated web design and digital marketing agency. We build high-converting websites, run Google Ads, and deliver SEO that gets Zimbabwe businesses found fast.",
-  "url": "https://invitt.co.zw",
-  "telephone": "+263787412809",
-  "email": "lennnyamajiwa@gmail.com",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Harare",
-    "addressCountry": "ZW"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": -17.827462,
-    "longitude": 31.046343
-  },
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-    "opens": "08:00",
-    "closes": "18:00"
-  },
-  "priceRange": "$$",
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "reviewCount": "6",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
-  "sameAs": [
-    "https://www.instagram.com/invitt_co",
-    "https://www.linkedin.com/in/lennon-nyamajiwa"
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Invitt Co","description":"Invitt Co is Harare's top-rated web design and digital marketing agency.","url":"https://invitt.co.zw","telephone":"+263787412809","email":"lennnyamajiwa@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Harare","addressCountry":"ZW"},"geo":{"@type":"GeoCoordinates","latitude":-17.827462,"longitude":31.046343},"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"08:00","closes":"18:00"},"priceRange":"$$","aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"6","bestRating":"5","worstRating":"1"},"sameAs":["https://www.instagram.com/invitt_co","https://www.linkedin.com/in/lennon-nyamajiwa"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much does web design cost in Harare, Zimbabwe?","acceptedAnswer":{"@type":"Answer","text":"At Invitt Co, web design packages start at $299 for the Starter plan. The Growth plan is $499 and the Authority plan is $850. All packages include free hosting."}},{"@type":"Question","name":"Does Invitt Co do SEO in Zimbabwe?","acceptedAnswer":{"@type":"Answer","text":"Yes. Invitt Co provides full SEO services for Zimbabwe businesses, including keyword research, on-page optimisation, Google Business Profile setup, and local SEO."}},{"@type":"Question","name":"How long does it take to build a website in Harare?","acceptedAnswer":{"@type":"Answer","text":"Invitt Co guarantees your website is live and indexed on Google within 14 days of you delivering your content."}},{"@type":"Question","name":"Who is the best web designer in Harare?","acceptedAnswer":{"@type":"Answer","text":"Invitt Co is consistently rated the best web designer in Harare — 5.0 Google rating, a 14-day live guarantee, and founder Lennon Nyamajiwa leads every project personally."}},{"@type":"Question","name":"Where is Invitt Co located?","acceptedAnswer":{"@type":"Answer","text":"Invitt Co is based in Harare, Zimbabwe. Reach us on WhatsApp at +263 787 412 809."}}]}</script>
 
-<script type="application/ld+json">
-{
-  "@type": "FAQPage",
-  "@context": "https://schema.org",
-  "mainEntity": [
-    {"@type":"Question","name":"How much does web design cost in Harare, Zimbabwe?","acceptedAnswer":{"@type":"Answer","text":"At Invitt Co, web design packages start at $299 for the Starter plan. The Growth plan is $499 and the Authority plan is $850. All packages include free hosting. Contact us on WhatsApp at +263 787 412 809."}},
-    {"@type":"Question","name":"Does Invitt Co do SEO in Zimbabwe?","acceptedAnswer":{"@type":"Answer","text":"Yes. Invitt Co provides full SEO services for Zimbabwe businesses, including keyword research, on-page optimisation, Google Business Profile setup, and local SEO to help you rank on Google."}},
-    {"@type":"Question","name":"How long does it take to build a website in Harare?","acceptedAnswer":{"@type":"Answer","text":"Invitt Co guarantees your website is live and indexed on Google within 14 days of you delivering your content. No other web design agency in Harare offers this guarantee."}},
-    {"@type":"Question","name":"Who is the best web designer in Harare?","acceptedAnswer":{"@type":"Answer","text":"Invitt Co is consistently rated the best web designer in Harare — 5.0 Google rating, a 14-day live guarantee, and founder Lennon Nyamajiwa leads every project personally."}},
-    {"@type":"Question","name":"Where is Invitt Co located?","acceptedAnswer":{"@type":"Answer","text":"Invitt Co is based in Harare, Zimbabwe. We serve clients across Harare and the whole of Zimbabwe. Reach us on WhatsApp at +263 787 412 809."}}
-  ]
-}
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-<!-- Tess AI Receptionist Widget -->
 <script>
-  window.TESS_CONFIG = {
-    whatsappNumber: '+263787412809',
-    backendUrl: 'https://public-inspiration-household-going.trycloudflare.com',
-    calendlyUrl: 'https://calendly.com/lennnyamajiwa/30min'
-  };
+  window.TESS_CONFIG = { whatsappNumber: '+263787412809', backendUrl: 'https://public-inspiration-household-going.trycloudflare.com', calendlyUrl: 'https://calendly.com/lennnyamajiwa/30min' };
 </script>
 <script src="tess-widget.js"></script>
 
 <script>
-  // ── PRELOADER + 3D LOGO DECONSTRUCTION ──
-  (function () {
-    const loader = document.getElementById('preloader');
-    const bar    = document.getElementById('preBar');
-    const pct    = document.getElementById('prePercent');
-    if (!loader) return;
+// ══════════════════════════════════════════════
+// PRELOADER
+// ══════════════════════════════════════════════
+(function () {
+  const loader = document.getElementById('preloader');
+  if (!loader) return;
+  document.body.style.overflow = 'hidden';
 
-    // Lock scroll
-    document.body.style.overflow = 'hidden';
-
-    // ── Progress timer (drives duration only — bar UI removed) ──
-    let progress = 0;
-    const TICK = 35, DURATION = 1800;
-    const steps = DURATION / TICK, base = 100 / steps;
-    const timer = setInterval(() => {
-      progress = Math.min(progress + base + (Math.random() * base * 0.6), 100);
-      if (bar) bar.style.width = progress + '%';
-      if (pct) pct.textContent = Math.floor(progress) + '%';
-      if (progress >= 100) {
-        clearInterval(timer);
-        if (pct) pct.textContent = '100%';
-        setTimeout(() => {
-          loader.classList.add('done');
-          document.body.style.overflow = '';
-          loader.addEventListener('transitionend', () => loader.remove(), { once: true });
-        }, 350);
-      }
-    }, TICK);
-
-    // ── Logo deconstruction animation ──
-    const grp  = document.getElementById('pre-logo-group');
-    const glow = document.getElementById('pre-logo-glow');
-    const sc   = document.getElementById('pre-logo-scene');
-    if (!grp) return;
-
-    // Scale based on viewport
-    const S = Math.min(window.innerWidth, window.innerHeight) * 0.115;
-    const FS = Math.min(window.innerWidth * 0.09, 68);
-
-    function mk(cls, sty) {
-      const d = document.createElement('div');
-      d.className = 'plp ' + (cls||'');
-      if (sty) Object.assign(d.style, sty);
-      grp.appendChild(d);
-      return d;
+  let progress = 0;
+  const TICK = 35, DURATION = 1800, steps = DURATION / TICK, base = 100 / steps;
+  const timer = setInterval(() => {
+    progress = Math.min(progress + base + (Math.random() * base * 0.6), 100);
+    if (progress >= 100) {
+      clearInterval(timer);
+      setTimeout(() => {
+        loader.classList.add('done');
+        document.body.style.overflow = '';
+        loader.addEventListener('transitionend', () => loader.remove(), { once: true });
+      }, 350);
     }
-    const TW = S * 1.5, TH = S * 1.5;
-    const LW = S * 1.05, LH = 9;
-    const SW = S * 0.70;
-    const lT = mk('pl-tile', {width:TW+'px', height:TH+'px'});
-    const rT = mk('pl-tile', {width:TW+'px', height:TH+'px'});
-    const ll1 = mk('pl-line', {width:LW+'px'});
-    const ll2 = mk('pl-line', {width:LW+'px'});
-    const ll3 = mk('pl-line', {width:SW+'px'});
-    const rl1 = mk('pl-line', {width:LW+'px'});
-    const rl2 = mk('pl-line', {width:LW+'px'});
-    const rl3 = mk('pl-line', {width:SW+'px'});
-    const iT  = mk('pl-invitt', {fontSize:FS+'px'}); iT.textContent='INVITT';
-    const cT  = mk('pl-co',    {fontSize:(FS*0.34)+'px'}); cT.textContent='CO';
+  }, TICK);
 
-    const PC = [
-      {e:lT, x:-.86,y:.58,z:0,  w:TW,h:TH,pct:false},
-      {e:rT, x:.86, y:.58,z:0,  w:TW,h:TH,pct:false},
-      {e:ll1,x:-.86,y:.90,z:.15,w:LW,h:LH,pct:false},
-      {e:ll2,x:-.86,y:.66,z:.15,w:LW,h:LH,pct:false},
-      {e:ll3,x:-1.04,y:.42,z:.15,w:SW,h:LH,pct:false},
-      {e:rl1,x:.86, y:.90,z:.15,w:LW,h:LH,pct:false},
-      {e:rl2,x:.86, y:.66,z:.15,w:LW,h:LH,pct:false},
-      {e:rl3,x:.68, y:.42,z:.15,w:SW,h:LH,pct:false},
-      {e:iT, x:0,   y:-.80,z:0, w:0, h:0, pct:true},
-      {e:cT, x:0,   y:-1.24,z:0,w:0, h:0, pct:true},
-    ];
-    PC.forEach(p=>{
-      p.rtx = p.pct ? p.x*S : p.x*S - p.w/2;
-      p.rty = p.pct ? -p.y*S : -p.y*S - p.h/2;
-      p.rtz = p.z*S;
-    });
+  const grp = document.getElementById('pre-logo-group');
+  const glow = document.getElementById('pre-logo-glow');
+  const sc = document.getElementById('pre-logo-scene');
+  if (!grp) return;
 
-    const PI = Math.PI;
-    const EP = [
-      {x:-5,  y:3.8,z:3,  rx:.75*PI,ry:.55*PI,rz:.4},
-      {x:5,   y:3.8,z:3,  rx:-.75*PI,ry:.55*PI,rz:-.4},
-      {x:-6.2,y:1.2,z:4,  rx:PI,    ry:.6,    rz:.5*PI},
-      {x:-3.2,y:5.3,z:2,  rx:.5,    ry:.85*PI,rz:.3},
-      {x:-5.5,y:-2, z:3.5,rx:.5*PI, ry:.4,    rz:.7*PI},
-      {x:6.2, y:1.2,z:4,  rx:-PI,   ry:-.6,   rz:-.5*PI},
-      {x:3.2, y:5.3,z:2,  rx:-.5,   ry:.85*PI,rz:-.3},
-      {x:5.5, y:-2, z:3.5,rx:-.5*PI,ry:-.4,   rz:-.7*PI},
-      {x:0,   y:-5.5,z:2.5,rx:.5*PI,ry:0,     rz:PI},
-      {x:3,   y:-6, z:2,  rx:.4,    ry:PI,    rz:.9},
-    ];
-    const skC=['rgba(200,245,62,.95)','rgba(200,245,62,.95)','rgba(255,255,255,.9)'];
-    const sks=[];
-    for(let i=0;i<8;i++){
-      const d=document.createElement('div');
-      d.className='pl-streak';
-      const a=(i/8)*360, len=80+Math.floor(Math.random()*100);
-      d.style.cssText=`width:${len}px;transform:rotate(${a}deg) translate(4px,-50%);background:linear-gradient(to right,${skC[i%3]},transparent);`;
-      sc.appendChild(d);
-      sks.push({d,ph:i/8});
-    }
+  const S = Math.min(window.innerWidth, window.innerHeight) * 0.115;
+  const FS = Math.min(window.innerWidth * 0.09, 68);
 
-    const cl=x=>Math.max(0,Math.min(1,x));
-    const eIn=t=>t*t*t;
-    const eEl=t=>{if(t<=0)return 0;if(t>=1)return 1;return Math.pow(2,-10*t)*Math.sin((t*10-.75)*(2*PI/3))+1;};
-    const lr=(a,b,t)=>a+(b-a)*t;
-    function sp(p,tx,ty,tz,rx,ry,rz){
-      const pre=p.pct?'translate(-50%,-50%) ':'';
-      p.e.style.transform=`${pre}translate3d(${tx}px,${ty}px,${tz}px) rotateX(${rx}rad) rotateY(${ry}rad) rotateZ(${rz}rad)`;
-    }
+  function mk(cls, sty) {
+    const d = document.createElement('div');
+    d.className = 'plp ' + (cls || '');
+    if (sty) Object.assign(d.style, sty);
+    grp.appendChild(d);
+    return d;
+  }
+  const TW = S * 1.5, TH = S * 1.5, LW = S * 1.05, LH = 9, SW = S * 0.70;
+  const lT = mk('pl-tile', {width:TW+'px',height:TH+'px'});
+  const rT = mk('pl-tile', {width:TW+'px',height:TH+'px'});
+  const ll1 = mk('pl-line', {width:LW+'px'}), ll2 = mk('pl-line', {width:LW+'px'}), ll3 = mk('pl-line', {width:SW+'px'});
+  const rl1 = mk('pl-line', {width:LW+'px'}), rl2 = mk('pl-line', {width:LW+'px'}), rl3 = mk('pl-line', {width:SW+'px'});
+  const iT = mk('pl-invitt', {fontSize:FS+'px'}); iT.textContent = 'INVITT';
+  const cT = mk('pl-co', {fontSize:(FS*0.34)+'px'}); cT.textContent = 'CO';
 
-    // Longer loop so it plays well during the 1.8s load + pause
-    const LOOP=8.5,P1=.10,P2=.38,P3=.55,P4=.85;
-    let t0=null;
-    function tick(ts){
-      if(!document.getElementById('preloader'))return; // stop if preloader removed
-      requestAnimationFrame(tick);
-      if(!t0)t0=ts;
-      const et=(ts-t0)*.001, t=(et%LOOP)/LOOP;
-      PC.forEach((p,i)=>{
-        const dO=i*.028,dI=i*.022,ep=EP[i];
-        const ex=p.pct?ep.x*S:ep.x*S-p.w/2;
-        const ey=p.pct?-ep.y*S:-ep.y*S-p.h/2;
-        const ez=ep.z*S;
-        if(t<P1){sp(p,p.rtx,p.rty,p.rtz,0,0,0);}
-        else if(t<P2){const s=cl(((t-P1)/(P2-P1)-dO)/.72),ef=eIn(s);sp(p,lr(p.rtx,ex,ef),lr(p.rty,ey,ef),lr(p.rtz,ez,ef),ep.rx*ef,ep.ry*ef,ep.rz*ef);}
-        else if(t<P3){const ft=(t-P2)/(P3-P2);sp(p,ex,ey+Math.sin(ft*PI*2+i*1.4)*16,ez,ep.rx+ft*.45,ep.ry,ep.rz+ft*.25*(i%2?-1:1));}
-        else if(t<P4){const s=cl(((t-P3)/(P4-P3)-dI)/.72),ef=eEl(s);sp(p,lr(ex,p.rtx,ef),lr(ey,p.rty,ef),lr(ez,p.rtz,ef),ep.rx*(1-ef),ep.ry*(1-ef),ep.rz*(1-ef));}
-        else{sp(p,p.rtx,p.rty,p.rtz,0,0,0);}
-      });
-      const gY=Math.sin(et*.55)*.3, gX=Math.sin(et*.38)*.1;
-      if(t<P1){grp.style.transform=`rotateX(${gX}rad) rotateY(${gY}rad)`;}
-      else if(t<P2){const f=1-(t-P1)/(P2-P1);grp.style.transform=`rotateX(${gX*f}rad) rotateY(${gY*f}rad)`;}
-      else if(t<=P4){grp.style.transform='rotateX(0rad) rotateY(0rad)';}
-      else{const f=(t-P4)/(1-P4),bf=f<.5?2*f*f:1-Math.pow(-2*f+2,2)/2;grp.style.transform=`rotateX(${gX*bf}rad) rotateY(${gY*bf}rad)`;}
-      if(t>P4){
-        const gt=(t-P4)/(1-P4);
-        glow.style.opacity=Math.sin(gt*PI)*.9;
-        sks.forEach(s=>{const st=cl((gt-s.ph*.28)*4.5);s.d.style.opacity=st>0&&st<1?Math.sin(st*PI):.0;});
-      }else{glow.style.opacity=0;sks.forEach(s=>s.d.style.opacity=0);}
-    }
+  const PC = [
+    {e:lT,x:-.86,y:.58,z:0,w:TW,h:TH,pct:false},{e:rT,x:.86,y:.58,z:0,w:TW,h:TH,pct:false},
+    {e:ll1,x:-.86,y:.90,z:.15,w:LW,h:LH,pct:false},{e:ll2,x:-.86,y:.66,z:.15,w:LW,h:LH,pct:false},
+    {e:ll3,x:-1.04,y:.42,z:.15,w:SW,h:LH,pct:false},{e:rl1,x:.86,y:.90,z:.15,w:LW,h:LH,pct:false},
+    {e:rl2,x:.86,y:.66,z:.15,w:LW,h:LH,pct:false},{e:rl3,x:.68,y:.42,z:.15,w:SW,h:LH,pct:false},
+    {e:iT,x:0,y:-.80,z:0,w:0,h:0,pct:true},{e:cT,x:0,y:-1.24,z:0,w:0,h:0,pct:true},
+  ];
+  PC.forEach(p => { p.rtx = p.pct ? p.x*S : p.x*S - p.w/2; p.rty = p.pct ? -p.y*S : -p.y*S - p.h/2; p.rtz = p.z*S; });
+
+  const PI = Math.PI;
+  const EP = [
+    {x:-5,y:3.8,z:3,rx:.75*PI,ry:.55*PI,rz:.4},{x:5,y:3.8,z:3,rx:-.75*PI,ry:.55*PI,rz:-.4},
+    {x:-6.2,y:1.2,z:4,rx:PI,ry:.6,rz:.5*PI},{x:-3.2,y:5.3,z:2,rx:.5,ry:.85*PI,rz:.3},
+    {x:-5.5,y:-2,z:3.5,rx:.5*PI,ry:.4,rz:.7*PI},{x:6.2,y:1.2,z:4,rx:-PI,ry:-.6,rz:-.5*PI},
+    {x:3.2,y:5.3,z:2,rx:-.5,ry:.85*PI,rz:-.3},{x:5.5,y:-2,z:3.5,rx:-.5*PI,ry:-.4,rz:-.7*PI},
+    {x:0,y:-5.5,z:2.5,rx:.5*PI,ry:0,rz:PI},{x:3,y:-6,z:2,rx:.4,ry:PI,rz:.9},
+  ];
+  const skC = ['rgba(200,245,62,.95)','rgba(200,245,62,.95)','rgba(255,255,255,.9)'];
+  const sks = [];
+  for (let i = 0; i < 8; i++) {
+    const d = document.createElement('div');
+    d.className = 'pl-streak';
+    const a = (i/8)*360, len = 80 + Math.floor(Math.random()*100);
+    d.style.cssText = `width:${len}px;transform:rotate(${a}deg) translate(4px,-50%);background:linear-gradient(to right,${skC[i%3]},transparent);`;
+    sc.appendChild(d);
+    sks.push({d, ph: i/8});
+  }
+
+  const cl = x => Math.max(0, Math.min(1, x));
+  const eIn = t => t*t*t;
+  const eEl = t => { if(t<=0)return 0; if(t>=1)return 1; return Math.pow(2,-10*t)*Math.sin((t*10-.75)*(2*PI/3))+1; };
+  const lr = (a,b,t) => a+(b-a)*t;
+  function sp(p,tx,ty,tz,rx,ry,rz) {
+    const pre = p.pct ? 'translate(-50%,-50%) ' : '';
+    p.e.style.transform = `${pre}translate3d(${tx}px,${ty}px,${tz}px) rotateX(${rx}rad) rotateY(${ry}rad) rotateZ(${rz}rad)`;
+  }
+
+  const LOOP=8.5,P1=.10,P2=.38,P3=.55,P4=.85;
+  let t0 = null;
+  function tick(ts) {
+    if (!document.getElementById('preloader')) return;
     requestAnimationFrame(tick);
-  })();
-
-  // ── NAVBAR SCROLL ──
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 50);
-  }, { passive: true });
-
-  // ── HAMBURGER ──
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const mobileClose = document.getElementById('mobileClose');
-  hamburger.addEventListener('click', () => {
-    const isOpen = mobileMenu.classList.toggle('open');
-    hamburger.classList.toggle('is-open', isOpen);
-    hamburger.setAttribute('aria-expanded', isOpen);
-  });
-  mobileClose.addEventListener('click', () => {
-    mobileMenu.classList.remove('open');
-    hamburger.classList.remove('is-open');
-    hamburger.setAttribute('aria-expanded', 'false');
-  });
-  mobileMenu.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => { mobileMenu.classList.remove('open'); hamburger.classList.remove('is-open'); });
-  });
-
-  // ── SCROLL REVEAL ──
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
+    if (!t0) t0 = ts;
+    const et = (ts-t0)*.001, t = (et%LOOP)/LOOP;
+    PC.forEach((p,i) => {
+      const dO=i*.028, dI=i*.022, ep=EP[i];
+      const ex=p.pct?ep.x*S:ep.x*S-p.w/2, ey=p.pct?-ep.y*S:-ep.y*S-p.h/2, ez=ep.z*S;
+      if(t<P1){sp(p,p.rtx,p.rty,p.rtz,0,0,0);}
+      else if(t<P2){const s=cl(((t-P1)/(P2-P1)-dO)/.72),ef=eIn(s);sp(p,lr(p.rtx,ex,ef),lr(p.rty,ey,ef),lr(p.rtz,ez,ef),ep.rx*ef,ep.ry*ef,ep.rz*ef);}
+      else if(t<P3){const ft=(t-P2)/(P3-P2);sp(p,ex,ey+Math.sin(ft*PI*2+i*1.4)*16,ez,ep.rx+ft*.45,ep.ry,ep.rz+ft*.25*(i%2?-1:1));}
+      else if(t<P4){const s=cl(((t-P3)/(P4-P3)-dI)/.72),ef=eEl(s);sp(p,lr(ex,p.rtx,ef),lr(ey,p.rty,ef),lr(ez,p.rtz,ef),ep.rx*(1-ef),ep.ry*(1-ef),ep.rz*(1-ef));}
+      else{sp(p,p.rtx,p.rty,p.rtz,0,0,0);}
     });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.sr').forEach(el => observer.observe(el));
-
-  // ── PORTFOLIO CAROUSEL ──
-  const slides = document.querySelectorAll('.portfolio-slide');
-  const dots = document.querySelectorAll('.portfolio-dot');
-  let current = 0;
-  let interval;
-
-  function goTo(index) {
-    slides[current].classList.remove('active');
-    dots[current].classList.remove('active');
-    current = (index + slides.length) % slides.length;
-    slides[current].classList.add('active');
-    dots[current].classList.add('active');
+    const gY=Math.sin(et*.55)*.3, gX=Math.sin(et*.38)*.1;
+    if(t<P1){grp.style.transform=`rotateX(${gX}rad) rotateY(${gY}rad)`;}
+    else if(t<P2){const f=1-(t-P1)/(P2-P1);grp.style.transform=`rotateX(${gX*f}rad) rotateY(${gY*f}rad)`;}
+    else if(t<=P4){grp.style.transform='rotateX(0rad) rotateY(0rad)';}
+    else{const f=(t-P4)/(1-P4),bf=f<.5?2*f*f:1-Math.pow(-2*f+2,2)/2;grp.style.transform=`rotateX(${gX*bf}rad) rotateY(${gY*bf}rad)`;}
+    if(t>P4){
+      const gt=(t-P4)/(1-P4);
+      glow.style.opacity=Math.sin(gt*PI)*.9;
+      sks.forEach(s=>{const st=cl((gt-s.ph*.28)*4.5);s.d.style.opacity=st>0&&st<1?Math.sin(st*PI):0;});
+    } else { glow.style.opacity=0; sks.forEach(s=>s.d.style.opacity=0); }
   }
+  requestAnimationFrame(tick);
+})();
 
-  function startAuto() {
-    interval = setInterval(() => goTo(current + 1), 3500);
+// ── NAVBAR ──
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); }, { passive: true });
+
+// ── HAMBURGER ──
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileClose = document.getElementById('mobileClose');
+hamburger.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.toggle('open');
+  hamburger.classList.toggle('is-open', isOpen);
+  hamburger.setAttribute('aria-expanded', isOpen);
+});
+mobileClose.addEventListener('click', () => { mobileMenu.classList.remove('open'); hamburger.classList.remove('is-open'); hamburger.setAttribute('aria-expanded','false'); });
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mobileMenu.classList.remove('open'); hamburger.classList.remove('is-open'); }));
+
+// ── SCROLL REVEAL (non-hero .sr elements only) ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.sr').forEach(el => observer.observe(el));
+
+// ── PORTFOLIO CAROUSEL ──
+const slides = document.querySelectorAll('.portfolio-slide');
+const dots = document.querySelectorAll('.portfolio-dot');
+let current = 0, interval;
+function goTo(index) {
+  slides[current].classList.remove('active'); dots[current].classList.remove('active');
+  current = (index + slides.length) % slides.length;
+  slides[current].classList.add('active'); dots[current].classList.add('active');
+}
+function startAuto() { interval = setInterval(() => goTo(current + 1), 3500); }
+function stopAuto() { clearInterval(interval); }
+document.querySelector('.portfolio-next').addEventListener('click', () => { stopAuto(); goTo(current + 1); startAuto(); });
+document.querySelector('.portfolio-prev').addEventListener('click', () => { stopAuto(); goTo(current - 1); startAuto(); });
+dots.forEach((dot, i) => dot.addEventListener('click', () => { stopAuto(); goTo(i); startAuto(); }));
+startAuto();
+
+// ── 3D DEVICE REVEAL ──
+const deviceObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) { document.getElementById('portfolioDevice').classList.add('revealed'); deviceObserver.unobserve(entry.target); } });
+}, { threshold: 0.3 });
+const portfolioWrap = document.getElementById('portfolioWrap');
+if (portfolioWrap) deviceObserver.observe(portfolioWrap);
+
+// ── CURSOR ──
+(function() {
+  const dot = document.getElementById('inv-cursor'), ring = document.getElementById('inv-cursor-ring');
+  if (!dot || !ring) return;
+  let mx = window.innerWidth/2, my = window.innerHeight/2, rx = mx, ry = my;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx+'px'; dot.style.top = my+'px'; }, { passive: true });
+  (function lerpRing() { rx += (mx-rx)*0.13; ry += (my-ry)*0.13; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(lerpRing); })();
+})();
+
+// ── THREE.JS ──
+(function() {
+  if (typeof THREE === 'undefined') return;
+  const bgCanvas = document.getElementById('inv-three-canvas');
+  const bgRenderer = new THREE.WebGLRenderer({ canvas: bgCanvas, antialias: false, alpha: true });
+  bgRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  bgRenderer.setSize(window.innerWidth, window.innerHeight);
+  bgRenderer.setClearColor(0x000000, 0);
+  const bgScene = new THREE.Scene();
+  const bgCamera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 1000);
+  bgCamera.position.z = 5;
+  const COUNT = 1800, pPos = new Float32Array(COUNT*3), pCol = new Float32Array(COUNT*3);
+  for (let i = 0; i < COUNT; i++) {
+    pPos[i*3] = (Math.random()-.5)*28; pPos[i*3+1] = (Math.random()-.5)*28; pPos[i*3+2] = (Math.random()-.5)*28;
+    if (Math.random() > 0.6) { pCol[i*3]=0.784; pCol[i*3+1]=0.957; pCol[i*3+2]=0.243; }
+    else { const g=0.2+Math.random()*0.3; pCol[i*3]=g; pCol[i*3+1]=g; pCol[i*3+2]=g; }
   }
-  function stopAuto() { clearInterval(interval); }
+  const pGeo = new THREE.BufferGeometry();
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+  pGeo.setAttribute('color', new THREE.BufferAttribute(pCol, 3));
+  const pMat = new THREE.PointsMaterial({ size:0.035, vertexColors:true, transparent:true, opacity:0.55, blending:THREE.AdditiveBlending, depthWrite:false });
+  const particles = new THREE.Points(pGeo, pMat);
+  bgScene.add(particles);
 
-  document.querySelector('.portfolio-next').addEventListener('click', () => { stopAuto(); goTo(current + 1); startAuto(); });
-  document.querySelector('.portfolio-prev').addEventListener('click', () => { stopAuto(); goTo(current - 1); startAuto(); });
-  dots.forEach((dot, i) => dot.addEventListener('click', () => { stopAuto(); goTo(i); startAuto(); }));
-  startAuto();
-
-  // ── 3D DEVICE REVEAL ON SCROLL ──
-  const deviceObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        document.getElementById('portfolioDevice').classList.add('revealed');
-        deviceObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.3 });
-  const portfolioWrap = document.getElementById('portfolioWrap');
-  if (portfolioWrap) deviceObserver.observe(portfolioWrap);
-
-  // ── STACKED BARS ANIMATION (CSS fallback) ──
-  const barObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.querySelectorAll('.stacked-bar-fill').forEach(fill => {
-          fill.style.width = fill.dataset.width + '%';
-        });
-        barObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('.stacked-bar').forEach(bar => barObserver.observe(bar));
-
-  // ── GSAP INTERACTIONS ── (runs after GSAP deferred scripts load)
-  window.addEventListener('load', () => {
-    if (typeof gsap === 'undefined') return;
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    // ─── 1. SCROLL-SYNCED CARD SWITCHER ───────────────────────
-    // Cards cycle as user scrolls: card 1 lifts off → card 2 becomes top → card 3 becomes top
-    const cards = gsap.utils.toArray('.stacked-card');
-    if (cards.length === 3) {
-      const cardStates = [
-        // [opacity, scale, translateY, zIndex]
-        { opacity: 1,    scale: 1,    y: 0,   zIndex: 3 },
-        { opacity: 0.55, scale: 0.93, y: 36,  zIndex: 2 },
-        { opacity: 0.25, scale: 0.86, y: 68,  zIndex: 1 },
-      ];
-
-      // Set initial state
-      cards.forEach((card, i) => {
-        gsap.set(card, { opacity: cardStates[i].opacity, scale: cardStates[i].scale, y: cardStates[i].y, zIndex: cardStates[i].zIndex });
-      });
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: '.stacked-cards',
-          start: 'top 65%',
-          end: 'bottom 20%',
-          scrub: 1.2,
-        }
-      });
-
-      // Step 1: card 0 exits up, cards 1+2 rise to new positions
-      tl.to(cards[0], { opacity: 0, scale: 0.88, y: -40, zIndex: 1, duration: 1 }, 0)
-        .to(cards[1], { opacity: 1,  scale: 1,    y: 0,   zIndex: 3, duration: 1 }, 0)
-        .to(cards[2], { opacity: 0.55, scale: 0.93, y: 36, zIndex: 2, duration: 1 }, 0)
-
-      // Step 2: card 1 exits up, card 2 rises to top
-        .to(cards[1], { opacity: 0, scale: 0.88, y: -40, zIndex: 1, duration: 1 }, 1.2)
-        .to(cards[2], { opacity: 1, scale: 1,    y: 0,   zIndex: 3, duration: 1 }, 1.2);
-    }
-
-    // ─── 2. LIVE FEED STAGGERED REVEAL ────────────────────────
-    const liveLines = gsap.utils.toArray('.live-line');
-    if (liveLines.length > 0) {
-      gsap.fromTo(liveLines,
-        { opacity: 0, x: -16 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.45,
-          stagger: 0.18,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: '.live-feed',
-            start: 'top 72%',
-            toggleActions: 'play none none none',
-          }
-        }
-      );
-    }
-
-    // ─── 3. UPTIME BAR SCROLL ANIMATION ───────────────────────
-    const uptimeFill = document.querySelector('.hosting-uptime-fill');
-    if (uptimeFill) {
-      gsap.fromTo(uptimeFill,
-        { width: '0%' },
-        {
-          width: '99%',
-          duration: 1.6,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.hosting-visual',
-            start: 'top 75%',
-            toggleActions: 'play none none none',
-          }
-        }
-      );
-    }
-
-    // ─── 4. MICRO-INTERACTION: grow-link arrow ─────────────────
-    document.querySelectorAll('.grow-link').forEach(link => {
-      const arrow = link.childNodes[link.childNodes.length - 1]; // text node has the arrow
-      link.addEventListener('mouseenter', () => {
-        gsap.to(link, { x: 5, duration: 0.25, ease: 'power2.out' });
-      });
-      link.addEventListener('mouseleave', () => {
-        gsap.to(link, { x: 0, duration: 0.3, ease: 'power2.inOut' });
-      });
-    });
-
-    // ─── 5. HOSTING STAT COUNTER ROLL-UP ──────────────────────
-    const statTrigger = document.querySelector('.hosting-stat-row');
-    if (statTrigger) {
-      ScrollTrigger.create({
-        trigger: statTrigger,
-        start: 'top 78%',
-        once: true,
-        onEnter: () => {
-          // Roll up the "99" and "14" values
-          const statValues = document.querySelectorAll('.hosting-stat-value');
-          const targets = [
-            { el: statValues[0], end: 99, suffix: '%' },
-            { el: statValues[1], end: 14, suffix: '' },
-          ];
-          targets.forEach(({ el, end, suffix }) => {
-            if (!el) return;
-            const obj = { val: 0 };
-            gsap.to(obj, {
-              val: end,
-              duration: 1.4,
-              ease: 'power2.out',
-              onUpdate: () => {
-                el.textContent = Math.round(obj.val) + suffix;
-              }
-            });
-          });
-        }
-      });
-    }
-
-    // ─── 6. STACKED BARS smooth fill (GSAP override) ──────────
-    document.querySelectorAll('.stacked-bar').forEach(bar => {
-      const fills = bar.querySelectorAll('.stacked-bar-fill');
-      ScrollTrigger.create({
-        trigger: bar,
-        start: 'top 80%',
-        once: true,
-        onEnter: () => {
-          fills.forEach(fill => {
-            gsap.fromTo(fill,
-              { width: '0%' },
-              { width: fill.dataset.width + '%', duration: 1.4, ease: 'power3.out', delay: 0.1 }
-            );
-          });
-        }
-      });
-    });
-
-  }); // end window load
-
-  // ══════════════════════════════════════════════════
-  // ── CUSTOM GLOWING CURSOR ──────────────────────────
-  // ══════════════════════════════════════════════════
-  (function() {
-    const dot  = document.getElementById('inv-cursor');
-    const ring = document.getElementById('inv-cursor-ring');
-    if (!dot || !ring) return;
-
-    let mx = window.innerWidth / 2, my = window.innerHeight / 2;
-    let rx = mx, ry = my;
-
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      dot.style.left = mx + 'px';
-      dot.style.top  = my + 'px';
-    }, { passive: true });
-
-    (function lerpRing() {
-      rx += (mx - rx) * 0.13;
-      ry += (my - ry) * 0.13;
-      ring.style.left = rx + 'px';
-      ring.style.top  = ry + 'px';
-      requestAnimationFrame(lerpRing);
-    })();
-  })();
-
-  // ══════════════════════════════════════════════════
-  // ── THREE.JS: PARTICLE BACKGROUND + 3D HERO OBJECT ─
-  // ══════════════════════════════════════════════════
-  (function() {
-    if (typeof THREE === 'undefined') return;
-
-    // ── 1. PARTICLE BACKGROUND (full-screen fixed canvas) ──
-    const bgCanvas   = document.getElementById('inv-three-canvas');
-    const bgRenderer = new THREE.WebGLRenderer({ canvas: bgCanvas, antialias: false, alpha: true });
-    bgRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  const heroCanvas = document.getElementById('inv-hero-3d');
+  const heroRenderer = new THREE.WebGLRenderer({ canvas: heroCanvas, antialias: true, alpha: true });
+  heroRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  heroRenderer.setClearColor(0x000000, 0);
+  function sizeHeroCanvas() { heroRenderer.setSize(heroCanvas.clientWidth, heroCanvas.clientHeight); }
+  sizeHeroCanvas();
+  const heroScene = new THREE.Scene();
+  // FIX #6: Guard against zero-dimension canvas (NaN aspect ratio crash)
+  const heroCamera = new THREE.PerspectiveCamera(55, (heroCanvas.clientWidth||1)/(heroCanvas.clientHeight||1), 0.1, 100);
+  heroCamera.position.z = 4.5;
+  const icoGeo = new THREE.TorusKnotGeometry(1.0, 0.32, 160, 24, 2, 3);
+  const icoMat = new THREE.MeshPhongMaterial({ color:0x1a1a1a, emissive:0x111111, specular:0xffffff, shininess:220, transparent:true, opacity:0.95 });
+  const icoMesh = new THREE.Mesh(icoGeo, icoMat); heroScene.add(icoMesh);
+  const wireGeo = new THREE.TorusKnotGeometry(1.02, 0.33, 80, 12, 2, 3);
+  const wireMat = new THREE.MeshBasicMaterial({ color:0xcccccc, wireframe:true, transparent:true, opacity:0.12 });
+  const wireMesh = new THREE.Mesh(wireGeo, wireMat); heroScene.add(wireMesh);
+  const ring1Geo = new THREE.TorusGeometry(1.95, 0.005, 16, 200);
+  const ring1Mat = new THREE.MeshBasicMaterial({ color:0xffffff, transparent:true, opacity:0.35 });
+  const ring1Mesh = new THREE.Mesh(ring1Geo, ring1Mat); ring1Mesh.rotation.x = Math.PI/2; heroScene.add(ring1Mesh);
+  const ring2Geo = new THREE.TorusGeometry(2.25, 0.003, 16, 200);
+  const ring2Mat = new THREE.MeshBasicMaterial({ color:0xaaaaaa, transparent:true, opacity:0.15 });
+  const ring2Mesh = new THREE.Mesh(ring2Geo, ring2Mat); ring2Mesh.rotation.x = Math.PI/3.5; heroScene.add(ring2Mesh);
+  heroScene.add(new THREE.AmbientLight(0x222222, 2));
+  const pl1 = new THREE.PointLight(0xffffff, 5, 12); pl1.position.set(3,3,3); heroScene.add(pl1);
+  const pl2 = new THREE.PointLight(0x8899aa, 2, 10); pl2.position.set(-3,-2,2); heroScene.add(pl2);
+  let targetX = 0, targetY = 0;
+  document.addEventListener('mousemove', e => { targetX=(e.clientX/window.innerWidth-.5)*.35; targetY=(e.clientY/window.innerHeight-.5)*.35; }, { passive: true });
+  let t = 0;
+  function animate() {
+    requestAnimationFrame(animate); t += 0.005;
+    particles.rotation.y += 0.00045; particles.rotation.x += 0.00018;
+    bgRenderer.render(bgScene, bgCamera);
+    icoMesh.rotation.x += 0.004; icoMesh.rotation.y += 0.007;
+    wireMesh.rotation.x += 0.004; wireMesh.rotation.y += 0.007;
+    ring1Mesh.rotation.z += 0.007; ring2Mesh.rotation.z -= 0.005; ring2Mesh.rotation.y += 0.002;
+    const s = 1 + Math.sin(t)*0.035; icoMesh.scale.setScalar(s); wireMesh.scale.setScalar(s);
+    heroScene.rotation.y += (targetX - heroScene.rotation.y)*0.05;
+    heroScene.rotation.x += (-targetY - heroScene.rotation.x)*0.05;
+    pl1.position.x = Math.cos(t)*4; pl1.position.z = Math.sin(t)*4;
+    heroRenderer.render(heroScene, heroCamera);
+  }
+  animate();
+  // FIX #6: Guard on resize too
+  window.addEventListener('resize', () => {
+    bgCamera.aspect = window.innerWidth/window.innerHeight; bgCamera.updateProjectionMatrix();
     bgRenderer.setSize(window.innerWidth, window.innerHeight);
-    bgRenderer.setClearColor(0x000000, 0);
+    const w = heroCanvas.clientWidth||1, h = heroCanvas.clientHeight||1;
+    heroCamera.aspect = w/h; heroCamera.updateProjectionMatrix(); sizeHeroCanvas();
+  }, { passive: true });
+})();
 
-    const bgScene  = new THREE.Scene();
-    const bgCamera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-    bgCamera.position.z = 5;
+// ══════════════════════════════════════════════
+// FIX #2: Single consolidated window load handler.
+// Previously split into two separate handlers causing:
+//   - Double gsap.registerPlugin(ScrollTrigger) call
+//   - Race conditions between animation blocks
+// FIX #3: barObserver (IntersectionObserver) removed — GSAP handles bars exclusively.
+// FIX #4: Hero uses fromTo() with explicit gsap.set() for reliable initial state.
+// FIX #5: Dead `arrow` variable removed from grow-link handler.
+// ══════════════════════════════════════════════
+window.addEventListener('load', () => {
+  if (typeof gsap === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
 
-    // Particles
-    const COUNT = 1800;
-    const pPos  = new Float32Array(COUNT * 3);
-    const pCol  = new Float32Array(COUNT * 3);
+  // FIX #1 + #4: Set initial hidden state for hero elements via GSAP (not CSS .sr)
+  gsap.set(['.hero-headline','.hero-sub','.hero-label','.problem-cards'], { opacity:0, y:40 });
 
-    for (let i = 0; i < COUNT; i++) {
-      pPos[i*3]   = (Math.random() - 0.5) * 28;
-      pPos[i*3+1] = (Math.random() - 0.5) * 28;
-      pPos[i*3+2] = (Math.random() - 0.5) * 28;
-      // Accent green (#C8F53E) or dim white
-      if (Math.random() > 0.6) {
-        pCol[i*3] = 0.784; pCol[i*3+1] = 0.957; pCol[i*3+2] = 0.243; // #C8F53E
-      } else {
-        const g = 0.2 + Math.random() * 0.3;
-        pCol[i*3] = g; pCol[i*3+1] = g; pCol[i*3+2] = g;
-      }
-    }
+  const heroTL = gsap.timeline({ delay: 2.1 });
+  heroTL
+    .fromTo('.hero-headline', { opacity:0, y:40 }, { opacity:1, y:0, duration:0.9, ease:'power3.out' }, 0)
+    .fromTo('.hero-sub',      { opacity:0, y:40 }, { opacity:1, y:0, duration:0.8, ease:'power3.out' }, 0.25)
+    .fromTo('.hero-label',    { opacity:0, y:40 }, { opacity:1, y:0, duration:0.7, ease:'power2.out' }, 0.45)
+    .fromTo('.problem-cards', { opacity:0, y:40 }, { opacity:1, y:0, duration:0.9, ease:'power3.out' }, 0.6);
 
-    const pGeo = new THREE.BufferGeometry();
-    pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
-    pGeo.setAttribute('color',    new THREE.BufferAttribute(pCol, 3));
+  // Stacked card switcher
+  const cards = gsap.utils.toArray('.stacked-card');
+  if (cards.length === 3) {
+    gsap.set(cards[0], { opacity:1, scale:1, y:0, zIndex:3 });
+    gsap.set(cards[1], { opacity:0.55, scale:0.93, y:36, zIndex:2 });
+    gsap.set(cards[2], { opacity:0.25, scale:0.86, y:68, zIndex:1 });
+    const tl = gsap.timeline({ scrollTrigger: { trigger:'.stacked-cards', start:'top 65%', end:'bottom 20%', scrub:1.2 } });
+    tl.to(cards[0], { opacity:0, scale:0.88, y:-40, zIndex:1, duration:1 }, 0)
+      .to(cards[1], { opacity:1, scale:1, y:0, zIndex:3, duration:1 }, 0)
+      .to(cards[2], { opacity:0.55, scale:0.93, y:36, zIndex:2, duration:1 }, 0)
+      .to(cards[1], { opacity:0, scale:0.88, y:-40, zIndex:1, duration:1 }, 1.2)
+      .to(cards[2], { opacity:1, scale:1, y:0, zIndex:3, duration:1 }, 1.2);
+  }
 
-    const pMat = new THREE.PointsMaterial({
-      size: 0.035,
-      vertexColors: true,
-      transparent: true,
-      opacity: 0.55,
-      blending: THREE.AdditiveBlending,
-      depthWrite: false
-    });
+  // Live feed reveal
+  const liveLines = gsap.utils.toArray('.live-line');
+  if (liveLines.length > 0) {
+    gsap.fromTo(liveLines, { opacity:0, x:-16 }, { opacity:1, x:0, duration:0.45, stagger:0.18, ease:'power2.out', scrollTrigger: { trigger:'.live-feed', start:'top 72%', toggleActions:'play none none none' } });
+  }
 
-    const particles = new THREE.Points(pGeo, pMat);
-    bgScene.add(particles);
+  // Uptime bar
+  const uptimeFill = document.querySelector('.hosting-uptime-fill');
+  if (uptimeFill) {
+    gsap.fromTo(uptimeFill, { width:'0%' }, { width:'99%', duration:1.6, ease:'power3.out', scrollTrigger: { trigger:'.hosting-visual', start:'top 75%', toggleActions:'play none none none' } });
+  }
 
-    // ── 2. HERO 3D OBJECT (separate canvas, right side of hero) ──
-    const heroCanvas   = document.getElementById('inv-hero-3d');
-    const heroRenderer = new THREE.WebGLRenderer({ canvas: heroCanvas, antialias: true, alpha: true });
-    heroRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    heroRenderer.setClearColor(0x000000, 0);
-    function sizeHeroCanvas() {
-      heroRenderer.setSize(heroCanvas.clientWidth, heroCanvas.clientHeight);
-    }
-    sizeHeroCanvas();
+  // FIX #5: Removed dead `arrow` variable — grow-link micro-interaction
+  document.querySelectorAll('.grow-link').forEach(link => {
+    link.addEventListener('mouseenter', () => gsap.to(link, { x:5, duration:0.25, ease:'power2.out' }));
+    link.addEventListener('mouseleave', () => gsap.to(link, { x:0, duration:0.3, ease:'power2.inOut' }));
+  });
 
-    const heroScene  = new THREE.Scene();
-    const heroCamera = new THREE.PerspectiveCamera(55, heroCanvas.clientWidth / heroCanvas.clientHeight, 0.1, 100);
-    heroCamera.position.z = 4.5;
-
-    // Torus Knot solid body — silver chrome
-    const icoGeo = new THREE.TorusKnotGeometry(1.0, 0.32, 160, 24, 2, 3);
-    const icoMat = new THREE.MeshPhongMaterial({
-      color:       0x1a1a1a,
-      emissive:    0x111111,
-      specular:    0xffffff,
-      shininess:   220,
-      transparent: true,
-      opacity:     0.95,
-    });
-    const icoMesh = new THREE.Mesh(icoGeo, icoMat);
-    heroScene.add(icoMesh);
-
-    // Wireframe overlay — subtle silver
-    const wireGeo  = new THREE.TorusKnotGeometry(1.02, 0.33, 80, 12, 2, 3);
-    const wireMat  = new THREE.MeshBasicMaterial({ color: 0xcccccc, wireframe: true, transparent: true, opacity: 0.12 });
-    const wireMesh = new THREE.Mesh(wireGeo, wireMat);
-    heroScene.add(wireMesh);
-
-    // Orbital ring 1 — silver
-    const ring1Geo  = new THREE.TorusGeometry(1.95, 0.005, 16, 200);
-    const ring1Mat  = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.35 });
-    const ring1Mesh = new THREE.Mesh(ring1Geo, ring1Mat);
-    ring1Mesh.rotation.x = Math.PI / 2;
-    heroScene.add(ring1Mesh);
-
-    // Orbital ring 2 — dimmer, tilted
-    const ring2Geo  = new THREE.TorusGeometry(2.25, 0.003, 16, 200);
-    const ring2Mat  = new THREE.MeshBasicMaterial({ color: 0xaaaaaa, transparent: true, opacity: 0.15 });
-    const ring2Mesh = new THREE.Mesh(ring2Geo, ring2Mat);
-    ring2Mesh.rotation.x = Math.PI / 3.5;
-    heroScene.add(ring2Mesh);
-
-    // Lights — cool white key light + dim fill
-    heroScene.add(new THREE.AmbientLight(0x222222, 2));
-    const pl1 = new THREE.PointLight(0xffffff, 5, 12);
-    pl1.position.set(3, 3, 3);
-    heroScene.add(pl1);
-    const pl2 = new THREE.PointLight(0x8899aa, 2, 10);
-    pl2.position.set(-3, -2, 2);
-    heroScene.add(pl2);
-
-    // Mouse parallax for hero object
-    let targetX = 0, targetY = 0;
-    document.addEventListener('mousemove', e => {
-      targetX = (e.clientX / window.innerWidth  - 0.5) * 0.35;
-      targetY = (e.clientY / window.innerHeight - 0.5) * 0.35;
-    }, { passive: true });
-
-    // ── ANIMATE BOTH SCENES ──
-    let t = 0;
-    function animate() {
-      requestAnimationFrame(animate);
-      t += 0.005;
-
-      // Particle drift
-      particles.rotation.y += 0.00045;
-      particles.rotation.x += 0.00018;
-      bgRenderer.render(bgScene, bgCamera);
-
-      // 3D object rotation
-      icoMesh.rotation.x  += 0.004;
-      icoMesh.rotation.y  += 0.007;
-      wireMesh.rotation.x += 0.004;
-      wireMesh.rotation.y += 0.007;
-      ring1Mesh.rotation.z += 0.007;
-      ring2Mesh.rotation.z -= 0.005;
-      ring2Mesh.rotation.y += 0.002;
-
-      // Breathing pulse
-      const s = 1 + Math.sin(t) * 0.035;
-      icoMesh.scale.setScalar(s);
-      wireMesh.scale.setScalar(s);
-
-      // Mouse parallax on hero scene
-      heroScene.rotation.y += (targetX - heroScene.rotation.y) * 0.05;
-      heroScene.rotation.x += (-targetY - heroScene.rotation.x) * 0.05;
-
-      // Light orbit
-      pl1.position.x = Math.cos(t) * 4;
-      pl1.position.z = Math.sin(t) * 4;
-
-      heroRenderer.render(heroScene, heroCamera);
-    }
-    animate();
-
-    // Resize handler
-    window.addEventListener('resize', () => {
-      bgCamera.aspect = window.innerWidth / window.innerHeight;
-      bgCamera.updateProjectionMatrix();
-      bgRenderer.setSize(window.innerWidth, window.innerHeight);
-      heroCamera.aspect = heroCanvas.clientWidth / heroCanvas.clientHeight;
-      heroCamera.updateProjectionMatrix();
-      sizeHeroCanvas();
-    }, { passive: true });
-  })();
-
-  // ══════════════════════════════════════════════════
-  // ── ENHANCED GSAP HERO ENTRANCE + SCROLL REVEALS ──
-  // ══════════════════════════════════════════════════
-  window.addEventListener('load', function() {
-    if (typeof gsap === 'undefined') return;
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    // ── Hero entrance (fires after preloader completes ~1.95s) ──
-    const heroTL = gsap.timeline({ delay: 2.1 });
-
-    heroTL
-      .to('.hero-headline', {
-        opacity: 1, y: 0, duration: 0.9, ease: 'power3.out'
-      }, 0)
-      .to('.hero-sub', {
-        opacity: 1, y: 0, duration: 0.8, ease: 'power3.out'
-      }, 0.25)
-      .to('.hero-label', {
-        opacity: 1, y: 0, duration: 0.7, ease: 'power2.out'
-      }, 0.45)
-      .to('.problem-cards', {
-        opacity: 1, y: 0, duration: 0.9, ease: 'power3.out'
-      }, 0.6);
-
-    // ── Staggered scroll reveals for every .sr section ──
-    // (Adds to existing IntersectionObserver logic — GSAP layer for extra polish)
-    const revealEls = document.querySelectorAll(
-      '.grow-header, .grow-row, .testimonials-header, .testimonial-card, ' +
-      '.toolkit-header, .toolkit-card, .reality-header, .reality-card, ' +
-      '.portfolio-section .sr, .stats-bar .stat-item'
-    );
-
-    revealEls.forEach((el, i) => {
-      const delay = el.classList.contains('sr-delay-1') ? 0.1
-                  : el.classList.contains('sr-delay-2') ? 0.2
-                  : el.classList.contains('sr-delay-3') ? 0.3 : 0;
-
-      gsap.fromTo(el,
-        { opacity: 0, y: 55 },
-        {
-          opacity: 1, y: 0,
-          duration: 0.8,
-          delay,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 88%',
-            toggleActions: 'play none none none',
-          }
-        }
-      );
-    });
-
-    // ── Portfolio 3D device tilt-in ──
-    const portfolioDevice = document.getElementById('portfolioDevice');
-    if (portfolioDevice) {
-      gsap.fromTo(portfolioDevice,
-        { rotateX: 30, scale: 0.85, opacity: 0, y: 60 },
-        {
-          rotateX: 0, scale: 1, opacity: 1, y: 0,
-          duration: 1.2, ease: 'power3.out',
-          scrollTrigger: {
-            trigger: portfolioDevice,
-            start: 'top 82%',
-            toggleActions: 'play none none none',
-          }
-        }
-      );
-    }
-
-    // ── Stats counter roll-up on testimonials bar ──
-    const statValues = document.querySelectorAll('.stat-value');
-    statValues.forEach(el => {
-      const raw    = el.textContent.trim();
-      const suffix = raw.replace(/[\d.]/g, '');
-      const num    = parseFloat(raw);
-      if (isNaN(num)) return;
-      const obj = { val: 0 };
-      gsap.to(obj, {
-        val: num,
-        duration: 1.6,
-        ease: 'power2.out',
-        onUpdate: () => { el.textContent = Math.round(obj.val) + suffix; },
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 85%',
-          toggleActions: 'play none none none',
-        }
+  // Hosting stat counters
+  const statTrigger = document.querySelector('.hosting-stat-row');
+  if (statTrigger) {
+    ScrollTrigger.create({ trigger:statTrigger, start:'top 78%', once:true, onEnter: () => {
+      const sv = document.querySelectorAll('.hosting-stat-value');
+      [{el:sv[0],end:99,suffix:'%'},{el:sv[1],end:14,suffix:''}].forEach(({el,end,suffix}) => {
+        if (!el) return;
+        const obj = { val:0 };
+        gsap.to(obj, { val:end, duration:1.4, ease:'power2.out', onUpdate: () => { el.textContent = Math.round(obj.val)+suffix; } });
       });
-    });
+    }});
+  }
 
-    // ── Reality section cards stagger ──
-    const realityCards = document.querySelectorAll('.reality-card');
-    if (realityCards.length) {
-      gsap.fromTo(realityCards,
-        { opacity: 0, y: 50, scale: 0.96 },
-        {
-          opacity: 1, y: 0, scale: 1,
-          duration: 0.7,
-          stagger: 0.12,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.reality-grid',
-            start: 'top 82%',
-            toggleActions: 'play none none none',
-          }
-        }
-      );
-    }
+  // FIX #3: Stacked bars — GSAP only, no IntersectionObserver conflict
+  document.querySelectorAll('.stacked-bar').forEach(bar => {
+    ScrollTrigger.create({ trigger:bar, start:'top 80%', once:true, onEnter: () => {
+      bar.querySelectorAll('.stacked-bar-fill').forEach(fill => {
+        gsap.fromTo(fill, { width:'0%' }, { width:fill.dataset.width+'%', duration:1.4, ease:'power3.out', delay:0.1 });
+      });
+    }});
+  });
 
-    // ── Toolkit bento cards stagger ──
-    const toolkitCards = document.querySelectorAll('.toolkit-card');
-    if (toolkitCards.length) {
-      gsap.fromTo(toolkitCards,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1, y: 0,
-          duration: 0.65,
-          stagger: 0.1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: '.toolkit-grid',
-            start: 'top 82%',
-            toggleActions: 'play none none none',
-          }
-        }
-      );
-    }
+  // Section scroll reveals
+  document.querySelectorAll('.grow-header,.grow-row,.testimonials-header,.testimonial-card,.toolkit-header,.toolkit-card,.reality-header,.reality-card,.portfolio-section .sr,.stats-bar .stat-item').forEach(el => {
+    const delay = el.classList.contains('sr-delay-1') ? 0.1 : el.classList.contains('sr-delay-2') ? 0.2 : el.classList.contains('sr-delay-3') ? 0.3 : 0;
+    gsap.fromTo(el, { opacity:0, y:55 }, { opacity:1, y:0, duration:0.8, delay, ease:'power3.out', scrollTrigger: { trigger:el, start:'top 88%', toggleActions:'play none none none' } });
+  });
 
-  }); // end second window load (GSAP enhanced)
+  // Portfolio tilt-in
+  const portfolioDevice = document.getElementById('portfolioDevice');
+  if (portfolioDevice) {
+    gsap.fromTo(portfolioDevice, { rotateX:30, scale:0.85, opacity:0, y:60 }, { rotateX:0, scale:1, opacity:1, y:0, duration:1.2, ease:'power3.out', scrollTrigger: { trigger:portfolioDevice, start:'top 82%', toggleActions:'play none none none' } });
+  }
+
+  // Stat counter roll-up
+  document.querySelectorAll('.stat-value').forEach(el => {
+    const raw = el.textContent.trim(), suffix = raw.replace(/[\d.]/g,''), num = parseFloat(raw);
+    if (isNaN(num)) return;
+    const obj = { val:0 };
+    gsap.to(obj, { val:num, duration:1.6, ease:'power2.out', onUpdate: () => { el.textContent = Math.round(obj.val)+suffix; }, scrollTrigger: { trigger:el, start:'top 85%', toggleActions:'play none none none' } });
+  });
+
+  // Reality cards stagger
+  const realityCards = document.querySelectorAll('.reality-card');
+  if (realityCards.length) {
+    gsap.fromTo(realityCards, { opacity:0, y:50, scale:0.96 }, { opacity:1, y:0, scale:1, duration:0.7, stagger:0.12, ease:'power3.out', scrollTrigger: { trigger:'.reality-grid', start:'top 82%', toggleActions:'play none none none' } });
+  }
+
+  // Toolkit cards stagger
+  const toolkitCards = document.querySelectorAll('.toolkit-card');
+  if (toolkitCards.length) {
+    gsap.fromTo(toolkitCards, { opacity:0, y:40 }, { opacity:1, y:0, duration:0.65, stagger:0.1, ease:'power2.out', scrollTrigger: { trigger:'.toolkit-grid', start:'top 82%', toggleActions:'play none none none' } });
+  }
+});
 </script>
-
 </body>
 </html>

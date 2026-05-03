@@ -37,7 +37,7 @@
   // ─── KNOWLEDGE BASE (inline — expanded to 55+ entries for 85% FAQ coverage) ─
   const KB = {
     company: "Invitt Co is Harare's #1 web design agency. We build custom websites, local SEO, and digital marketing systems for Zimbabwe SMEs. Results guaranteed in 14 days. Website: invitt.co.zw",
-    founder: "Lennon founded Invitt Co at 17. He personally handles every project — direct founder-level attention on every build.",
+    founder: "Lennon founded Invitt Co. He personally handles every project, direct founder-level attention on every build.",
     services: [
       { name: "Starter Website", price: "$399", desc: "5 pages, mobile responsive, contact form, Google Business Profile, basic SEO, 14-day delivery, 1 month support." },
       { name: "Growth Website", price: "$599", desc: "8-10 pages, advanced SEO, local SEO, analytics, CMS for self-editing, 3 months support." },
@@ -674,7 +674,8 @@ Rules:
           </div>
           <div id="tess-popup-title">Invitt Co</div>
         </div>
-        <div id="tess-popup-body">Hi there! Have a question? Talk with us here 👋</div>
+        <div id="tess-popup-body">Hi there! Have a question?<br>
+         Talk with us here</div>
       </div>
 
       <!-- Main panel -->
