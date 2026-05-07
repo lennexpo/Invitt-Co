@@ -170,8 +170,7 @@
     .stacked-card-label { font-family: 'Space Mono', monospace; font-size: 0.8rem; color: #fff; letter-spacing: 0.05em; }
     .stacked-bar { margin-top: 1rem; display: flex; gap: 0.5rem; }
     .stacked-bar-item { height: 3px; flex: 1; background: var(--border); border-radius: 9999px; overflow: hidden; }
-    /* FIX #3: Removed CSS transition on stacked-bar-fill — GSAP handles animation exclusively to avoid flash conflict */
-    .stacked-bar-fill { height: 100%; background: var(--accent); border-radius: 9999px; width: 0; }
+    .stacked-bar-fill { height: 100%; background: var(--accent); border-radius: 9999px; width: 0; transition: width 1.2s ease; }
 
     .live-feed { background: #1A1A1A; border: 1px solid rgba(255,255,255,0.1); border-radius: 1.25rem; padding: 1.5rem; max-width: 380px; }
     .live-feed-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.25rem; }
@@ -184,7 +183,7 @@
     @keyframes barAnim { from { height: 4px; } to { height: 14px; } }
     .live-feed-lines { display: flex; flex-direction: column; gap: 0.6rem; font-family: 'Space Mono', monospace; font-size: 0.78rem; }
     /* FIX #7: Removed dead .live-line.revealed rule — GSAP animates via fromTo(), not a class toggle */
-    .live-line { color: var(--muted); display: flex; gap: 0.5rem; opacity: 0; }
+    .live-line { color: var(--muted); display: flex; gap: 0.5rem; opacity: 1; }
     .live-line .arrow { color: rgba(200,245,62,0.5); }
     .live-line.active { color: #fff; }
     .live-line.active .arrow { color: var(--accent); }
@@ -198,7 +197,7 @@
     .hosting-stat-value { font-family: 'Bebas Neue', sans-serif; font-size: 1.75rem; color: var(--accent); letter-spacing: 0.05em; line-height: 1; margin-bottom: 0.25rem; }
     .hosting-stat-label { font-family: 'Space Mono', monospace; font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
     .hosting-uptime-bar { height: 4px; background: var(--border); border-radius: 9999px; overflow: hidden; margin-top: 0.75rem; }
-    .hosting-uptime-fill { height: 100%; background: var(--accent); border-radius: 9999px; width: 0; }
+    .hosting-uptime-fill { height: 100%; background: var(--accent); border-radius: 9999px; width: 99%; }
 
     .cta-block { text-align: center; padding: 2rem 1.5rem 5rem; }
     .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent); color: #0A0A0A; padding: 1rem 2.25rem; border-radius: 9999px; font-size: 1rem; font-weight: 700; text-decoration: none; box-shadow: 0 0 20px rgba(200,245,62,0.35); transition: opacity 0.2s, box-shadow 0.2s; }
@@ -310,7 +309,6 @@
       .reality-grid { grid-template-columns: 1fr; }
       .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
       .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
-      #inv-hero-3d { opacity: 0.3; }
       .hero { padding: 6rem 1.25rem 2.5rem; }
     }
     @media (min-width: 769px) and (max-width: 1024px) {
@@ -321,18 +319,6 @@
     }
 
     /* ── PRELOADER ── */
-    #preloader { position: fixed; inset: 0; z-index: 99999; background: #0A0A0A; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), visibility 0.7s cubic-bezier(0.4,0,0.2,1); }
-    #preloader.done { opacity: 0; visibility: hidden; pointer-events: none; }
-    #pre-logo-stage { flex: 1; width: 100%; position: relative; overflow: hidden; }
-    #pre-logo-scene { position: absolute; inset: 0; perspective: 900px; perspective-origin: 50% 48%; }
-    #pre-logo-group { position: absolute; left: 50%; top: 50%; transform-style: preserve-3d; }
-    #pre-logo-glow { position: absolute; inset: 0; pointer-events: none; opacity: 0; background: radial-gradient(ellipse 55% 45% at 50% 48%, rgba(200,245,62,.28) 0%, transparent 100%); }
-    .plp { position: absolute; transform-style: preserve-3d; }
-    .pl-tile { border-radius: 16px; background: linear-gradient(148deg,#dcff68 0%,#C8F53E 46%,#a6cc28 84%,#8cb418 100%); box-shadow: 0 0 40px rgba(200,245,62,.55), inset 0 1.5px 0 rgba(255,255,255,.38), inset 0 -3px 8px rgba(0,0,0,.22); }
-    .pl-line { height: 9px; border-radius: 4px; background: linear-gradient(180deg,#1c1c1c 0%,#080808 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.09); }
-    .pl-invitt { font-family: 'Bebas Neue', sans-serif; font-weight: 900; color: #fff; white-space: nowrap; letter-spacing: .16em; text-shadow: 0 0 40px rgba(255,255,255,.5); line-height: 1; }
-    .pl-co { font-family: 'Space Mono', monospace; color: #C8F53E; letter-spacing: .72em; text-shadow: 0 0 20px rgba(200,245,62,.75); }
-    .pl-streak { position: absolute; left: 50%; top: 50%; height: 1.5px; transform-origin: 0 50%; opacity: 0; pointer-events: none; border-radius: 1px; }
 
     /* ── CUSTOM CURSOR ── */
     body { cursor: none; }
@@ -341,13 +327,8 @@
     body:has(a:hover) #inv-cursor, body:has(button:hover) #inv-cursor { width: 18px; height: 18px; }
     body:has(a:hover) #inv-cursor-ring, body:has(button:hover) #inv-cursor-ring { width: 44px; height: 44px; border-color: rgba(200,245,62,0.7); }
     @media (pointer: coarse) { body { cursor: auto !important; } #inv-cursor, #inv-cursor-ring { display: none !important; } }
-
-    #inv-three-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
-    .noise-overlay, .navbar, #preloader, .mobile-menu { z-index: 99999 !important; }
+    .noise-overlay, .navbar, .mobile-menu { z-index: 99999 !important; }
     nav.navbar { z-index: 10000 !important; }
-    .hero, .portfolio-section, .grow-section, .cta-block, .testimonials-section, .toolkit-section, .reality-section, footer { position: relative; z-index: 2; }
-
-    #inv-hero-3d { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; opacity: 0.55; }
 
     /*
      * FIX #1: Hero elements DO NOT use .sr — they are animated exclusively by GSAP
@@ -361,16 +342,7 @@
 
 <div id="inv-cursor" aria-hidden="true"></div>
 <div id="inv-cursor-ring" aria-hidden="true"></div>
-<canvas id="inv-three-canvas" aria-hidden="true"></canvas>
 
-<div id="preloader" aria-hidden="true">
-  <div id="pre-logo-stage">
-    <div id="pre-logo-scene">
-      <div id="pre-logo-group"></div>
-      <div id="pre-logo-glow"></div>
-    </div>
-  </div>
-</div>
 
 <svg class="noise-overlay" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"></feTurbulence></filter>
@@ -414,7 +386,6 @@
   GSAP controls their entrance with a 2.1s delay via gsap.set() + fromTo().
 -->
 <section class="hero" id="hero" aria-label="Invitt Co — Harare Web Design & Digital Marketing">
-  <canvas id="inv-hero-3d" aria-hidden="true"></canvas>
   <div class="hero-content">
     <h1 class="hero-headline">
       Your Digital Growth System.<br>
@@ -694,9 +665,6 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Invitt Co","description":"Invitt Co is Harare's top-rated web design and digital marketing agency.","url":"https://invitt.co.zw","telephone":"+263787412809","email":"lennnyamajiwa@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Harare","addressCountry":"ZW"},"geo":{"@type":"GeoCoordinates","latitude":-17.827462,"longitude":31.046343},"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"08:00","closes":"18:00"},"priceRange":"$$","aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"6","bestRating":"5","worstRating":"1"},"sameAs":["https://www.instagram.com/invitt_co","https://www.linkedin.com/in/lennon-nyamajiwa"]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much does web design cost in Harare, Zimbabwe?","acceptedAnswer":{"@type":"Answer","text":"At Invitt Co, web design packages start at $299 for the Starter plan. The Growth plan is $499 and the Authority plan is $850. All packages include free hosting."}},{"@type":"Question","name":"Does Invitt Co do SEO in Zimbabwe?","acceptedAnswer":{"@type":"Answer","text":"Yes. Invitt Co provides full SEO services for Zimbabwe businesses, including keyword research, on-page optimisation, Google Business Profile setup, and local SEO."}},{"@type":"Question","name":"How long does it take to build a website in Harare?","acceptedAnswer":{"@type":"Answer","text":"Invitt Co guarantees your website is live and indexed on Google within 14 days of you delivering your content."}},{"@type":"Question","name":"Who is the best web designer in Harare?","acceptedAnswer":{"@type":"Answer","text":"Invitt Co is consistently rated the best web designer in Harare — 5.0 Google rating, a 14-day live guarantee, and founder Lennon Nyamajiwa leads every project personally."}},{"@type":"Question","name":"Where is Invitt Co located?","acceptedAnswer":{"@type":"Answer","text":"Invitt Co is based in Harare, Zimbabwe. Reach us on WhatsApp at +263 787 412 809."}}]}</script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <script>
   window.TESS_CONFIG = { whatsappNumber: '+263787412809', backendUrl: 'https://public-inspiration-household-going.trycloudflare.com', calendlyUrl: 'https://calendly.com/lennnyamajiwa/30min' };
@@ -704,117 +672,7 @@
 <script src="tess-widget.js"></script>
 
 <script>
-// ══════════════════════════════════════════════
-// PRELOADER
-// ══════════════════════════════════════════════
-(function () {
-  const loader = document.getElementById('preloader');
-  if (!loader) return;
-  document.body.style.overflow = 'hidden';
 
-  let progress = 0;
-  const TICK = 35, DURATION = 1800, steps = DURATION / TICK, base = 100 / steps;
-  const timer = setInterval(() => {
-    progress = Math.min(progress + base + (Math.random() * base * 0.6), 100);
-    if (progress >= 100) {
-      clearInterval(timer);
-      setTimeout(() => {
-        loader.classList.add('done');
-        document.body.style.overflow = '';
-        loader.addEventListener('transitionend', () => loader.remove(), { once: true });
-      }, 350);
-    }
-  }, TICK);
-
-  const grp = document.getElementById('pre-logo-group');
-  const glow = document.getElementById('pre-logo-glow');
-  const sc = document.getElementById('pre-logo-scene');
-  if (!grp) return;
-
-  const S = Math.min(window.innerWidth, window.innerHeight) * 0.115;
-  const FS = Math.min(window.innerWidth * 0.09, 68);
-
-  function mk(cls, sty) {
-    const d = document.createElement('div');
-    d.className = 'plp ' + (cls || '');
-    if (sty) Object.assign(d.style, sty);
-    grp.appendChild(d);
-    return d;
-  }
-  const TW = S * 1.5, TH = S * 1.5, LW = S * 1.05, LH = 9, SW = S * 0.70;
-  const lT = mk('pl-tile', {width:TW+'px',height:TH+'px'});
-  const rT = mk('pl-tile', {width:TW+'px',height:TH+'px'});
-  const ll1 = mk('pl-line', {width:LW+'px'}), ll2 = mk('pl-line', {width:LW+'px'}), ll3 = mk('pl-line', {width:SW+'px'});
-  const rl1 = mk('pl-line', {width:LW+'px'}), rl2 = mk('pl-line', {width:LW+'px'}), rl3 = mk('pl-line', {width:SW+'px'});
-  const iT = mk('pl-invitt', {fontSize:FS+'px'}); iT.textContent = 'INVITT';
-  const cT = mk('pl-co', {fontSize:(FS*0.34)+'px'}); cT.textContent = 'CO';
-
-  const PC = [
-    {e:lT,x:-.86,y:.58,z:0,w:TW,h:TH,pct:false},{e:rT,x:.86,y:.58,z:0,w:TW,h:TH,pct:false},
-    {e:ll1,x:-.86,y:.90,z:.15,w:LW,h:LH,pct:false},{e:ll2,x:-.86,y:.66,z:.15,w:LW,h:LH,pct:false},
-    {e:ll3,x:-1.04,y:.42,z:.15,w:SW,h:LH,pct:false},{e:rl1,x:.86,y:.90,z:.15,w:LW,h:LH,pct:false},
-    {e:rl2,x:.86,y:.66,z:.15,w:LW,h:LH,pct:false},{e:rl3,x:.68,y:.42,z:.15,w:SW,h:LH,pct:false},
-    {e:iT,x:0,y:-.80,z:0,w:0,h:0,pct:true},{e:cT,x:0,y:-1.24,z:0,w:0,h:0,pct:true},
-  ];
-  PC.forEach(p => { p.rtx = p.pct ? p.x*S : p.x*S - p.w/2; p.rty = p.pct ? -p.y*S : -p.y*S - p.h/2; p.rtz = p.z*S; });
-
-  const PI = Math.PI;
-  const EP = [
-    {x:-5,y:3.8,z:3,rx:.75*PI,ry:.55*PI,rz:.4},{x:5,y:3.8,z:3,rx:-.75*PI,ry:.55*PI,rz:-.4},
-    {x:-6.2,y:1.2,z:4,rx:PI,ry:.6,rz:.5*PI},{x:-3.2,y:5.3,z:2,rx:.5,ry:.85*PI,rz:.3},
-    {x:-5.5,y:-2,z:3.5,rx:.5*PI,ry:.4,rz:.7*PI},{x:6.2,y:1.2,z:4,rx:-PI,ry:-.6,rz:-.5*PI},
-    {x:3.2,y:5.3,z:2,rx:-.5,ry:.85*PI,rz:-.3},{x:5.5,y:-2,z:3.5,rx:-.5*PI,ry:-.4,rz:-.7*PI},
-    {x:0,y:-5.5,z:2.5,rx:.5*PI,ry:0,rz:PI},{x:3,y:-6,z:2,rx:.4,ry:PI,rz:.9},
-  ];
-  const skC = ['rgba(200,245,62,.95)','rgba(200,245,62,.95)','rgba(255,255,255,.9)'];
-  const sks = [];
-  for (let i = 0; i < 8; i++) {
-    const d = document.createElement('div');
-    d.className = 'pl-streak';
-    const a = (i/8)*360, len = 80 + Math.floor(Math.random()*100);
-    d.style.cssText = `width:${len}px;transform:rotate(${a}deg) translate(4px,-50%);background:linear-gradient(to right,${skC[i%3]},transparent);`;
-    sc.appendChild(d);
-    sks.push({d, ph: i/8});
-  }
-
-  const cl = x => Math.max(0, Math.min(1, x));
-  const eIn = t => t*t*t;
-  const eEl = t => { if(t<=0)return 0; if(t>=1)return 1; return Math.pow(2,-10*t)*Math.sin((t*10-.75)*(2*PI/3))+1; };
-  const lr = (a,b,t) => a+(b-a)*t;
-  function sp(p,tx,ty,tz,rx,ry,rz) {
-    const pre = p.pct ? 'translate(-50%,-50%) ' : '';
-    p.e.style.transform = `${pre}translate3d(${tx}px,${ty}px,${tz}px) rotateX(${rx}rad) rotateY(${ry}rad) rotateZ(${rz}rad)`;
-  }
-
-  const LOOP=8.5,P1=.10,P2=.38,P3=.55,P4=.85;
-  let t0 = null;
-  function tick(ts) {
-    if (!document.getElementById('preloader')) return;
-    requestAnimationFrame(tick);
-    if (!t0) t0 = ts;
-    const et = (ts-t0)*.001, t = (et%LOOP)/LOOP;
-    PC.forEach((p,i) => {
-      const dO=i*.028, dI=i*.022, ep=EP[i];
-      const ex=p.pct?ep.x*S:ep.x*S-p.w/2, ey=p.pct?-ep.y*S:-ep.y*S-p.h/2, ez=ep.z*S;
-      if(t<P1){sp(p,p.rtx,p.rty,p.rtz,0,0,0);}
-      else if(t<P2){const s=cl(((t-P1)/(P2-P1)-dO)/.72),ef=eIn(s);sp(p,lr(p.rtx,ex,ef),lr(p.rty,ey,ef),lr(p.rtz,ez,ef),ep.rx*ef,ep.ry*ef,ep.rz*ef);}
-      else if(t<P3){const ft=(t-P2)/(P3-P2);sp(p,ex,ey+Math.sin(ft*PI*2+i*1.4)*16,ez,ep.rx+ft*.45,ep.ry,ep.rz+ft*.25*(i%2?-1:1));}
-      else if(t<P4){const s=cl(((t-P3)/(P4-P3)-dI)/.72),ef=eEl(s);sp(p,lr(ex,p.rtx,ef),lr(ey,p.rty,ef),lr(ez,p.rtz,ef),ep.rx*(1-ef),ep.ry*(1-ef),ep.rz*(1-ef));}
-      else{sp(p,p.rtx,p.rty,p.rtz,0,0,0);}
-    });
-    const gY=Math.sin(et*.55)*.3, gX=Math.sin(et*.38)*.1;
-    if(t<P1){grp.style.transform=`rotateX(${gX}rad) rotateY(${gY}rad)`;}
-    else if(t<P2){const f=1-(t-P1)/(P2-P1);grp.style.transform=`rotateX(${gX*f}rad) rotateY(${gY*f}rad)`;}
-    else if(t<=P4){grp.style.transform='rotateX(0rad) rotateY(0rad)';}
-    else{const f=(t-P4)/(1-P4),bf=f<.5?2*f*f:1-Math.pow(-2*f+2,2)/2;grp.style.transform=`rotateX(${gX*bf}rad) rotateY(${gY*bf}rad)`;}
-    if(t>P4){
-      const gt=(t-P4)/(1-P4);
-      glow.style.opacity=Math.sin(gt*PI)*.9;
-      sks.forEach(s=>{const st=cl((gt-s.ph*.28)*4.5);s.d.style.opacity=st>0&&st<1?Math.sin(st*PI):0;});
-    } else { glow.style.opacity=0; sks.forEach(s=>s.d.style.opacity=0); }
-  }
-  requestAnimationFrame(tick);
-})();
 
 // ── NAVBAR ──
 const navbar = document.getElementById('navbar');
@@ -832,6 +690,21 @@ hamburger.addEventListener('click', () => {
 mobileClose.addEventListener('click', () => { mobileMenu.classList.remove('open'); hamburger.classList.remove('is-open'); hamburger.setAttribute('aria-expanded','false'); });
 mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mobileMenu.classList.remove('open'); hamburger.classList.remove('is-open'); }));
 
+
+// ── STACKED BARS (vanilla fallback) ──
+document.querySelectorAll('.stacked-bar').forEach(bar => {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        bar.querySelectorAll('.stacked-bar-fill').forEach(fill => {
+          fill.style.width = (fill.dataset.width || 100) + '%';
+        });
+        io.unobserve(bar);
+      }
+    });
+  }, { threshold: 0.2 });
+  io.observe(bar);
+});
 // ── SCROLL REVEAL (non-hero .sr elements only) ──
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
@@ -870,190 +743,10 @@ if (portfolioWrap) deviceObserver.observe(portfolioWrap);
   (function lerpRing() { rx += (mx-rx)*0.13; ry += (my-ry)*0.13; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(lerpRing); })();
 })();
 
-// ── THREE.JS ──
-(function() {
-  if (typeof THREE === 'undefined') return;
-  const bgCanvas = document.getElementById('inv-three-canvas');
-  const bgRenderer = new THREE.WebGLRenderer({ canvas: bgCanvas, antialias: false, alpha: true });
-  bgRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  bgRenderer.setSize(window.innerWidth, window.innerHeight);
-  bgRenderer.setClearColor(0x000000, 0);
-  const bgScene = new THREE.Scene();
-  const bgCamera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 1000);
-  bgCamera.position.z = 5;
-  const COUNT = 1800, pPos = new Float32Array(COUNT*3), pCol = new Float32Array(COUNT*3);
-  for (let i = 0; i < COUNT; i++) {
-    pPos[i*3] = (Math.random()-.5)*28; pPos[i*3+1] = (Math.random()-.5)*28; pPos[i*3+2] = (Math.random()-.5)*28;
-    if (Math.random() > 0.6) { pCol[i*3]=0.784; pCol[i*3+1]=0.957; pCol[i*3+2]=0.243; }
-    else { const g=0.2+Math.random()*0.3; pCol[i*3]=g; pCol[i*3+1]=g; pCol[i*3+2]=g; }
-  }
-  const pGeo = new THREE.BufferGeometry();
-  pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
-  pGeo.setAttribute('color', new THREE.BufferAttribute(pCol, 3));
-  const pMat = new THREE.PointsMaterial({ size:0.035, vertexColors:true, transparent:true, opacity:0.55, blending:THREE.AdditiveBlending, depthWrite:false });
-  const particles = new THREE.Points(pGeo, pMat);
-  bgScene.add(particles);
 
-  const heroCanvas = document.getElementById('inv-hero-3d');
-  const heroRenderer = new THREE.WebGLRenderer({ canvas: heroCanvas, antialias: true, alpha: true });
-  heroRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  heroRenderer.setClearColor(0x000000, 0);
-  function sizeHeroCanvas() { heroRenderer.setSize(heroCanvas.clientWidth, heroCanvas.clientHeight); }
-  sizeHeroCanvas();
-  const heroScene = new THREE.Scene();
-  // FIX #6: Guard against zero-dimension canvas (NaN aspect ratio crash)
-  const heroCamera = new THREE.PerspectiveCamera(55, (heroCanvas.clientWidth||1)/(heroCanvas.clientHeight||1), 0.1, 100);
-  heroCamera.position.z = 4.5;
-  const icoGeo = new THREE.TorusKnotGeometry(1.0, 0.32, 160, 24, 2, 3);
-  const icoMat = new THREE.MeshPhongMaterial({ color:0x1a1a1a, emissive:0x111111, specular:0xffffff, shininess:220, transparent:true, opacity:0.95 });
-  const icoMesh = new THREE.Mesh(icoGeo, icoMat); heroScene.add(icoMesh);
-  const wireGeo = new THREE.TorusKnotGeometry(1.02, 0.33, 80, 12, 2, 3);
-  const wireMat = new THREE.MeshBasicMaterial({ color:0xcccccc, wireframe:true, transparent:true, opacity:0.12 });
-  const wireMesh = new THREE.Mesh(wireGeo, wireMat); heroScene.add(wireMesh);
-  const ring1Geo = new THREE.TorusGeometry(1.95, 0.005, 16, 200);
-  const ring1Mat = new THREE.MeshBasicMaterial({ color:0xffffff, transparent:true, opacity:0.35 });
-  const ring1Mesh = new THREE.Mesh(ring1Geo, ring1Mat); ring1Mesh.rotation.x = Math.PI/2; heroScene.add(ring1Mesh);
-  const ring2Geo = new THREE.TorusGeometry(2.25, 0.003, 16, 200);
-  const ring2Mat = new THREE.MeshBasicMaterial({ color:0xaaaaaa, transparent:true, opacity:0.15 });
-  const ring2Mesh = new THREE.Mesh(ring2Geo, ring2Mat); ring2Mesh.rotation.x = Math.PI/3.5; heroScene.add(ring2Mesh);
-  heroScene.add(new THREE.AmbientLight(0x222222, 2));
-  const pl1 = new THREE.PointLight(0xffffff, 5, 12); pl1.position.set(3,3,3); heroScene.add(pl1);
-  const pl2 = new THREE.PointLight(0x8899aa, 2, 10); pl2.position.set(-3,-2,2); heroScene.add(pl2);
-  let targetX = 0, targetY = 0;
-  document.addEventListener('mousemove', e => { targetX=(e.clientX/window.innerWidth-.5)*.35; targetY=(e.clientY/window.innerHeight-.5)*.35; }, { passive: true });
-  let t = 0;
-  function animate() {
-    requestAnimationFrame(animate); t += 0.005;
-    particles.rotation.y += 0.00045; particles.rotation.x += 0.00018;
-    bgRenderer.render(bgScene, bgCamera);
-    icoMesh.rotation.x += 0.004; icoMesh.rotation.y += 0.007;
-    wireMesh.rotation.x += 0.004; wireMesh.rotation.y += 0.007;
-    ring1Mesh.rotation.z += 0.007; ring2Mesh.rotation.z -= 0.005; ring2Mesh.rotation.y += 0.002;
-    const s = 1 + Math.sin(t)*0.035; icoMesh.scale.setScalar(s); wireMesh.scale.setScalar(s);
-    heroScene.rotation.y += (targetX - heroScene.rotation.y)*0.05;
-    heroScene.rotation.x += (-targetY - heroScene.rotation.x)*0.05;
-    pl1.position.x = Math.cos(t)*4; pl1.position.z = Math.sin(t)*4;
-    heroRenderer.render(heroScene, heroCamera);
-  }
-  animate();
-  // FIX #6: Guard on resize too
-  window.addEventListener('resize', () => {
-    bgCamera.aspect = window.innerWidth/window.innerHeight; bgCamera.updateProjectionMatrix();
-    bgRenderer.setSize(window.innerWidth, window.innerHeight);
-    const w = heroCanvas.clientWidth||1, h = heroCanvas.clientHeight||1;
-    heroCamera.aspect = w/h; heroCamera.updateProjectionMatrix(); sizeHeroCanvas();
-  }, { passive: true });
-})();
 
 // ══════════════════════════════════════════════
-// FIX #2: Single consolidated window load handler.
-// Previously split into two separate handlers causing:
-//   - Double gsap.registerPlugin(ScrollTrigger) call
-//   - Race conditions between animation blocks
-// FIX #3: barObserver (IntersectionObserver) removed — GSAP handles bars exclusively.
-// FIX #4: Hero uses fromTo() with explicit gsap.set() for reliable initial state.
-// FIX #5: Dead `arrow` variable removed from grow-link handler.
-// ══════════════════════════════════════════════
-window.addEventListener('load', () => {
-  if (typeof gsap === 'undefined') return;
-  gsap.registerPlugin(ScrollTrigger);
 
-  // FIX #1 + #4: Set initial hidden state for hero elements via GSAP (not CSS .sr)
-  gsap.set(['.hero-headline','.hero-sub','.hero-label','.problem-cards'], { opacity:0, y:40 });
-
-  const heroTL = gsap.timeline({ delay: 2.1 });
-  heroTL
-    .fromTo('.hero-headline', { opacity:0, y:40 }, { opacity:1, y:0, duration:0.9, ease:'power3.out' }, 0)
-    .fromTo('.hero-sub',      { opacity:0, y:40 }, { opacity:1, y:0, duration:0.8, ease:'power3.out' }, 0.25)
-    .fromTo('.hero-label',    { opacity:0, y:40 }, { opacity:1, y:0, duration:0.7, ease:'power2.out' }, 0.45)
-    .fromTo('.problem-cards', { opacity:0, y:40 }, { opacity:1, y:0, duration:0.9, ease:'power3.out' }, 0.6);
-
-  // Stacked card switcher
-  const cards = gsap.utils.toArray('.stacked-card');
-  if (cards.length === 3) {
-    gsap.set(cards[0], { opacity:1, scale:1, y:0, zIndex:3 });
-    gsap.set(cards[1], { opacity:0.55, scale:0.93, y:36, zIndex:2 });
-    gsap.set(cards[2], { opacity:0.25, scale:0.86, y:68, zIndex:1 });
-    const tl = gsap.timeline({ scrollTrigger: { trigger:'.stacked-cards', start:'top 65%', end:'bottom 20%', scrub:1.2 } });
-    tl.to(cards[0], { opacity:0, scale:0.88, y:-40, zIndex:1, duration:1 }, 0)
-      .to(cards[1], { opacity:1, scale:1, y:0, zIndex:3, duration:1 }, 0)
-      .to(cards[2], { opacity:0.55, scale:0.93, y:36, zIndex:2, duration:1 }, 0)
-      .to(cards[1], { opacity:0, scale:0.88, y:-40, zIndex:1, duration:1 }, 1.2)
-      .to(cards[2], { opacity:1, scale:1, y:0, zIndex:3, duration:1 }, 1.2);
-  }
-
-  // Live feed reveal
-  const liveLines = gsap.utils.toArray('.live-line');
-  if (liveLines.length > 0) {
-    gsap.fromTo(liveLines, { opacity:0, x:-16 }, { opacity:1, x:0, duration:0.45, stagger:0.18, ease:'power2.out', scrollTrigger: { trigger:'.live-feed', start:'top 72%', toggleActions:'play none none none' } });
-  }
-
-  // Uptime bar
-  const uptimeFill = document.querySelector('.hosting-uptime-fill');
-  if (uptimeFill) {
-    gsap.fromTo(uptimeFill, { width:'0%' }, { width:'99%', duration:1.6, ease:'power3.out', scrollTrigger: { trigger:'.hosting-visual', start:'top 75%', toggleActions:'play none none none' } });
-  }
-
-  // FIX #5: Removed dead `arrow` variable — grow-link micro-interaction
-  document.querySelectorAll('.grow-link').forEach(link => {
-    link.addEventListener('mouseenter', () => gsap.to(link, { x:5, duration:0.25, ease:'power2.out' }));
-    link.addEventListener('mouseleave', () => gsap.to(link, { x:0, duration:0.3, ease:'power2.inOut' }));
-  });
-
-  // Hosting stat counters
-  const statTrigger = document.querySelector('.hosting-stat-row');
-  if (statTrigger) {
-    ScrollTrigger.create({ trigger:statTrigger, start:'top 78%', once:true, onEnter: () => {
-      const sv = document.querySelectorAll('.hosting-stat-value');
-      [{el:sv[0],end:99,suffix:'%'},{el:sv[1],end:14,suffix:''}].forEach(({el,end,suffix}) => {
-        if (!el) return;
-        const obj = { val:0 };
-        gsap.to(obj, { val:end, duration:1.4, ease:'power2.out', onUpdate: () => { el.textContent = Math.round(obj.val)+suffix; } });
-      });
-    }});
-  }
-
-  // FIX #3: Stacked bars — GSAP only, no IntersectionObserver conflict
-  document.querySelectorAll('.stacked-bar').forEach(bar => {
-    ScrollTrigger.create({ trigger:bar, start:'top 80%', once:true, onEnter: () => {
-      bar.querySelectorAll('.stacked-bar-fill').forEach(fill => {
-        gsap.fromTo(fill, { width:'0%' }, { width:fill.dataset.width+'%', duration:1.4, ease:'power3.out', delay:0.1 });
-      });
-    }});
-  });
-
-  // Section scroll reveals
-  document.querySelectorAll('.grow-header,.grow-row,.testimonials-header,.testimonial-card,.toolkit-header,.toolkit-card,.reality-header,.reality-card,.portfolio-section .sr,.stats-bar .stat-item').forEach(el => {
-    const delay = el.classList.contains('sr-delay-1') ? 0.1 : el.classList.contains('sr-delay-2') ? 0.2 : el.classList.contains('sr-delay-3') ? 0.3 : 0;
-    gsap.fromTo(el, { opacity:0, y:55 }, { opacity:1, y:0, duration:0.8, delay, ease:'power3.out', scrollTrigger: { trigger:el, start:'top 88%', toggleActions:'play none none none' } });
-  });
-
-  // Portfolio tilt-in
-  const portfolioDevice = document.getElementById('portfolioDevice');
-  if (portfolioDevice) {
-    gsap.fromTo(portfolioDevice, { rotateX:30, scale:0.85, opacity:0, y:60 }, { rotateX:0, scale:1, opacity:1, y:0, duration:1.2, ease:'power3.out', scrollTrigger: { trigger:portfolioDevice, start:'top 82%', toggleActions:'play none none none' } });
-  }
-
-  // Stat counter roll-up
-  document.querySelectorAll('.stat-value').forEach(el => {
-    const raw = el.textContent.trim(), suffix = raw.replace(/[\d.]/g,''), num = parseFloat(raw);
-    if (isNaN(num)) return;
-    const obj = { val:0 };
-    gsap.to(obj, { val:num, duration:1.6, ease:'power2.out', onUpdate: () => { el.textContent = Math.round(obj.val)+suffix; }, scrollTrigger: { trigger:el, start:'top 85%', toggleActions:'play none none none' } });
-  });
-
-  // Reality cards stagger
-  const realityCards = document.querySelectorAll('.reality-card');
-  if (realityCards.length) {
-    gsap.fromTo(realityCards, { opacity:0, y:50, scale:0.96 }, { opacity:1, y:0, scale:1, duration:0.7, stagger:0.12, ease:'power3.out', scrollTrigger: { trigger:'.reality-grid', start:'top 82%', toggleActions:'play none none none' } });
-  }
-
-  // Toolkit cards stagger
-  const toolkitCards = document.querySelectorAll('.toolkit-card');
-  if (toolkitCards.length) {
-    gsap.fromTo(toolkitCards, { opacity:0, y:40 }, { opacity:1, y:0, duration:0.65, stagger:0.1, ease:'power2.out', scrollTrigger: { trigger:'.toolkit-grid', start:'top 82%', toggleActions:'play none none none' } });
-  }
-});
 </script>
 </body>
 </html>
