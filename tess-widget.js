@@ -608,6 +608,16 @@ Rules:
         border-top: 1px solid #e8e8e8; flex-shrink: 0; background: #ffffff;
       }
       #tess-footer a { color: ${CFG.accentDark}; text-decoration: none; }
+      #tess-privacy-modal {
+        position: absolute; inset: 0; background: #fff; z-index: 10;
+        border-radius: 20px; padding: 24px; overflow-y: auto;
+        display: none; flex-direction: column; gap: 12px;
+      }
+      #tess-privacy-modal.show { display: flex; }
+      #tess-privacy-modal h3 { font-size: 14px; font-weight: 800; color: #111; margin-bottom: 4px; }
+      #tess-privacy-modal p { font-size: 12px; color: #555; line-height: 1.6; }
+      #tess-privacy-modal a { color: ${CFG.accentDark}; }
+      #tess-privacy-close { align-self: flex-end; background: #f5f5f5; border: none; border-radius: 8px; padding: 6px 14px; font-size: 12px; font-weight: 600; cursor: pointer; color: #111; margin-bottom: 4px; }
       #tess-wa-btn {
         margin: 0 16px 12px; background: #25D366; color: white; border: none;
         border-radius: 12px; padding: 12px; font-size: 14px; font-weight: 700;
@@ -753,7 +763,15 @@ Rules:
           </button>
         </div>
 
-        <div id="tess-footer">Powered by <a href="https://invitt.co.zw" target="_blank">Invitt Co</a></div>
+        <div id="tess-footer">Powered by <a href="https://invitt.co.zw" target="_blank">Invitt Co</a> · <a href="#" id="tess-privacy-link">Privacy</a></div>
+
+        <div id="tess-privacy-modal">
+          <button id="tess-privacy-close">✕ Close</button>
+          <h3>Privacy Policy</h3>
+          <p>This chat widget is operated by <strong>Invitt Co</strong> (invitt.co.zw). Any information you share — including your name, email, phone number, and business details — is used solely to respond to your enquiry and may be stored securely for follow-up purposes.</p>
+          <p>We do not sell or share your personal data with third parties. Conversation logs may be reviewed by Invitt Co staff to improve service quality.</p>
+          <p>By using this chat, you consent to the above. For questions, email <a href="mailto:lennnyamajiwa@gmail.com">lennnyamajiwa@gmail.com</a> or visit <a href="https://invitt.co.zw" target="_blank">invitt.co.zw</a>.</p>
+        </div>
       </div>
 
       <!-- Floating bubble -->
@@ -1093,6 +1111,15 @@ Rules:
 
     // WhatsApp button
     document.getElementById('tess-wa-btn').addEventListener('click', openWhatsApp);
+
+    // Privacy modal
+    document.getElementById('tess-privacy-link').addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('tess-privacy-modal').classList.add('show');
+    });
+    document.getElementById('tess-privacy-close').addEventListener('click', () => {
+      document.getElementById('tess-privacy-modal').classList.remove('show');
+    });
 
     // Popup timing
     setTimeout(showPopup, CFG.popupDelay);
