@@ -446,12 +446,13 @@ Rules:
     style.textContent = `
       #tess-root * { box-sizing: border-box; font-family: 'Space Grotesk', -apple-system, sans-serif; }
       #tess-bubble {
-        position: fixed; bottom: 24px; right: 24px; z-index: 999999;
+       position: fixed; bottom: 24px; right: 24px; z-index: 9999999; pointer-events: auto;
         width: 56px; height: 56px; border-radius: 50%;
         background: ${CFG.accentColor}; border: none; cursor: pointer;
         display: flex; align-items: center; justify-content: center;
         box-shadow: 0 4px 24px rgba(200,245,62,0.4);
         transition: transform 0.2s, box-shadow 0.2s;
+        pointer-events: auto;
       }
       #tess-bubble:hover { transform: scale(1.08); box-shadow: 0 6px 32px rgba(200,245,62,0.6); }
       #tess-bubble svg { width: 26px; height: 26px; }
