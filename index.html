@@ -321,12 +321,7 @@
     /* ── PRELOADER ── */
 
     /* ── CUSTOM CURSOR ── */
-    body { cursor: none; }
-    #inv-cursor { position: fixed; width: 10px; height: 10px; background: var(--accent); border-radius: 50%; pointer-events: none; z-index: 99999; transform: translate(-50%,-50%); box-shadow: 0 0 14px rgba(200,245,62,0.9), 0 0 28px rgba(200,245,62,0.4); transition: width 0.2s ease, height 0.2s ease; will-change: left, top; }
-    #inv-cursor-ring { position: fixed; width: 32px; height: 32px; border: 1.5px solid rgba(200,245,62,0.4); border-radius: 50%; pointer-events: none; z-index: 99998; transform: translate(-50%,-50%); transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease; will-change: left, top; }
-    body:has(a:hover) #inv-cursor, body:has(button:hover) #inv-cursor { width: 18px; height: 18px; }
-    body:has(a:hover) #inv-cursor-ring, body:has(button:hover) #inv-cursor-ring { width: 44px; height: 44px; border-color: rgba(200,245,62,0.7); }
-    @media (pointer: coarse) { body { cursor: auto !important; } #inv-cursor, #inv-cursor-ring { display: none !important; } }
+
     .noise-overlay, .navbar, .mobile-menu { z-index: 99999 !important; }
     nav.navbar { z-index: 10000 !important; }
 
@@ -351,8 +346,7 @@
 </head>
 <body>
 
-<div id="inv-cursor" aria-hidden="true"></div>
-<div id="inv-cursor-ring" aria-hidden="true"></div>
+
 
 
 <svg class="noise-overlay" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -678,6 +672,11 @@
 
 
 <script>
+  window.TESS_CONFIG = { whatsappNumber: '+263787412809', backendUrl: 'http://localhost:8000', calendlyUrl: 'https://calendly.com/lennnyamajiwa/30min' };
+</script>
+<script src="tess-widget.js"></script>
+
+<script>
 
 
 // ── NAVBAR ──
@@ -740,14 +739,7 @@ const deviceObserver = new IntersectionObserver((entries) => {
 const portfolioWrap = document.getElementById('portfolioWrap');
 if (portfolioWrap) deviceObserver.observe(portfolioWrap);
 
-// ── CURSOR ──
-(function() {
-  const dot = document.getElementById('inv-cursor'), ring = document.getElementById('inv-cursor-ring');
-  if (!dot || !ring) return;
-  let mx = window.innerWidth/2, my = window.innerHeight/2, rx = mx, ry = my;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx+'px'; dot.style.top = my+'px'; }, { passive: true });
-  (function lerpRing() { rx += (mx-rx)*0.13; ry += (my-ry)*0.13; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(lerpRing); })();
-})();
+
 
 
 
