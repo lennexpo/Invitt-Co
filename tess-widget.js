@@ -928,7 +928,7 @@ Rules:
     state.isOpen = true;
     document.getElementById('tess-panel').style.display = 'flex';
     document.getElementById('tess-popup').style.display = 'none';
-    document.getElementById('tess-bubble').style.display = 'none';
+    document.getElementById('tess-bubble').innerHTML = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="18" y1="6" x2="6" y2="18" stroke="${CFG.bgDark}" stroke-width="2.5" stroke-linecap="round"/><line x1="6" y1="6" x2="18" y2="18" stroke="${CFG.bgDark}" stroke-width="2.5" stroke-linecap="round"/></svg>`;
 
     if (state.messages.length === 0) {
       // Reload previous messages
@@ -951,8 +951,7 @@ Rules:
   function closePanel() {
     state.isOpen = false;
     document.getElementById('tess-panel').style.display = 'none';
-    document.getElementById('tess-bubble').style.display = 'flex';
-    // Always show popup immediately when chat is closed
+    document.getElementById('tess-bubble').innerHTML = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" fill="${CFG.bgDark}"/></svg>`;
     document.getElementById('tess-popup').style.display = 'block';
   }
 
