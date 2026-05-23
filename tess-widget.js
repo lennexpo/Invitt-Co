@@ -1043,9 +1043,30 @@
       }
       const reader = new FileReader();
       reader.onload = (ev) => {
-        state.pendingImage = ev.target.result;
-        document.getElementById('tess-img-preview').src = ev.target.result;
-        document.getElementById('tess-img-preview-row').classList.add('show');
+        // Compress image to max 800px wide/tall, ~150KB, before storing
+        const img = new Image();
+        img.onload = () => {
+          const MAX = 800;
+          let w = img.width, h = img.height;
+          if (w > MAX || h > MAX) {
+            if (w > h) { h = Math.round(h * MAX / w); w = MAX; }
+            else { w = Math.round(w * MAX / h); h = MAX; }
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = w; canvas.height = h;
+          canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+          // Start at quality 0.7, reduce until under 200KB
+          let quality = 0.7;
+          let dataUrl = canvas.toDataURL('image/jpeg', quality);
+          while (dataUrl.length > 200000 && quality > 0.2) {
+            quality -= 0.1;
+            dataUrl = canvas.toDataURL('image/jpeg', quality);
+          }
+          state.pendingImage = dataUrl;
+          document.getElementById('tess-img-preview').src = dataUrl;
+          document.getElementById('tess-img-preview-row').classList.add('show');
+        };
+        img.src = ev.target.result;
       };
       reader.readAsDataURL(file);
       e.target.value = ''; // reset so same file can be reselected
