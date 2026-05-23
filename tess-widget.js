@@ -105,7 +105,7 @@
       // ── PROCESS / MISC ───────────────────────────────────────────────────
       { q: "rush|urgent|fast delivery|asap|quickly|need it now|emergency", a: "Rush delivery is available on request. Depending on scope, we can often deliver in 5–7 days. Message Lennon on WhatsApp directly to discuss a rush project." },
       { q: "compare|vs|alternative|other options|check around|competitor|agency", a: "We focus on being the best for Zimbabwe SMEs — 14-day delivery, founder-level attention, local expertise. Many clients come to us after bad experiences elsewhere. We'd love to show you the difference." },
-      { q: "hello|hi|hey|good morning|good afternoon|howzit|greetings|sup", a: "Hey! I'm Tess, Invitt Co's AI assistant. I can answer questions about our web design packages, pricing, process, and more. What can I help you with?" },
+      { q: "hello|hi|hey|good morning|good afternoon|howzit|greetings|sup", a: "Hey! I'm Tess. What can I help you build?" },
       { q: "thank|thanks|appreciate|great|awesome|perfect|cool|nice|helpful", a: "Happy to help! Is there anything else you'd like to know about Invitt Co? Or I can log your details and get Lennon to reach out." },
       { q: "bye|goodbye|see you|later|done|that's all|no thanks|not now", a: "No problem! Feel free to come back anytime. You can also reach Lennon directly on WhatsApp — button below." },
       { q: "contact|reach|talk to|speak|call|email|whatsapp|phone number|get in touch", a: "Best way is WhatsApp — hit the button below. Or book a free 20-min call with Lennon at calendly.com/invittco" }
@@ -720,7 +720,7 @@
           </button>
         </div>
 
-        <div id="tess-footer">Powered by <a href="https://invitt.co.zw" target="_blank">Invitt Co</a></div>
+        <div id="tess-footer">Powered by Invitt Co<br><a href="https://invitt.co.zw/privacy-policy" target="_blank" style="color:#888;font-size:10px;text-decoration:underline;">Privacy Policy</a></div>
       </div>
 
       <!-- Floating bubble -->
