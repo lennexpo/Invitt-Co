@@ -318,16 +318,16 @@
     }
   }
 
-  async function saveMessageToBackend(role, content) {
+  async function saveMessageToBackend(role, content, imageData = null) {
     // Send via WebSocket for real-time admin view
-    sendViaWebSocket(role, content);
+    sendViaWebSocket(role, content, imageData);
     // Also persist via REST as fallback
     if (!CFG.backendUrl) return;
     try {
       await fetch(CFG.backendUrl + '/messages', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ session_id: state.sessionId, role, content })
+        body: JSON.stringify({ session_id: state.sessionId, role, content, image_data: imageData || null })
       });
     } catch (e) {}
   }
@@ -399,10 +399,10 @@
     } catch (err) {}
   }
 
-  function sendViaWebSocket(role, content) {
+  function sendViaWebSocket(role, content, imageData = null) {
     if (state.ws && state.ws.readyState === WebSocket.OPEN) {
       try {
-        state.ws.send(JSON.stringify({ role, content }));
+        state.ws.send(JSON.stringify({ role, content, image_data: imageData || null }));
       } catch (err) {}
     }
   }
@@ -741,7 +741,7 @@
     saveSession();
     renderMessage(msg);
     scrollToBottom();
-    saveMessageToBackend(role, content);
+    saveMessageToBackend(role, content, imageDataUrl || null);
   }
 
   function renderMessage(msg) {
