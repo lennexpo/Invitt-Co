@@ -360,6 +360,17 @@
       state.ws.onmessage = (e) => {
         try {
           const data = JSON.parse(e.data);
+          // Admin released back to AI
+          if (data.type === 'human_released') {
+            state.isHumanMode = false;
+            const banner = document.getElementById('tess-human-banner');
+            if (banner) {
+              banner.style.display = 'block';
+              banner.textContent = '🤖 You are now chatting with Tess AI again';
+              setTimeout(() => { banner.style.display = 'none'; }, 4000);
+            }
+            return;
+          }
           // Admin takeover message received
           if (data.role === 'assistant' || data.role === 'human') {
             hideTyping();
