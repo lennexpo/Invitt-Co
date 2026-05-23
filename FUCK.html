@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Tess Admin — Invitt Co</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0c0c0e;--surface:#131316;--surface2:#1a1a1f;--border:#2a2a32;
+  --accent:#c8f53e;--accent2:#a8d42e;--text:#f0f0f0;--muted:#888;
+  --hot:#ff4d4d;--warm:#ff9900;--cold:#4da6ff;
+  --radius:10px;--font-mono:'DM Mono',monospace;--font-head:'Syne',sans-serif;--font-body:'Inter',sans-serif;
+}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--font-body)}
+
+/* ── LOGIN ── */
+#login-screen{
+  display:flex;align-items:center;justify-content:center;height:100vh;
+  background:radial-gradient(ellipse at 50% 0%,#1a2a0a 0%,var(--bg) 70%);
+}
+.login-box{width:360px;padding:40px;background:var(--surface);border:1px solid var(--border);border-radius:16px}
+.login-logo{font-family:var(--font-head);font-size:22px;font-weight:800;color:var(--accent);margin-bottom:4px}
+.login-sub{color:var(--muted);font-size:13px;margin-bottom:28px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.form-group input{
+  width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;
+  padding:10px 14px;color:var(--text);font-size:14px;outline:none;font-family:var(--font-body);
+  transition:border-color .2s;
+}
+.form-group input:focus{border-color:var(--accent)}
+.login-btn{
+  width:100%;padding:12px;background:var(--accent);color:#111;font-weight:700;
+  border:none;border-radius:8px;cursor:pointer;font-size:15px;font-family:var(--font-head);
+  transition:background .15s,transform .1s;margin-top:4px;
+}
+.login-btn:hover{background:var(--accent2)}
+.login-btn:active{transform:scale(.98)}
+.login-error{color:var(--hot);font-size:13px;margin-top:10px;display:none}
+
+/* ── MAIN LAYOUT ── */
+#app{display:none;height:100vh;flex-direction:row}
+nav{
+  width:220px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);
+  display:flex;flex-direction:column;padding:24px 0;
+}
+.nav-brand{padding:0 20px 24px;border-bottom:1px solid var(--border)}
+.nav-brand-name{font-family:var(--font-head);font-size:16px;font-weight:800;color:var(--accent)}
+.nav-brand-sub{font-size:11px;color:var(--muted);margin-top:2px}
+.nav-links{flex:1;padding:16px 8px 0}
+.nav-link{
+  display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;
+  color:var(--muted);font-size:13px;font-weight:500;cursor:pointer;
+  transition:background .15s,color .15s;margin-bottom:2px;
+}
+.nav-link:hover{background:var(--surface2);color:var(--text)}
+.nav-link.active{background:rgba(200,245,62,.1);color:var(--accent)}
+.nav-link svg{flex-shrink:0}
+.nav-badge{
+  margin-left:auto;background:var(--hot);color:#fff;font-size:10px;font-weight:700;
+  border-radius:10px;padding:1px 6px;min-width:18px;text-align:center;
+}
+.nav-ws{padding:16px 20px;border-top:1px solid var(--border);margin-top:auto}
+.ws-indicator{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+.ws-dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex-shrink:0}
+.ws-dot.connected{background:#4caf50;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+main{flex:1;overflow:hidden;display:flex;flex-direction:column}
+.top-bar{
+  height:60px;flex-shrink:0;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;padding:0 28px;gap:16px;background:var(--surface);
+}
+.page-title{font-family:var(--font-head);font-size:17px;font-weight:700;flex:1}
+.refresh-btn{
+  padding:7px 14px;background:var(--surface2);border:1.5px solid var(--border);
+  border-radius:8px;color:var(--muted);font-size:12px;font-weight:600;cursor:pointer;
+  transition:border-color .15s,color .15s;
+}
+.refresh-btn:hover{border-color:var(--accent);color:var(--accent)}
+.logout-btn{
+  padding:7px 14px;background:transparent;border:1.5px solid var(--border);
+  border-radius:8px;color:var(--muted);font-size:12px;cursor:pointer;
+  transition:border-color .15s,color .15s;
+}
+.logout-btn:hover{border-color:var(--hot);color:var(--hot)}
+
+.page-content{flex:1;overflow-y:auto;padding:28px}
+
+/* ── TABS ── */
+.tab{display:none}
+.tab.active{display:block}
+
+/* ── STATS GRID ── */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;margin-bottom:28px}
+.stat-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:20px;position:relative;overflow:hidden;
+}
+.stat-card::before{
+  content:'';position:absolute;top:0;right:0;width:3px;height:100%;
+  background:var(--accent);border-radius:0 var(--radius) var(--radius) 0;
+}
+.stat-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.stat-value{font-family:var(--font-mono);font-size:28px;font-weight:500;color:var(--text)}
+.stat-sub{font-size:11px;color:var(--muted);margin-top:4px}
+
+/* ── SECTION HEADER ── */
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.section-title{font-family:var(--font-head);font-size:14px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.section-action{
+  padding:6px 14px;background:var(--accent);color:#111;font-weight:700;font-size:12px;
+  border:none;border-radius:6px;cursor:pointer;font-family:var(--font-head);
+  transition:background .15s;
+}
+.section-action:hover{background:var(--accent2)}
+.section-action.danger{background:transparent;color:var(--hot);border:1.5px solid var(--hot)}
+.section-action.danger:hover{background:rgba(255,77,77,.1)}
+
+/* ── TABLES ── */
+.table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{
+  padding:10px 14px;text-align:left;font-size:11px;font-weight:600;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);
+  background:var(--surface2);white-space:nowrap;
+}
+tbody tr{border-bottom:1px solid var(--border);transition:background .1s}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:var(--surface2)}
+td{padding:12px 14px;color:var(--text);vertical-align:middle}
+.empty-row td{text-align:center;color:var(--muted);padding:32px}
+
+/* ── SCORE BADGE ── */
+.score-badge{
+  display:inline-block;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:700;font-family:var(--font-mono);
+}
+.score-hot{background:rgba(255,77,77,.15);color:var(--hot)}
+.score-warm{background:rgba(255,153,0,.15);color:var(--warm)}
+.score-cold{background:rgba(77,166,255,.15);color:var(--cold)}
+
+/* ── STATUS BADGE ── */
+.status-badge{
+  display:inline-block;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:600;
+}
+.status-pending{background:rgba(255,153,0,.15);color:var(--warm)}
+.status-confirmed{background:rgba(76,175,80,.15);color:#4caf50}
+.status-cancelled{background:rgba(255,77,77,.15);color:var(--hot)}
+
+/* ── ACTION BTNS ── */
+.action-btn{
+  padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;
+  border:1.5px solid var(--border);background:transparent;color:var(--muted);
+  transition:all .15s;margin-right:4px;
+}
+.action-btn:hover{border-color:var(--accent);color:var(--accent)}
+.action-btn.del:hover{border-color:var(--hot);color:var(--hot)}
+.action-btn.confirm:hover{border-color:#4caf50;color:#4caf50}
+
+/* ── CONVERSATIONS ── */
+.conv-layout{display:grid;grid-template-columns:300px 1fr;gap:16px;height:calc(100vh - 170px);min-height:400px}
+.conv-list{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow-y:auto}
+.conv-item{
+  padding:14px 16px;border-bottom:1px solid var(--border);cursor:pointer;
+  transition:background .1s;
+}
+.conv-item:hover{background:var(--surface2)}
+.conv-item.active{background:rgba(200,245,62,.06);border-left:3px solid var(--accent)}
+.conv-name{font-weight:600;font-size:13px;margin-bottom:3px}
+.conv-meta{font-size:11px;color:var(--muted)}
+.conv-score{float:right;font-family:var(--font-mono);font-size:11px}
+.conv-detail{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  display:flex;flex-direction:column;overflow:hidden;
+}
+.conv-detail-header{
+  padding:14px 18px;border-bottom:1px solid var(--border);background:var(--surface2);
+  display:flex;align-items:center;gap:10px;flex-shrink:0;
+}
+.conv-detail-info{flex:1}
+.conv-detail-name{font-weight:700;font-size:14px}
+.conv-detail-sub{font-size:12px;color:var(--muted)}
+.takeover-badge{
+  padding:5px 12px;background:rgba(200,245,62,.15);color:var(--accent);
+  font-size:11px;font-weight:700;border-radius:6px;border:1px solid rgba(200,245,62,.3);
+}
+.messages-area{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.msg-bubble{max-width:75%;padding:10px 14px;border-radius:12px;font-size:13px;line-height:1.5}
+.msg-user{align-self:flex-end;background:var(--accent);color:#111;font-weight:600;border-radius:12px 12px 2px 12px}
+.msg-assistant{align-self:flex-start;background:var(--surface2);border:1px solid var(--border);border-radius:12px 12px 12px 2px}
+.msg-human{align-self:flex-start;background:rgba(200,245,62,.12);border:1px solid rgba(200,245,62,.3);border-radius:12px 12px 12px 2px}
+.msg-label{font-size:10px;color:var(--muted);margin-bottom:4px}
+.takeover-area{
+  padding:12px 16px;border-top:1px solid var(--border);display:flex;gap:8px;flex-shrink:0;
+}
+.takeover-input{
+  flex:1;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;
+  padding:9px 14px;color:var(--text);font-size:13px;outline:none;font-family:var(--font-body);
+  transition:border-color .2s;
+}
+.takeover-input:focus{border-color:var(--accent)}
+.takeover-send{
+  padding:9px 18px;background:var(--accent);color:#111;font-weight:700;font-size:13px;
+  border:none;border-radius:8px;cursor:pointer;font-family:var(--font-head);
+  transition:background .15s;white-space:nowrap;
+}
+.takeover-send:hover{background:var(--accent2)}
+.no-conv{display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);font-size:13px}
+
+/* ── KNOWLEDGE BASE ── */
+.kb-add{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.kb-input{
+  flex:1;min-width:200px;background:var(--surface);border:1.5px solid var(--border);
+  border-radius:8px;padding:10px 14px;color:var(--text);font-size:13px;outline:none;font-family:var(--font-body);
+  transition:border-color .2s;
+}
+.kb-input:focus{border-color:var(--accent)}
+
+/* ── UNANSWERED ── */
+.unanswered-item{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:14px 18px;margin-bottom:10px;display:flex;align-items:center;gap:12px;
+}
+.unanswered-q{flex:1;font-size:13px}
+.unanswered-freq{
+  font-family:var(--font-mono);font-size:11px;padding:3px 8px;
+  background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--muted);
+  flex-shrink:0;
+}
+.unanswered-added{opacity:.4;text-decoration:line-through}
+
+/* ── MODAL ── */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000;
+  display:none;align-items:center;justify-content:center;
+}
+.modal-overlay.show{display:flex}
+.modal{
+  background:var(--surface);border:1px solid var(--border);border-radius:14px;
+  padding:28px;width:460px;max-width:calc(100vw - 32px);
+}
+.modal-title{font-family:var(--font-head);font-size:16px;font-weight:700;margin-bottom:18px}
+.modal textarea{
+  width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;
+  padding:10px 14px;color:var(--text);font-size:13px;outline:none;resize:vertical;min-height:80px;
+  font-family:var(--font-body);transition:border-color .2s;margin-bottom:12px;
+}
+.modal textarea:focus{border-color:var(--accent)}
+.modal-actions{display:flex;gap:10px;justify-content:flex-end}
+.modal-cancel{
+  padding:9px 18px;background:transparent;border:1.5px solid var(--border);
+  border-radius:8px;color:var(--muted);font-size:13px;cursor:pointer;
+}
+.modal-submit{
+  padding:9px 18px;background:var(--accent);color:#111;font-weight:700;font-size:13px;
+  border:none;border-radius:8px;cursor:pointer;font-family:var(--font-head);
+}
+
+/* ── TOAST ── */
+.toast{
+  position:fixed;bottom:24px;right:24px;background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;padding:12px 18px;font-size:13px;z-index:9999;
+  transform:translateY(80px);opacity:0;transition:all .3s cubic-bezier(.34,1.56,.64,1);
+  pointer-events:none;
+}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.success{border-color:var(--accent);color:var(--accent)}
+.toast.error{border-color:var(--hot);color:var(--hot)}
+
+/* ── LOADING ── */
+.loading{text-align:center;padding:40px;color:var(--muted);font-size:13px}
+.spinner{
+  width:24px;height:24px;border:2px solid var(--border);border-top-color:var(--accent);
+  border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 10px;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── FADER ── */
+.fade-in{animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">TESS ADMIN</div>
+    <div class="login-sub">Invitt Co — AI Receptionist Dashboard</div>
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" id="login-user" placeholder="Enter username" autocomplete="username"/>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" id="login-pass" placeholder="Enter password" autocomplete="current-password"/>
+    </div>
+    <button class="login-btn" onclick="doLogin()">Sign In →</button>
+    <div class="login-error" id="login-error"></div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <nav>
+    <div class="nav-brand">
+      <div class="nav-brand-name">TESS ADMIN</div>
+      <div class="nav-brand-sub">Invitt Co</div>
+    </div>
+    <div class="nav-links">
+      <div class="nav-link active" onclick="showTab('overview')" id="nav-overview">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Overview
+      </div>
+      <div class="nav-link" onclick="showTab('conversations')" id="nav-conversations">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Conversations
+        <span class="nav-badge" id="active-badge" style="display:none">0</span>
+      </div>
+      <div class="nav-link" onclick="showTab('leads')" id="nav-leads">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Leads
+      </div>
+      <div class="nav-link" onclick="showTab('bookings')" id="nav-bookings">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Bookings
+      </div>
+      <div class="nav-link" onclick="showTab('knowledge')" id="nav-knowledge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Knowledge Base
+      </div>
+      <div class="nav-link" onclick="showTab('unanswered')" id="nav-unanswered">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Unanswered
+        <span class="nav-badge" id="unanswered-badge" style="display:none">0</span>
+      </div>
+    </div>
+    <div class="nav-ws">
+      <div class="ws-indicator">
+        <span class="ws-dot" id="ws-dot"></span>
+        <span id="ws-label">Disconnected</span>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="top-bar">
+      <div class="page-title" id="page-title">Overview</div>
+      <button class="refresh-btn" onclick="loadCurrentTab()">↻ Refresh</button>
+      <button class="logout-btn" onclick="logout()">Sign Out</button>
+    </div>
+    <div class="page-content" id="page-content">
+
+      <!-- OVERVIEW -->
+      <div class="tab active" id="tab-overview">
+        <div class="stats-grid" id="stats-grid">
+          <div class="loading"><div class="spinner"></div>Loading analytics…</div>
+        </div>
+      </div>
+
+      <!-- CONVERSATIONS -->
+      <div class="tab" id="tab-conversations">
+        <div class="conv-layout">
+          <div class="conv-list" id="conv-list">
+            <div class="loading"><div class="spinner"></div>Loading…</div>
+          </div>
+          <div class="conv-detail" id="conv-detail">
+            <div class="no-conv">Select a conversation →</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LEADS -->
+      <div class="tab" id="tab-leads">
+        <div class="section-header">
+          <div class="section-title">All Leads</div>
+          <button class="section-action danger" onclick="clearLeads()">Clear All</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr>
+              <th>Name</th><th>Email</th><th>Phone</th><th>Business</th><th>Budget</th>
+              <th>Score</th><th>Messages</th><th>Date</th><th></th>
+            </tr></thead>
+            <tbody id="leads-tbody"><tr class="empty-row"><td colspan="9">Loading…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- BOOKINGS -->
+      <div class="tab" id="tab-bookings">
+        <div class="section-header">
+          <div class="section-title">Bookings</div>
+          <button class="section-action danger" onclick="clearBookings()">Clear All</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr>
+              <th>Name</th><th>Email</th><th>Phone</th><th>Preferred Time</th><th>Status</th><th>Date</th><th></th>
+            </tr></thead>
+            <tbody id="bookings-tbody"><tr class="empty-row"><td colspan="7">Loading…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- KNOWLEDGE BASE -->
+      <div class="tab" id="tab-knowledge">
+        <div class="kb-add">
+          <input type="text" class="kb-input" id="kb-q" placeholder="Question / keyword pattern (e.g. price|cost|how much)"/>
+          <input type="text" class="kb-input" id="kb-a" placeholder="Answer Tess will give"/>
+          <button class="section-action" onclick="addKB()">+ Add Entry</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Question/Pattern</th><th>Answer</th><th>Hits</th><th>Source</th><th>Added</th><th></th></tr></thead>
+            <tbody id="kb-tbody"><tr class="empty-row"><td colspan="6">Loading…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- UNANSWERED -->
+      <div class="tab" id="tab-unanswered">
+        <div class="section-header">
+          <div class="section-title">Questions Tess Couldn't Answer</div>
+          <button class="section-action danger" onclick="clearUnanswered()">Clear All</button>
+        </div>
+        <div id="unanswered-list">
+          <div class="loading"><div class="spinner"></div>Loading…</div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- ADD TO KB MODAL -->
+<div class="modal-overlay" id="kb-modal">
+  <div class="modal">
+    <div class="modal-title">Add to Knowledge Base</div>
+    <div class="form-group" style="margin-bottom:10px">
+      <label>Question / keyword pattern</label>
+      <input type="text" class="kb-input" id="modal-kb-q" style="width:100%;margin-top:6px"/>
+    </div>
+    <div class="form-group" style="margin-bottom:16px">
+      <label>Answer</label>
+      <textarea id="modal-kb-a"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-submit" onclick="submitModal()">Add to KB →</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── STATE ──────────────────────────────────────────────────────────────────────
+const BASE = window.location.origin;   // auto-detected — admin.html served at /admin
+let TOKEN = localStorage.getItem('tess_token') || '';
+let WS = null;
+let activeConvSession = null;
+let activeConvMessages = [];
+let currentTab = 'overview';
+let pendingModalQ = '';
+
+// ── TOAST ──────────────────────────────────────────────────────────────────────
+function toast(msg, type = 'success') {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = `toast show ${type}`;
+  setTimeout(() => el.className = 'toast', 2800);
+}
+
+// ── AUTH ───────────────────────────────────────────────────────────────────────
+async function doLogin() {
+  const user = document.getElementById('login-user').value.trim();
+  const pass = document.getElementById('login-pass').value.trim();
+  const err  = document.getElementById('login-error');
+  err.style.display = 'none';
+  if (!user || !pass) { err.textContent = 'Enter username and password'; err.style.display = 'block'; return; }
+  try {
+    const res = await fetch(`${BASE}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: user, password: pass })
+    });
+    if (!res.ok) throw new Error('Invalid credentials');
+    const data = await res.json();
+    TOKEN = data.token;
+    localStorage.setItem('tess_token', TOKEN);
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app').style.display = 'flex';
+    initApp();
+  } catch (e) {
+    err.textContent = 'Wrong username or password';
+    err.style.display = 'block';
+  }
+}
+
+document.getElementById('login-pass').addEventListener('keydown', e => e.key === 'Enter' && doLogin());
+document.getElementById('login-user').addEventListener('keydown', e => e.key === 'Enter' && doLogin());
+
+function logout() {
+  TOKEN = '';
+  localStorage.removeItem('tess_token');
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+  if (WS) WS.close();
+}
+
+function authHeaders() {
+  return { 'Authorization': `Bearer ${TOKEN}`, 'Content-Type': 'application/json' };
+}
+
+async function api(path, opts = {}) {
+  opts.headers = { ...authHeaders(), ...(opts.headers || {}) };
+  const res = await fetch(BASE + path, opts);
+  if (res.status === 401) { logout(); throw new Error('Unauthorized'); }
+  return res;
+}
+
+// ── INIT ───────────────────────────────────────────────────────────────────────
+function initApp() {
+  connectWS();
+  loadTab('overview');
+  // Auto-check if already logged in on load
+}
+
+// Try auto-login on page load
+window.addEventListener('load', () => {
+  if (TOKEN) {
+    // Verify token is still valid
+    fetch(`${BASE}/analytics`, { headers: { 'Authorization': `Bearer ${TOKEN}` } })
+      .then(r => {
+        if (r.ok) {
+          document.getElementById('login-screen').style.display = 'none';
+          document.getElementById('app').style.display = 'flex';
+          initApp();
+        }
+      }).catch(() => {});
+  }
+});
+
+// ── WEBSOCKET ──────────────────────────────────────────────────────────────────
+function connectWS() {
+  const wsUrl = BASE.replace(/^https/, 'wss').replace(/^http/, 'ws') + '/ws/admin';
+  WS = new WebSocket(wsUrl);
+
+  WS.onopen = () => {
+    document.getElementById('ws-dot').classList.add('connected');
+    document.getElementById('ws-label').textContent = 'Live';
+  };
+
+  WS.onclose = () => {
+    document.getElementById('ws-dot').classList.remove('connected');
+    document.getElementById('ws-label').textContent = 'Disconnected';
+    setTimeout(connectWS, 4000);
+  };
+
+  WS.onmessage = e => {
+    try {
+      const data = JSON.parse(e.data);
+      handleWSMessage(data);
+    } catch (_) {}
+  };
+}
+
+function handleWSMessage(data) {
+  // Update active badge
+  if (data.type === 'message') {
+    const badge = document.getElementById('active-badge');
+    badge.style.display = 'inline';
+    // Refresh conversations list silently
+    if (currentTab === 'conversations') refreshConvList();
+    // Append message if we're watching this session
+    if (activeConvSession === data.session_id && data.content) {
+      appendMessage(data.role || 'user', data.content, data.is_human);
+    }
+  }
+}
+
+// ── TABS ───────────────────────────────────────────────────────────────────────
+function showTab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  document.getElementById('nav-' + name).classList.add('active');
+  const titles = { overview:'Overview', conversations:'Conversations', leads:'Leads', bookings:'Bookings', knowledge:'Knowledge Base', unanswered:'Unanswered Questions' };
+  document.getElementById('page-title').textContent = titles[name] || name;
+  currentTab = name;
+  loadTab(name);
+}
+
+function loadCurrentTab() { loadTab(currentTab); }
+
+function loadTab(name) {
+  switch(name) {
+    case 'overview': loadAnalytics(); break;
+    case 'conversations': loadConversations(); break;
+    case 'leads': loadLeads(); break;
+    case 'bookings': loadBookings(); break;
+    case 'knowledge': loadKB(); break;
+    case 'unanswered': loadUnanswered(); break;
+  }
+}
+
+// ── OVERVIEW ───────────────────────────────────────────────────────────────────
+async function loadAnalytics() {
+  const grid = document.getElementById('stats-grid');
+  grid.innerHTML = '<div class="loading"><div class="spinner"></div>Loading analytics…</div>';
+  try {
+    const res = await api('/analytics');
+    const d = await res.json();
+    grid.innerHTML = `
+      ${stat('Total Leads', d.leads, 'captured')}
+      ${stat('Sessions', d.sessions, 'total conversations')}
+      ${stat('Messages', d.messages, 'exchanged')}
+      ${stat('Conversion', d.conversion_rate, 'lead rate')}
+      ${stat('🔥 Hot Leads', d.hot_leads, 'score ≥ 60')}
+      ${stat('🟡 Warm', d.warm_leads, 'score 30–59')}
+      ${stat('🔵 Cold', d.cold_leads, 'score < 30')}
+      ${stat('Avg Score', d.avg_score, 'out of 100')}
+      ${stat('WA Clicks', d.wa_clicks, 'whatsapp opens')}
+      ${stat('Voice Reqs', d.voice_requests, 'callback requests')}
+      ${stat('Live Chats', d.live_chats, 'started')}
+      ${stat('FAQ Coverage', d.faq_coverage + '%', `${d.unanswered_count} unanswered`)}
+      ${stat('KB Entries', d.kb_entries, `${d.kb_hits} total hits`)}
+    `;
+
+    // Update unanswered badge
+    const badge = document.getElementById('unanswered-badge');
+    if (d.unanswered_count > 0) {
+      badge.style.display = 'inline';
+      badge.textContent = d.unanswered_count;
+    }
+  } catch (e) {
+    grid.innerHTML = '<div class="loading" style="color:var(--hot)">Failed to load analytics.</div>';
+  }
+}
+
+function stat(label, value, sub) {
+  return `<div class="stat-card fade-in"><div class="stat-label">${label}</div><div class="stat-value">${value}</div><div class="stat-sub">${sub}</div></div>`;
+}
+
+// ── CONVERSATIONS ──────────────────────────────────────────────────────────────
+async function loadConversations() {
+  await refreshConvList();
+}
+
+async function refreshConvList() {
+  const list = document.getElementById('conv-list');
+  try {
+    const res = await api('/conversations');
+    const convs = await res.json();
+    if (!convs.length) {
+      list.innerHTML = '<div style="padding:24px;text-align:center;color:var(--muted);font-size:13px">No conversations yet.</div>';
+      return;
+    }
+    list.innerHTML = convs.map(c => {
+      const score = c.score || 0;
+      const sClass = score >= 60 ? 'score-hot' : score >= 30 ? 'score-warm' : 'score-cold';
+      const name = c.name || c.session_id.slice(0, 12) + '…';
+      const time = c.last_at ? new Date(c.last_at).toLocaleString() : '';
+      return `<div class="conv-item${activeConvSession === c.session_id ? ' active' : ''}" onclick="openConv('${c.session_id}', '${name}', '${c.email || ''}', '${c.business || ''}')">
+        <div class="conv-name">${name} <span class="conv-score ${sClass}">${score}</span></div>
+        <div class="conv-meta">${c.message_count} messages · ${time}</div>
+      </div>`;
+    }).join('');
+  } catch (e) {}
+}
+
+async function openConv(sessionId, name, email, business) {
+  activeConvSession = sessionId;
+  activeConvMessages = [];
+  refreshConvList();
+
+  const detail = document.getElementById('conv-detail');
+  detail.innerHTML = `
+    <div class="conv-detail-header">
+      <div class="conv-detail-info">
+        <div class="conv-detail-name">${name}</div>
+        <div class="conv-detail-sub">${email || ''} ${business ? '· ' + business : ''}</div>
+      </div>
+      <span class="takeover-badge">🟢 Watching</span>
+    </div>
+    <div class="messages-area" id="messages-area"><div class="loading"><div class="spinner"></div>Loading…</div></div>
+    <div class="takeover-area">
+      <input type="text" class="takeover-input" id="takeover-input" placeholder="Type message to send as human agent…"/>
+      <button class="takeover-send" onclick="sendTakeover()">Send as Human</button>
+    </div>
+  `;
+
+  document.getElementById('takeover-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') sendTakeover();
+  });
+
+  try {
+    const res = await api(`/messages/${sessionId}`);
+    const msgs = await res.json();
+    activeConvMessages = msgs;
+    const area = document.getElementById('messages-area');
+    if (!msgs.length) {
+      area.innerHTML = '<div style="text-align:center;color:var(--muted);font-size:13px;padding:20px">No messages yet.</div>';
+      return;
+    }
+    area.innerHTML = '';
+    msgs.forEach(m => appendMessage(m.role, m.content, m.role === 'human'));
+  } catch (e) {
+    document.getElementById('messages-area').innerHTML = '<div style="color:var(--hot);padding:16px">Failed to load messages.</div>';
+  }
+}
+
+function appendMessage(role, content, isHuman = false) {
+  const area = document.getElementById('messages-area');
+  if (!area) return;
+  const div = document.createElement('div');
+  if (role === 'user') {
+    div.innerHTML = `<div class="msg-label" style="text-align:right;margin-right:2px">Visitor</div><div style="display:flex;justify-content:flex-end"><div class="msg-bubble msg-user">${esc(content)}</div></div>`;
+  } else if (isHuman || role === 'human') {
+    div.innerHTML = `<div class="msg-label">Human Agent</div><div class="msg-bubble msg-human">${esc(content)}</div>`;
+  } else {
+    div.innerHTML = `<div class="msg-label">Tess (AI)</div><div class="msg-bubble msg-assistant">${esc(content)}</div>`;
+  }
+  area.appendChild(div);
+  area.scrollTop = area.scrollHeight;
+}
+
+function sendTakeover() {
+  const input = document.getElementById('takeover-input');
+  const content = input.value.trim();
+  if (!content || !activeConvSession || !WS || WS.readyState !== WebSocket.OPEN) {
+    if (!WS || WS.readyState !== WebSocket.OPEN) toast('WebSocket not connected', 'error');
+    return;
+  }
+  WS.send(JSON.stringify({ type: 'takeover', session_id: activeConvSession, content }));
+  appendMessage('human', content, true);
+  input.value = '';
+  toast('Message sent ✓');
+}
+
+function esc(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ── LEADS ──────────────────────────────────────────────────────────────────────
+async function loadLeads() {
+  const tbody = document.getElementById('leads-tbody');
+  tbody.innerHTML = '<tr class="empty-row"><td colspan="9">Loading…</td></tr>';
+  try {
+    const res = await api('/leads');
+    const leads = await res.json();
+    if (!leads.length) {
+      tbody.innerHTML = '<tr class="empty-row"><td colspan="9">No leads yet. Leads appear when visitors share their details with Tess.</td></tr>';
+      return;
+    }
+    tbody.innerHTML = leads.map(l => {
+      const score = l.score || 0;
+      const sClass = score >= 60 ? 'score-hot' : score >= 30 ? 'score-warm' : 'score-cold';
+      const date = l.created_at ? new Date(l.created_at).toLocaleDateString() : '—';
+      return `<tr>
+        <td><strong>${esc(l.name || '—')}</strong></td>
+        <td>${esc(l.email || '—')}</td>
+        <td>${esc(l.phone || '—')}</td>
+        <td>${esc(l.business || '—')}</td>
+        <td>${esc(l.budget || '—')}</td>
+        <td><span class="score-badge ${sClass}">${score}</span></td>
+        <td>${l.messages_count || 0}</td>
+        <td>${date}</td>
+        <td><button class="action-btn del" onclick="deleteLead(${l.id})">Delete</button></td>
+      </tr>`;
+    }).join('');
+  } catch (e) {
+    tbody.innerHTML = '<tr class="empty-row"><td colspan="9" style="color:var(--hot)">Failed to load leads.</td></tr>';
+  }
+}
+
+async function deleteLead(id) {
+  if (!confirm('Delete this lead?')) return;
+  await api(`/leads/${id}`, { method: 'DELETE' });
+  toast('Lead deleted');
+  loadLeads();
+}
+
+async function clearLeads() {
+  if (!confirm('Delete ALL leads? This cannot be undone.')) return;
+  await api('/leads', { method: 'DELETE' });
+  toast('All leads cleared');
+  loadLeads();
+}
+
+// ── BOOKINGS ───────────────────────────────────────────────────────────────────
+async function loadBookings() {
+  const tbody = document.getElementById('bookings-tbody');
+  tbody.innerHTML = '<tr class="empty-row"><td colspan="7">Loading…</td></tr>';
+  try {
+    const res = await api('/bookings');
+    const bookings = await res.json();
+    if (!bookings.length) {
+      tbody.innerHTML = '<tr class="empty-row"><td colspan="7">No bookings yet.</td></tr>';
+      return;
+    }
+    tbody.innerHTML = bookings.map(b => {
+      const status = b.status || 'pending';
+      const sClass = status === 'confirmed' ? 'status-confirmed' : status === 'cancelled' ? 'status-cancelled' : 'status-pending';
+      const date = b.created_at ? new Date(b.created_at).toLocaleDateString() : '—';
+      return `<tr>
+        <td><strong>${esc(b.name || '—')}</strong></td>
+        <td>${esc(b.email || '—')}</td>
+        <td>${esc(b.phone || '—')}</td>
+        <td>${esc(b.preferred_time || '—')}</td>
+        <td><span class="status-badge ${sClass}">${status}</span></td>
+        <td>${date}</td>
+        <td>
+          <button class="action-btn confirm" onclick="updateBooking(${b.id},'confirmed')">Confirm</button>
+          <button class="action-btn del" onclick="updateBooking(${b.id},'cancelled')">Cancel</button>
+          <button class="action-btn del" onclick="deleteBooking(${b.id})">Delete</button>
+        </td>
+      </tr>`;
+    }).join('');
+  } catch (e) {
+    tbody.innerHTML = '<tr class="empty-row"><td colspan="7" style="color:var(--hot)">Failed to load bookings.</td></tr>';
+  }
+}
+
+async function updateBooking(id, status) {
+  await api(`/bookings/${id}`, { method: 'PATCH', body: JSON.stringify({ status }) });
+  toast(`Booking ${status}`);
+  loadBookings();
+}
+
+async function deleteBooking(id) {
+  if (!confirm('Delete this booking?')) return;
+  await api(`/bookings/${id}`, { method: 'DELETE' });
+  toast('Booking deleted');
+  loadBookings();
+}
+
+async function clearBookings() {
+  if (!confirm('Delete ALL bookings?')) return;
+  await api('/bookings', { method: 'DELETE' });
+  toast('All bookings cleared');
+  loadBookings();
+}
+
+// ── KNOWLEDGE BASE ─────────────────────────────────────────────────────────────
+async function loadKB() {
+  const tbody = document.getElementById('kb-tbody');
+  tbody.innerHTML = '<tr class="empty-row"><td colspan="6">Loading…</td></tr>';
+  try {
+    const res = await api('/knowledge');
+    const entries = await res.json();
+    if (!entries.length) {
+      tbody.innerHTML = '<tr class="empty-row"><td colspan="6">No knowledge base entries. Add questions and answers above so Tess can use them.</td></tr>';
+      return;
+    }
+    tbody.innerHTML = entries.map(e => {
+      const date = e.created_at ? new Date(e.created_at).toLocaleDateString() : '—';
+      return `<tr>
+        <td style="max-width:200px;word-break:break-word;font-family:var(--font-mono);font-size:11px">${esc(e.question)}</td>
+        <td style="max-width:280px;word-break:break-word">${esc(e.answer)}</td>
+        <td><strong>${e.hit_count || 0}</strong></td>
+        <td>${esc(e.source || 'manual')}</td>
+        <td>${date}</td>
+        <td><button class="action-btn del" onclick="deleteKB(${e.id})">Delete</button></td>
+      </tr>`;
+    }).join('');
+  } catch (e) {
+    tbody.innerHTML = '<tr class="empty-row"><td colspan="6" style="color:var(--hot)">Failed to load knowledge base.</td></tr>';
+  }
+}
+
+async function addKB() {
+  const q = document.getElementById('kb-q').value.trim();
+  const a = document.getElementById('kb-a').value.trim();
+  if (!q || !a) { toast('Enter both question and answer', 'error'); return; }
+  await api('/knowledge', { method: 'POST', body: JSON.stringify({ question: q, answer: a }) });
+  document.getElementById('kb-q').value = '';
+  document.getElementById('kb-a').value = '';
+  toast('KB entry added ✓');
+  loadKB();
+}
+
+async function deleteKB(id) {
+  if (!confirm('Delete this entry?')) return;
+  await api(`/knowledge/${id}`, { method: 'DELETE' });
+  toast('Entry deleted');
+  loadKB();
+}
+
+// ── UNANSWERED ─────────────────────────────────────────────────────────────────
+async function loadUnanswered() {
+  const list = document.getElementById('unanswered-list');
+  list.innerHTML = '<div class="loading"><div class="spinner"></div>Loading…</div>';
+  try {
+    const res = await api('/unanswered');
+    const items = await res.json();
+    const badge = document.getElementById('unanswered-badge');
+
+    if (!items.length) {
+      list.innerHTML = '<div style="text-align:center;color:var(--muted);padding:32px;font-size:13px">No unanswered questions. Tess is handling everything ✓</div>';
+      badge.style.display = 'none';
+      return;
+    }
+
+    badge.style.display = 'inline';
+    badge.textContent = items.length;
+
+    list.innerHTML = items.map(item => `
+      <div class="unanswered-item ${item.added_to_kb ? 'unanswered-added' : ''} fade-in">
+        <div class="unanswered-q">${esc(item.question)}</div>
+        <span class="unanswered-freq">×${item.frequency || 1}</span>
+        ${!item.added_to_kb ? `
+          <button class="action-btn" onclick="openKBModal(${item.id}, '${esc(item.question).replace(/'/g,"\\'")}')">Add to KB</button>
+          <button class="action-btn del" onclick="dismissUnanswered(${item.id})">Dismiss</button>
+        ` : '<span style="font-size:11px;color:var(--muted)">Added ✓</span>'}
+      </div>
+    `).join('');
+  } catch (e) {
+    list.innerHTML = '<div style="color:var(--hot);padding:16px">Failed to load.</div>';
+  }
+}
+
+function openKBModal(id, question) {
+  pendingModalQ = { id, question };
+  document.getElementById('modal-kb-q').value = question;
+  document.getElementById('modal-kb-a').value = '';
+  document.getElementById('kb-modal').classList.add('show');
+  setTimeout(() => document.getElementById('modal-kb-a').focus(), 50);
+}
+
+function closeModal() {
+  document.getElementById('kb-modal').classList.remove('show');
+}
+
+async function submitModal() {
+  const q = document.getElementById('modal-kb-q').value.trim();
+  const a = document.getElementById('modal-kb-a').value.trim();
+  if (!q || !a) { toast('Fill in both fields', 'error'); return; }
+  await api('/knowledge', { method: 'POST', body: JSON.stringify({ question: q, answer: a, source: 'unanswered' }) });
+  if (pendingModalQ && pendingModalQ.id) {
+    await api(`/unanswered/${pendingModalQ.id}/mark-added`, { method: 'PATCH' });
+  }
+  closeModal();
+  toast('Added to Knowledge Base ✓');
+  loadUnanswered();
+}
+
+async function dismissUnanswered(id) {
+  await api(`/unanswered/${id}/mark-added`, { method: 'PATCH' });
+  toast('Dismissed');
+  loadUnanswered();
+}
+
+async function clearUnanswered() {
+  if (!confirm('Clear all unanswered questions?')) return;
+  await api('/unanswered', { method: 'DELETE' });
+  toast('Cleared');
+  loadUnanswered();
+}
+
+// Close modal on overlay click
+document.getElementById('kb-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+</script>
+</body>
+</html>
