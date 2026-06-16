@@ -121,7 +121,6 @@
     leadStep: 0,
     isHumanMode: false,
     isAdmin: false,
-    greetingSent: false,
     sessionId: Date.now().toString(36),
     popupShown: false,
     typingTimeout: null,
@@ -145,8 +144,7 @@
       sessionStorage.setItem(CFG.storageKey, JSON.stringify({
         messages: state.messages.slice(-20),
         lead: state.lead,
-        sessionId: state.sessionId,
-        greetingSent: state.greetingSent
+        sessionId: state.sessionId
       }));
     } catch (e) {}
   }
@@ -157,7 +155,6 @@
       if (saved.messages) state.messages = saved.messages;
       if (saved.lead) state.lead = saved.lead;
       if (saved.sessionId) state.sessionId = saved.sessionId;
-      if (saved.greetingSent) state.greetingSent = saved.greetingSent;
     } catch (e) {}
   }
 
@@ -322,9 +319,12 @@
   }
 
   async function saveMessageToBackend(role, content, imageData = null) {
-    // Send via WebSocket for real-time admin view
-    sendViaWebSocket(role, content, imageData);
-    // Also persist via REST as fallback
+    // Send via WebSocket — the backend's /ws/chat handler persists this to the DB
+    // and broadcasts it to the admin in real time.
+    const sentViaWs = sendViaWebSocket(role, content, imageData);
+    if (sentViaWs) return; // already persisted server-side, skip the REST call below
+
+    // WebSocket wasn't open — fall back to REST so the message still gets saved.
     if (!CFG.backendUrl) return;
     try {
       await fetch(CFG.backendUrl + '/messages', {
@@ -406,8 +406,12 @@
     if (state.ws && state.ws.readyState === WebSocket.OPEN) {
       try {
         state.ws.send(JSON.stringify({ role, content, image_data: imageData || null }));
-      } catch (err) {}
+        return true;
+      } catch (err) {
+        return false;
+      }
     }
+    return false;
   }
 
 
@@ -995,10 +999,7 @@
           document.getElementById('tess-back-row').classList.add('show');
           showInputArea();
           trackEvent('livechat_start');
-          if (!state.greetingSent) {
-            state.greetingSent = true;
-            addMessage("Tess here. Invitt Co AI assistant. What do you need?");
-          }
+          addMessage("Tess here. Invitt Co AI assistant. What do you need?");
           state.mode = 'chat';
         } else if (action === 'voice') {
           document.getElementById('tess-back-row').classList.add('show');
