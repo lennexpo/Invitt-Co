@@ -112,19 +112,6 @@
     ]
   };
 
-  // ─── AGENT REQUEST DETECTION ──────────────────────────────────────────────
-  const AGENT_TRIGGERS = [
-    'speak to an agent','speak with an agent','talk to an agent','talk to a human',
-    'speak to a human','speak with a human','real person','human agent',
-    'talk to lennon','speak to lennon','speak with lennon','contact lennon',
-    'need an agent','want an agent','call me','call back','need help urgently',
-    'urgent','asap','human please','agent please',
-  ];
-  function isAgentRequest(text) {
-    const t = text.toLowerCase();
-    return AGENT_TRIGGERS.some(trigger => t.includes(trigger));
-  }
-
   // ─── STATE ────────────────────────────────────────────────────────────────
   let state = {
     isOpen: false,
@@ -134,14 +121,14 @@
     leadStep: 0,
     isHumanMode: false,
     isAdmin: false,
+    greetingSent: false,
     sessionId: Date.now().toString(36),
     popupShown: false,
     typingTimeout: null,
     ws: null,
     wsReady: false,
     wsRetries: 0,
-    pendingImage: null,
-    awaitingContact: false, // true after intercepting agent request, waiting for phone/email
+    pendingImage: null,  // base64 data URL of image to send
   };
 
   const leadSteps = [
@@ -158,7 +145,8 @@
       sessionStorage.setItem(CFG.storageKey, JSON.stringify({
         messages: state.messages.slice(-20),
         lead: state.lead,
-        sessionId: state.sessionId
+        sessionId: state.sessionId,
+        greetingSent: state.greetingSent
       }));
     } catch (e) {}
   }
@@ -169,6 +157,7 @@
       if (saved.messages) state.messages = saved.messages;
       if (saved.lead) state.lead = saved.lead;
       if (saved.sessionId) state.sessionId = saved.sessionId;
+      if (saved.greetingSent) state.greetingSent = saved.greetingSent;
     } catch (e) {}
   }
 
@@ -824,17 +813,10 @@
     state.lead[step.field] = input;
     state.leadStep++;
 
-    // Save partial lead as soon as we have phone (step index 3 = after phone collected)
-    if (state.leadStep === 3 && !state.lead._partialSaved) {
-      state.lead._partialSaved = true;
-      saveLead({ ...state.lead });
-    }
-
     if (state.leadStep < leadSteps.length) {
       setTimeout(() => addMessage(leadSteps[state.leadStep].prompt), 300);
     } else {
-      // Lead capture complete — upsert with full data
-      state.lead._partialSaved = true;
+      // Lead capture complete
       saveLead(state.lead);
       const score = scoreLead(state.lead);
       setTimeout(() => {
@@ -885,58 +867,12 @@
       return;
     }
 
-    // Check for lead/booking intent — broader triggers
+    // Check for lead/booking intent
     const lower = input.toLowerCase();
-    if (/my details|capture|quote|get started|interested|need a website|want a website|build.*website|website.*build|need.*site|want.*site|need.*web|hire|pricing|how much|cost|package/.test(lower)) {
+    if (/my details|capture|quote|get started|interested/.test(lower)) {
       startLeadCapture();
       return;
     }
-
-    // Detect phone number typed in free chat — save as partial lead immediately
-    const phoneMatch = input.match(/(?:\+?2630?|0)([7][1-9]\d{7}|\d{9})/);
-    if (phoneMatch) {
-      state.lead.phone = input.trim();
-      if (!state.lead._partialSaved) {
-        state.lead._partialSaved = true;
-        saveLead({ ...state.lead });
-      }
-    }
-
-    // ── AGENT REQUEST INTERCEPTION (Fix 1 & 2) ───────────────────────────────
-    // If we're waiting for contact details after an agent request
-    if (state.awaitingContact) {
-      const emailMatch = input.match(/[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/);
-      const waMatch   = input.match(/(\+?\d[\d\s\-]{6,}\d)/);
-      const phone = waMatch ? waMatch[1].replace(/\s+/g,'') : null;
-      const email = emailMatch ? emailMatch[0] : null;
-      if (phone || email) {
-        state.awaitingContact = false;
-        if (phone) state.lead.phone = phone;
-        if (email) state.lead.email = email;
-        saveLead({ ...state.lead });
-        // Fire urgent event so admin dashboard flags it
-        trackEvent('contact_captured_agent_request', { phone, email });
-        addMessage("Got it — thank you! Lennon will reach out to you directly. You can also WhatsApp him now: +263 787 412 809.");
-        showWAButton();
-      } else {
-        addMessage("Just need a WhatsApp number or email so Lennon can reach you.");
-      }
-      return;
-    }
-
-    // If this message is an agent request and we don't have contact yet
-    if (isAgentRequest(input) && !state.lead.phone && !state.lead.email) {
-      state.awaitingContact = true;
-      trackEvent('agent_requested', { message: input });
-      addMessage("Lennon will get back to you personally. So he can reach you even if you leave the site — what's your WhatsApp number or email?");
-      showWAButton();
-      return;
-    }
-    if (isAgentRequest(input) && (state.lead.phone || state.lead.email)) {
-      // Already have contact — just note it and let Tess reply normally
-      trackEvent('agent_requested', { message: input, contact: state.lead.phone || state.lead.email });
-    }
-    // ── END AGENT INTERCEPTION ────────────────────────────────────────────────
 
     // Normal AI response
     showTyping();
@@ -1059,7 +995,10 @@
           document.getElementById('tess-back-row').classList.add('show');
           showInputArea();
           trackEvent('livechat_start');
-          addMessage("Tess here. Invitt Co AI assistant. What do you need?");
+          if (!state.greetingSent) {
+            state.greetingSent = true;
+            addMessage("Tess here. Invitt Co AI assistant. What do you need?");
+          }
           state.mode = 'chat';
         } else if (action === 'voice') {
           document.getElementById('tess-back-row').classList.add('show');
