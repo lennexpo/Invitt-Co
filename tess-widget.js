@@ -322,9 +322,12 @@
   }
 
   async function saveMessageToBackend(role, content, imageData = null) {
-    // Send via WebSocket for real-time admin view
-    sendViaWebSocket(role, content, imageData);
-    // Also persist via REST as fallback
+    // Send via WebSocket — the backend's /ws/chat handler persists this to the DB
+    // and broadcasts it to the admin in real time.
+    const sentViaWs = sendViaWebSocket(role, content, imageData);
+    if (sentViaWs) return; // already persisted server-side, skip the REST call below
+
+    // WebSocket wasn't open — fall back to REST so the message still gets saved.
     if (!CFG.backendUrl) return;
     try {
       await fetch(CFG.backendUrl + '/messages', {
@@ -406,8 +409,12 @@
     if (state.ws && state.ws.readyState === WebSocket.OPEN) {
       try {
         state.ws.send(JSON.stringify({ role, content, image_data: imageData || null }));
-      } catch (err) {}
+        return true;
+      } catch (err) {
+        return false;
+      }
     }
+    return false;
   }
 
 
