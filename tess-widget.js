@@ -127,6 +127,7 @@
     ws: null,
     wsReady: false,
     wsRetries: 0,
+    msgQueue: [],         // queued messages to send once WS connects
     pendingImage: null,  // base64 data URL of image to send
     voiceMode: false,
     recognition: null,
@@ -265,6 +266,11 @@
       state.ws.onopen = () => {
         state.wsReady = true;
         state.wsRetries = 0;
+        // Flush any queued messages
+        while (state.msgQueue.length > 0) {
+          const queued = state.msgQueue.shift();
+          try { state.ws.send(queued); } catch (e) {}
+        }
       };
       state.ws.onmessage = (e) => {
         try {
@@ -312,12 +318,22 @@
     } catch (err) {}
   }
 
-  function sendViaWebSocket(role, content, imageData = null) {
+  function sendOrQueue(payload) {
+    const msg = JSON.stringify(payload);
     if (state.ws && state.ws.readyState === WebSocket.OPEN) {
-      try {
-        state.ws.send(JSON.stringify({ role, content, image_data: imageData || null, needs_ai: false }));
-      } catch (err) {}
+      try { state.ws.send(msg); } catch (e) {}
+    } else {
+      // Queue it — will be flushed on next onopen
+      state.msgQueue.push(msg);
+      // Also try to reconnect if socket is dead
+      if (!state.ws || state.ws.readyState === WebSocket.CLOSED) {
+        connectWebSocket();
+      }
     }
+  }
+
+  function sendViaWebSocket(role, content, imageData = null) {
+    sendOrQueue({ role, content, image_data: imageData || null, needs_ai: false });
   }
 
 
@@ -677,7 +693,7 @@
           </button>
         </div>
 
-        <div id="tess-footer">Powered by <a href="https://invitt.co.zw" target="_blank">Invitt Co</a></div>
+        <div id="tess-footer">Powered by <strong style="color:${CFG.accentDark}">Invitt Co</strong> &nbsp;·&nbsp; <a href="https://invitt.co.zw/privacy.html" target="_blank">Privacy Policy</a></div>
       </div>
 
       <!-- Floating bubble -->
@@ -843,9 +859,17 @@
       state.ws.send(JSON.stringify({ role: 'user', content: aiInput, image_data: null, needs_ai: true }));
       // typing indicator stays until ws.onmessage fires with the AI reply
     } else {
-      hideTyping();
-      addMessage("Connection issue. Reach us directly on WhatsApp — button below.");
-      showWAButton();
+      // Queue the message — typing indicator stays until WS connects and reply arrives
+      sendOrQueue({ role: 'user', content: aiInput, image_data: null, needs_ai: true });
+      // If still not connected after 12s, show fallback
+      setTimeout(() => {
+        const typing = document.getElementById('tess-typing-indicator');
+        if (typing) {
+          hideTyping();
+          addMessage("Still connecting to Tess... If this keeps happening, reach us on WhatsApp below.");
+          showWAButton();
+        }
+      }, 12000);
     }
   }
 
@@ -984,14 +1008,7 @@
           if (transcriptEl) transcriptEl.textContent = 'Tap mic to speak...';
           // Send to AI via WebSocket
           showTyping();
-          if (state.ws && state.ws.readyState === WebSocket.OPEN) {
-            state.ws.send(JSON.stringify({ role: 'user', content: final, image_data: null, needs_ai: true }));
-          } else {
-            hideTyping();
-            const fallback = "Connection issue — please try again.";
-            addMessage(fallback, 'assistant');
-            speakReply(fallback);
-          }
+          sendOrQueue({ role: 'user', content: final, image_data: null, needs_ai: true });
         }
       };
 
