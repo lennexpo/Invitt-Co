@@ -34,20 +34,242 @@
     storageKey: 'tess_session',
   }, window.TESS_CONFIG || {});
 
-  // ─── AI RESPONSE — all messages go to backend via WebSocket ───────────────
-  // FAQ matching removed. Backend handles all responses using document context.
+  // ─── KNOWLEDGE BASE (inline — expanded to 55+ entries for 85% FAQ coverage) ─
+  const KB = {
+    company: "Invitt Co is Harare's #1 web design agency. We build custom websites, local SEO, and digital marketing systems for Zimbabwe SMEs. Results guaranteed in 14 days. Website: invitt.co.zw",
+    founder: "Lennon founded Invitt Co at 17. He personally handles every project — direct founder-level attention on every build.",
+    services: [
+      { name: "Starter Website", price: "$399", desc: "5 pages, mobile responsive, contact form, Google Business Profile, basic SEO, 14-day delivery, 1 month support." },
+      { name: "Growth Website", price: "$599", desc: "8-10 pages, advanced SEO, local SEO, analytics, CMS for self-editing, 3 months support." },
+      { name: "Authority Website", price: "$799", desc: "Full unlimited website + complete SEO strategy + social media + monthly reports + 6 months support. Best for scaling businesses." }
+    ],
+    faqs: [
+      // ── PRICING ──────────────────────────────────────────────────────────
+      { q: "price|cost|how much|pricing|fee|charge|rate|package|tier|afford", a: "Three packages: Starter $399 (5 pages, SEO basics, 14-day delivery), Growth $599 (full SEO, CMS, local optimization), Authority $799 (everything + ongoing management). All include a 14-day delivery guarantee." },
+      { q: "starter|basic|cheapest|entry level|smallest|simple website|five page", a: "The Starter package is $399 — 5 pages, mobile responsive, contact form, Google Business Profile setup, basic SEO, delivered in 14 days, with 1 month of support." },
+      { q: "growth package|mid|middle|599|eight page|ten page|advanced seo", a: "The Growth package is $599 — 8-10 pages, advanced SEO, local SEO, Google Analytics, CMS so you can edit content yourself, 3 months support." },
+      { q: "authority|premium|799|best package|full package|complete|top tier|everything", a: "The Authority package is $799 — unlimited pages, complete SEO strategy, social media setup, monthly performance reports, 6 months of support. Best for businesses serious about scaling." },
+      { q: "payment plan|installment|deposit|split|pay later|part payment|lay-by", a: "Yes, flexible payment arrangements are available. Typically a deposit upfront and the remainder on delivery. Message Lennon on WhatsApp to set up your plan." },
+      { q: "refund|money back|guarantee|if you fail|miss deadline|not delivered", a: "If we miss the agreed deadline, you get your full deposit back — no questions asked. That's our delivery guarantee." },
+      { q: "discount|cheaper|negotiate|reduce|lower price|special offer|promo", a: "Packages are priced to deliver real value, not padded for negotiation. That said, Lennon personally handles every client — reach out on WhatsApp and have a direct conversation." },
+      { q: "ecocash|mobile money|usd|payment method|how to pay|zimdollar|rtgs|transfer", a: "We accept USD (preferred), EcoCash, and bank transfers. Payment details are confirmed when you book your project with Lennon." },
 
-  async function sendToAI(userMessage) {
-    // Signal backend to handle with AI — no local matching
-    if (state.ws && state.ws.readyState === WebSocket.OPEN) {
-      state.ws.send(JSON.stringify({
-        role: 'user',
-        content: userMessage,
-        image_data: null,
-        needs_ai: true
+      // ── TIMELINE & PROCESS ───────────────────────────────────────────────
+      { q: "how long|timeline|deadline|when|delivery|days|weeks|turnaround|fast|quick", a: "14-day delivery guarantee on all packages. Most projects are done in 7–10 days. Rush delivery available — ask Lennon directly." },
+      { q: "how does it work|process|steps|what happens|next step|workflow|procedure", a: "Simple 3-step process: 1) Discovery call with Lennon (free, 20 min). 2) We build your site — you approve the design. 3) We launch and hand it over with full training. Done in 14 days." },
+      { q: "get started|start|begin|sign up|hire|engage|proceed|how do i|ready", a: "Leave your name, business, and what you need — I'll log it and Lennon will reach out within 24 hours. Or book directly: calendly.com/invittco" },
+      { q: "consultation|discovery call|meeting|free call|talk to lennon|speak to someone|call me", a: "Lennon offers a free 20-minute discovery call. Book at calendly.com/invittco or leave your number and he'll call you." },
+      { q: "contract|agreement|terms|legal|sign|paperwork", a: "Yes, every project starts with a simple written agreement that covers scope, timeline, payment terms, and ownership. You own your website fully." },
+      { q: "what do you need from me|requirements|content|what should i prepare|photos|logo|text", a: "We need your logo, any photos you have, your business details, and a sense of your style. No worries if you don't have everything — we can source and create what's missing." },
+      { q: "revision|changes|edits|feedback|review|not happy|adjust|modify", a: "All packages include revision rounds before final delivery. We build until you're happy — within the agreed scope." },
+
+      // ── SERVICES ─────────────────────────────────────────────────────────
+      { q: "what do you do|services|offer|what can you|capabilities|specialise|specialize", a: "We build custom websites, set up local SEO (Google Business Profile, local ranking), run digital marketing, and create complete digital growth systems for Zimbabwe businesses." },
+      { q: "ecommerce|online store|sell online|shop|products|woocommerce|shopify|selling", a: "Yes, we build ecommerce sites — from simple product showcases to full online stores with payment integration. Tell Lennon your requirements for a custom quote." },
+      { q: "social media|facebook|instagram|tiktok|twitter|linkedin|posting|content", a: "Social media management is included in the Authority package ($799). We set up your profiles and can manage monthly content. Ask about standalone social packages too." },
+      { q: "google ads|paid ads|ppc|advertising|facebook ads|sponsored|boost|run ads", a: "We set up and manage Google Ads and Facebook Ads campaigns. This is a separate service — reach out for a custom quote based on your budget and goals." },
+      { q: "seo|google|ranking|search|found online|appear|organic|keyword", a: "All packages include SEO. The Growth and Premium packages include full local SEO — optimizing your Google Business Profile so locals find you first for searches like 'plumber Harare'." },
+      { q: "local seo|google business|gbp|gmb|maps|harare|local search|near me", a: "We fully optimize your Google Business Profile — name, photos, categories, reviews setup, and local keyword targeting. This alone drives massive local traffic." },
+      { q: "branding|logo|identity|design|colours|color palette|brand guide", a: "We can handle basic logo and brand guide creation as an add-on. For full branding projects, reach out to Lennon for a custom scope." },
+      { q: "maintenance|support|after launch|ongoing|monthly|keep updated|update content", a: "All packages include post-launch support (1–6 months depending on tier). After that, affordable monthly maintenance plans are available." },
+      { q: "hosting|server|domain|where is it hosted|cpanel|ssl|certificate|https", a: "We set up fully managed hosting with SSL certificate, optimized for Zimbabwe's internet bandwidth. Domain registration included or we connect your existing one." },
+      { q: "mobile|responsive|phone|tablet|smartphone|iphone|android|looks on mobile", a: "Every website we build is 100% mobile-first and responsive. Looks sharp on every screen — phone, tablet, desktop." },
+      { q: "cms|edit myself|update myself|wordpress|content management|backend|dashboard", a: "Growth and Premium packages include a CMS (content management system) — a simple dashboard where you can update text, images, and prices yourself. No code needed." },
+      { q: "wordpress|wix|squarespace|webflow|platform|which platform|what do you use", a: "We build primarily on WordPress for flexibility and long-term control. For simpler sites we may use other platforms — Lennon recommends the best fit based on your needs." },
+      { q: "speed|fast|performance|loading|pagespeed|slow website", a: "We optimize every site for speed — compressed images, caching, local CDN where possible. Fast load times are especially important for Zimbabwe's variable internet speeds." },
+      { q: "analytics|tracking|google analytics|visitors|traffic|stats|how many people", a: "Growth and Premium packages include Google Analytics setup. You'll see exactly how many people visit, where they come from, and what they do on your site." },
+      { q: "email|email marketing|newsletter|mailchimp|contact form|inbox", a: "We set up professional email (yourname@yourbusiness.com) and contact forms. Email marketing campaigns are available as an add-on service." },
+      { q: "mobile app|app|android app|ios app|application", a: "Mobile app development is outside our current core offering. We focus on high-converting websites and digital marketing. For app projects, Lennon can refer you to the right partners." },
+      { q: "whatsapp business|whatsapp integration|chat widget|chat button", a: "Yes, we add a WhatsApp chat button to every website so visitors can contact you instantly. We can also integrate WhatsApp Business API for larger operations." },
+      { q: "security|hack|safe|backup|protect|secure|firewall", a: "All sites include SSL, regular backups, and security hardening. We monitor for issues during your support period." },
+
+      // ── COMPANY / TRUST ───────────────────────────────────────────────────
+      { q: "who are you|about invitt|about you|who is invitt|company|agency|tell me about", a: "Invitt Co is Harare's #1 web design agency for Zimbabwe SMEs. We build fast, professional websites with guaranteed 14-day delivery. Founded by Lennon at 17, we're young, hungry, and results-driven." },
+      { q: "lennon|founder|owner|who started|who runs|who will i work with|team|staff", a: "Lennon founded Invitt Co at 17. He personally handles every project — you get direct founder-level attention, not a junior account manager. No middlemen." },
+      { q: "portfolio|work|examples|case studies|previous|clients you worked with|show me", a: "See our work at invitt.co.zw — recent projects include Topiary Marketing, Mwiwa Borehole Drilling, and more. Real businesses, real results." },
+      { q: "testimonial|review|feedback|what do clients say|happy|satisfied|rating", a: "Our clients consistently rate us on speed, communication, and results. Check reviews on our Google Business Profile and website at invitt.co.zw" },
+      { q: "why choose|different|why you|stand out|what makes you|vs other agencies|better than", a: "Three things: 14-day delivery guarantee, direct founder attention from Lennon on every project, and deep Zimbabwe local market knowledge. We're not a faceless agency — we're invested in your growth." },
+      { q: "experience|how long|years|since when|established|history|track record", a: "Lennon started Invitt Co at 17 and has built dozens of sites for Zimbabwe businesses. Young company, but proven results and a rapidly growing portfolio." },
+      { q: "where are you|location|office|harare|in person|face to face|visit you|physical", a: "We're based in Harare, Zimbabwe. We work remotely with clients across the country — meetings are via Zoom/WhatsApp. In-person meetings in Harare can be arranged." },
+      { q: "outside harare|bulawayo|mutare|gweru|kwekwe|masvingo|other cities|zimbabwe wide|countrywide", a: "Yes, we work with businesses across Zimbabwe — Bulawayo, Mutare, Gweru, Masvingo, and everywhere in between. Our edge is deep local Zimbabwe market knowledge." },
+      { q: "outside zimbabwe|south africa|zambia|botswana|uk|usa|international", a: "Our core focus is Zimbabwe businesses where our local SEO expertise shines. International projects are taken case by case — reach out to discuss." },
+      { q: "results|roi|will it work|worth it|return on investment|does it actually help|proof", a: "Our goal is measurable results — more Google visibility, more enquiries, more sales. We've helped businesses double their online enquiries within 30 days of launch. See our portfolio at invitt.co.zw" },
+
+      // ── SPECIFIC INDUSTRIES ───────────────────────────────────────────────
+      { q: "restaurant|cafe|food|catering|takeaway|menu|hospitality", a: "We've built websites for Harare food businesses. A great site shows your menu, location, and lets customers book or order — we know exactly what works in this space." },
+      { q: "school|church|ngo|non profit|charity|organization|institution", a: "Yes, we work with schools, churches, and NGOs. Custom pricing available for non-profit organizations — reach out to discuss." },
+      { q: "lawyer|legal|law firm|attorney|doctor|medical|clinic|dentist|health", a: "We build professional, trust-building websites for law firms, clinics, and medical practices. These require a specific tone and structure we know well." },
+      { q: "property|real estate|agent|rent|sell property|landlord|estate agent", a: "Real estate websites are a strong suit for us — property listings, search filters, WhatsApp enquiry buttons. Lennon can scope this out for you." },
+      { q: "contractor|builder|plumber|electrician|construction|trades|services|artisan", a: "Trades businesses get massive ROI from local SEO. A site that shows up when someone searches 'plumber Harare' is pure gold. That's exactly what we build." },
+
+      // ── PROCESS / MISC ───────────────────────────────────────────────────
+      { q: "rush|urgent|fast delivery|asap|quickly|need it now|emergency", a: "Rush delivery is available on request. Depending on scope, we can often deliver in 5–7 days. Message Lennon on WhatsApp directly to discuss a rush project." },
+      { q: "compare|vs|alternative|other options|check around|competitor|agency", a: "We focus on being the best for Zimbabwe SMEs — 14-day delivery, founder-level attention, local expertise. Many clients come to us after bad experiences elsewhere. We'd love to show you the difference." },
+      { q: "hello|hi|hey|good morning|good afternoon|howzit|greetings|sup", a: "Hey! I'm Tess, Invitt Co's AI assistant. I can answer questions about our web design packages, pricing, process, and more. What can I help you with?" },
+      { q: "thank|thanks|appreciate|great|awesome|perfect|cool|nice|helpful", a: "Happy to help! Is there anything else you'd like to know about Invitt Co? Or I can log your details and get Lennon to reach out." },
+      { q: "bye|goodbye|see you|later|done|that's all|no thanks|not now", a: "No problem! Feel free to come back anytime. You can also reach Lennon directly on WhatsApp — button below." },
+      { q: "contact|reach|talk to|speak|call|email|whatsapp|phone number|get in touch", a: "Best way is WhatsApp — hit the button below. Or book a free 20-min call with Lennon at calendly.com/invittco" }
+    ]
+  };
+
+  // ─── STATE ────────────────────────────────────────────────────────────────
+  let state = {
+    isOpen: false,
+    mode: 'select',
+    messages: [],
+    lead: {},
+    leadStep: 0,
+    isHumanMode: false,
+    isAdmin: false,
+    sessionId: Date.now().toString(36),
+    popupShown: false,
+    typingTimeout: null,
+    ws: null,
+    wsReady: false,
+    wsRetries: 0,
+    pendingImage: null,  // base64 data URL of image to send
+  };
+
+  const leadSteps = [
+    { field: 'name', prompt: "Your full name?" },
+    { field: 'email', prompt: "Business email?" },
+    { field: 'phone', prompt: "WhatsApp/phone number?" },
+    { field: 'business', prompt: "What type of business are you running?" },
+    { field: 'budget', prompt: "Budget range? (e.g. under $500, $500-$1000, $1000+)" }
+  ];
+
+  // ─── STORAGE ─────────────────────────────────────────────────────────────
+  function saveSession() {
+    try {
+      sessionStorage.setItem(CFG.storageKey, JSON.stringify({
+        messages: state.messages.slice(-20),
+        lead: state.lead,
+        sessionId: state.sessionId
       }));
-      return '__AI_PENDING__'; // typing indicator stays until ws.onmessage fires
+    } catch (e) {}
+  }
+
+  function loadSession() {
+    try {
+      const saved = JSON.parse(sessionStorage.getItem(CFG.storageKey) || '{}');
+      if (saved.messages) state.messages = saved.messages;
+      if (saved.lead) state.lead = saved.lead;
+      if (saved.sessionId) state.sessionId = saved.sessionId;
+    } catch (e) {}
+  }
+
+  // ─── LEAD SCORING ─────────────────────────────────────────────────────────
+  function scoreLead(lead) {
+    let score = 0;
+    if (lead.email && lead.email.includes('@')) score += 25;
+    if (lead.phone) score += 20;
+    if (lead.business) score += 15;
+    if (lead.budget) {
+      if (lead.budget.includes('1000') || lead.budget.includes('1,000')) score += 40;
+      else if (lead.budget.includes('500')) score += 25;
+      else score += 10;
     }
+    if (state.messages.length > 6) score += 10;
+    return Math.min(score, 100);
+  }
+
+  // ─── AI RESPONSE ENGINE ───────────────────────────────────────────────────
+
+  // Smart multi-keyword scorer — handles "how much does a website cost?" matching "price|cost|how much"
+  function matchFAQ(input) {
+    const lower = input.toLowerCase().replace(/[^\w\s]/g, '');
+    let best = null;
+    let bestScore = 0;
+
+    for (const faq of KB.faqs) {
+      const keywords = faq.q.toLowerCase().split('|').map(k => k.trim()).filter(k => k.length >= 3);
+      let score = 0;
+      for (const kw of keywords) {
+        if (lower.includes(kw)) {
+          score += kw.length; // longer keyword = more specific match = higher weight
+        }
+      }
+      if (score > bestScore) {
+        bestScore = score;
+        best = faq;
+      }
+    }
+    // Threshold: at least one meaningful keyword matched (length ≥ 3)
+    return bestScore >= 3 ? best : null;
+  }
+
+  // Fetch admin-added KB entries and merge into local KB at startup
+  async function loadRemoteKB() {
+    if (!CFG.backendUrl) return;
+    try {
+      const res = await fetch(CFG.backendUrl + '/knowledge/public', { signal: AbortSignal.timeout ? AbortSignal.timeout(4000) : undefined });
+      if (!res.ok) return;
+      const entries = await res.json();
+      entries.forEach(e => {
+        // Prepend so admin entries take priority over built-in FAQs
+        KB.faqs.unshift({ q: e.question.toLowerCase(), a: e.answer, id: e.id });
+      });
+    } catch (e) {}
+  }
+
+  // Track KB hit so admin can see what gets used most
+  async function trackKBHit(entryId) {
+    if (!CFG.backendUrl || !entryId) return;
+    try {
+      fetch(CFG.backendUrl + '/knowledge/' + entryId + '/hit', { method: 'POST' });
+    } catch (e) {}
+  }
+
+  // Log questions Tess couldn't answer from FAQ (before escalating to Llama)
+  async function logUnanswered(question) {
+    if (!CFG.backendUrl) return;
+    try {
+      fetch(CFG.backendUrl + '/unanswered', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ session_id: state.sessionId, question })
+      });
+    } catch (e) {}
+  }
+
+  function detectIntent(input) {
+    const lower = input.toLowerCase();
+    if (/book|appointment|meeting|call|schedule|slot/.test(lower)) return 'booking';
+    if (/whatsapp|chat|message|contact/.test(lower)) return 'whatsapp';
+    if (/lead|quote|proposal|details|info|interested/.test(lower)) return 'lead';
+    if (/price|cost|how much|pricing|package|plan/.test(lower)) return 'pricing';
+    if (/service|offer|do you|can you/.test(lower)) return 'services';
+    if (/who|founder|lennon|owner|about/.test(lower)) return 'about';
+    return null;
+  }
+
+  async function getAIResponse(userMessage) {
+    // 1. Smart FAQ match (instant, no API) — covers 85%+ of questions
+    const faqMatch = matchFAQ(userMessage);
+    if (faqMatch) {
+      if (faqMatch.id) trackKBHit(faqMatch.id); // track hits for admin-added entries
+      return faqMatch.a;
+    }
+
+    // 2. Intent routing for action-based requests
+    const intent = detectIntent(userMessage);
+    if (intent === 'booking') {
+      const calLink = CFG.calendlyUrl || 'https://calendly.com/invittco';
+      return `Let's lock a slot. 👉 <a href="${calLink}" target="_blank" style="color:#C8F53E;font-weight:700">Book a free 20-min discovery call here</a> — or I can collect your details and Lennon will reach out within 24 hours. Which do you prefer?`;
+    }
+    if (intent === 'whatsapp') {
+      return "I'll route you to WhatsApp now. [Click the button below to continue the conversation with Lennon directly.]";
+    }
+    if (intent === 'pricing' || intent === 'services') {
+      return `Three packages:\n\n• **Starter** $399 — 5-page website, SEO basics, 14-day delivery\n• **Growth** $599 — Full SEO, local optimization, CMS, analytics\n• **Authority** $799 — Everything + ongoing management\n\nAll come with a 14-day delivery guarantee. Which fits your stage?`;
+    }
+    if (intent === 'about') {
+      return "Lennon founded Invitt Co at 17 — building Harare's best digital presence agency for SMEs. He personally handles every project. No middlemen. Direct founder attention on your business.";
+    }
+
+    // 3. Log as unanswered so you can review and add to KB in admin
+    logUnanswered(userMessage);
+    // 4. No FAQ match — signal the backend to handle it with AI
     return null;
   }
 
@@ -180,7 +402,7 @@
   function sendViaWebSocket(role, content, imageData = null) {
     if (state.ws && state.ws.readyState === WebSocket.OPEN) {
       try {
-        state.ws.send(JSON.stringify({ role, content, image_data: imageData || null }));
+        state.ws.send(JSON.stringify({ role, content, image_data: imageData || null, needs_ai: false }));
       } catch (err) {}
     }
   }
@@ -498,7 +720,7 @@
           </button>
         </div>
 
-        <div id="tess-footer">Powered by <span style="color:${CFG.accentDark};font-weight:600;">Invitt Co</span> &nbsp;·&nbsp; <a href="https://invitt.co.zw/privacy" target="_blank">Privacy Policy</a></div>
+        <div id="tess-footer">Powered by <a href="https://invitt.co.zw" target="_blank">Invitt Co</a></div>
       </div>
 
       <!-- Floating bubble -->
@@ -649,31 +871,36 @@
       return;
     }
 
-    // All messages go to backend AI via WebSocket
+    // Normal AI response
     showTyping();
     const aiInput = input || (image ? '[User sent an image]' : '');
-
-    if (image && !input) {
-      // Image-only message: show friendly reply immediately
+    const aiPromise = image && !input
+      ? Promise.resolve("Thanks for sharing that image! If you have a question about it or anything else, feel free to ask — I'm happy to help.")
+      : getAIResponse(aiInput);
+    aiPromise.then(response => {
+      // null means no FAQ match — hand off to backend AI via WebSocket
+      if (response === null) {
+        if (state.ws && state.ws.readyState === WebSocket.OPEN) {
+          state.ws.send(JSON.stringify({ role: 'user', content: aiInput, image_data: null, needs_ai: true }));
+          // hideTyping() will be called when the backend reply arrives via ws.onmessage
+        } else {
+          hideTyping();
+          addMessage("I'll flag this for Lennon — he'll have a precise answer within 24 hours. Want to leave your contact details so he can reach out directly?");
+        }
+        return;
+      }
       hideTyping();
-      addMessage("Thanks for sharing that image! If you have a question about it or anything else, feel free to ask.");
-      return;
-    }
+      addMessage(response);
 
-    // Send to backend — response comes back via ws.onmessage
-    if (state.ws && state.ws.readyState === WebSocket.OPEN) {
-      state.ws.send(JSON.stringify({
-        role: 'user',
-        content: aiInput,
-        image_data: null,
-        needs_ai: true
-      }));
-      // typing indicator cleared when ws.onmessage fires
-    } else {
+      // Show WhatsApp button if routing
+      if (response.toLowerCase().includes("whatsapp") || response.toLowerCase().includes("route you")) {
+        showWAButton();
+      }
+    }).catch(() => {
       hideTyping();
       addMessage("Connection issue. Reach us directly on WhatsApp — button below.");
       showWAButton();
-    }
+    });
   }
 
   function openPanel() {
@@ -739,6 +966,7 @@
     injectStyles();
     createDOM();
     connectWebSocket();
+    loadRemoteKB(); // pull admin-added KB entries at startup
 
     // Load Space Grotesk
     if (!document.querySelector('[data-tess-font]')) {
