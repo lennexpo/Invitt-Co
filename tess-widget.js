@@ -498,7 +498,7 @@
           </button>
         </div>
 
-        <div id="tess-footer">Powered by <a href="https://invitt.co.zw" target="_blank">Invitt Co</a></div>
+        <div id="tess-footer">Powered by <span style="color:${CFG.accentDark};font-weight:600;">Invitt Co</span> &nbsp;·&nbsp; <a href="https://invitt.co.zw/privacy" target="_blank">Privacy Policy</a></div>
       </div>
 
       <!-- Floating bubble -->
