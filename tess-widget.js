@@ -505,6 +505,69 @@
         border-top: 1px solid #e8e8e8; flex-shrink: 0; background: #ffffff;
       }
       #tess-footer a { color: ${CFG.accentDark}; text-decoration: none; }
+      /* ── PRIVACY MODAL ── */
+      #tess-privacy-overlay {
+        display: none; position: fixed; inset: 0; z-index: 9999999;
+        background: rgba(0,0,0,0.45); backdrop-filter: blur(4px);
+        align-items: center; justify-content: center; padding: 20px;
+      }
+      #tess-privacy-overlay.open { display: flex; }
+      #tess-privacy-modal {
+        background: #ffffff; border-radius: 18px;
+        width: 100%; max-width: 480px; max-height: 82vh;
+        display: flex; flex-direction: column;
+        box-shadow: 0 24px 80px rgba(0,0,0,0.22);
+        overflow: hidden; animation: tess-slide-up 0.28s cubic-bezier(0.34,1.56,0.64,1);
+      }
+      #tess-privacy-header {
+        padding: 20px 24px 16px; border-bottom: 1px solid #f0f0f0;
+        display: flex; align-items: flex-start; justify-content: space-between; flex-shrink: 0;
+      }
+      #tess-privacy-header h2 {
+        font-size: 17px; font-weight: 800; color: #111; letter-spacing: -0.3px; margin: 0;
+      }
+      #tess-privacy-header p {
+        font-size: 11px; color: #999; margin: 3px 0 0; font-weight: 500;
+      }
+      #tess-privacy-close {
+        background: #f5f5f5; border: none; cursor: pointer;
+        width: 28px; height: 28px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 16px; color: #555; flex-shrink: 0; margin-left: 12px;
+        transition: background 0.15s;
+      }
+      #tess-privacy-close:hover { background: #ebebeb; }
+      #tess-privacy-body {
+        overflow-y: auto; padding: 20px 24px 24px;
+        scrollbar-width: thin; scrollbar-color: #ddd transparent;
+      }
+      .tpp-section { margin-bottom: 22px; }
+      .tpp-section:last-child { margin-bottom: 0; }
+      .tpp-label {
+        font-size: 10px; font-weight: 700; letter-spacing: 2px;
+        text-transform: uppercase; color: #999; margin-bottom: 6px;
+      }
+      .tpp-section h3 { font-size: 13px; font-weight: 700; color: #111; margin-bottom: 8px; }
+      .tpp-section p { font-size: 12.5px; color: #555; line-height: 1.6; margin-bottom: 6px; }
+      .tpp-section p:last-child { margin-bottom: 0; }
+      .tpp-list { list-style: none; margin: 8px 0 0; display: flex; flex-direction: column; gap: 6px; }
+      .tpp-list li { font-size: 12.5px; color: #555; display: flex; gap: 8px; align-items: flex-start; }
+      .tpp-list li::before {
+        content: ''; width: 5px; height: 5px; border-radius: 50%;
+        background: #bbb; flex-shrink: 0; margin-top: 7px;
+      }
+      .tpp-divider { height: 1px; background: #f0f0f0; margin: 6px 0 22px; }
+      #tess-privacy-footer {
+        padding: 14px 24px; border-top: 1px solid #f0f0f0; flex-shrink: 0;
+        display: flex; align-items: center; justify-content: space-between;
+        background: #fafafa;
+      }
+      #tess-privacy-footer span { font-size: 11px; color: #aaa; }
+      #tess-privacy-footer a {
+        font-size: 12px; font-weight: 700; color: #111;
+        text-decoration: none; display: flex; align-items: center; gap: 4px;
+      }
+      #tess-privacy-footer a:hover { text-decoration: underline; }
       #tess-wa-btn {
         margin: 0 16px 12px; background: #25D366; color: white; border: none;
         border-radius: 12px; padding: 12px; font-size: 14px; font-weight: 700;
@@ -693,7 +756,89 @@
           </button>
         </div>
 
-        <div id="tess-footer">Powered by <strong style="color:${CFG.accentDark}">Invitt Co</strong> &nbsp;·&nbsp; <a href="https://invitt.co.zw/privacy" target="_blank">Privacy Policy</a></div>
+        <div id="tess-footer">Powered by <strong style="color:${CFG.accentDark}">Invitt Co</strong> &nbsp;·&nbsp; <a href="#" id="tess-privacy-link">Privacy Policy</a></div>
+      </div>
+
+      <!-- Privacy Policy Modal -->
+      <div id="tess-privacy-overlay">
+        <div id="tess-privacy-modal">
+          <div id="tess-privacy-header">
+            <div>
+              <h2>Privacy Policy</h2>
+              <p>Invitt Co · Last updated June 2026</p>
+            </div>
+            <button id="tess-privacy-close" aria-label="Close">×</button>
+          </div>
+          <div id="tess-privacy-body">
+
+            <div class="tpp-section">
+              <div class="tpp-label">Overview</div>
+              <h3>What this policy covers</h3>
+              <p>This policy explains what Invitt Co collects when you visit invitt.co.zw or chat with Tess, how we use that information, and how we protect it.</p>
+              <p>We collect only what we need to help you. We don't sell your data.</p>
+            </div>
+            <div class="tpp-divider"></div>
+
+            <div class="tpp-section">
+              <div class="tpp-label">Data Collection</div>
+              <h3>What we collect</h3>
+              <ul class="tpp-list">
+                <li>Name — to address you when Lennon follows up</li>
+                <li>Email — to send quotes or follow-up communication</li>
+                <li>Phone / WhatsApp — so Lennon can reach you directly</li>
+                <li>Business name &amp; type — to recommend the right package</li>
+                <li>Budget range — to match you with the right service tier</li>
+                <li>Chat messages — to provide context and improve Tess</li>
+              </ul>
+              <p style="margin-top:10px">We do not collect payment details, government IDs, or sensitive personal data.</p>
+            </div>
+            <div class="tpp-divider"></div>
+
+            <div class="tpp-section">
+              <div class="tpp-label">How we use it</div>
+              <h3>What we do with your data</h3>
+              <ul class="tpp-list">
+                <li>Follow up on your project enquiry</li>
+                <li>Prepare a relevant quote or proposal</li>
+                <li>Book discovery calls with Lennon</li>
+                <li>Improve Tess's responses over time</li>
+              </ul>
+              <p style="margin-top:10px">We do not use your data for advertising or remarketing.</p>
+            </div>
+            <div class="tpp-divider"></div>
+
+            <div class="tpp-section">
+              <div class="tpp-label">Third Parties</div>
+              <h3>Who we share data with</h3>
+              <ul class="tpp-list">
+                <li>Supabase — secure database storage</li>
+                <li>OpenRouter / NVIDIA Nemotron — powers Tess's AI responses</li>
+                <li>Render — backend hosting infrastructure</li>
+              </ul>
+              <p style="margin-top:10px">We do not sell, rent, or trade your information to any other parties.</p>
+            </div>
+            <div class="tpp-divider"></div>
+
+            <div class="tpp-section">
+              <div class="tpp-label">Your Rights</div>
+              <h3>Control over your data</h3>
+              <ul class="tpp-list">
+                <li>Request a copy of the data we hold about you</li>
+                <li>Ask us to correct inaccurate information</li>
+                <li>Ask us to delete your data at any time</li>
+                <li>Opt out of future communication</li>
+              </ul>
+              <p style="margin-top:10px">Contact Lennon directly on WhatsApp to exercise any of these rights.</p>
+            </div>
+
+          </div>
+          <div id="tess-privacy-footer">
+            <span>© 2026 Invitt Co, Harare</span>
+            <a href="https://wa.me/263787412809" target="_blank">
+              Questions? WhatsApp Lennon →
+            </a>
+          </div>
+        </div>
       </div>
 
       <!-- Floating bubble -->
@@ -1256,6 +1401,20 @@
     // Stop voice button
     document.getElementById('tess-stop-voice').addEventListener('click', () => {
       stopVoiceMode();
+    });
+
+    // Privacy policy modal
+    document.getElementById('tess-privacy-link').addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('tess-privacy-overlay').classList.add('open');
+    });
+    document.getElementById('tess-privacy-close').addEventListener('click', () => {
+      document.getElementById('tess-privacy-overlay').classList.remove('open');
+    });
+    document.getElementById('tess-privacy-overlay').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) {
+        e.currentTarget.classList.remove('open');
+      }
     });
 
     // Popup timing
