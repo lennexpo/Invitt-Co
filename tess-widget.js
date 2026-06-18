@@ -174,104 +174,9 @@
   }
 
   // ─── AI RESPONSE ENGINE ───────────────────────────────────────────────────
+  // All messages go to backend AI via WebSocket (needs_ai: true).
+  // The backend handles all intelligence using uploaded documents + OpenRouter.
 
-  // Smart multi-keyword scorer — handles "how much does a website cost?" matching "price|cost|how much"
-  function matchFAQ(input) {
-    const lower = input.toLowerCase().replace(/[^\w\s]/g, '');
-    let best = null;
-    let bestScore = 0;
-
-    for (const faq of KB.faqs) {
-      const keywords = faq.q.toLowerCase().split('|').map(k => k.trim()).filter(k => k.length >= 3);
-      let score = 0;
-      for (const kw of keywords) {
-        if (lower.includes(kw)) {
-          score += kw.length; // longer keyword = more specific match = higher weight
-        }
-      }
-      if (score > bestScore) {
-        bestScore = score;
-        best = faq;
-      }
-    }
-    // Threshold: at least one meaningful keyword matched (length ≥ 3)
-    return bestScore >= 3 ? best : null;
-  }
-
-  // Fetch admin-added KB entries and merge into local KB at startup
-  async function loadRemoteKB() {
-    if (!CFG.backendUrl) return;
-    try {
-      const res = await fetch(CFG.backendUrl + '/knowledge/public', { signal: AbortSignal.timeout ? AbortSignal.timeout(4000) : undefined });
-      if (!res.ok) return;
-      const entries = await res.json();
-      entries.forEach(e => {
-        // Prepend so admin entries take priority over built-in FAQs
-        KB.faqs.unshift({ q: e.question.toLowerCase(), a: e.answer, id: e.id });
-      });
-    } catch (e) {}
-  }
-
-  // Track KB hit so admin can see what gets used most
-  async function trackKBHit(entryId) {
-    if (!CFG.backendUrl || !entryId) return;
-    try {
-      fetch(CFG.backendUrl + '/knowledge/' + entryId + '/hit', { method: 'POST' });
-    } catch (e) {}
-  }
-
-  // Log questions Tess couldn't answer from FAQ (before escalating to Llama)
-  async function logUnanswered(question) {
-    if (!CFG.backendUrl) return;
-    try {
-      fetch(CFG.backendUrl + '/unanswered', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ session_id: state.sessionId, question })
-      });
-    } catch (e) {}
-  }
-
-  function detectIntent(input) {
-    const lower = input.toLowerCase();
-    if (/book|appointment|meeting|call|schedule|slot/.test(lower)) return 'booking';
-    if (/whatsapp|chat|message|contact/.test(lower)) return 'whatsapp';
-    if (/lead|quote|proposal|details|info|interested/.test(lower)) return 'lead';
-    if (/price|cost|how much|pricing|package|plan/.test(lower)) return 'pricing';
-    if (/service|offer|do you|can you/.test(lower)) return 'services';
-    if (/who|founder|lennon|owner|about/.test(lower)) return 'about';
-    return null;
-  }
-
-  async function getAIResponse(userMessage) {
-    // 1. Smart FAQ match (instant, no API) — covers 85%+ of questions
-    const faqMatch = matchFAQ(userMessage);
-    if (faqMatch) {
-      if (faqMatch.id) trackKBHit(faqMatch.id); // track hits for admin-added entries
-      return faqMatch.a;
-    }
-
-    // 2. Intent routing for action-based requests
-    const intent = detectIntent(userMessage);
-    if (intent === 'booking') {
-      const calLink = CFG.calendlyUrl || 'https://calendly.com/invittco';
-      return `Let's lock a slot. 👉 <a href="${calLink}" target="_blank" style="color:#C8F53E;font-weight:700">Book a free 20-min discovery call here</a> — or I can collect your details and Lennon will reach out within 24 hours. Which do you prefer?`;
-    }
-    if (intent === 'whatsapp') {
-      return "I'll route you to WhatsApp now. [Click the button below to continue the conversation with Lennon directly.]";
-    }
-    if (intent === 'pricing' || intent === 'services') {
-      return `Three packages:\n\n• **Starter** $399 — 5-page website, SEO basics, 14-day delivery\n• **Growth** $599 — Full SEO, local optimization, CMS, analytics\n• **Authority** $799 — Everything + ongoing management\n\nAll come with a 14-day delivery guarantee. Which fits your stage?`;
-    }
-    if (intent === 'about') {
-      return "Lennon founded Invitt Co at 17 — building Harare's best digital presence agency for SMEs. He personally handles every project. No middlemen. Direct founder attention on your business.";
-    }
-
-    // 3. Log as unanswered so you can review and add to KB in admin
-    logUnanswered(userMessage);
-    // 4. No FAQ match — signal the backend to handle it with AI
-    return null;
-  }
 
   // ─── LEAD STORAGE ────────────────────────────────────────────────────────
   async function saveLead(lead) {
@@ -319,9 +224,7 @@
   }
 
   async function saveMessageToBackend(role, content, imageData = null) {
-    // Send via WebSocket for real-time admin view
-    sendViaWebSocket(role, content, imageData);
-    // Also persist via REST as fallback
+    // Persist to Supabase via REST (for message history)
     if (!CFG.backendUrl) return;
     try {
       await fetch(CFG.backendUrl + '/messages', {
@@ -850,7 +753,7 @@
     }
 
     if (state.isHumanMode && !state.isAdmin) {
-      // Message is sent to admin via WebSocket (handled in saveMessageToBackend → sendViaWebSocket)
+      // Message already sent to backend via the user addMessage call above
       // Show subtle acknowledgment only if WS is connected
       if (!state.wsReady) {
         addMessage("Message sent. A human agent will reply shortly.");
@@ -871,36 +774,25 @@
       return;
     }
 
-    // Normal AI response
+    // Send to backend AI via WebSocket — response comes back via ws.onmessage
     showTyping();
     const aiInput = input || (image ? '[User sent an image]' : '');
-    const aiPromise = image && !input
-      ? Promise.resolve("Thanks for sharing that image! If you have a question about it or anything else, feel free to ask — I'm happy to help.")
-      : getAIResponse(aiInput);
-    aiPromise.then(response => {
-      // null means no FAQ match — hand off to backend AI via WebSocket
-      if (response === null) {
-        if (state.ws && state.ws.readyState === WebSocket.OPEN) {
-          state.ws.send(JSON.stringify({ role: 'user', content: aiInput, image_data: null, needs_ai: true }));
-          // hideTyping() will be called when the backend reply arrives via ws.onmessage
-        } else {
-          hideTyping();
-          addMessage("I'll flag this for Lennon — he'll have a precise answer within 24 hours. Want to leave your contact details so he can reach out directly?");
-        }
-        return;
-      }
-      hideTyping();
-      addMessage(response);
 
-      // Show WhatsApp button if routing
-      if (response.toLowerCase().includes("whatsapp") || response.toLowerCase().includes("route you")) {
-        showWAButton();
-      }
-    }).catch(() => {
+    if (image && !input) {
+      // Image-only: acknowledge immediately, no AI call needed
+      hideTyping();
+      addMessage("Thanks for sharing that image! If you have a question about it, feel free to ask.");
+      return;
+    }
+
+    if (state.ws && state.ws.readyState === WebSocket.OPEN) {
+      state.ws.send(JSON.stringify({ role: 'user', content: aiInput, image_data: null, needs_ai: true }));
+      // typing indicator stays until ws.onmessage fires with the AI reply
+    } else {
       hideTyping();
       addMessage("Connection issue. Reach us directly on WhatsApp — button below.");
       showWAButton();
-    });
+    }
   }
 
   function openPanel() {
@@ -966,7 +858,6 @@
     injectStyles();
     createDOM();
     connectWebSocket();
-    loadRemoteKB(); // pull admin-added KB entries at startup
 
     // Load Space Grotesk
     if (!document.querySelector('[data-tess-font]')) {
