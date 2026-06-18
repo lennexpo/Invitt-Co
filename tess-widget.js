@@ -271,9 +271,10 @@
     }
 
     // 3. Log as unanswered so you can review and add to KB in admin
+   // 3. Log as unanswered so you can review and add to KB in admin
     logUnanswered(userMessage);
-    // 4. Fallback
-    return "I'll flag this for Lennon — he'll have a precise answer within 24 hours. Want to leave your contact details so he can reach out directly?";
+    // 4. No FAQ match — signal the backend to handle it with AI
+    return null;
   }
 
   // ─── LEAD STORAGE ────────────────────────────────────────────────────────
@@ -408,7 +409,7 @@
   function sendViaWebSocket(role, content, imageData = null) {
     if (state.ws && state.ws.readyState === WebSocket.OPEN) {
       try {
-        state.ws.send(JSON.stringify({ role, content, image_data: imageData || null }));
+       state.ws.send(JSON.stringify({ role, content, image_data: imageData || null, needs_ai: false }));
         return true;
       } catch (err) {
         return false;
@@ -881,13 +882,24 @@
       return;
     }
 
-    // Normal AI response
+// Normal AI response
     showTyping();
     const aiInput = input || (image ? '[User sent an image]' : '');
     const aiPromise = image && !input
       ? Promise.resolve("Thanks for sharing that image! If you have a question about it or anything else, feel free to ask — I'm happy to help.")
       : getAIResponse(aiInput);
     aiPromise.then(response => {
+      // null means no FAQ match — hand off to backend AI via WebSocket
+      if (response === null) {
+        if (state.ws && state.ws.readyState === WebSocket.OPEN) {
+          state.ws.send(JSON.stringify({ role: 'user', content: aiInput, image_data: null, needs_ai: true }));
+          // hideTyping() will be called when the backend reply arrives via ws.onmessage
+        } else {
+          hideTyping();
+          addMessage("I'll flag this for Lennon — he'll have a precise answer within 24 hours. Want to leave your contact details so he can reach out directly?");
+        }
+        return;
+      }
       hideTyping();
       addMessage(response);
 
