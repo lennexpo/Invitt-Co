@@ -128,6 +128,12 @@
     wsReady: false,
     wsRetries: 0,
     pendingImage: null,  // base64 data URL of image to send
+    voiceMode: false,
+    recognition: null,
+    synthesis: window.speechSynthesis || null,
+    voiceUtterance: null,
+    silenceTimer: null,
+    tessVoice: null,      // selected SpeechSynthesisVoice
   };
 
   const leadSteps = [
@@ -286,6 +292,10 @@
               }
             }
             addMessage(data.content, 'assistant');
+            // Speak reply if in voice mode
+            if (state.voiceMode) {
+              speakReply(data.content);
+            }
           }
         } catch (err) {}
       };
@@ -496,6 +506,36 @@
         display: block; margin-top: 6px; object-fit: cover;
         border: 1px solid rgba(0,0,0,0.08);
       }
+      @keyframes tess-mic-pulse {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(200,245,62,0.5); }
+        50% { box-shadow: 0 0 0 12px rgba(200,245,62,0); }
+      }
+      #tess-voice-ui {
+        display: none; flex-direction: column; align-items: center; justify-content: center;
+        gap: 14px; padding: 24px 20px 20px; background: #f7f7f7; flex: 1;
+      }
+      #tess-voice-ui.active { display: flex; }
+      #tess-voice-transcript {
+        font-size: 13px; color: #555; text-align: center; min-height: 36px;
+        font-style: italic; line-height: 1.5; max-width: 280px;
+      }
+      #tess-mic-btn {
+        width: 64px; height: 64px; border-radius: 50%; border: none; cursor: pointer;
+        background: ${CFG.accentColor}; display: flex; align-items: center; justify-content: center;
+        transition: background 0.2s; flex-shrink: 0;
+      }
+      #tess-mic-btn.listening { animation: tess-mic-pulse 1.2s infinite; }
+      #tess-mic-btn.speaking { background: #ddd; cursor: default; }
+      #tess-mic-btn svg { width: 26px; height: 26px; }
+      #tess-voice-status {
+        font-size: 12px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.5px;
+      }
+      #tess-stop-voice {
+        background: none; border: 1.5px solid #ddd; border-radius: 20px; padding: 7px 18px;
+        font-size: 13px; font-weight: 600; color: #555; cursor: pointer; margin-top: 4px;
+        transition: border-color 0.15s, color 0.15s;
+      }
+      #tess-stop-voice:hover { border-color: #aaa; color: #222; }
       @keyframes tess-fade-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
       @keyframes tess-slide-up { from { opacity: 0; transform: translateY(20px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
       @keyframes tess-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
@@ -577,6 +617,20 @@
         </div>
 
         <div id="tess-messages"></div>
+
+        <!-- Voice mode UI (hidden until activated) -->
+        <div id="tess-voice-ui">
+          <div id="tess-voice-transcript">Tap mic to speak...</div>
+          <button id="tess-mic-btn" aria-label="Speak">
+            <svg viewBox="0 0 24 24" fill="none" stroke="${CFG.bgDark}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/>
+              <line x1="8" y1="23" x2="16" y2="23"/>
+            </svg>
+          </button>
+          <div id="tess-voice-status">Ready</div>
+          <button id="tess-stop-voice">Stop Voice</button>
+        </div>
 
         <div id="tess-human-banner">You are now chatting with a human</div>
 
@@ -838,18 +892,206 @@
     window.open(`https://wa.me/${CFG.whatsappNumber.replace(/\D/g, '')}?text=${text}`, '_blank');
   }
 
-  function handleVoice() {
+  // ─── VOICE MODE ───────────────────────────────────────────────────────────
+  function pickTessVoice() {
+    if (!state.synthesis) return null;
+    const voices = state.synthesis.getVoices();
+    // Prefer British or US female voices
+    const preferred = voices.find(v =>
+      /female|woman/i.test(v.name) && /en-GB|en_GB/i.test(v.lang)
+    ) || voices.find(v =>
+      /female|woman/i.test(v.name) && /en-US|en_US/i.test(v.lang)
+    ) || voices.find(v => /en-GB|en_GB/i.test(v.lang))
+      || voices.find(v => /en-US|en_US/i.test(v.lang))
+      || voices[0] || null;
+    return preferred;
+  }
+
+  function speakReply(text) {
+    if (!state.synthesis || !state.voiceMode) return;
+    state.synthesis.cancel();
+    setVoiceStatus('speaking');
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-GB';
+    utterance.rate = 0.92;
+    utterance.pitch = 1.05;
+    if (!state.tessVoice) state.tessVoice = pickTessVoice();
+    if (state.tessVoice) utterance.voice = state.tessVoice;
+
+    utterance.onend = () => {
+      if (state.voiceMode) {
+        setVoiceStatus('listening');
+        startListening();
+      }
+    };
+    utterance.onerror = () => {
+      if (state.voiceMode) {
+        setVoiceStatus('listening');
+        startListening();
+      }
+    };
+    state.voiceUtterance = utterance;
+    state.synthesis.speak(utterance);
+  }
+
+  function setVoiceStatus(status) {
+    const micBtn = document.getElementById('tess-mic-btn');
+    const statusEl = document.getElementById('tess-voice-status');
+    if (!micBtn || !statusEl) return;
+    micBtn.className = '';
+    if (status === 'listening') {
+      micBtn.classList.add('listening');
+      statusEl.textContent = 'Listening...';
+      micBtn.setAttribute('aria-label', 'Listening');
+    } else if (status === 'speaking') {
+      micBtn.classList.add('speaking');
+      statusEl.textContent = 'Tess is speaking...';
+    } else {
+      statusEl.textContent = 'Ready';
+    }
+  }
+
+  function startListening() {
+    if (!state.voiceMode) return;
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) return;
+
+    try {
+      const recog = new SpeechRecognition();
+      recog.lang = 'en-ZW';
+      recog.interimResults = true;
+      recog.continuous = false;
+      recog.maxAlternatives = 1;
+      state.recognition = recog;
+
+      const transcriptEl = document.getElementById('tess-voice-transcript');
+
+      recog.onresult = (e) => {
+        clearTimeout(state.silenceTimer);
+        let interim = '';
+        let final = '';
+        for (let i = e.resultIndex; i < e.results.length; i++) {
+          const t = e.results[i][0].transcript;
+          if (e.results[i].isFinal) final += t;
+          else interim += t;
+        }
+        if (transcriptEl) transcriptEl.textContent = final || interim || '...';
+        if (final) {
+          recog.stop();
+          setVoiceStatus('speaking');
+          addMessage(final, 'user');
+          if (transcriptEl) transcriptEl.textContent = 'Tap mic to speak...';
+          // Send to AI via WebSocket
+          showTyping();
+          if (state.ws && state.ws.readyState === WebSocket.OPEN) {
+            state.ws.send(JSON.stringify({ role: 'user', content: final, image_data: null, needs_ai: true }));
+          } else {
+            hideTyping();
+            const fallback = "Connection issue — please try again.";
+            addMessage(fallback, 'assistant');
+            speakReply(fallback);
+          }
+        }
+      };
+
+      recog.onspeechend = () => {
+        // Silence timeout — if 8s no speech, pause mic and prompt
+        state.silenceTimer = setTimeout(() => {
+          if (state.voiceMode) {
+            recog.stop();
+            setVoiceStatus('ready');
+            if (transcriptEl) transcriptEl.textContent = 'Tap mic to speak again, or stop voice chat.';
+          }
+        }, 8000);
+      };
+
+      recog.onerror = (e) => {
+        // Silently handle errors; re-prompt
+        if (state.voiceMode) {
+          setVoiceStatus('ready');
+          if (transcriptEl) transcriptEl.textContent = 'Tap mic to speak again.';
+        }
+      };
+
+      recog.onend = () => {
+        // If no final result & still in voice mode, do nothing (user can tap mic again)
+      };
+
+      recog.start();
+      setVoiceStatus('listening');
+      if (transcriptEl) transcriptEl.textContent = 'Listening...';
+    } catch (err) {
+      setVoiceStatus('ready');
+    }
+  }
+
+  function startVoiceMode() {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (!SpeechRecognition || !window.speechSynthesis) {
+      // Graceful fallback to callback flow
+      document.getElementById('tess-back-row').classList.add('show');
+      handleVoiceCallbackFallback();
+      return;
+    }
+
+    state.voiceMode = true;
+    state.tessVoice = null;
+
+    // Populate voice list (async on some browsers)
+    if (state.synthesis) {
+      state.synthesis.getVoices(); // trigger load
+      state.synthesis.onvoiceschanged = () => {
+        state.tessVoice = pickTessVoice();
+      };
+      state.tessVoice = pickTessVoice();
+    }
+
+    // Hide chat area, show voice UI
     document.getElementById('tess-options').style.display = 'none';
+    document.getElementById('tess-input-area').style.display = 'none';
+    document.getElementById('tess-messages').style.display = 'flex';
+    document.getElementById('tess-voice-ui').classList.add('active');
+    document.getElementById('tess-back-row').classList.add('show');
+    state.mode = 'chat';
+
+    trackEvent('voice_mode_start');
+    const greeting = "Hi! I'm Tess. Go ahead and speak — I'm listening.";
+    addMessage(greeting, 'assistant');
+    speakReply(greeting);
+  }
+
+  function stopVoiceMode() {
+    state.voiceMode = false;
+    clearTimeout(state.silenceTimer);
+
+    if (state.recognition) {
+      try { state.recognition.abort(); } catch (e) {}
+      state.recognition = null;
+    }
+    if (state.synthesis) {
+      state.synthesis.cancel();
+    }
+
+    document.getElementById('tess-voice-ui').classList.remove('active');
+    document.getElementById('tess-input-area').style.display = 'flex';
+    document.getElementById('tess-messages').style.display = 'flex';
+    trackEvent('voice_mode_stop');
+  }
+
+  function handleVoiceCallbackFallback() {
     showInputArea();
-    trackEvent('voice_request');
-    addMessage("Chat with Voice selected. Lennon will call you back within the hour during business hours (Mon–Fri 9am–5pm CAT). Leave your number and I'll flag it now.");
-    state.mode = 'voice';
-    setTimeout(() => {
-      state.mode = 'lead';
-      state.leadStep = 2; // Jump to phone step
-      state.lead.intent = 'voice_callback';
-      addMessage("Phone number?");
-    }, 600);
+    trackEvent('voice_fallback');
+    addMessage("Voice chat isn't supported in your browser (try Chrome or Safari). Leave your number and Lennon will call you back within the hour.");
+    state.mode = 'lead';
+    state.leadStep = 2;
+    state.lead.intent = 'voice_callback';
+    setTimeout(() => addMessage("Phone number?"), 400);
+  }
+
+  function handleVoice() {
+    startVoiceMode();
   }
 
   // ─── INIT ─────────────────────────────────────────────────────────────────
@@ -908,9 +1150,12 @@
 
     // Back button — return to options screen
     document.getElementById('tess-header-back').addEventListener('click', () => {
+      // Stop voice mode if active
+      if (state.voiceMode) stopVoiceMode();
       // Reset to options view
       document.getElementById('tess-options').style.display = 'flex';
       document.getElementById('tess-input-area').style.display = 'none';
+      document.getElementById('tess-voice-ui').classList.remove('active');
       document.getElementById('tess-messages').innerHTML = '';
       document.getElementById('tess-back-row').classList.remove('show');
       state.mode = 'select';
@@ -983,6 +1228,18 @@
 
     // WhatsApp button
     document.getElementById('tess-wa-btn').addEventListener('click', openWhatsApp);
+
+    // Mic button — tap to start listening
+    document.getElementById('tess-mic-btn').addEventListener('click', () => {
+      if (!state.voiceMode) return;
+      if (state.synthesis) state.synthesis.cancel();
+      startListening();
+    });
+
+    // Stop voice button
+    document.getElementById('tess-stop-voice').addEventListener('click', () => {
+      stopVoiceMode();
+    });
 
     // Popup timing
     setTimeout(showPopup, CFG.popupDelay);
