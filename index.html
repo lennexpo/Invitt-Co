@@ -319,6 +319,29 @@
     }
 
     /* ── PRELOADER ── */
+    /*
+     * Text-scramble intro: random monospace glyphs resolve left-to-right into
+     * "INVITT CO" on a black screen (lime accent), then the whole overlay
+     * fades out to reveal the site underneath. Sits above everything,
+     * including the navbar, since it's the very first thing the visitor sees.
+     */
+    #tess-preloader {
+      position: fixed; inset: 0; z-index: 100000;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 1; visibility: visible;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #tess-preloader.tess-preloader-hide { opacity: 0; visibility: hidden; pointer-events: none; }
+    .tess-preloader-text {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(1.6rem, 6vw, 2.75rem);
+      letter-spacing: 0.22em;
+      white-space: nowrap;
+    }
+    .tess-pl-ch { display: inline-block; min-width: 0.65em; text-align: center; }
+    .tess-pl-scramble { color: rgba(159, 191, 47, 0.55); }
+    .tess-pl-resolved { color: var(--accent); text-shadow: 0 0 18px rgba(200,245,62,0.45); }
 
     /* ── CUSTOM CURSOR ── */
 
@@ -346,8 +369,10 @@
 </head>
 <body>
 
-
-
+<!-- ── PRELOADER (text-scramble intro) ── -->
+<div id="tess-preloader" aria-hidden="true">
+  <span class="tess-preloader-text" id="tess-preloader-text"></span>
+</div>
 
 <svg class="noise-overlay" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"></feTurbulence></filter>
@@ -673,6 +698,61 @@
 
 <script>
 
+// ── PRELOADER (text-scramble intro) ──
+(function () {
+  var TARGET = "INVITT CO";
+  var CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!<>-_\\/[]{}=+*^?#";
+  var preloader = document.getElementById('tess-preloader');
+  var textEl = document.getElementById('tess-preloader-text');
+  if (!preloader || !textEl) return;
+
+  var html = document.documentElement;
+  var prevHtmlOverflow = html.style.overflow;
+  var prevBodyOverflow = document.body.style.overflow;
+  html.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
+
+  var WARMUP = 650;    // ms of pure scramble before the first char locks
+  var STAGGER = 95;    // ms between each subsequent char locking in
+  var HOLD = 400;       // ms pause once "INVITT CO" is fully resolved
+  var FADE = 650;       // ms fade-out (matches CSS transition above)
+
+  var chars = TARGET.split('').map(function (ch, i) {
+    return { ch: ch, resolveAt: WARMUP + i * STAGGER };
+  });
+  var totalDuration = Math.max.apply(null, chars.map(function (c) { return c.resolveAt; })) + 250;
+
+  function randomChar() { return CHARS[(Math.random() * CHARS.length) | 0]; }
+
+  var start = null;
+  function frame(ts) {
+    if (start === null) start = ts;
+    var elapsed = ts - start;
+
+    var out = '';
+    chars.forEach(function (c) {
+      if (c.ch === ' ') { out += '&nbsp;&nbsp;'; return; }
+      if (elapsed >= c.resolveAt) {
+        out += '<span class="tess-pl-ch tess-pl-resolved">' + c.ch + '</span>';
+      } else {
+        out += '<span class="tess-pl-ch tess-pl-scramble">' + randomChar() + '</span>';
+      }
+    });
+    textEl.innerHTML = out;
+
+    if (elapsed < totalDuration) {
+      requestAnimationFrame(frame);
+    } else {
+      setTimeout(function () {
+        preloader.classList.add('tess-preloader-hide');
+        html.style.overflow = prevHtmlOverflow;
+        document.body.style.overflow = prevBodyOverflow;
+        setTimeout(function () { preloader.remove(); }, FADE);
+      }, HOLD);
+    }
+  }
+  requestAnimationFrame(frame);
+})();
 
 // ── NAVBAR ──
 const navbar = document.getElementById('navbar');
