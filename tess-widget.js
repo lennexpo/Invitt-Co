@@ -37,7 +37,7 @@
   // ─── KNOWLEDGE BASE (inline — expanded to 55+ entries for 85% FAQ coverage) ─
   const KB = {
     company: "Invitt Co is Harare's #1 web design agency. We build custom websites, local SEO, and digital marketing systems for Zimbabwe SMEs. Results guaranteed in 14 days. Website: invitt.co.zw",
-    founder: "Lennon founded Invitt Co at 17. He personally handles every project — direct founder-level attention on every build.",
+    founder: "Invitt Co is run by a small, dedicated team obsessed with one thing: getting Zimbabwean SMEs found online, fast. Every project gets direct, hands-on attention — no juniors, no outsourcing.",
     services: [
       { name: "Starter Website", price: "$399", desc: "5 pages, mobile responsive, contact form, Google Business Profile, basic SEO, 14-day delivery, 1 month support." },
       { name: "Growth Website", price: "$599", desc: "8-10 pages, advanced SEO, local SEO, analytics, CMS for self-editing, 3 months support." },
@@ -49,47 +49,49 @@
       { q: "starter|basic|cheapest|entry level|smallest|simple website|five page", a: "The Starter package is $399 — 5 pages, mobile responsive, contact form, Google Business Profile setup, basic SEO, delivered in 14 days, with 1 month of support." },
       { q: "growth package|mid|middle|599|eight page|ten page|advanced seo", a: "The Growth package is $599 — 8-10 pages, advanced SEO, local SEO, Google Analytics, CMS so you can edit content yourself, 3 months support." },
       { q: "authority|premium|799|best package|full package|complete|top tier|everything", a: "The Authority package is $799 — unlimited pages, complete SEO strategy, social media setup, monthly performance reports, 6 months of support. Best for businesses serious about scaling." },
-      { q: "payment plan|installment|deposit|split|pay later|part payment|lay-by", a: "Yes, flexible payment arrangements are available. Typically a deposit upfront and the remainder on delivery. Message Lennon on WhatsApp to set up your plan." },
+      { q: "payment plan|installment|deposit|split|pay later|part payment|lay-by", a: "Yes, flexible payment arrangements are available. Typically a deposit upfront and the remainder on delivery. Message our team on WhatsApp to set up your plan." },
       { q: "refund|money back|guarantee|if you fail|miss deadline|not delivered", a: "If we miss the agreed deadline, you get your full deposit back — no questions asked. That's our delivery guarantee." },
-      { q: "discount|cheaper|negotiate|reduce|lower price|special offer|promo", a: "Packages are priced to deliver real value, not padded for negotiation. That said, Lennon personally handles every client — reach out on WhatsApp and have a direct conversation." },
-      { q: "ecocash|mobile money|usd|payment method|how to pay|zimdollar|rtgs|transfer", a: "We accept USD (preferred), EcoCash, and bank transfers. Payment details are confirmed when you book your project with Lennon." },
+      { q: "discount|cheaper|negotiate|reduce|lower price|special offer|promo", a: "Packages are priced to deliver real value, not padded for negotiation. That said, our team handles every client personally — reach out on WhatsApp and have a direct conversation." },
+      { q: "ecocash|mobile money|usd|payment method|how to pay|zimdollar|rtgs|transfer", a: "We accept USD (preferred), EcoCash, and bank transfers. Payment details are confirmed when you book your project with our team." },
 
       // ── TIMELINE & PROCESS ───────────────────────────────────────────────
-      { q: "how long|timeline|deadline|when|delivery|days|weeks|turnaround|fast|quick", a: "14-day delivery guarantee on all packages. Most projects are done in 7–10 days. Rush delivery available — ask Lennon directly." },
-      { q: "how does it work|process|steps|what happens|next step|workflow|procedure", a: "Simple 3-step process: 1) Discovery call with Lennon (free, 20 min). 2) We build your site — you approve the design. 3) We launch and hand it over with full training. Done in 14 days." },
-      { q: "get started|start|begin|sign up|hire|engage|proceed|how do i|ready", a: "Leave your name, business, and what you need — I'll log it and Lennon will reach out within 24 hours. Or book directly: calendly.com/invittco" },
-      { q: "consultation|discovery call|meeting|free call|talk to lennon|speak to someone|call me", a: "Lennon offers a free 20-minute discovery call. Book at calendly.com/invittco or leave your number and he'll call you." },
+      { q: "how long|timeline|deadline|when|delivery|days|weeks|turnaround|fast|quick", a: "14-day delivery guarantee on all packages. Most projects are done in 7–10 days. Rush delivery available — ask our team directly." },
+      { q: "how does it work|process|steps|what happens|next step|workflow|procedure", a: "Simple 3-step process: 1) Discovery call with our team (free, 20 min). 2) We build your site — you approve the design. 3) We launch and hand it over with full training. Done in 14 days." },
+      { q: "get started|start|begin|sign up|hire|engage|proceed|how do i|ready", a: "Leave your name, business, and what you need — I'll log it and our team will reach out within 24 hours. Or book directly: calendly.com/invittco" },
+      { q: "consultation|discovery call|meeting|free call|talk to lennon|speak to someone|call me", a: "Our team offers a free 20-minute discovery call. Book at calendly.com/invittco or leave your number and we'll call you." },
       { q: "contract|agreement|terms|legal|sign|paperwork", a: "Yes, every project starts with a simple written agreement that covers scope, timeline, payment terms, and ownership. You own your website fully." },
       { q: "what do you need from me|requirements|content|what should i prepare|photos|logo|text", a: "We need your logo, any photos you have, your business details, and a sense of your style. No worries if you don't have everything — we can source and create what's missing." },
       { q: "revision|changes|edits|feedback|review|not happy|adjust|modify", a: "All packages include revision rounds before final delivery. We build until you're happy — within the agreed scope." },
 
       // ── SERVICES ─────────────────────────────────────────────────────────
       { q: "what do you do|services|offer|what can you|capabilities|specialise|specialize", a: "We build custom websites, set up local SEO (Google Business Profile, local ranking), run digital marketing, and create complete digital growth systems for Zimbabwe businesses." },
-      { q: "ecommerce|online store|sell online|shop|products|woocommerce|shopify|selling", a: "Yes, we build ecommerce sites — from simple product showcases to full online stores with payment integration. Tell Lennon your requirements for a custom quote." },
+      { q: "ecommerce|online store|sell online|shop|products|woocommerce|shopify|selling", a: "Yes, we build ecommerce sites — from simple product showcases to full online stores with payment integration. Tell our team your requirements for a custom quote." },
       { q: "social media|facebook|instagram|tiktok|twitter|linkedin|posting|content", a: "Social media management is included in the Authority package ($799). We set up your profiles and can manage monthly content. Ask about standalone social packages too." },
       { q: "google ads|paid ads|ppc|advertising|facebook ads|sponsored|boost|run ads", a: "We set up and manage Google Ads and Facebook Ads campaigns. This is a separate service — reach out for a custom quote based on your budget and goals." },
       { q: "seo|google|ranking|search|found online|appear|organic|keyword", a: "All packages include SEO. The Growth and Premium packages include full local SEO — optimizing your Google Business Profile so locals find you first for searches like 'plumber Harare'." },
       { q: "local seo|google business|gbp|gmb|maps|harare|local search|near me", a: "We fully optimize your Google Business Profile — name, photos, categories, reviews setup, and local keyword targeting. This alone drives massive local traffic." },
-      { q: "branding|logo|identity|design|colours|color palette|brand guide", a: "We can handle basic logo and brand guide creation as an add-on. For full branding projects, reach out to Lennon for a custom scope." },
+      { q: "branding|logo|identity|design|colours|color palette|brand guide", a: "We can handle basic logo and brand guide creation as an add-on. For full branding projects, reach out to our team for a custom scope." },
       { q: "maintenance|support|after launch|ongoing|monthly|keep updated|update content", a: "All packages include post-launch support (1–6 months depending on tier). After that, affordable monthly maintenance plans are available." },
       { q: "hosting|server|domain|where is it hosted|cpanel|ssl|certificate|https", a: "We set up fully managed hosting with SSL certificate, optimized for Zimbabwe's internet bandwidth. Domain registration included or we connect your existing one." },
       { q: "mobile|responsive|phone|tablet|smartphone|iphone|android|looks on mobile", a: "Every website we build is 100% mobile-first and responsive. Looks sharp on every screen — phone, tablet, desktop." },
       { q: "cms|edit myself|update myself|wordpress|content management|backend|dashboard", a: "Growth and Premium packages include a CMS (content management system) — a simple dashboard where you can update text, images, and prices yourself. No code needed." },
-      { q: "wordpress|wix|squarespace|webflow|platform|which platform|what do you use", a: "We build primarily on WordPress for flexibility and long-term control. For simpler sites we may use other platforms — Lennon recommends the best fit based on your needs." },
+      { q: "wordpress|wix|squarespace|webflow|platform|which platform|what do you use", a: "We build primarily on WordPress for flexibility and long-term control. For simpler sites we may use other platforms — our team recommends the best fit based on your needs." },
       { q: "speed|fast|performance|loading|pagespeed|slow website", a: "We optimize every site for speed — compressed images, caching, local CDN where possible. Fast load times are especially important for Zimbabwe's variable internet speeds." },
       { q: "analytics|tracking|google analytics|visitors|traffic|stats|how many people", a: "Growth and Premium packages include Google Analytics setup. You'll see exactly how many people visit, where they come from, and what they do on your site." },
       { q: "email|email marketing|newsletter|mailchimp|contact form|inbox", a: "We set up professional email (yourname@yourbusiness.com) and contact forms. Email marketing campaigns are available as an add-on service." },
-      { q: "mobile app|app|android app|ios app|application", a: "Mobile app development is outside our current core offering. We focus on high-converting websites and digital marketing. For app projects, Lennon can refer you to the right partners." },
+      { q: "mobile app|app|android app|ios app|application", a: "Mobile app development is outside our current core offering. We focus on high-converting websites and digital marketing. For app projects, our team can refer you to the right partners." },
       { q: "whatsapp business|whatsapp integration|chat widget|chat button", a: "Yes, we add a WhatsApp chat button to every website so visitors can contact you instantly. We can also integrate WhatsApp Business API for larger operations." },
       { q: "security|hack|safe|backup|protect|secure|firewall", a: "All sites include SSL, regular backups, and security hardening. We monitor for issues during your support period." },
 
+      { q: "who made you|who created you|who built you|are you ai|are you a bot|are you a robot|are you human|are you real|who programmed you|your creator|made by|who designed you", a: "I'm built and looked after by the engineers at Invitt Co — think of me as the team's tireless front-of-house, here to get you fast, accurate answers any time of day or night." },
+
       // ── COMPANY / TRUST ───────────────────────────────────────────────────
-      { q: "who are you|about invitt|about you|who is invitt|company|agency|tell me about", a: "Invitt Co is Harare's #1 web design agency for Zimbabwe SMEs. We build fast, professional websites with guaranteed 14-day delivery. Founded by Lennon at 17, we're young, hungry, and results-driven." },
-      { q: "lennon|founder|owner|who started|who runs|who will i work with|team|staff", a: "Lennon founded Invitt Co at 17. He personally handles every project — you get direct founder-level attention, not a junior account manager. No middlemen." },
+      { q: "who are you|about invitt|about you|who is invitt|company|agency|tell me about", a: "Invitt Co is Harare's #1 web design agency for Zimbabwe SMEs. We build fast, professional websites with guaranteed 14-day delivery. We're a young, hungry, results-driven team." },
+      { q: "founder|owner|who started|who runs|who will i work with|team|staff", a: "Invitt Co is run by a small, dedicated team — every project gets direct, hands-on attention, not a junior account manager passed down the chain. No middlemen." },
       { q: "portfolio|work|examples|case studies|previous|clients you worked with|show me", a: "See our work at invitt.co.zw — recent projects include Topiary Marketing, Mwiwa Borehole Drilling, and more. Real businesses, real results." },
       { q: "testimonial|review|feedback|what do clients say|happy|satisfied|rating", a: "Our clients consistently rate us on speed, communication, and results. Check reviews on our Google Business Profile and website at invitt.co.zw" },
-      { q: "why choose|different|why you|stand out|what makes you|vs other agencies|better than", a: "Three things: 14-day delivery guarantee, direct founder attention from Lennon on every project, and deep Zimbabwe local market knowledge. We're not a faceless agency — we're invested in your growth." },
-      { q: "experience|how long|years|since when|established|history|track record", a: "Lennon started Invitt Co at 17 and has built dozens of sites for Zimbabwe businesses. Young company, but proven results and a rapidly growing portfolio." },
+      { q: "why choose|different|why you|stand out|what makes you|vs other agencies|better than", a: "Three things: 14-day delivery guarantee, direct hands-on attention from our team on every project, and deep Zimbabwe local market knowledge. We're not a faceless agency — we're invested in your growth." },
+      { q: "experience|how long|years|since when|established|history|track record", a: "Invitt Co has built dozens of sites for Zimbabwe businesses. Young company, but proven results and a rapidly growing portfolio." },
       { q: "where are you|location|office|harare|in person|face to face|visit you|physical", a: "We're based in Harare, Zimbabwe. We work remotely with clients across the country — meetings are via Zoom/WhatsApp. In-person meetings in Harare can be arranged." },
       { q: "outside harare|bulawayo|mutare|gweru|kwekwe|masvingo|other cities|zimbabwe wide|countrywide", a: "Yes, we work with businesses across Zimbabwe — Bulawayo, Mutare, Gweru, Masvingo, and everywhere in between. Our edge is deep local Zimbabwe market knowledge." },
       { q: "outside zimbabwe|south africa|zambia|botswana|uk|usa|international", a: "Our core focus is Zimbabwe businesses where our local SEO expertise shines. International projects are taken case by case — reach out to discuss." },
@@ -99,16 +101,16 @@
       { q: "restaurant|cafe|food|catering|takeaway|menu|hospitality", a: "We've built websites for Harare food businesses. A great site shows your menu, location, and lets customers book or order — we know exactly what works in this space." },
       { q: "school|church|ngo|non profit|charity|organization|institution", a: "Yes, we work with schools, churches, and NGOs. Custom pricing available for non-profit organizations — reach out to discuss." },
       { q: "lawyer|legal|law firm|attorney|doctor|medical|clinic|dentist|health", a: "We build professional, trust-building websites for law firms, clinics, and medical practices. These require a specific tone and structure we know well." },
-      { q: "property|real estate|agent|rent|sell property|landlord|estate agent", a: "Real estate websites are a strong suit for us — property listings, search filters, WhatsApp enquiry buttons. Lennon can scope this out for you." },
+      { q: "property|real estate|agent|rent|sell property|landlord|estate agent", a: "Real estate websites are a strong suit for us — property listings, search filters, WhatsApp enquiry buttons. Our team can scope this out for you." },
       { q: "contractor|builder|plumber|electrician|construction|trades|services|artisan", a: "Trades businesses get massive ROI from local SEO. A site that shows up when someone searches 'plumber Harare' is pure gold. That's exactly what we build." },
 
       // ── PROCESS / MISC ───────────────────────────────────────────────────
-      { q: "rush|urgent|fast delivery|asap|quickly|need it now|emergency", a: "Rush delivery is available on request. Depending on scope, we can often deliver in 5–7 days. Message Lennon on WhatsApp directly to discuss a rush project." },
-      { q: "compare|vs|alternative|other options|check around|competitor|agency", a: "We focus on being the best for Zimbabwe SMEs — 14-day delivery, founder-level attention, local expertise. Many clients come to us after bad experiences elsewhere. We'd love to show you the difference." },
+      { q: "rush|urgent|fast delivery|asap|quickly|need it now|emergency", a: "Rush delivery is available on request. Depending on scope, we can often deliver in 5–7 days. Message our team on WhatsApp directly to discuss a rush project." },
+      { q: "compare|vs|alternative|other options|check around|competitor|agency", a: "We focus on being the best for Zimbabwe SMEs — 14-day delivery, direct hands-on attention, local expertise. Many clients come to us after bad experiences elsewhere. We'd love to show you the difference." },
       { q: "hello|hi|hey|good morning|good afternoon|howzit|greetings|sup", a: "Hey! I'm Tess, Invitt Co's AI assistant. I can answer questions about our web design packages, pricing, process, and more. What can I help you with?" },
-      { q: "thank|thanks|appreciate|great|awesome|perfect|cool|nice|helpful", a: "Happy to help! Is there anything else you'd like to know about Invitt Co? Or I can log your details and get Lennon to reach out." },
-      { q: "bye|goodbye|see you|later|done|that's all|no thanks|not now", a: "No problem! Feel free to come back anytime. You can also reach Lennon directly on WhatsApp — button below." },
-      { q: "contact|reach|talk to|speak|call|email|whatsapp|phone number|get in touch", a: "Best way is WhatsApp — hit the button below. Or book a free 20-min call with Lennon at calendly.com/invittco" }
+      { q: "thank|thanks|appreciate|great|awesome|perfect|cool|nice|helpful", a: "Happy to help! Is there anything else you'd like to know about Invitt Co? Or I can log your details and get our team to reach out." },
+      { q: "bye|goodbye|see you|later|done|that's all|no thanks|not now", a: "No problem! Feel free to come back anytime. You can also reach our team directly on WhatsApp — button below." },
+      { q: "contact|reach|talk to|speak|call|email|whatsapp|phone number|get in touch", a: "Best way is WhatsApp — hit the button below. Or book a free 20-min call with our team at calendly.com/invittco" }
     ]
   };
 
@@ -600,12 +602,11 @@
       }
       #tess-mic-btn {
         width: 64px; height: 64px; border-radius: 50%; border: none; cursor: pointer;
-        background: ${CFG.accentColor}; display: flex; align-items: center; justify-content: center;
-        transition: background 0.2s; flex-shrink: 0;
+        background: transparent; display: flex; align-items: center; justify-content: center;
+        transition: transform 0.2s; flex-shrink: 0; padding: 0; overflow: visible;
       }
-      #tess-mic-btn.listening { animation: tess-mic-pulse 1.2s infinite; }
-      #tess-mic-btn.speaking { background: #ddd; cursor: default; }
-      #tess-mic-btn svg { width: 26px; height: 26px; }
+      #tess-mic-btn:active { transform: scale(0.95); }
+      #tess-orb-canvas { width: 64px; height: 64px; display: block; pointer-events: none; }
       #tess-voice-status {
         font-size: 12px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.5px;
       }
@@ -701,11 +702,7 @@
         <div id="tess-voice-ui">
           <div id="tess-voice-transcript">Tap mic to speak...</div>
           <button id="tess-mic-btn" aria-label="Speak">
-            <svg viewBox="0 0 24 24" fill="none" stroke="${CFG.bgDark}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
-              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/>
-              <line x1="8" y1="23" x2="16" y2="23"/>
-            </svg>
+            <canvas id="tess-orb-canvas" width="64" height="64"></canvas>
           </button>
           <div id="tess-voice-status">Ready</div>
           <button id="tess-stop-voice">Stop Voice</button>
@@ -783,9 +780,9 @@
               <div class="tpp-label">Data Collection</div>
               <h3>What we collect</h3>
               <ul class="tpp-list">
-                <li>Name — to address you when Lennon follows up</li>
+                <li>Name — to address you when our team follows up</li>
                 <li>Email — to send quotes or follow-up communication</li>
-                <li>Phone / WhatsApp — so Lennon can reach you directly</li>
+                <li>Phone / WhatsApp — so our team can reach you directly</li>
                 <li>Business name &amp; type — to recommend the right package</li>
                 <li>Budget range — to match you with the right service tier</li>
                 <li>Chat messages — to provide context and improve Tess</li>
@@ -800,7 +797,7 @@
               <ul class="tpp-list">
                 <li>Follow up on your project enquiry</li>
                 <li>Prepare a relevant quote or proposal</li>
-                <li>Book discovery calls with Lennon</li>
+                <li>Book discovery calls with our team</li>
                 <li>Improve Tess's responses over time</li>
               </ul>
               <p style="margin-top:10px">We do not use your data for advertising or remarketing.</p>
@@ -812,7 +809,7 @@
               <h3>Who we share data with</h3>
               <ul class="tpp-list">
                 <li>Supabase — secure database storage</li>
-                <li>OpenRouter / NVIDIA Nemotron — powers Tess's AI responses</li>
+                <li>Google Gemini — powers Tess's AI responses</li>
                 <li>Render — backend hosting infrastructure</li>
               </ul>
               <p style="margin-top:10px">We do not sell, rent, or trade your information to any other parties.</p>
@@ -828,14 +825,14 @@
                 <li>Ask us to delete your data at any time</li>
                 <li>Opt out of future communication</li>
               </ul>
-              <p style="margin-top:10px">Contact Lennon directly on WhatsApp to exercise any of these rights.</p>
+              <p style="margin-top:10px">Contact our team directly on WhatsApp to exercise any of these rights.</p>
             </div>
 
           </div>
           <div id="tess-privacy-footer">
             <span>© 2026 Invitt Co, Harare</span>
             <a href="https://wa.me/263787412809" target="_blank">
-              Questions? WhatsApp Lennon →
+              Questions? WhatsApp us →
             </a>
           </div>
         </div>
@@ -935,7 +932,7 @@
       saveLead(state.lead);
       const score = scoreLead(state.lead);
       setTimeout(() => {
-        addMessage(`Logged. Score: ${score}/100 — ${score >= 60 ? 'High quality lead.' : 'Good fit.'} Lennon will reach out within 24 hours. Want to jump straight to WhatsApp?`);
+        addMessage(`Logged. Score: ${score}/100 — ${score >= 60 ? 'High quality lead.' : 'Good fit.'} Our team will reach out within 24 hours. Want to jump straight to WhatsApp?`);
         showWAButton();
         state.mode = 'chat';
       }, 400);
@@ -1113,12 +1110,90 @@
       micBtn.classList.add('listening');
       statusEl.textContent = 'Listening...';
       micBtn.setAttribute('aria-label', 'Listening');
+      setOrbState('listening');
     } else if (status === 'speaking') {
       micBtn.classList.add('speaking');
       statusEl.textContent = 'Tess is speaking...';
+      setOrbState('speaking');
     } else {
       statusEl.textContent = 'Ready';
+      setOrbState('idle');
     }
+  }
+
+  // ── ORB ANIMATION (replaces static mic icon) ──────────────────────────────
+  // Canvas-drawn glowing blob, same approach as the TessAdmin plasma orb:
+  // several soft radial-gradient blobs orbiting the center with additive
+  // ('lighter') blending so overlaps brighten instead of muddying the color.
+  // Three states change speed/scale: idle (slow drift), listening (faster,
+  // tighter, more energetic), speaking (rhythmic pulse synced to a sine wave).
+  let _orbState = 'idle';
+  let _orbRAF = null;
+
+  function setOrbState(s) { _orbState = s; }
+
+  function startOrb() {
+    const canvas = document.getElementById('tess-orb-canvas');
+    if (!canvas) return;
+    if (_orbRAF) cancelAnimationFrame(_orbRAF);
+
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+    const cx = W / 2, cy = H / 2;
+
+    const blobs = [
+      { angle: 0.0, radius: 9,  size: 20, speed: 0.020, color: 'rgba(200,245,62,0.9)'  },
+      { angle: 1.6, radius: 7,  size: 16, speed: -0.026, color: 'rgba(170,235,45,0.8)' },
+      { angle: 3.1, radius: 10, size: 18, speed: 0.032,  color: 'rgba(225,255,130,0.7)'},
+      { angle: 4.6, radius: 6,  size: 14, speed: -0.018, color: 'rgba(190,240,90,0.65)'},
+    ];
+
+    let frame = 0;
+
+    function draw() {
+      frame++;
+      ctx.clearRect(0, 0, W, H);
+
+      const speedMul  = _orbState === 'listening' ? 2.3 : _orbState === 'speaking' ? 1.6 : 0.55;
+      const pulseScale = _orbState === 'speaking' ? 1 + Math.sin(frame * 0.22) * 0.14
+                        : _orbState === 'listening' ? 1.12
+                        : 1;
+
+      // soft outer halo
+      const halo = ctx.createRadialGradient(cx, cy, W * 0.22, cx, cy, W * 0.5);
+      halo.addColorStop(0, 'rgba(200,245,62,0)');
+      halo.addColorStop(1, _orbState === 'idle' ? 'rgba(200,245,62,0.10)' : 'rgba(200,245,62,0.20)');
+      ctx.fillStyle = halo;
+      ctx.beginPath();
+      ctx.arc(cx, cy, W * 0.5, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.save();
+      ctx.globalCompositeOperation = 'lighter';
+      blobs.forEach(b => {
+        b.angle += b.speed * speedMul;
+        const x = cx + Math.cos(b.angle) * b.radius * pulseScale;
+        const y = cy + Math.sin(b.angle) * b.radius * pulseScale;
+        const r = b.size * pulseScale;
+
+        const grad = ctx.createRadialGradient(x, y, 0, x, y, r);
+        grad.addColorStop(0, b.color);
+        grad.addColorStop(1, 'rgba(200,245,62,0)');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.restore();
+
+      _orbRAF = requestAnimationFrame(draw);
+    }
+    draw();
+  }
+
+  function stopOrb() {
+    if (_orbRAF) cancelAnimationFrame(_orbRAF);
+    _orbRAF = null;
   }
 
   function startListening() {
@@ -1218,7 +1293,9 @@
     document.getElementById('tess-back-row').classList.add('show');
     state.mode = 'chat';
 
-    trackEvent('voice_mode_start');
+    trackEvent('voice_request');
+    startOrb();
+    setOrbState('idle');
     const greeting = "Hi! I'm Tess. Go ahead and speak — I'm listening.";
     addMessage(greeting, 'assistant');
     speakReply(greeting);
@@ -1239,13 +1316,13 @@
     document.getElementById('tess-voice-ui').classList.remove('active');
     document.getElementById('tess-input-area').style.display = 'flex';
     document.getElementById('tess-messages').style.display = 'flex';
-    trackEvent('voice_mode_stop');
+    stopOrb();
   }
 
   function handleVoiceCallbackFallback() {
     showInputArea();
-    trackEvent('voice_fallback');
-    addMessage("Voice chat isn't supported in your browser (try Chrome or Safari). Leave your number and Lennon will call you back within the hour.");
+    trackEvent('voice_request');
+    addMessage("Voice chat isn't supported in your browser (try Chrome or Safari). Leave your number and our team will call you back within the hour.");
     state.mode = 'lead';
     state.leadStep = 2;
     state.lead.intent = 'voice_callback';
