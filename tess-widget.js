@@ -34,6 +34,70 @@
     storageKey: 'tess_session',
   }, window.TESS_CONFIG || {});
 
+  // ─── SESSION ID ─────────────────────────────────────────────────────────
+  function generateSessionId() {
+    return 'sess_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
+  }
+
+  // ─── STATE ──────────────────────────────────────────────────────────────
+  const state = {
+    sessionId: generateSessionId(),
+    messages: [],
+    mode: 'select',
+    isOpen: false,
+    isHumanMode: false,
+    isAdmin: false,
+    ws: null,
+    wsReady: false,
+    wsRetries: 0,
+    pendingImage: null,
+    leadStep: 0,
+    lead: {}
+  };
+
+  // ─── LEAD FLOW STEPS ────────────────────────────────────────────────────
+  const leadSteps = [
+    { field: 'name', prompt: "What's your name?" },
+    { field: 'phone', prompt: "What's the best phone or WhatsApp number to reach you on?" },
+    { field: 'email', prompt: "And your email address?" },
+    { field: 'business', prompt: "What's the name of your business?" },
+    { field: 'budget', prompt: "Roughly what budget are you working with?" }
+  ];
+
+  function scoreLead(lead) {
+    let score = 0;
+    if (lead.name) score += 20;
+    if (lead.phone) score += 20;
+    if (lead.email) score += 20;
+    if (lead.business) score += 20;
+    if (lead.budget) score += 20;
+    return score;
+  }
+
+  // ─── SESSION PERSISTENCE ────────────────────────────────────────────────
+  function loadSession() {
+    try {
+      const raw = localStorage.getItem(CFG.storageKey);
+      if (!raw) return;
+      const saved = JSON.parse(raw);
+      if (saved && saved.sessionId) state.sessionId = saved.sessionId;
+      if (saved && Array.isArray(saved.messages)) state.messages = saved.messages;
+    } catch (e) {
+      // Corrupt or inaccessible storage — start fresh
+    }
+  }
+
+  function saveSession() {
+    try {
+      localStorage.setItem(CFG.storageKey, JSON.stringify({
+        sessionId: state.sessionId,
+        messages: state.messages
+      }));
+    } catch (e) {
+      // Storage full or unavailable — safe to ignore
+    }
+  }
+
   // ─── AI RESPONSE — all messages go to backend via WebSocket ───────────────
   // FAQ matching removed. Backend handles all responses using document context.
 
