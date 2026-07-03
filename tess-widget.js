@@ -34,158 +34,22 @@
     storageKey: 'tess_session',
   }, window.TESS_CONFIG || {});
 
-  // ─── KNOWLEDGE BASE (inline — expanded to 55+ entries for 85% FAQ coverage) ─
-  const KB = {
-    company: "Invitt Co is Harare's #1 web design agency. We build custom websites, local SEO, and digital marketing systems for Zimbabwe SMEs. Results guaranteed in 14 days. Website: invitt.co.zw",
-    founder: "Invitt Co is run by a small, dedicated team obsessed with one thing: getting Zimbabwean SMEs found online, fast. Every project gets direct, hands-on attention — no juniors, no outsourcing.",
-    services: [
-      { name: "Starter Website", price: "$399", desc: "5 pages, mobile responsive, contact form, Google Business Profile, basic SEO, 14-day delivery, 1 month support." },
-      { name: "Growth Website", price: "$599", desc: "8-10 pages, advanced SEO, local SEO, analytics, CMS for self-editing, 3 months support." },
-      { name: "Authority Website", price: "$799", desc: "Full unlimited website + complete SEO strategy + social media + monthly reports + 6 months support. Best for scaling businesses." }
-    ],
-    faqs: [
-      // ── PRICING ──────────────────────────────────────────────────────────
-      { q: "price|cost|how much|pricing|fee|charge|rate|package|tier|afford", a: "Three packages: Starter $399 (5 pages, SEO basics, 14-day delivery), Growth $599 (full SEO, CMS, local optimization), Authority $799 (everything + ongoing management). All include a 14-day delivery guarantee." },
-      { q: "starter|basic|cheapest|entry level|smallest|simple website|five page", a: "The Starter package is $399 — 5 pages, mobile responsive, contact form, Google Business Profile setup, basic SEO, delivered in 14 days, with 1 month of support." },
-      { q: "growth package|mid|middle|599|eight page|ten page|advanced seo", a: "The Growth package is $599 — 8-10 pages, advanced SEO, local SEO, Google Analytics, CMS so you can edit content yourself, 3 months support." },
-      { q: "authority|premium|799|best package|full package|complete|top tier|everything", a: "The Authority package is $799 — unlimited pages, complete SEO strategy, social media setup, monthly performance reports, 6 months of support. Best for businesses serious about scaling." },
-      { q: "payment plan|installment|deposit|split|pay later|part payment|lay-by", a: "Yes, flexible payment arrangements are available. Typically a deposit upfront and the remainder on delivery. Message our team on WhatsApp to set up your plan." },
-      { q: "refund|money back|guarantee|if you fail|miss deadline|not delivered", a: "If we miss the agreed deadline, you get your full deposit back — no questions asked. That's our delivery guarantee." },
-      { q: "discount|cheaper|negotiate|reduce|lower price|special offer|promo", a: "Packages are priced to deliver real value, not padded for negotiation. That said, our team handles every client personally — reach out on WhatsApp and have a direct conversation." },
-      { q: "ecocash|mobile money|usd|payment method|how to pay|zimdollar|rtgs|transfer", a: "We accept USD (preferred), EcoCash, and bank transfers. Payment details are confirmed when you book your project with our team." },
+  // ─── AI RESPONSE — all messages go to backend via WebSocket ───────────────
+  // FAQ matching removed. Backend handles all responses using document context.
 
-      // ── TIMELINE & PROCESS ───────────────────────────────────────────────
-      { q: "how long|timeline|deadline|when|delivery|days|weeks|turnaround|fast|quick", a: "14-day delivery guarantee on all packages. Most projects are done in 7–10 days. Rush delivery available — ask our team directly." },
-      { q: "how does it work|process|steps|what happens|next step|workflow|procedure", a: "Simple 3-step process: 1) Discovery call with our team (free, 20 min). 2) We build your site — you approve the design. 3) We launch and hand it over with full training. Done in 14 days." },
-      { q: "get started|start|begin|sign up|hire|engage|proceed|how do i|ready", a: "Leave your name, business, and what you need — I'll log it and our team will reach out within 24 hours. Or book directly: calendly.com/invittco" },
-      { q: "consultation|discovery call|meeting|free call|talk to lennon|speak to someone|call me", a: "Our team offers a free 20-minute discovery call. Book at calendly.com/invittco or leave your number and we'll call you." },
-      { q: "contract|agreement|terms|legal|sign|paperwork", a: "Yes, every project starts with a simple written agreement that covers scope, timeline, payment terms, and ownership. You own your website fully." },
-      { q: "what do you need from me|requirements|content|what should i prepare|photos|logo|text", a: "We need your logo, any photos you have, your business details, and a sense of your style. No worries if you don't have everything — we can source and create what's missing." },
-      { q: "revision|changes|edits|feedback|review|not happy|adjust|modify", a: "All packages include revision rounds before final delivery. We build until you're happy — within the agreed scope." },
-
-      // ── SERVICES ─────────────────────────────────────────────────────────
-      { q: "what do you do|services|offer|what can you|capabilities|specialise|specialize", a: "We build custom websites, set up local SEO (Google Business Profile, local ranking), run digital marketing, and create complete digital growth systems for Zimbabwe businesses." },
-      { q: "ecommerce|online store|sell online|shop|products|woocommerce|shopify|selling", a: "Yes, we build ecommerce sites — from simple product showcases to full online stores with payment integration. Tell our team your requirements for a custom quote." },
-      { q: "social media|facebook|instagram|tiktok|twitter|linkedin|posting|content", a: "Social media management is included in the Authority package ($799). We set up your profiles and can manage monthly content. Ask about standalone social packages too." },
-      { q: "google ads|paid ads|ppc|advertising|facebook ads|sponsored|boost|run ads", a: "We set up and manage Google Ads and Facebook Ads campaigns. This is a separate service — reach out for a custom quote based on your budget and goals." },
-      { q: "seo|google|ranking|search|found online|appear|organic|keyword", a: "All packages include SEO. The Growth and Premium packages include full local SEO — optimizing your Google Business Profile so locals find you first for searches like 'plumber Harare'." },
-      { q: "local seo|google business|gbp|gmb|maps|harare|local search|near me", a: "We fully optimize your Google Business Profile — name, photos, categories, reviews setup, and local keyword targeting. This alone drives massive local traffic." },
-      { q: "branding|logo|identity|design|colours|color palette|brand guide", a: "We can handle basic logo and brand guide creation as an add-on. For full branding projects, reach out to our team for a custom scope." },
-      { q: "maintenance|support|after launch|ongoing|monthly|keep updated|update content", a: "All packages include post-launch support (1–6 months depending on tier). After that, affordable monthly maintenance plans are available." },
-      { q: "hosting|server|domain|where is it hosted|cpanel|ssl|certificate|https", a: "We set up fully managed hosting with SSL certificate, optimized for Zimbabwe's internet bandwidth. Domain registration included or we connect your existing one." },
-      { q: "mobile|responsive|phone|tablet|smartphone|iphone|android|looks on mobile", a: "Every website we build is 100% mobile-first and responsive. Looks sharp on every screen — phone, tablet, desktop." },
-      { q: "cms|edit myself|update myself|wordpress|content management|backend|dashboard", a: "Growth and Premium packages include a CMS (content management system) — a simple dashboard where you can update text, images, and prices yourself. No code needed." },
-      { q: "wordpress|wix|squarespace|webflow|platform|which platform|what do you use", a: "We build primarily on WordPress for flexibility and long-term control. For simpler sites we may use other platforms — our team recommends the best fit based on your needs." },
-      { q: "speed|fast|performance|loading|pagespeed|slow website", a: "We optimize every site for speed — compressed images, caching, local CDN where possible. Fast load times are especially important for Zimbabwe's variable internet speeds." },
-      { q: "analytics|tracking|google analytics|visitors|traffic|stats|how many people", a: "Growth and Premium packages include Google Analytics setup. You'll see exactly how many people visit, where they come from, and what they do on your site." },
-      { q: "email|email marketing|newsletter|mailchimp|contact form|inbox", a: "We set up professional email (yourname@yourbusiness.com) and contact forms. Email marketing campaigns are available as an add-on service." },
-      { q: "mobile app|app|android app|ios app|application", a: "Mobile app development is outside our current core offering. We focus on high-converting websites and digital marketing. For app projects, our team can refer you to the right partners." },
-      { q: "whatsapp business|whatsapp integration|chat widget|chat button", a: "Yes, we add a WhatsApp chat button to every website so visitors can contact you instantly. We can also integrate WhatsApp Business API for larger operations." },
-      { q: "security|hack|safe|backup|protect|secure|firewall", a: "All sites include SSL, regular backups, and security hardening. We monitor for issues during your support period." },
-
-      { q: "who made you|who created you|who built you|are you ai|are you a bot|are you a robot|are you human|are you real|who programmed you|your creator|made by|who designed you", a: "I'm built and looked after by the engineers at Invitt Co — think of me as the team's tireless front-of-house, here to get you fast, accurate answers any time of day or night." },
-
-      // ── COMPANY / TRUST ───────────────────────────────────────────────────
-      { q: "who are you|about invitt|about you|who is invitt|company|agency|tell me about", a: "Invitt Co is Harare's #1 web design agency for Zimbabwe SMEs. We build fast, professional websites with guaranteed 14-day delivery. We're a young, hungry, results-driven team." },
-      { q: "founder|owner|who started|who runs|who will i work with|team|staff", a: "Invitt Co is run by a small, dedicated team — every project gets direct, hands-on attention, not a junior account manager passed down the chain. No middlemen." },
-      { q: "portfolio|work|examples|case studies|previous|clients you worked with|show me", a: "See our work at invitt.co.zw — recent projects include Topiary Marketing, Mwiwa Borehole Drilling, and more. Real businesses, real results." },
-      { q: "testimonial|review|feedback|what do clients say|happy|satisfied|rating", a: "Our clients consistently rate us on speed, communication, and results. Check reviews on our Google Business Profile and website at invitt.co.zw" },
-      { q: "why choose|different|why you|stand out|what makes you|vs other agencies|better than", a: "Three things: 14-day delivery guarantee, direct hands-on attention from our team on every project, and deep Zimbabwe local market knowledge. We're not a faceless agency — we're invested in your growth." },
-      { q: "experience|how long|years|since when|established|history|track record", a: "Invitt Co has built dozens of sites for Zimbabwe businesses. Young company, but proven results and a rapidly growing portfolio." },
-      { q: "where are you|location|office|harare|in person|face to face|visit you|physical", a: "We're based in Harare, Zimbabwe. We work remotely with clients across the country — meetings are via Zoom/WhatsApp. In-person meetings in Harare can be arranged." },
-      { q: "outside harare|bulawayo|mutare|gweru|kwekwe|masvingo|other cities|zimbabwe wide|countrywide", a: "Yes, we work with businesses across Zimbabwe — Bulawayo, Mutare, Gweru, Masvingo, and everywhere in between. Our edge is deep local Zimbabwe market knowledge." },
-      { q: "outside zimbabwe|south africa|zambia|botswana|uk|usa|international", a: "Our core focus is Zimbabwe businesses where our local SEO expertise shines. International projects are taken case by case — reach out to discuss." },
-      { q: "results|roi|will it work|worth it|return on investment|does it actually help|proof", a: "Our goal is measurable results — more Google visibility, more enquiries, more sales. We've helped businesses double their online enquiries within 30 days of launch. See our portfolio at invitt.co.zw" },
-
-      // ── SPECIFIC INDUSTRIES ───────────────────────────────────────────────
-      { q: "restaurant|cafe|food|catering|takeaway|menu|hospitality", a: "We've built websites for Harare food businesses. A great site shows your menu, location, and lets customers book or order — we know exactly what works in this space." },
-      { q: "school|church|ngo|non profit|charity|organization|institution", a: "Yes, we work with schools, churches, and NGOs. Custom pricing available for non-profit organizations — reach out to discuss." },
-      { q: "lawyer|legal|law firm|attorney|doctor|medical|clinic|dentist|health", a: "We build professional, trust-building websites for law firms, clinics, and medical practices. These require a specific tone and structure we know well." },
-      { q: "property|real estate|agent|rent|sell property|landlord|estate agent", a: "Real estate websites are a strong suit for us — property listings, search filters, WhatsApp enquiry buttons. Our team can scope this out for you." },
-      { q: "contractor|builder|plumber|electrician|construction|trades|services|artisan", a: "Trades businesses get massive ROI from local SEO. A site that shows up when someone searches 'plumber Harare' is pure gold. That's exactly what we build." },
-
-      // ── PROCESS / MISC ───────────────────────────────────────────────────
-      { q: "rush|urgent|fast delivery|asap|quickly|need it now|emergency", a: "Rush delivery is available on request. Depending on scope, we can often deliver in 5–7 days. Message our team on WhatsApp directly to discuss a rush project." },
-      { q: "compare|vs|alternative|other options|check around|competitor|agency", a: "We focus on being the best for Zimbabwe SMEs — 14-day delivery, direct hands-on attention, local expertise. Many clients come to us after bad experiences elsewhere. We'd love to show you the difference." },
-      { q: "hello|hi|hey|good morning|good afternoon|howzit|greetings|sup", a: "Hey! I'm Tess, Invitt Co's AI assistant. I can answer questions about our web design packages, pricing, process, and more. What can I help you with?" },
-      { q: "thank|thanks|appreciate|great|awesome|perfect|cool|nice|helpful", a: "Happy to help! Is there anything else you'd like to know about Invitt Co? Or I can log your details and get our team to reach out." },
-      { q: "bye|goodbye|see you|later|done|that's all|no thanks|not now", a: "No problem! Feel free to come back anytime. You can also reach our team directly on WhatsApp — button below." },
-      { q: "contact|reach|talk to|speak|call|email|whatsapp|phone number|get in touch", a: "Best way is WhatsApp — hit the button below. Or book a free 20-min call with our team at calendly.com/invittco" }
-    ]
-  };
-
-  // ─── STATE ────────────────────────────────────────────────────────────────
-  let state = {
-    isOpen: false,
-    mode: 'select',
-    messages: [],
-    lead: {},
-    leadStep: 0,
-    isHumanMode: false,
-    isAdmin: false,
-    sessionId: Date.now().toString(36),
-    popupShown: false,
-    typingTimeout: null,
-    ws: null,
-    wsReady: false,
-    wsRetries: 0,
-    msgQueue: [],         // queued messages to send once WS connects
-    pendingImage: null,  // base64 data URL of image to send
-    voiceMode: false,
-    recognition: null,
-    synthesis: window.speechSynthesis || null,
-    voiceUtterance: null,
-    silenceTimer: null,
-    tessVoice: null,      // selected SpeechSynthesisVoice
-  };
-
-  const leadSteps = [
-    { field: 'name', prompt: "Your full name?" },
-    { field: 'email', prompt: "Business email?" },
-    { field: 'phone', prompt: "WhatsApp/phone number?" },
-    { field: 'business', prompt: "What type of business are you running?" },
-    { field: 'budget', prompt: "Budget range? (e.g. under $500, $500-$1000, $1000+)" }
-  ];
-
-  // ─── STORAGE ─────────────────────────────────────────────────────────────
-  function saveSession() {
-    try {
-      sessionStorage.setItem(CFG.storageKey, JSON.stringify({
-        messages: state.messages.slice(-20),
-        lead: state.lead,
-        sessionId: state.sessionId
+  async function sendToAI(userMessage) {
+    // Signal backend to handle with AI — no local matching
+    if (state.ws && state.ws.readyState === WebSocket.OPEN) {
+      state.ws.send(JSON.stringify({
+        role: 'user',
+        content: userMessage,
+        image_data: null,
+        needs_ai: true
       }));
-    } catch (e) {}
-  }
-
-  function loadSession() {
-    try {
-      const saved = JSON.parse(sessionStorage.getItem(CFG.storageKey) || '{}');
-      if (saved.messages) state.messages = saved.messages;
-      if (saved.lead) state.lead = saved.lead;
-      if (saved.sessionId) state.sessionId = saved.sessionId;
-    } catch (e) {}
-  }
-
-  // ─── LEAD SCORING ─────────────────────────────────────────────────────────
-  function scoreLead(lead) {
-    let score = 0;
-    if (lead.email && lead.email.includes('@')) score += 25;
-    if (lead.phone) score += 20;
-    if (lead.business) score += 15;
-    if (lead.budget) {
-      if (lead.budget.includes('1000') || lead.budget.includes('1,000')) score += 40;
-      else if (lead.budget.includes('500')) score += 25;
-      else score += 10;
+      return '__AI_PENDING__'; // typing indicator stays until ws.onmessage fires
     }
-    if (state.messages.length > 6) score += 10;
-    return Math.min(score, 100);
+    return null;
   }
-
-  // ─── AI RESPONSE ENGINE ───────────────────────────────────────────────────
-  // All messages go to backend AI via WebSocket (needs_ai: true).
-  // The backend handles all intelligence using uploaded documents + OpenRouter.
-
 
   // ─── LEAD STORAGE ────────────────────────────────────────────────────────
   async function saveLead(lead) {
@@ -233,7 +97,9 @@
   }
 
   async function saveMessageToBackend(role, content, imageData = null) {
-    // Persist to Supabase via REST (for message history)
+    // Send via WebSocket for real-time admin view
+    sendViaWebSocket(role, content, imageData);
+    // Also persist via REST as fallback
     if (!CFG.backendUrl) return;
     try {
       await fetch(CFG.backendUrl + '/messages', {
@@ -268,11 +134,6 @@
       state.ws.onopen = () => {
         state.wsReady = true;
         state.wsRetries = 0;
-        // Flush any queued messages
-        while (state.msgQueue.length > 0) {
-          const queued = state.msgQueue.shift();
-          try { state.ws.send(queued); } catch (e) {}
-        }
       };
       state.ws.onmessage = (e) => {
         try {
@@ -300,10 +161,6 @@
               }
             }
             addMessage(data.content, 'assistant');
-            // Speak reply if in voice mode
-            if (state.voiceMode) {
-              speakReply(data.content);
-            }
           }
         } catch (err) {}
       };
@@ -320,22 +177,12 @@
     } catch (err) {}
   }
 
-  function sendOrQueue(payload) {
-    const msg = JSON.stringify(payload);
-    if (state.ws && state.ws.readyState === WebSocket.OPEN) {
-      try { state.ws.send(msg); } catch (e) {}
-    } else {
-      // Queue it — will be flushed on next onopen
-      state.msgQueue.push(msg);
-      // Also try to reconnect if socket is dead
-      if (!state.ws || state.ws.readyState === WebSocket.CLOSED) {
-        connectWebSocket();
-      }
-    }
-  }
-
   function sendViaWebSocket(role, content, imageData = null) {
-    sendOrQueue({ role, content, image_data: imageData || null, needs_ai: false });
+    if (state.ws && state.ws.readyState === WebSocket.OPEN) {
+      try {
+        state.ws.send(JSON.stringify({ role, content, image_data: imageData || null }));
+      } catch (err) {}
+    }
   }
 
 
@@ -417,7 +264,7 @@
       #tess-header-status { display: flex; align-items: center; gap: 5px; font-size: 11px; color: ${CFG.bgDark}; font-weight: 600; }
       #tess-header-dot { width: 7px; height: 7px; border-radius: 50%; background: ${CFG.bgDark}; animation: tess-pulse 2s infinite; }
       #tess-messages {
-        flex: 1; overflow-y: auto; padding: 16px;
+        flex: 1; overflow-y: auto; overflow-x: hidden; padding: 16px;
         display: flex; flex-direction: column; gap: 10px;
         scrollbar-width: thin; scrollbar-color: #ddd transparent;
         background: #f7f7f7;
@@ -434,7 +281,13 @@
         background: #ffffff; color: #111; border-radius: 4px 16px 16px 16px;
         padding: 10px 14px; font-size: 13.5px; line-height: 1.55; max-width: 85%;
         border: 1px solid #e8e8e8; box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        overflow-wrap: anywhere; word-break: break-word; min-width: 0;
       }
+      .tess-msg-bubble a {
+        overflow-wrap: anywhere; word-break: break-word;
+        color: ${CFG.accentDark}; text-decoration: underline; font-weight: 600;
+      }
+      .tess-msg-user .tess-msg-bubble a { color: ${CFG.bgDark}; }
       .tess-msg-user { flex-direction: row-reverse; }
       .tess-msg-user .tess-msg-bubble {
         background: ${CFG.accentColor}; color: ${CFG.bgDark}; font-weight: 600;
@@ -507,69 +360,6 @@
         border-top: 1px solid #e8e8e8; flex-shrink: 0; background: #ffffff;
       }
       #tess-footer a { color: ${CFG.accentDark}; text-decoration: none; }
-      /* ── PRIVACY MODAL ── */
-      #tess-privacy-overlay {
-        display: none; position: fixed; inset: 0; z-index: 9999999;
-        background: rgba(0,0,0,0.45); backdrop-filter: blur(4px);
-        align-items: center; justify-content: center; padding: 20px;
-      }
-      #tess-privacy-overlay.open { display: flex; }
-      #tess-privacy-modal {
-        background: #ffffff; border-radius: 18px;
-        width: 100%; max-width: 480px; max-height: 82vh;
-        display: flex; flex-direction: column;
-        box-shadow: 0 24px 80px rgba(0,0,0,0.22);
-        overflow: hidden; animation: tess-slide-up 0.28s cubic-bezier(0.34,1.56,0.64,1);
-      }
-      #tess-privacy-header {
-        padding: 20px 24px 16px; border-bottom: 1px solid #f0f0f0;
-        display: flex; align-items: flex-start; justify-content: space-between; flex-shrink: 0;
-      }
-      #tess-privacy-header h2 {
-        font-size: 17px; font-weight: 800; color: #111; letter-spacing: -0.3px; margin: 0;
-      }
-      #tess-privacy-header p {
-        font-size: 11px; color: #999; margin: 3px 0 0; font-weight: 500;
-      }
-      #tess-privacy-close {
-        background: #f5f5f5; border: none; cursor: pointer;
-        width: 28px; height: 28px; border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        font-size: 16px; color: #555; flex-shrink: 0; margin-left: 12px;
-        transition: background 0.15s;
-      }
-      #tess-privacy-close:hover { background: #ebebeb; }
-      #tess-privacy-body {
-        overflow-y: auto; padding: 20px 24px 24px;
-        scrollbar-width: thin; scrollbar-color: #ddd transparent;
-      }
-      .tpp-section { margin-bottom: 22px; }
-      .tpp-section:last-child { margin-bottom: 0; }
-      .tpp-label {
-        font-size: 10px; font-weight: 700; letter-spacing: 2px;
-        text-transform: uppercase; color: #999; margin-bottom: 6px;
-      }
-      .tpp-section h3 { font-size: 13px; font-weight: 700; color: #111; margin-bottom: 8px; }
-      .tpp-section p { font-size: 12.5px; color: #555; line-height: 1.6; margin-bottom: 6px; }
-      .tpp-section p:last-child { margin-bottom: 0; }
-      .tpp-list { list-style: none; margin: 8px 0 0; display: flex; flex-direction: column; gap: 6px; }
-      .tpp-list li { font-size: 12.5px; color: #555; display: flex; gap: 8px; align-items: flex-start; }
-      .tpp-list li::before {
-        content: ''; width: 5px; height: 5px; border-radius: 50%;
-        background: #bbb; flex-shrink: 0; margin-top: 7px;
-      }
-      .tpp-divider { height: 1px; background: #f0f0f0; margin: 6px 0 22px; }
-      #tess-privacy-footer {
-        padding: 14px 24px; border-top: 1px solid #f0f0f0; flex-shrink: 0;
-        display: flex; align-items: center; justify-content: space-between;
-        background: #fafafa;
-      }
-      #tess-privacy-footer span { font-size: 11px; color: #aaa; }
-      #tess-privacy-footer a {
-        font-size: 12px; font-weight: 700; color: #111;
-        text-decoration: none; display: flex; align-items: center; gap: 4px;
-      }
-      #tess-privacy-footer a:hover { text-decoration: underline; }
       #tess-wa-btn {
         margin: 0 16px 12px; background: #25D366; color: white; border: none;
         border-radius: 12px; padding: 12px; font-size: 14px; font-weight: 700;
@@ -587,35 +377,6 @@
         display: block; margin-top: 6px; object-fit: cover;
         border: 1px solid rgba(0,0,0,0.08);
       }
-      @keyframes tess-mic-pulse {
-        0%, 100% { box-shadow: 0 0 0 0 rgba(200,245,62,0.5); }
-        50% { box-shadow: 0 0 0 12px rgba(200,245,62,0); }
-      }
-      #tess-voice-ui {
-        display: none; flex-direction: column; align-items: center; justify-content: center;
-        gap: 14px; padding: 24px 20px 20px; background: #f7f7f7; flex: 1;
-      }
-      #tess-voice-ui.active { display: flex; }
-      #tess-voice-transcript {
-        font-size: 13px; color: #555; text-align: center; min-height: 36px;
-        font-style: italic; line-height: 1.5; max-width: 280px;
-      }
-      #tess-mic-btn {
-        width: 64px; height: 64px; border-radius: 50%; border: none; cursor: pointer;
-        background: transparent; display: flex; align-items: center; justify-content: center;
-        transition: transform 0.2s; flex-shrink: 0; padding: 0; overflow: visible;
-      }
-      #tess-mic-btn:active { transform: scale(0.95); }
-      #tess-orb-canvas { width: 64px; height: 64px; display: block; pointer-events: none; }
-      #tess-voice-status {
-        font-size: 12px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.5px;
-      }
-      #tess-stop-voice {
-        background: none; border: 1.5px solid #ddd; border-radius: 20px; padding: 7px 18px;
-        font-size: 13px; font-weight: 600; color: #555; cursor: pointer; margin-top: 4px;
-        transition: border-color 0.15s, color 0.15s;
-      }
-      #tess-stop-voice:hover { border-color: #aaa; color: #222; }
       @keyframes tess-fade-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
       @keyframes tess-slide-up { from { opacity: 0; transform: translateY(20px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
       @keyframes tess-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
@@ -698,16 +459,6 @@
 
         <div id="tess-messages"></div>
 
-        <!-- Voice mode UI (hidden until activated) -->
-        <div id="tess-voice-ui">
-          <div id="tess-voice-transcript">Tap mic to speak...</div>
-          <button id="tess-mic-btn" aria-label="Speak">
-            <canvas id="tess-orb-canvas" width="64" height="64"></canvas>
-          </button>
-          <div id="tess-voice-status">Ready</div>
-          <button id="tess-stop-voice">Stop Voice</button>
-        </div>
-
         <div id="tess-human-banner">You are now chatting with a human</div>
 
         <div id="tess-options">
@@ -753,89 +504,7 @@
           </button>
         </div>
 
-        <div id="tess-footer">Powered by <strong style="color:${CFG.accentDark}">Invitt Co</strong> &nbsp;·&nbsp; <a href="#" id="tess-privacy-link">Privacy Policy</a></div>
-      </div>
-
-      <!-- Privacy Policy Modal -->
-      <div id="tess-privacy-overlay">
-        <div id="tess-privacy-modal">
-          <div id="tess-privacy-header">
-            <div>
-              <h2>Privacy Policy</h2>
-              <p>Invitt Co · Last updated June 2026</p>
-            </div>
-            <button id="tess-privacy-close" aria-label="Close">×</button>
-          </div>
-          <div id="tess-privacy-body">
-
-            <div class="tpp-section">
-              <div class="tpp-label">Overview</div>
-              <h3>What this policy covers</h3>
-              <p>This policy explains what Invitt Co collects when you visit invitt.co.zw or chat with Tess, how we use that information, and how we protect it.</p>
-              <p>We collect only what we need to help you. We don't sell your data.</p>
-            </div>
-            <div class="tpp-divider"></div>
-
-            <div class="tpp-section">
-              <div class="tpp-label">Data Collection</div>
-              <h3>What we collect</h3>
-              <ul class="tpp-list">
-                <li>Name — to address you when our team follows up</li>
-                <li>Email — to send quotes or follow-up communication</li>
-                <li>Phone / WhatsApp — so our team can reach you directly</li>
-                <li>Business name &amp; type — to recommend the right package</li>
-                <li>Budget range — to match you with the right service tier</li>
-                <li>Chat messages — to provide context and improve Tess</li>
-              </ul>
-              <p style="margin-top:10px">We do not collect payment details, government IDs, or sensitive personal data.</p>
-            </div>
-            <div class="tpp-divider"></div>
-
-            <div class="tpp-section">
-              <div class="tpp-label">How we use it</div>
-              <h3>What we do with your data</h3>
-              <ul class="tpp-list">
-                <li>Follow up on your project enquiry</li>
-                <li>Prepare a relevant quote or proposal</li>
-                <li>Book discovery calls with our team</li>
-                <li>Improve Tess's responses over time</li>
-              </ul>
-              <p style="margin-top:10px">We do not use your data for advertising or remarketing.</p>
-            </div>
-            <div class="tpp-divider"></div>
-
-            <div class="tpp-section">
-              <div class="tpp-label">Third Parties</div>
-              <h3>Who we share data with</h3>
-              <ul class="tpp-list">
-                <li>Supabase — secure database storage</li>
-                <li>Google Gemini — powers Tess's AI responses</li>
-                <li>Render — backend hosting infrastructure</li>
-              </ul>
-              <p style="margin-top:10px">We do not sell, rent, or trade your information to any other parties.</p>
-            </div>
-            <div class="tpp-divider"></div>
-
-            <div class="tpp-section">
-              <div class="tpp-label">Your Rights</div>
-              <h3>Control over your data</h3>
-              <ul class="tpp-list">
-                <li>Request a copy of the data we hold about you</li>
-                <li>Ask us to correct inaccurate information</li>
-                <li>Ask us to delete your data at any time</li>
-                <li>Opt out of future communication</li>
-              </ul>
-              <p style="margin-top:10px">Contact our team directly on WhatsApp to exercise any of these rights.</p>
-            </div>
-
-          </div>
-          <div id="tess-privacy-footer">
-            <span>© 2026 Invitt Co, Harare</span>
-            <a href="https://wa.me/263787412809" target="_blank">
-              Questions? WhatsApp us →
-            </a>
-          </div>
-        </div>
+        <div id="tess-footer">Powered by <span style="color:${CFG.accentDark};font-weight:600;">Invitt Co</span> &nbsp;·&nbsp; <a href="https://invitt.co.zw/privacy" target="_blank">Privacy Policy</a></div>
       </div>
 
       <!-- Floating bubble -->
@@ -865,8 +534,17 @@
     div.className = `tess-msg${msg.role === 'user' ? ' tess-msg-user' : ''}`;
 
     const avatarText = msg.role === 'user' ? 'YOU' : 'T';
-    const formattedContent = msg.content
+    const escapeHtml = (str) => str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+    const formattedContent = escapeHtml(msg.content)
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/(https?:\/\/[^\s<]+)/g, (url) => {
+        const clean = url.replace(/[.,)\]]+$/, '');
+        const trailing = url.slice(clean.length);
+        return `<a href="${clean}" target="_blank" rel="noopener noreferrer">${clean}</a>${trailing}`;
+      })
       .replace(/\n/g, '<br>');
 
     const imgHtml = msg.image
@@ -932,7 +610,7 @@
       saveLead(state.lead);
       const score = scoreLead(state.lead);
       setTimeout(() => {
-        addMessage(`Logged. Score: ${score}/100 — ${score >= 60 ? 'High quality lead.' : 'Good fit.'} Our team will reach out within 24 hours. Want to jump straight to WhatsApp?`);
+        addMessage(`Logged. Score: ${score}/100 — ${score >= 60 ? 'High quality lead.' : 'Good fit.'} Lennon will reach out within 24 hours. Want to jump straight to WhatsApp?`);
         showWAButton();
         state.mode = 'chat';
       }, 400);
@@ -965,7 +643,7 @@
     }
 
     if (state.isHumanMode && !state.isAdmin) {
-      // Message already sent to backend via the user addMessage call above
+      // Message is sent to admin via WebSocket (handled in saveMessageToBackend → sendViaWebSocket)
       // Show subtle acknowledgment only if WS is connected
       if (!state.wsReady) {
         addMessage("Message sent. A human agent will reply shortly.");
@@ -986,32 +664,30 @@
       return;
     }
 
-    // Send to backend AI via WebSocket — response comes back via ws.onmessage
+    // All messages go to backend AI via WebSocket
     showTyping();
     const aiInput = input || (image ? '[User sent an image]' : '');
 
     if (image && !input) {
-      // Image-only: acknowledge immediately, no AI call needed
+      // Image-only message: show friendly reply immediately
       hideTyping();
-      addMessage("Thanks for sharing that image! If you have a question about it, feel free to ask.");
+      addMessage("Thanks for sharing that image! If you have a question about it or anything else, feel free to ask.");
       return;
     }
 
+    // Send to backend — response comes back via ws.onmessage
     if (state.ws && state.ws.readyState === WebSocket.OPEN) {
-      state.ws.send(JSON.stringify({ role: 'user', content: aiInput, image_data: null, needs_ai: true }));
-      // typing indicator stays until ws.onmessage fires with the AI reply
+      state.ws.send(JSON.stringify({
+        role: 'user',
+        content: aiInput,
+        image_data: null,
+        needs_ai: true
+      }));
+      // typing indicator cleared when ws.onmessage fires
     } else {
-      // Queue the message — typing indicator stays until WS connects and reply arrives
-      sendOrQueue({ role: 'user', content: aiInput, image_data: null, needs_ai: true });
-      // If still not connected after 12s, show fallback
-      setTimeout(() => {
-        const typing = document.getElementById('tess-typing-indicator');
-        if (typing) {
-          hideTyping();
-          addMessage("Still connecting to Tess... If this keeps happening, reach us on WhatsApp below.");
-          showWAButton();
-        }
-      }, 12000);
+      hideTyping();
+      addMessage("Connection issue. Reach us directly on WhatsApp — button below.");
+      showWAButton();
     }
   }
 
@@ -1058,279 +734,18 @@
     window.open(`https://wa.me/${CFG.whatsappNumber.replace(/\D/g, '')}?text=${text}`, '_blank');
   }
 
-  // ─── VOICE MODE ───────────────────────────────────────────────────────────
-  function pickTessVoice() {
-    if (!state.synthesis) return null;
-    const voices = state.synthesis.getVoices();
-    // Prefer British or US female voices
-    const preferred = voices.find(v =>
-      /female|woman/i.test(v.name) && /en-GB|en_GB/i.test(v.lang)
-    ) || voices.find(v =>
-      /female|woman/i.test(v.name) && /en-US|en_US/i.test(v.lang)
-    ) || voices.find(v => /en-GB|en_GB/i.test(v.lang))
-      || voices.find(v => /en-US|en_US/i.test(v.lang))
-      || voices[0] || null;
-    return preferred;
-  }
-
-  function speakReply(text) {
-    if (!state.synthesis || !state.voiceMode) return;
-    state.synthesis.cancel();
-    setVoiceStatus('speaking');
-
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'en-GB';
-    utterance.rate = 0.92;
-    utterance.pitch = 1.05;
-    if (!state.tessVoice) state.tessVoice = pickTessVoice();
-    if (state.tessVoice) utterance.voice = state.tessVoice;
-
-    utterance.onend = () => {
-      if (state.voiceMode) {
-        setVoiceStatus('listening');
-        startListening();
-      }
-    };
-    utterance.onerror = () => {
-      if (state.voiceMode) {
-        setVoiceStatus('listening');
-        startListening();
-      }
-    };
-    state.voiceUtterance = utterance;
-    state.synthesis.speak(utterance);
-  }
-
-  function setVoiceStatus(status) {
-    const micBtn = document.getElementById('tess-mic-btn');
-    const statusEl = document.getElementById('tess-voice-status');
-    if (!micBtn || !statusEl) return;
-    micBtn.className = '';
-    if (status === 'listening') {
-      micBtn.classList.add('listening');
-      statusEl.textContent = 'Listening...';
-      micBtn.setAttribute('aria-label', 'Listening');
-      setOrbState('listening');
-    } else if (status === 'speaking') {
-      micBtn.classList.add('speaking');
-      statusEl.textContent = 'Tess is speaking...';
-      setOrbState('speaking');
-    } else {
-      statusEl.textContent = 'Ready';
-      setOrbState('idle');
-    }
-  }
-
-  // ── ORB ANIMATION (replaces static mic icon) ──────────────────────────────
-  // Canvas-drawn glowing blob, same approach as the TessAdmin plasma orb:
-  // several soft radial-gradient blobs orbiting the center with additive
-  // ('lighter') blending so overlaps brighten instead of muddying the color.
-  // Three states change speed/scale: idle (slow drift), listening (faster,
-  // tighter, more energetic), speaking (rhythmic pulse synced to a sine wave).
-  let _orbState = 'idle';
-  let _orbRAF = null;
-
-  function setOrbState(s) { _orbState = s; }
-
-  function startOrb() {
-    const canvas = document.getElementById('tess-orb-canvas');
-    if (!canvas) return;
-    if (_orbRAF) cancelAnimationFrame(_orbRAF);
-
-    const ctx = canvas.getContext('2d');
-    const W = canvas.width, H = canvas.height;
-    const cx = W / 2, cy = H / 2;
-
-    const blobs = [
-      { angle: 0.0, radius: 9,  size: 20, speed: 0.020, color: 'rgba(200,245,62,0.9)'  },
-      { angle: 1.6, radius: 7,  size: 16, speed: -0.026, color: 'rgba(170,235,45,0.8)' },
-      { angle: 3.1, radius: 10, size: 18, speed: 0.032,  color: 'rgba(225,255,130,0.7)'},
-      { angle: 4.6, radius: 6,  size: 14, speed: -0.018, color: 'rgba(190,240,90,0.65)'},
-    ];
-
-    let frame = 0;
-
-    function draw() {
-      frame++;
-      ctx.clearRect(0, 0, W, H);
-
-      const speedMul  = _orbState === 'listening' ? 2.3 : _orbState === 'speaking' ? 1.6 : 0.55;
-      const pulseScale = _orbState === 'speaking' ? 1 + Math.sin(frame * 0.22) * 0.14
-                        : _orbState === 'listening' ? 1.12
-                        : 1;
-
-      // soft outer halo
-      const halo = ctx.createRadialGradient(cx, cy, W * 0.22, cx, cy, W * 0.5);
-      halo.addColorStop(0, 'rgba(200,245,62,0)');
-      halo.addColorStop(1, _orbState === 'idle' ? 'rgba(200,245,62,0.10)' : 'rgba(200,245,62,0.20)');
-      ctx.fillStyle = halo;
-      ctx.beginPath();
-      ctx.arc(cx, cy, W * 0.5, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.save();
-      ctx.globalCompositeOperation = 'lighter';
-      blobs.forEach(b => {
-        b.angle += b.speed * speedMul;
-        const x = cx + Math.cos(b.angle) * b.radius * pulseScale;
-        const y = cy + Math.sin(b.angle) * b.radius * pulseScale;
-        const r = b.size * pulseScale;
-
-        const grad = ctx.createRadialGradient(x, y, 0, x, y, r);
-        grad.addColorStop(0, b.color);
-        grad.addColorStop(1, 'rgba(200,245,62,0)');
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.arc(x, y, r, 0, Math.PI * 2);
-        ctx.fill();
-      });
-      ctx.restore();
-
-      _orbRAF = requestAnimationFrame(draw);
-    }
-    draw();
-  }
-
-  function stopOrb() {
-    if (_orbRAF) cancelAnimationFrame(_orbRAF);
-    _orbRAF = null;
-  }
-
-  function startListening() {
-    if (!state.voiceMode) return;
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognition) return;
-
-    try {
-      const recog = new SpeechRecognition();
-      recog.lang = 'en-ZW';
-      recog.interimResults = true;
-      recog.continuous = false;
-      recog.maxAlternatives = 1;
-      state.recognition = recog;
-
-      const transcriptEl = document.getElementById('tess-voice-transcript');
-
-      recog.onresult = (e) => {
-        clearTimeout(state.silenceTimer);
-        let interim = '';
-        let final = '';
-        for (let i = e.resultIndex; i < e.results.length; i++) {
-          const t = e.results[i][0].transcript;
-          if (e.results[i].isFinal) final += t;
-          else interim += t;
-        }
-        if (transcriptEl) transcriptEl.textContent = final || interim || '...';
-        if (final) {
-          recog.stop();
-          setVoiceStatus('speaking');
-          addMessage(final, 'user');
-          if (transcriptEl) transcriptEl.textContent = 'Tap mic to speak...';
-          // Send to AI via WebSocket
-          showTyping();
-          sendOrQueue({ role: 'user', content: final, image_data: null, needs_ai: true });
-        }
-      };
-
-      recog.onspeechend = () => {
-        // Silence timeout — if 8s no speech, pause mic and prompt
-        state.silenceTimer = setTimeout(() => {
-          if (state.voiceMode) {
-            recog.stop();
-            setVoiceStatus('ready');
-            if (transcriptEl) transcriptEl.textContent = 'Tap mic to speak again, or stop voice chat.';
-          }
-        }, 8000);
-      };
-
-      recog.onerror = (e) => {
-        // Silently handle errors; re-prompt
-        if (state.voiceMode) {
-          setVoiceStatus('ready');
-          if (transcriptEl) transcriptEl.textContent = 'Tap mic to speak again.';
-        }
-      };
-
-      recog.onend = () => {
-        // If no final result & still in voice mode, do nothing (user can tap mic again)
-      };
-
-      recog.start();
-      setVoiceStatus('listening');
-      if (transcriptEl) transcriptEl.textContent = 'Listening...';
-    } catch (err) {
-      setVoiceStatus('ready');
-    }
-  }
-
-  function startVoiceMode() {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-    if (!SpeechRecognition || !window.speechSynthesis) {
-      // Graceful fallback to callback flow
-      document.getElementById('tess-back-row').classList.add('show');
-      handleVoiceCallbackFallback();
-      return;
-    }
-
-    state.voiceMode = true;
-    state.tessVoice = null;
-
-    // Populate voice list (async on some browsers)
-    if (state.synthesis) {
-      state.synthesis.getVoices(); // trigger load
-      state.synthesis.onvoiceschanged = () => {
-        state.tessVoice = pickTessVoice();
-      };
-      state.tessVoice = pickTessVoice();
-    }
-
-    // Hide chat area, show voice UI
+  function handleVoice() {
     document.getElementById('tess-options').style.display = 'none';
-    document.getElementById('tess-input-area').style.display = 'none';
-    document.getElementById('tess-messages').style.display = 'flex';
-    document.getElementById('tess-voice-ui').classList.add('active');
-    document.getElementById('tess-back-row').classList.add('show');
-    state.mode = 'chat';
-
-    trackEvent('voice_request');
-    startOrb();
-    setOrbState('idle');
-    const greeting = "Hi! I'm Tess. Go ahead and speak — I'm listening.";
-    addMessage(greeting, 'assistant');
-    speakReply(greeting);
-  }
-
-  function stopVoiceMode() {
-    state.voiceMode = false;
-    clearTimeout(state.silenceTimer);
-
-    if (state.recognition) {
-      try { state.recognition.abort(); } catch (e) {}
-      state.recognition = null;
-    }
-    if (state.synthesis) {
-      state.synthesis.cancel();
-    }
-
-    document.getElementById('tess-voice-ui').classList.remove('active');
-    document.getElementById('tess-input-area').style.display = 'flex';
-    document.getElementById('tess-messages').style.display = 'flex';
-    stopOrb();
-  }
-
-  function handleVoiceCallbackFallback() {
     showInputArea();
     trackEvent('voice_request');
-    addMessage("Voice chat isn't supported in your browser (try Chrome or Safari). Leave your number and our team will call you back within the hour.");
-    state.mode = 'lead';
-    state.leadStep = 2;
-    state.lead.intent = 'voice_callback';
-    setTimeout(() => addMessage("Phone number?"), 400);
-  }
-
-  function handleVoice() {
-    startVoiceMode();
+    addMessage("Chat with Voice selected. Lennon will call you back within the hour during business hours (Mon–Fri 9am–5pm CAT). Leave your number and I'll flag it now.");
+    state.mode = 'voice';
+    setTimeout(() => {
+      state.mode = 'lead';
+      state.leadStep = 2; // Jump to phone step
+      state.lead.intent = 'voice_callback';
+      addMessage("Phone number?");
+    }, 600);
   }
 
   // ─── INIT ─────────────────────────────────────────────────────────────────
@@ -1389,12 +804,9 @@
 
     // Back button — return to options screen
     document.getElementById('tess-header-back').addEventListener('click', () => {
-      // Stop voice mode if active
-      if (state.voiceMode) stopVoiceMode();
       // Reset to options view
       document.getElementById('tess-options').style.display = 'flex';
       document.getElementById('tess-input-area').style.display = 'none';
-      document.getElementById('tess-voice-ui').classList.remove('active');
       document.getElementById('tess-messages').innerHTML = '';
       document.getElementById('tess-back-row').classList.remove('show');
       state.mode = 'select';
@@ -1467,32 +879,6 @@
 
     // WhatsApp button
     document.getElementById('tess-wa-btn').addEventListener('click', openWhatsApp);
-
-    // Mic button — tap to start listening
-    document.getElementById('tess-mic-btn').addEventListener('click', () => {
-      if (!state.voiceMode) return;
-      if (state.synthesis) state.synthesis.cancel();
-      startListening();
-    });
-
-    // Stop voice button
-    document.getElementById('tess-stop-voice').addEventListener('click', () => {
-      stopVoiceMode();
-    });
-
-    // Privacy policy modal
-    document.getElementById('tess-privacy-link').addEventListener('click', (e) => {
-      e.preventDefault();
-      document.getElementById('tess-privacy-overlay').classList.add('open');
-    });
-    document.getElementById('tess-privacy-close').addEventListener('click', () => {
-      document.getElementById('tess-privacy-overlay').classList.remove('open');
-    });
-    document.getElementById('tess-privacy-overlay').addEventListener('click', (e) => {
-      if (e.target === e.currentTarget) {
-        e.currentTarget.classList.remove('open');
-      }
-    });
 
     // Popup timing
     setTimeout(showPopup, CFG.popupDelay);
