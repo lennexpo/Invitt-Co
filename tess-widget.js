@@ -371,6 +371,34 @@
       }
       .tess-option-btn:hover { background: rgba(200,245,62,0.15); border-color: ${CFG.accentColor}; }
       .tess-option-btn svg { flex-shrink: 0; stroke: #555; }
+      .tess-voice-card {
+        padding: 32px 24px 24px; display: flex; flex-direction: column; align-items: center;
+        text-align: center; animation: tess-fade-in 0.25s ease;
+      }
+      .tess-voice-avatar {
+        width: 92px; height: 92px; border-radius: 50%; overflow: hidden; margin-bottom: 14px;
+        border: 2px solid ${CFG.accentColor}; box-shadow: 0 4px 20px rgba(200,245,62,0.3); flex-shrink: 0;
+      }
+      .tess-voice-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .tess-voice-name {
+        font-size: 17px; font-weight: 800; color: #111;
+        display: flex; align-items: center; justify-content: center; gap: 7px;
+      }
+      .tess-voice-badge {
+        background: ${CFG.accentColor}; color: ${CFG.bgDark}; font-size: 10px; font-weight: 800;
+        padding: 3px 7px; border-radius: 6px; letter-spacing: 0.5px;
+      }
+      .tess-voice-role { font-size: 13px; color: #888; margin-top: 4px; margin-bottom: 20px; font-weight: 500; }
+      .tess-voice-btn {
+        display: flex; align-items: center; justify-content: center; gap: 8px;
+        background: #ffffff; border: 1.5px solid ${CFG.accentColor}; color: ${CFG.bgDark};
+        font-size: 14px; font-weight: 700; padding: 12px 24px; border-radius: 30px; cursor: pointer;
+        transition: background 0.15s, transform 0.1s; width: 100%; max-width: 220px;
+      }
+      .tess-voice-btn:hover { background: rgba(200,245,62,0.15); }
+      .tess-voice-btn:active { transform: scale(0.97); }
+      .tess-voice-btn svg { flex-shrink: 0; stroke: ${CFG.bgDark}; }
+      .tess-voice-note { font-size: 11.5px; color: #aaa; margin-top: 14px; line-height: 1.5; max-width: 260px; }
       #tess-input-area {
         padding: 12px 16px; border-top: 1px solid #e8e8e8;
         display: flex; gap: 8px; flex-shrink: 0; background: #ffffff;
@@ -835,16 +863,43 @@
 
   function handleVoice() {
     document.getElementById('tess-options').style.display = 'none';
-    showInputArea();
     trackEvent('voice_request');
-    addMessage("Chat with Voice selected. Lennon will call you back within the hour during business hours (Mon–Fri 9am–5pm CAT). Leave your number and I'll flag it now.");
-    state.mode = 'voice';
-    setTimeout(() => {
-      state.mode = 'lead';
-      state.leadStep = 2; // Jump to phone step
-      state.lead.intent = 'voice_callback';
-      addMessage("Phone number?");
-    }, 600);
+    renderVoiceCard();
+  }
+
+  function renderVoiceCard() {
+    const container = document.getElementById('tess-messages');
+    const div = document.createElement('div');
+    div.className = 'tess-voice-card';
+    div.id = 'tess-voice-card';
+    div.innerHTML = `
+      <div class="tess-voice-avatar"><img src="${LOGO_IMG}" alt="Tess"/></div>
+      <div class="tess-voice-name">Tess <span class="tess-voice-badge">AI</span></div>
+      <div class="tess-voice-role">Voice Callback</div>
+      <button id="tess-voice-callback-btn" class="tess-voice-btn" type="button">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        Request a callback
+      </button>
+      <div class="tess-voice-note">Lennon will call you back within the hour during business hours (Mon&ndash;Fri 9am&ndash;5pm CAT).</div>
+    `;
+    container.appendChild(div);
+    scrollToBottom();
+
+    document.getElementById('tess-voice-callback-btn').addEventListener('click', () => {
+      div.remove();
+      showInputArea();
+      trackEvent('voice_callback_start');
+      addMessage("Chat with Voice selected. Lennon will call you back within the hour during business hours (Mon–Fri 9am–5pm CAT). Leave your number and I'll flag it now.");
+      state.mode = 'voice';
+      setTimeout(() => {
+        state.mode = 'lead';
+        state.leadStep = 2; // Jump to phone step
+        state.lead.intent = 'voice_callback';
+        addMessage("Phone number?");
+      }, 600);
+    });
   }
 
   // ─── INIT ─────────────────────────────────────────────────────────────────
