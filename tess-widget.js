@@ -491,7 +491,7 @@
           </div>
           <div id="tess-popup-title">Invitt Co</div>
         </div>
-        <div id="tess-popup-body">Hi there! Have a question? Talk with us here 👋</div>
+        <div id="tess-popup-body">Hi there! Have a question? Talk with us here</div>
       </div>
 
       <!-- Main panel -->
