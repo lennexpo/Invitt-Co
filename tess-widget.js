@@ -587,6 +587,41 @@
     renderMessage(msg);
     scrollToBottom();
     saveMessageToBackend(role, content, imageDataUrl || null);
+    if (role !== 'user') playNotificationSound();
+  }
+
+  let tessAudioCtx = null;
+  function playNotificationSound() {
+    try {
+      if (!tessAudioCtx) {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        tessAudioCtx = new AudioCtx();
+      }
+      if (tessAudioCtx.state === 'suspended') tessAudioCtx.resume();
+
+      const now = tessAudioCtx.currentTime;
+      const notes = [
+        { freq: 880, start: 0, dur: 0.11 },
+        { freq: 1318.51, start: 0.09, dur: 0.16 }
+      ];
+
+      notes.forEach(({ freq, start, dur }) => {
+        const osc = tessAudioCtx.createOscillator();
+        const gain = tessAudioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, now + start);
+        gain.gain.setValueAtTime(0, now + start);
+        gain.gain.linearRampToValueAtTime(0.18, now + start + 0.015);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + start + dur);
+        osc.connect(gain);
+        gain.connect(tessAudioCtx.destination);
+        osc.start(now + start);
+        osc.stop(now + start + dur + 0.02);
+      });
+    } catch (e) {
+      // Silently ignore if audio isn't available (autoplay restrictions, etc.)
+    }
   }
 
   function renderMessage(msg) {
