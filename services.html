@@ -136,9 +136,14 @@
     .portfolio-grid{display:flex;flex-direction:column;gap:1.5rem}
     .portfolio-card{background:#141414;border:1px solid rgba(255,255,255,0.07);border-radius:1.25rem;overflow:hidden;transition:border-color .3s,transform .3s;display:flex;flex-direction:column}
     .portfolio-card:hover{border-color:rgba(200,245,62,.25);transform:translateY(-4px)}
-    .portfolio-thumb-wrap{overflow:hidden;aspect-ratio:16/9;background:var(--surface2);flex-shrink:0}
+    .portfolio-thumb-wrap{position:relative;overflow:hidden;aspect-ratio:16/9;background:var(--surface2);flex-shrink:0}
     .portfolio-thumb{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform .5s ease}
     .portfolio-card:hover .portfolio-thumb{transform:scale(1.03)}
+    .portfolio-iframe{position:absolute;top:0;left:0;width:400%;height:400%;transform:scale(.25);transform-origin:0 0;border:0;pointer-events:none;background:#fff;transition:transform .5s ease}
+    .portfolio-card:hover .portfolio-iframe{transform:scale(.255)}
+    .portfolio-live-tag{position:absolute;top:.6rem;right:.6rem;z-index:2;background:rgba(10,10,10,.75);backdrop-filter:blur(4px);color:#c8f53e;font-size:.65rem;font-weight:700;letter-spacing:.08em;padding:.25rem .55rem;border-radius:99px;display:flex;align-items:center;gap:.35rem;pointer-events:none}
+    .portfolio-live-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 0 rgba(74,222,128,.6);animation:portfolio-live-pulse 2s infinite}
+    @keyframes portfolio-live-pulse{0%{box-shadow:0 0 0 0 rgba(74,222,128,.55)}70%{box-shadow:0 0 0 6px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
     .portfolio-placeholder{width:100%;height:100%;background:linear-gradient(135deg,#1a1a1a,#0f0f0f);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.08em;color:rgba(200,245,62,.2)}
     .portfolio-info{padding:1.25rem 1.25rem 1rem;display:flex;flex-direction:column;flex:1}
     .p-industry{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:.6rem;display:block}
@@ -468,7 +473,8 @@
 
       <article class="portfolio-card sr" itemscope itemtype="https://schema.org/CreativeWork">
         <div class="portfolio-thumb-wrap">
-          <img src="/images/tanyamuch.jpg" alt="TanyaMuch Wellness Mental Clinic website — counselling and therapy services Harare" class="portfolio-thumb" width="800" height="450" loading="lazy" />
+          <span class="portfolio-live-tag">LIVE</span>
+          <iframe src="https://tanyamuchwellness.co.zw" class="portfolio-iframe" loading="lazy" tabindex="-1" aria-hidden="true" title="Live preview of TanyaMuch Wellness Mental Clinic"></iframe>
         </div>
         <div class="portfolio-info">
           <span class="p-industry">Counselling & Therapy — Harare</span>
@@ -486,7 +492,8 @@
 
       <article class="portfolio-card sr d1" itemscope itemtype="https://schema.org/CreativeWork">
         <div class="portfolio-thumb-wrap">
-          <img src="/images/precision.jpg" alt="Precision Boreholes website — borehole services Harare" class="portfolio-thumb" width="800" height="450" loading="lazy" />
+          <span class="portfolio-live-tag">LIVE</span>
+          <iframe src="https://precisionboreholes.co.zw" class="portfolio-iframe" loading="lazy" tabindex="-1" aria-hidden="true" title="Live preview of Precision Boreholes"></iframe>
         </div>
         <div class="portfolio-info">
           <span class="p-industry">Borehole Services — Harare</span>
@@ -504,7 +511,8 @@
 
       <article class="portfolio-card sr d2" itemscope itemtype="https://schema.org/CreativeWork">
         <div class="portfolio-thumb-wrap">
-          <img src="/images/mwiwa-preview.jpg" alt="Mwiwa Borehole Drilling website — Zimbabwe borehole drilling" class="portfolio-thumb" width="800" height="450" loading="lazy" />
+          <span class="portfolio-live-tag">LIVE</span>
+          <iframe src="https://mwiwaboreholedrilling.co.zw" class="portfolio-iframe" loading="lazy" tabindex="-1" aria-hidden="true" title="Live preview of Mwiwa Borehole Drilling"></iframe>
         </div>
         <div class="portfolio-info">
           <span class="p-industry">Borehole Drilling — Zimbabwe</span>
@@ -522,7 +530,8 @@
 
       <article class="portfolio-card sr" itemscope itemtype="https://schema.org/CreativeWork">
         <div class="portfolio-thumb-wrap">
-          <img src="/images/topiary-preview.jpg" alt="Topiary Marketing website — office supplies and marketing Harare" class="portfolio-thumb" width="800" height="450" loading="lazy" />
+          <span class="portfolio-live-tag">LIVE</span>
+          <iframe src="https://topiarymarketing.co.zw" class="portfolio-iframe" loading="lazy" tabindex="-1" aria-hidden="true" title="Live preview of Topiary Marketing"></iframe>
         </div>
         <div class="portfolio-info">
           <span class="p-industry">Marketing & Supplies — Harare</span>
