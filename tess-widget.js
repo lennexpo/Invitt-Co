@@ -289,7 +289,7 @@
       #tess-popup-body { font-size: 13px; color: #444; line-height: 1.5; }
       #tess-panel {
         position: fixed; bottom: 92px; right: 24px; z-index: 999998;
-        width: 380px; max-width: calc(100vw - 32px); max-height: 580px;
+        width: 380px; max-width: calc(100vw - 32px); height: 580px; max-height: calc(100vh - 116px);
         background: #ffffff; border-radius: 20px;
         box-shadow: 0 16px 64px rgba(0,0,0,0.18);
         display: none; flex-direction: column; overflow: hidden;
@@ -333,7 +333,6 @@
         scrollbar-width: thin; scrollbar-color: #ddd transparent;
         background: #f7f7f7;
         min-height: 0;
-        max-height: 340px;
       }
       .tess-msg { display: flex; gap: 8px; animation: tess-fade-in 0.2s ease; }
       .tess-msg-avatar {
@@ -451,10 +450,8 @@
           right: 0;
           bottom: 0;
           border-radius: 20px 20px 0 0;
+          height: 85vh;
           max-height: 85vh;
-        }
-        #tess-messages {
-          max-height: calc(85vh - 220px);
         }
         #tess-bubble {
           bottom: 16px;
