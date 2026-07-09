@@ -324,9 +324,6 @@
       #tess-header-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
       #tess-header-info { flex: 1; }
       #tess-header-name { font-weight: 800; font-size: 15px; color: ${CFG.bgDark}; text-transform: uppercase; letter-spacing: 0.5px; }
-      #tess-header-sub { font-size: 12px; color: rgba(26,26,26,0.65); font-weight: 500; }
-      #tess-header-status { display: flex; align-items: center; gap: 5px; font-size: 11px; color: ${CFG.bgDark}; font-weight: 600; }
-      #tess-header-dot { width: 7px; height: 7px; border-radius: 50%; background: ${CFG.bgDark}; animation: tess-pulse 2s infinite; }
       #tess-body {
         flex: 1; overflow-y: auto; overflow-x: hidden;
         display: flex; flex-direction: column;
@@ -505,9 +502,7 @@
           </div>
           <div id="tess-header-info">
             <div id="tess-header-name">HAVE A QUESTION?</div>
-            <div id="tess-header-sub">Tess</div>
           </div>
-          <div id="tess-header-status"><span id="tess-header-dot"></span> Online</div>
           <button id="tess-header-close" aria-label="Close chat">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="${CFG.bgDark}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9"/>
