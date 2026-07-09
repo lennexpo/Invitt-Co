@@ -52,7 +52,8 @@
     wsRetries: 0,
     pendingImage: null,
     leadStep: 0,
-    lead: {}
+    lead: {},
+    voiceCall: null
   };
 
   // ─── LEAD FLOW STEPS ────────────────────────────────────────────────────
@@ -399,6 +400,42 @@
       .tess-voice-btn:active { transform: scale(0.97); }
       .tess-voice-btn svg { flex-shrink: 0; stroke: ${CFG.bgDark}; }
       .tess-voice-note { font-size: 11.5px; color: #aaa; margin-top: 14px; line-height: 1.5; max-width: 260px; }
+      .tess-voice-avatar.tess-call-live {
+        border-color: ${CFG.accentColor}; box-shadow: 0 0 0 0 rgba(200,245,62,0.5);
+        animation: tess-call-pulse 1.8s infinite;
+      }
+      .tess-voice-avatar.tess-call-live.tess-speaking {
+        animation: tess-call-pulse-fast 0.9s infinite;
+      }
+      @keyframes tess-call-pulse {
+        0% { box-shadow: 0 0 0 0 rgba(200,245,62,0.45); }
+        70% { box-shadow: 0 0 0 14px rgba(200,245,62,0); }
+        100% { box-shadow: 0 0 0 0 rgba(200,245,62,0); }
+      }
+      @keyframes tess-call-pulse-fast {
+        0% { box-shadow: 0 0 0 0 rgba(200,245,62,0.55); }
+        70% { box-shadow: 0 0 0 10px rgba(200,245,62,0); }
+        100% { box-shadow: 0 0 0 0 rgba(200,245,62,0); }
+      }
+      .tess-voice-status { font-size: 13px; color: #888; margin-top: 4px; margin-bottom: 22px; font-weight: 600; display: flex; align-items: center; gap: 7px; }
+      .tess-voice-status .tess-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; flex-shrink: 0; }
+      .tess-voice-status .tess-dot.tess-connecting { background: #f5b400; animation: tess-bounce 1s infinite; }
+      .tess-voice-controls { display: flex; align-items: center; justify-content: center; gap: 18px; }
+      .tess-voice-round-btn {
+        width: 52px; height: 52px; border-radius: 50%; border: 1.5px solid #e0e0e0;
+        background: #f5f5f5; cursor: pointer; display: flex; align-items: center; justify-content: center;
+        transition: background 0.15s, border-color 0.15s, transform 0.1s; flex-shrink: 0;
+      }
+      .tess-voice-round-btn:hover { background: #eee; }
+      .tess-voice-round-btn:active { transform: scale(0.95); }
+      .tess-voice-round-btn svg { stroke: #333; }
+      .tess-voice-round-btn.tess-muted { background: ${CFG.accentColor}; border-color: ${CFG.accentColor}; }
+      .tess-voice-round-btn.tess-muted svg { stroke: ${CFG.bgDark}; }
+      .tess-voice-round-btn.tess-end-call { background: #e6453a; border-color: #e6453a; }
+      .tess-voice-round-btn.tess-end-call svg { stroke: #fff; }
+      .tess-voice-round-btn.tess-end-call:hover { background: #cc3b31; }
+      .tess-voice-btn-label { font-size: 10.5px; color: #999; text-align: center; margin-top: 6px; font-weight: 600; }
+      .tess-voice-btn-col { display: flex; flex-direction: column; align-items: center; }
       #tess-input-area {
         padding: 12px 16px; border-top: 1px solid #e8e8e8;
         display: flex; gap: 8px; flex-shrink: 0; background: #ffffff;
@@ -873,34 +910,279 @@
     div.className = 'tess-voice-card';
     div.id = 'tess-voice-card';
     div.innerHTML = `
-      <div class="tess-voice-avatar"><img src="${LOGO_IMG}" alt="Tess"/></div>
+      <div class="tess-voice-avatar" id="tess-voice-avatar"><img src="${LOGO_IMG}" alt="Tess"/></div>
       <div class="tess-voice-name">Tess <span class="tess-voice-badge">AI</span></div>
-      <div class="tess-voice-role">Voice Callback</div>
-      <button id="tess-voice-callback-btn" class="tess-voice-btn" type="button">
+      <div class="tess-voice-role" id="tess-voice-role">Live Voice Call</div>
+      <button id="tess-voice-start-btn" class="tess-voice-btn" type="button">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
         </svg>
-        Request a callback
+        Start voice call
       </button>
-      <div class="tess-voice-note">Lennon will call you back within the hour during business hours (Mon&ndash;Fri 9am&ndash;5pm CAT).</div>
+      <div class="tess-voice-note" id="tess-voice-note">Talk to Tess directly, right here in your browser. No phone call needed.</div>
     `;
     container.appendChild(div);
     scrollToBottom();
 
-    document.getElementById('tess-voice-callback-btn').addEventListener('click', () => {
-      div.remove();
-      showInputArea();
-      trackEvent('voice_callback_start');
-      addMessage("Chat with Voice selected. Lennon will call you back within the hour during business hours (Mon–Fri 9am–5pm CAT). Leave your number and I'll flag it now.");
-      state.mode = 'voice';
-      setTimeout(() => {
-        state.mode = 'lead';
-        state.leadStep = 2; // Jump to phone step
-        state.lead.intent = 'voice_callback';
-        addMessage("Phone number?");
-      }, 600);
+    document.getElementById('tess-voice-start-btn').addEventListener('click', () => startVoiceCall(div));
+  }
+
+  // ─── LIVE VOICE CALL ────────────────────────────────────────────────────
+  async function startVoiceCall(cardEl) {
+    trackEvent('voice_call_start');
+
+    const roleEl = document.getElementById('tess-voice-role');
+    const noteEl = document.getElementById('tess-voice-note');
+    const startBtn = document.getElementById('tess-voice-start-btn');
+    startBtn.disabled = true;
+    startBtn.textContent = 'Connecting…';
+    if (roleEl) roleEl.textContent = 'Connecting…';
+
+    let micStream;
+    try {
+      micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    } catch (err) {
+      if (noteEl) noteEl.textContent = "Couldn't access your microphone. Check your browser's site permissions and try again.";
+      startBtn.disabled = false;
+      startBtn.textContent = 'Start voice call';
+      if (roleEl) roleEl.textContent = 'Live Voice Call';
+      return;
+    }
+
+    if (!CFG.backendUrl) {
+      if (noteEl) noteEl.textContent = 'Voice call is not available right now.';
+      micStream.getTracks().forEach(t => t.stop());
+      startBtn.disabled = false;
+      startBtn.textContent = 'Start voice call';
+      return;
+    }
+
+    const wsUrl = CFG.backendUrl
+      .replace(/^https:\/\//, 'wss://')
+      .replace(/^http:\/\//, 'ws://')
+      + '/ws/voice/' + state.sessionId;
+
+    const voiceWs = new WebSocket(wsUrl);
+    const call = {
+      ws: voiceWs,
+      micStream,
+      micCtx: null,
+      processor: null,
+      micSource: null,
+      playbackCtx: null,
+      nextPlayTime: 0,
+      muted: false,
+      seconds: 0,
+      timerInterval: null,
+      ended: false,
+    };
+    state.voiceCall = call;
+
+    voiceWs.onopen = () => {
+      // Wait for the server's {type:'ready'} before streaming mic audio —
+      // Gemini's Live session needs to finish its setup handshake first.
+    };
+
+    voiceWs.onmessage = async (e) => {
+      let data;
+      try { data = JSON.parse(e.data); } catch (err) { return; }
+
+      if (data.type === 'ready') {
+        beginMicStreaming(call);
+        renderInCallUI(cardEl, call);
+      } else if (data.type === 'audio' && data.data) {
+        playVoiceChunk(call, data.data);
+      } else if (data.type === 'interrupted') {
+        // Visitor talked over Tess — drop whatever's still queued to play.
+        if (call.playbackCtx) call.nextPlayTime = call.playbackCtx.currentTime;
+      } else if (data.type === 'turn_complete') {
+        setSpeaking(false);
+      } else if (data.type === 'error') {
+        endVoiceCall(cardEl, data.message || 'Call ended unexpectedly.');
+      }
+    };
+
+    voiceWs.onclose = () => {
+      if (!call.ended) endVoiceCall(cardEl, 'Call ended.');
+    };
+
+    voiceWs.onerror = () => {
+      if (!call.ended) endVoiceCall(cardEl, "Couldn't connect. Check your connection and try again.");
+    };
+  }
+
+  function beginMicStreaming(call) {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    call.micCtx = new AudioCtx();
+    call.micSource = call.micCtx.createMediaStreamSource(call.micStream);
+    // ScriptProcessorNode is deprecated but has the broadest browser support
+    // for raw PCM access without shipping a separate AudioWorklet module file.
+    call.processor = call.micCtx.createScriptProcessor(2048, 1, 1);
+    const inRate = call.micCtx.sampleRate;
+
+    call.processor.onaudioprocess = (e) => {
+      if (call.muted || call.ws.readyState !== WebSocket.OPEN) return;
+      const input = e.inputBuffer.getChannelData(0);
+      const pcm16 = downsampleTo16kPCM16(input, inRate);
+      const b64 = arrayBufferToBase64(pcm16.buffer);
+      call.ws.send(JSON.stringify({ type: 'audio', data: b64 }));
+    };
+
+    call.micSource.connect(call.processor);
+    // Some browsers require the processor connected to a destination to
+    // keep firing onaudioprocess, even though we don't want mic passthrough.
+    const silentGain = call.micCtx.createGain();
+    silentGain.gain.value = 0;
+    call.processor.connect(silentGain);
+    silentGain.connect(call.micCtx.destination);
+  }
+
+  function downsampleTo16kPCM16(float32Data, inputSampleRate) {
+    const targetRate = 16000;
+    const ratio = inputSampleRate / targetRate;
+    const outLength = Math.floor(float32Data.length / ratio);
+    const out = new Int16Array(outLength);
+    for (let i = 0; i < outLength; i++) {
+      const srcIndex = Math.floor(i * ratio);
+      let s = float32Data[srcIndex];
+      s = Math.max(-1, Math.min(1, s));
+      out[i] = s < 0 ? s * 0x8000 : s * 0x7fff;
+    }
+    return out;
+  }
+
+  function arrayBufferToBase64(buffer) {
+    let binary = '';
+    const bytes = new Uint8Array(buffer);
+    for (let i = 0; i < bytes.byteLength; i++) binary += String.fromCharCode(bytes[i]);
+    return btoa(binary);
+  }
+
+  function base64ToInt16Array(b64) {
+    const binary = atob(b64);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+    return new Int16Array(bytes.buffer);
+  }
+
+  function playVoiceChunk(call, b64Audio) {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!call.playbackCtx) {
+      call.playbackCtx = new AudioCtx({ sampleRate: 24000 });
+      call.nextPlayTime = call.playbackCtx.currentTime;
+    }
+    const int16 = base64ToInt16Array(b64Audio);
+    const float32 = new Float32Array(int16.length);
+    for (let i = 0; i < int16.length; i++) float32[i] = int16[i] / 0x8000;
+
+    const buffer = call.playbackCtx.createBuffer(1, float32.length, 24000);
+    buffer.copyToChannel(float32, 0);
+
+    const source = call.playbackCtx.createBufferSource();
+    source.buffer = buffer;
+    source.connect(call.playbackCtx.destination);
+
+    const now = call.playbackCtx.currentTime;
+    const startAt = Math.max(now, call.nextPlayTime);
+    source.start(startAt);
+    call.nextPlayTime = startAt + buffer.duration;
+
+    setSpeaking(true);
+    source.onended = () => {
+      if (call.playbackCtx && call.nextPlayTime <= call.playbackCtx.currentTime + 0.05) {
+        setSpeaking(false);
+      }
+    };
+  }
+
+  function setSpeaking(isSpeaking) {
+    const avatar = document.getElementById('tess-voice-avatar');
+    if (avatar) avatar.classList.toggle('tess-speaking', isSpeaking);
+  }
+
+  function renderInCallUI(cardEl, call) {
+    const avatar = document.getElementById('tess-voice-avatar');
+    if (avatar) avatar.classList.add('tess-call-live');
+
+    const startBtn = document.getElementById('tess-voice-start-btn');
+    const roleEl = document.getElementById('tess-voice-role');
+    const noteEl = document.getElementById('tess-voice-note');
+    if (startBtn) startBtn.remove();
+    if (noteEl) noteEl.remove();
+
+    if (roleEl) {
+      roleEl.innerHTML = `<span class="tess-voice-status"><span class="tess-dot"></span><span id="tess-voice-timer">Talking 00:00</span></span>`;
+    }
+
+    call.timerInterval = setInterval(() => {
+      call.seconds++;
+      const m = String(Math.floor(call.seconds / 60)).padStart(2, '0');
+      const s = String(call.seconds % 60).padStart(2, '0');
+      const timerEl = document.getElementById('tess-voice-timer');
+      if (timerEl) timerEl.textContent = `Talking ${m}:${s}`;
+    }, 1000);
+
+    const controls = document.createElement('div');
+    controls.className = 'tess-voice-controls';
+    controls.innerHTML = `
+      <div class="tess-voice-btn-col">
+        <button id="tess-voice-mute-btn" class="tess-voice-round-btn" type="button" title="Mute">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/>
+          </svg>
+        </button>
+        <span class="tess-voice-btn-label">Mute</span>
+      </div>
+      <div class="tess-voice-btn-col">
+        <button id="tess-voice-end-btn" class="tess-voice-round-btn tess-end-call" type="button" title="End call">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            <line x1="2" y1="2" x2="22" y2="22"/>
+          </svg>
+        </button>
+        <span class="tess-voice-btn-label">End Call</span>
+      </div>
+    `;
+    cardEl.appendChild(controls);
+
+    document.getElementById('tess-voice-mute-btn').addEventListener('click', () => {
+      call.muted = !call.muted;
+      const btn = document.getElementById('tess-voice-mute-btn');
+      const label = btn.parentElement.querySelector('.tess-voice-btn-label');
+      btn.classList.toggle('tess-muted', call.muted);
+      if (label) label.textContent = call.muted ? 'Unmute' : 'Mute';
+    });
+
+    document.getElementById('tess-voice-end-btn').addEventListener('click', () => {
+      trackEvent('voice_call_end');
+      try { call.ws.send(JSON.stringify({ type: 'end' })); } catch (err) {}
+      endVoiceCall(cardEl, null);
     });
   }
+
+  function endVoiceCall(cardEl, message) {
+    const call = state.voiceCall;
+    if (!call || call.ended) return;
+    call.ended = true;
+
+    if (call.timerInterval) clearInterval(call.timerInterval);
+    try { call.ws.close(); } catch (err) {}
+    call.micStream.getTracks().forEach(t => t.stop());
+    if (call.processor) call.processor.disconnect();
+    if (call.micSource) call.micSource.disconnect();
+    if (call.micCtx) call.micCtx.close();
+    if (call.playbackCtx) call.playbackCtx.close();
+
+    state.voiceCall = null;
+    if (cardEl && cardEl.parentElement) cardEl.remove();
+
+    document.getElementById('tess-options').style.display = 'none';
+    showInputArea();
+    addMessage(message || 'Voice call ended. Want to keep chatting here, or leave your details and our team will follow up?');
+    state.mode = 'chat';
+  }
+
 
   // ─── INIT ─────────────────────────────────────────────────────────────────
   function init() {
