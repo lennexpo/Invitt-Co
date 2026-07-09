@@ -289,7 +289,7 @@
       #tess-popup-body { font-size: 13px; color: #444; line-height: 1.5; }
       #tess-panel {
         position: fixed; bottom: 92px; right: 24px; z-index: 999998;
-        width: 380px; max-width: calc(100vw - 32px); height: 580px; max-height: calc(100vh - 116px);
+        width: 380px; max-width: calc(100vw - 32px); height: 580px; max-height: calc(100vh - 116px); max-height: calc(100dvh - 116px);
         background: #ffffff; border-radius: 20px;
         box-shadow: 0 16px 64px rgba(0,0,0,0.18);
         display: none; flex-direction: column; overflow: hidden;
@@ -456,6 +456,8 @@
           border-radius: 20px 20px 0 0;
           height: 85vh;
           max-height: 85vh;
+          height: 85dvh;
+          max-height: 85dvh;
         }
         #tess-bubble {
           bottom: 16px;
