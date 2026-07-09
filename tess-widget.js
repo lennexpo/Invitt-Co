@@ -851,7 +851,7 @@
           document.getElementById('tess-back-row').classList.add('show');
           showInputArea();
           trackEvent('livechat_start');
-          addMessage("Tess here. Invitt Co AI assistant. What do you need?");
+          addMessage("Enter your question below and a representative will get right back to you.");
           state.mode = 'chat';
         } else if (action === 'voice') {
           document.getElementById('tess-back-row').classList.add('show');
