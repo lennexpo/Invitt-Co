@@ -496,6 +496,36 @@
         transition: background 0.15s;
       }
       #tess-wa-btn:hover { background: #1da851; }
+      #tess-footer button {
+        background: none; border: none; padding: 0; margin: 0; cursor: pointer;
+        color: ${CFG.accentDark}; text-decoration: none; font-size: 11px; font-family: inherit;
+      }
+      #tess-privacy-overlay {
+        position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2147483001;
+        display: none; align-items: center; justify-content: center; padding: 20px;
+      }
+      #tess-privacy-overlay.show { display: flex; }
+      #tess-privacy-modal {
+        background: #fff; border-radius: 16px; max-width: 480px; width: 100%;
+        max-height: 80vh; display: flex; flex-direction: column; overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      }
+      #tess-privacy-header {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 16px 20px; border-bottom: 1px solid #eee; flex-shrink: 0;
+      }
+      #tess-privacy-header h3 { margin: 0; font-size: 16px; font-weight: 700; color: ${CFG.bgDark}; }
+      #tess-privacy-close {
+        background: none; border: none; cursor: pointer; font-size: 20px; line-height: 1;
+        color: #888; padding: 4px; border-radius: 6px;
+      }
+      #tess-privacy-close:hover { background: #f0f0f0; }
+      #tess-privacy-body {
+        padding: 20px; overflow-y: auto; font-size: 13px; line-height: 1.6; color: #444;
+      }
+      #tess-privacy-body h4 { font-size: 13px; color: ${CFG.bgDark}; margin: 16px 0 6px; }
+      #tess-privacy-body h4:first-child { margin-top: 0; }
+      #tess-privacy-body p { margin: 0 0 8px; }
       #tess-human-banner {
         margin: 8px 16px; background: rgba(200,245,62,0.12); border: 1px solid rgba(200,245,62,0.4);
         border-radius: 8px; padding: 8px 12px; font-size: 12px; color: #5a7a00;
@@ -633,7 +663,27 @@
           </button>
         </div>
 
-        <div id="tess-footer">Powered by <span style="color:${CFG.accentDark};font-weight:600;">Invitt Co</span> &nbsp;·&nbsp; <a href="https://invitt.co.zw/privacy" target="_blank">Privacy Policy</a></div>
+        <div id="tess-footer">Powered by <span style="color:${CFG.accentDark};font-weight:600;">Invitt Co</span> &nbsp;·&nbsp; <button id="tess-privacy-link" type="button">Privacy Policy</button></div>
+      </div>
+
+      <!-- Privacy policy modal -->
+      <div id="tess-privacy-overlay">
+        <div id="tess-privacy-modal" role="dialog" aria-modal="true" aria-labelledby="tess-privacy-title">
+          <div id="tess-privacy-header">
+            <h3 id="tess-privacy-title">Privacy Policy</h3>
+            <button id="tess-privacy-close" aria-label="Close">×</button>
+          </div>
+          <div id="tess-privacy-body">
+            <h4>What we collect</h4>
+            <p>When you chat with Tess, we collect the messages you send, any images you attach, and basic contact details you choose to share (like your name, phone number, or email) so we can respond to you and follow up if needed.</p>
+            <h4>How we use it</h4>
+            <p>Your information is used to answer your questions, provide quotes, and, where relevant, follow up about your enquiry. We do not sell your data to third parties.</p>
+            <h4>Storage & security</h4>
+            <p>Conversations are stored securely and are only accessible to Invitt Co staff supporting your enquiry.</p>
+            <h4>Contact</h4>
+            <p>Questions about this policy? Reach out to us via WhatsApp or email at hello@invitt.co.zw.</p>
+          </div>
+        </div>
       </div>
 
       <!-- Floating bubble -->
@@ -1233,6 +1283,20 @@
           handleVoice();
         }
       });
+    });
+
+    // Privacy policy modal
+    document.getElementById('tess-privacy-link').addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('tess-privacy-overlay').classList.add('show');
+    });
+    document.getElementById('tess-privacy-close').addEventListener('click', () => {
+      document.getElementById('tess-privacy-overlay').classList.remove('show');
+    });
+    document.getElementById('tess-privacy-overlay').addEventListener('click', (e) => {
+      if (e.target.id === 'tess-privacy-overlay') {
+        document.getElementById('tess-privacy-overlay').classList.remove('show');
+      }
     });
 
     // Close button (chevron-down in header)
