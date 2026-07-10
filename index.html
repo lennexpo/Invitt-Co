@@ -174,7 +174,7 @@
 
     .live-feed { background: #1A1A1A; border: 1px solid rgba(255,255,255,0.1); border-radius: 1.25rem; padding: 1.5rem; max-width: 380px; }
     .live-feed-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.25rem; }
-    .live-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+    .live-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); animation: pulse 2s ease-in-out infinite; }
     .live-feed-label { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
     .live-bars { margin-left: auto; display: flex; gap: 3px; align-items: flex-end; height: 14px; }
     .live-bar { width: 4px; background: rgba(200,245,62,0.4); border-radius: 2px; animation: barAnim 1.2s ease-in-out infinite alternate; }
@@ -197,7 +197,8 @@
     .hosting-stat-value { font-family: 'Bebas Neue', sans-serif; font-size: 1.75rem; color: var(--accent); letter-spacing: 0.05em; line-height: 1; margin-bottom: 0.25rem; }
     .hosting-stat-label { font-family: 'Space Mono', monospace; font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
     .hosting-uptime-bar { height: 4px; background: var(--border); border-radius: 9999px; overflow: hidden; margin-top: 0.75rem; }
-    .hosting-uptime-fill { height: 100%; background: var(--accent); border-radius: 9999px; width: 99%; }
+    .hosting-uptime-fill { height: 100%; background: var(--accent); border-radius: 9999px; width: 0; transition: width 1.4s ease; }
+    .hosting-uptime-fill.filled { width: 99%; }
 
     .cta-block { text-align: center; padding: 2rem 1.5rem 5rem; }
     .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent); color: #0A0A0A; padding: 1rem 2.25rem; border-radius: 9999px; font-size: 1rem; font-weight: 700; text-decoration: none; box-shadow: 0 0 20px rgba(200,245,62,0.35); transition: opacity 0.2s, box-shadow 0.2s; }
@@ -783,19 +784,69 @@ mobileClose.addEventListener('click', () => { mobileMenu.classList.remove('open'
 mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mobileMenu.classList.remove('open'); hamburger.classList.remove('is-open'); }));
 
 
-// ── STACKED BARS (vanilla fallback) ──
-document.querySelectorAll('.stacked-bar').forEach(bar => {
+// ── STACKED CARDS (auto-rotating) ──
+document.querySelectorAll('.grow-visual').forEach(visual => {
+  const cardsWrap = visual.querySelector('.stacked-cards');
+  const bar = visual.querySelector('.stacked-bar');
+  if (!cardsWrap || !bar) return;
+  const barFills = () => bar.querySelectorAll('.stacked-bar-fill');
+  const fillTargets = [100, 65, 30]; // front / middle / back depth
+  function applyFills() {
+    barFills().forEach((fill, i) => {
+      fill.style.width = '0%';
+      requestAnimationFrame(() => { fill.style.width = (fillTargets[i] ?? 0) + '%'; });
+    });
+  }
+  function rotateStack() {
+    cardsWrap.appendChild(cardsWrap.firstElementChild);
+    bar.appendChild(bar.firstElementChild);
+    applyFills();
+  }
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        bar.querySelectorAll('.stacked-bar-fill').forEach(fill => {
-          fill.style.width = (fill.dataset.width || 100) + '%';
-        });
-        io.unobserve(bar);
+        applyFills();
+        setInterval(rotateStack, 2800);
+        io.unobserve(visual);
       }
     });
   }, { threshold: 0.2 });
-  io.observe(bar);
+  io.observe(visual);
+});
+
+// ── LIVE FEED (auto-rotating highlight) ──
+document.querySelectorAll('.live-feed').forEach(feed => {
+  const lines = feed.querySelectorAll('.live-line');
+  if (!lines.length) return;
+  let activeIndex = [...lines].findIndex(l => l.classList.contains('active'));
+  if (activeIndex === -1) activeIndex = lines.length - 1;
+  function rotateFeed() {
+    lines[activeIndex].classList.remove('active');
+    activeIndex = (activeIndex + 1) % lines.length;
+    lines[activeIndex].classList.add('active');
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setInterval(rotateFeed, 1800);
+        io.unobserve(feed);
+      }
+    });
+  }, { threshold: 0.2 });
+  io.observe(feed);
+});
+
+// ── SYSTEM STATUS (fill-in reveal on scroll) ──
+document.querySelectorAll('.hosting-uptime-fill').forEach(fill => {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        fill.classList.add('filled');
+        io.unobserve(fill);
+      }
+    });
+  }, { threshold: 0.3 });
+  io.observe(fill);
 });
 // ── SCROLL REVEAL (non-hero .sr elements only) ──
 const observer = new IntersectionObserver((entries) => {
