@@ -854,21 +854,24 @@
     const btn=document.getElementById('btnSubmit');
     btn.disabled=true;btn.textContent='Sending…';
     const goals=[...document.querySelectorAll('input[name="goal"]:checked')].map(i=>i.value).join(', ');
+    const pkgRaw=document.querySelector('input[name="pkg"]:checked')?.value||'Not sure yet';
+    const pkgMatch=pkgRaw.match(/^(.*?)\s*\(([^)]+)\)$/);
     const payload={
       name:document.getElementById('fName').value,
       email:document.getElementById('fEmail').value||'Not provided',
       whatsapp:document.getElementById('fPhone').value,
-      website_url:'Not applicable',
-      biggest_challenge:
-        'Business: '+document.getElementById('fBiz').value+' | '+
-        'Type: '+document.getElementById('fType').value+' | '+
-        'Goals: '+(goals||'Not specified')+' | '+
-        'Has website: '+(document.querySelector('input[name="hasWeb"]:checked')?.value||'Not specified')+' | '+
-        'Package: '+(document.querySelector('input[name="pkg"]:checked')?.value||'Not specified')+' | '+
-        'Reference sites: '+(document.getElementById('fRef').value||'Not provided')+' | '+
-        'Brand vibe: '+(document.getElementById('fVibe').value||'Not specified')+' | '+
-        'Contact via: '+contact.value+' | '+
-        'Source: services.html'
+      whatsapp_link:document.getElementById('fPhone').value.replace(/[^\d]/g,'').replace(/^0/,'263'),
+      business:document.getElementById('fBiz').value,
+      business_type:document.getElementById('fType').value,
+      goals:goals||'Not specified',
+      has_website:document.querySelector('input[name="hasWeb"]:checked')?.value||'Not specified',
+      package:pkgMatch?pkgMatch[1]:pkgRaw,
+      package_price:pkgMatch?pkgMatch[2]:'',
+      reference_sites:document.getElementById('fRef').value||'Not provided',
+      brand_vibe:document.getElementById('fVibe').value||'Not specified',
+      contact_via:contact.value,
+      source:'services.html',
+      submitted_at:new Date().toLocaleString('en-ZW',{timeZone:'Africa/Harare',dateStyle:'medium',timeStyle:'short'})
     };
     try{
       await emailjs.send('service_f721n9g','template_ckh9e9d',payload);
