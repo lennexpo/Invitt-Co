@@ -1218,7 +1218,7 @@
     document.getElementById('tess-back-row').classList.add('show');
     state.mode = 'chat';
 
-    trackEvent('voice_mode_start');
+    trackEvent('voice_request');
     const greeting = "Hi! I'm Tess. Go ahead and speak — I'm listening.";
     addMessage(greeting, 'assistant');
     speakReply(greeting);
@@ -1239,12 +1239,11 @@
     document.getElementById('tess-voice-ui').classList.remove('active');
     document.getElementById('tess-input-area').style.display = 'flex';
     document.getElementById('tess-messages').style.display = 'flex';
-    trackEvent('voice_mode_stop');
   }
 
   function handleVoiceCallbackFallback() {
     showInputArea();
-    trackEvent('voice_fallback');
+    trackEvent('voice_request');
     addMessage("Voice chat isn't supported in your browser (try Chrome or Safari). Leave your number and Lennon will call you back within the hour.");
     state.mode = 'lead';
     state.leadStep = 2;
