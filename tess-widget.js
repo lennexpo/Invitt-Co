@@ -341,7 +341,9 @@
         width: 28px; height: 28px; border-radius: 50%; background: ${CFG.accentColor};
         display: flex; align-items: center; justify-content: center;
         font-size: 11px; font-weight: 800; color: ${CFG.bgDark}; flex-shrink: 0; margin-top: 2px;
+        overflow: hidden;
       }
+      .tess-msg-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
       .tess-msg-bubble {
         background: #f3f4f6; color: #111; border-radius: 4px 16px 16px 16px;
         padding: 10px 14px; font-size: 13.5px; line-height: 1.55; max-width: 85%;
@@ -747,7 +749,7 @@
     const div = document.createElement('div');
     div.className = `tess-msg${msg.role === 'user' ? ' tess-msg-user' : ''}`;
 
-    const avatarText = msg.role === 'user' ? 'YOU' : 'T';
+    const avatarText = msg.role === 'user' ? 'YOU' : `<img src="${LOGO_IMG}" alt="Tess"/>`;
     const escapeHtml = (str) => str
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
@@ -778,7 +780,7 @@
     div.className = 'tess-msg';
     div.id = 'tess-typing-indicator';
     div.innerHTML = `
-      <div class="tess-msg-avatar">T</div>
+      <div class="tess-msg-avatar"><img src="${LOGO_IMG}" alt="Tess"/></div>
       <div class="tess-msg-bubble tess-typing"><span></span><span></span><span></span></div>
     `;
     container.appendChild(div);
@@ -921,7 +923,7 @@
         const div = document.createElement('div');
         div.className = 'tess-msg';
         div.innerHTML = `
-          <div class="tess-msg-avatar">T</div>
+          <div class="tess-msg-avatar"><img src="${LOGO_IMG}" alt="Tess"/></div>
           <div class="tess-msg-bubble">Choose a chat option to get started.</div>
         `;
         intro.appendChild(div);
