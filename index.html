@@ -28,7 +28,7 @@
   <meta property="og:url" content="https://invitt.co.zw/" />
   <meta property="og:title" content="Invitt Co | #1 Web Design &amp; Digital Marketing Agency in Harare" />
   <meta property="og:description" content="Harare's top-rated digital agency. We build websites, run Google Ads &amp; deliver SEO that gets Zimbabwe businesses found fast. 5★ rated." />
-  <meta property="og:image" content="https://invitt.co.zw/invitt_social_square.png" />
+  <meta property="og:image" content="https://invitt.co.zw/images/invitt_social_square.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Invitt Co — Web Design and Digital Marketing Agency Harare Zimbabwe" />
@@ -38,7 +38,7 @@
   <meta name="twitter:url" content="https://invitt.co.zw/" />
   <meta name="twitter:title" content="Invitt Co | Web Design &amp; Digital Marketing — Harare, Zimbabwe" />
   <meta name="twitter:description" content="Harare's top-rated digital agency. Websites, Google Ads &amp; SEO that gets Zimbabwe businesses found. 5★ rated." />
-  <meta name="twitter:image" content="https://invitt.co.zw/invitt_social_square.png" />
+  <meta name="twitter:image" content="https://invitt.co.zw/images/invitt_social_square.png" />
   <meta name="twitter:image:alt" content="Invitt Co — Web Design and Digital Marketing Agency Harare Zimbabwe" />
   <meta name="geo.region" content="ZW-HA" />
   <meta name="geo.placename" content="Harare, Zimbabwe" />
@@ -180,7 +180,7 @@
 
     .live-feed { background: #1A1A1A; border: 1px solid rgba(255,255,255,0.1); border-radius: 1.25rem; padding: 1.5rem; max-width: 380px; }
     .live-feed-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.25rem; }
-    .live-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+    .live-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); animation: pulse 2s ease-in-out infinite; }
     .live-feed-label { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
     .live-bars { margin-left: auto; display: flex; gap: 3px; align-items: flex-end; height: 14px; }
     .live-bar { width: 4px; background: rgba(200,245,62,0.4); border-radius: 2px; animation: barAnim 1.2s ease-in-out infinite alternate; }
@@ -203,7 +203,8 @@
     .hosting-stat-value { font-family: 'Bebas Neue', sans-serif; font-size: 1.75rem; color: var(--accent); letter-spacing: 0.05em; line-height: 1; margin-bottom: 0.25rem; }
     .hosting-stat-label { font-family: 'Space Mono', monospace; font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
     .hosting-uptime-bar { height: 4px; background: var(--border); border-radius: 9999px; overflow: hidden; margin-top: 0.75rem; }
-    .hosting-uptime-fill { height: 100%; background: var(--accent); border-radius: 9999px; width: 99%; }
+    .hosting-uptime-fill { height: 100%; background: var(--accent); border-radius: 9999px; width: 0; transition: width 1.4s ease; }
+    .hosting-uptime-fill.filled { width: 99%; }
 
     .cta-block { text-align: center; padding: 2rem 1.5rem 5rem; }
     .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent); color: #0A0A0A; padding: 1rem 2.25rem; border-radius: 9999px; font-size: 1rem; font-weight: 700; text-decoration: none; box-shadow: 0 0 20px rgba(200,245,62,0.35); transition: opacity 0.2s, box-shadow 0.2s; }
@@ -323,8 +324,39 @@
       .toolkit-card.span2 { grid-column: span 2; }
       .reality-grid { grid-template-columns: repeat(2, 1fr); }
     }
+    @media (max-width: 640px) {
+      /* Reshape the device mockup into a portrait phone frame so mobile
+         screenshots (also portrait) fit via object-fit:cover without
+         being cropped down to a sliver. Must match the aspect ratio of
+         the mshots mobile capture (w=380&h=820) used in the markup. */
+      .portfolio-3d-wrap { max-width: 260px; margin: 0 auto; }
+      .portfolio-screen { height: 560px; }
+    }
 
     /* ── PRELOADER ── */
+    /*
+     * Text-scramble intro: random monospace glyphs resolve left-to-right into
+     * "INVITT CO" on a black screen (lime accent), then the whole overlay
+     * fades out to reveal the site underneath. Sits above everything,
+     * including the navbar, since it's the very first thing the visitor sees.
+     */
+    #tess-preloader {
+      position: fixed; inset: 0; z-index: 100000;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 1; visibility: visible;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #tess-preloader.tess-preloader-hide { opacity: 0; visibility: hidden; pointer-events: none; }
+    .tess-preloader-text {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(1.6rem, 6vw, 2.75rem);
+      letter-spacing: 0.22em;
+      white-space: nowrap;
+    }
+    .tess-pl-ch { display: inline-block; min-width: 0.65em; text-align: center; }
+    .tess-pl-scramble { color: rgba(159, 191, 47, 0.55); }
+    .tess-pl-resolved { color: var(--accent); text-shadow: 0 0 18px rgba(200,245,62,0.45); }
 
     /* ── CUSTOM CURSOR ── */
 
@@ -352,8 +384,10 @@
 </head>
 <body>
 
-
-
+<!-- ── PRELOADER (text-scramble intro) ── -->
+<div id="tess-preloader" aria-hidden="true">
+  <span class="tess-preloader-text" id="tess-preloader-text"></span>
+</div>
 
 <svg class="noise-overlay" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"></feTurbulence></filter>
@@ -437,10 +471,22 @@
   <div class="portfolio-3d-wrap sr" id="portfolioWrap">
     <div class="portfolio-device" id="portfolioDevice">
       <div class="portfolio-screen" id="portfolioScreen">
-        <img src="images/tanyamuch.jpg" alt="Tanyamuch Boreholes website by Invitt Co" class="portfolio-slide active" loading="lazy" />
-        <img src="images/precision.jpg" alt="Precision Boreholes website by Invitt Co" class="portfolio-slide" loading="lazy" />
-        <img src="images/mwiwa-preview.jpg" alt="Mwiwa Borehole Drilling website by Invitt Co" class="portfolio-slide" loading="lazy" />
-        <img src="images/topiary-preview.jpg" alt="Topiary Marketing website by Invitt Co" class="portfolio-slide" loading="lazy" />
+        <picture>
+          <source media="(max-width: 640px)" srcset="https://s0.wp.com/mshots/v1/https%3A%2F%2Fwww.tanyamuchwellness.co.zw%2F?w=380&h=820">
+          <img src="https://s0.wp.com/mshots/v1/https%3A%2F%2Fwww.tanyamuchwellness.co.zw%2F?w=1200&h=800" alt="TanyaMuch Wellness website by Invitt Co" class="portfolio-slide active" loading="lazy" onerror="this.onerror=null;this.src='images/tanyamuch.jpg';" />
+        </picture>
+        <picture>
+          <source media="(max-width: 640px)" srcset="https://s0.wp.com/mshots/v1/https%3A%2F%2Fwww.gtechdrilling.co.zw%2F?w=380&h=820">
+          <img src="https://s0.wp.com/mshots/v1/https%3A%2F%2Fwww.gtechdrilling.co.zw%2F?w=1200&h=800" alt="G-Tech Drilling website by Invitt Co" class="portfolio-slide" loading="lazy" onerror="this.onerror=null;this.src='images/precision.jpg';" />
+        </picture>
+        <picture>
+          <source media="(max-width: 640px)" srcset="https://s0.wp.com/mshots/v1/https%3A%2F%2Fwww.mwiwaboreholedrilling.co.zw%2F?w=380&h=820">
+          <img src="https://s0.wp.com/mshots/v1/https%3A%2F%2Fwww.mwiwaboreholedrilling.co.zw%2F?w=1200&h=800" alt="Mwiwa Borehole Drilling website by Invitt Co" class="portfolio-slide" loading="lazy" onerror="this.onerror=null;this.src='images/mwiwa-preview.jpg';" />
+        </picture>
+        <picture>
+          <source media="(max-width: 640px)" srcset="https://s0.wp.com/mshots/v1/https%3A%2F%2Fwww.topiarymarketing.co.zw%2F?w=380&h=820">
+          <img src="https://s0.wp.com/mshots/v1/https%3A%2F%2Fwww.topiarymarketing.co.zw%2F?w=1200&h=800" alt="Topiary Marketing website by Invitt Co" class="portfolio-slide" loading="lazy" onerror="this.onerror=null;this.src='images/topiary-preview.jpg';" />
+        </picture>
         <button class="portfolio-prev" aria-label="Previous slide">&#8592;</button>
         <button class="portfolio-next" aria-label="Next slide">&#8594;</button>
         <div class="portfolio-dots" id="portfolioDots">
@@ -660,7 +706,7 @@
     <div>
       <h4>Contact</h4>
       <div class="footer-contact-items">
-        <a href="mailto:lennnyamajiwa@gmail.com">lennnyamajiwa@gmail.com</a>
+        <a href="mailto:support@invitt.co.zw">support@invitt.co.zw</a>
         <a href="https://wa.me/263787412809">+263 787 412 809</a>
         <p>Harare, Zimbabwe</p>
       </div>
@@ -673,12 +719,67 @@
   </div>
 </footer>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Invitt Co","description":"Invitt Co is Harare's top-rated web design and digital marketing agency.","url":"https://invitt.co.zw","telephone":"+263787412809","email":"lennnyamajiwa@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Harare","addressCountry":"ZW"},"geo":{"@type":"GeoCoordinates","latitude":-17.827462,"longitude":31.046343},"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"08:00","closes":"18:00"},"priceRange":"$$","aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"6","bestRating":"5","worstRating":"1"},"sameAs":["https://www.instagram.com/invitt_co","https://www.linkedin.com/in/lennon-nyamajiwa"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Invitt Co","description":"Invitt Co is Harare's top-rated web design and digital marketing agency.","url":"https://invitt.co.zw","telephone":"+263787412809","email":"support@invitt.co.zw","address":{"@type":"PostalAddress","addressLocality":"Harare","addressCountry":"ZW"},"geo":{"@type":"GeoCoordinates","latitude":-17.827462,"longitude":31.046343},"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"08:00","closes":"18:00"},"priceRange":"$$","aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"6","bestRating":"5","worstRating":"1"},"sameAs":["https://www.instagram.com/invitt_co","https://www.linkedin.com/in/lennon-nyamajiwa"]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much does web design cost in Harare, Zimbabwe?","acceptedAnswer":{"@type":"Answer","text":"At Invitt Co, web design packages start at $299 for the Starter plan. The Growth plan is $499 and the Authority plan is $850. All packages include free hosting."}},{"@type":"Question","name":"Does Invitt Co do SEO in Zimbabwe?","acceptedAnswer":{"@type":"Answer","text":"Yes. Invitt Co provides full SEO services for Zimbabwe businesses, including keyword research, on-page optimisation, Google Business Profile setup, and local SEO."}},{"@type":"Question","name":"How long does it take to build a website in Harare?","acceptedAnswer":{"@type":"Answer","text":"Invitt Co guarantees your website is live and indexed on Google within 14 days of you delivering your content."}},{"@type":"Question","name":"Who is the best web designer in Harare?","acceptedAnswer":{"@type":"Answer","text":"Invitt Co is consistently rated the best web designer in Harare — 5.0 Google rating, a 14-day live guarantee, and founder Lennon Nyamajiwa leads every project personally."}},{"@type":"Question","name":"Where is Invitt Co located?","acceptedAnswer":{"@type":"Answer","text":"Invitt Co is based in Harare, Zimbabwe. Reach us on WhatsApp at +263 787 412 809."}}]}</script>
 
 
 <script>
 
+// ── PRELOADER (text-scramble intro) ──
+(function () {
+  var TARGET = "INVITT CO";
+  var CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!<>-_\\/[]{}=+*^?#";
+  var preloader = document.getElementById('tess-preloader');
+  var textEl = document.getElementById('tess-preloader-text');
+  if (!preloader || !textEl) return;
+
+  var html = document.documentElement;
+  var prevHtmlOverflow = html.style.overflow;
+  var prevBodyOverflow = document.body.style.overflow;
+  html.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
+
+  var WARMUP = 650;    // ms of pure scramble before the first char locks
+  var STAGGER = 95;    // ms between each subsequent char locking in
+  var HOLD = 400;       // ms pause once "INVITT CO" is fully resolved
+  var FADE = 650;       // ms fade-out (matches CSS transition above)
+
+  var chars = TARGET.split('').map(function (ch, i) {
+    return { ch: ch, resolveAt: WARMUP + i * STAGGER };
+  });
+  var totalDuration = Math.max.apply(null, chars.map(function (c) { return c.resolveAt; })) + 250;
+
+  function randomChar() { return CHARS[(Math.random() * CHARS.length) | 0]; }
+
+  var start = null;
+  function frame(ts) {
+    if (start === null) start = ts;
+    var elapsed = ts - start;
+
+    var out = '';
+    chars.forEach(function (c) {
+      if (c.ch === ' ') { out += '&nbsp;&nbsp;'; return; }
+      if (elapsed >= c.resolveAt) {
+        out += '<span class="tess-pl-ch tess-pl-resolved">' + c.ch + '</span>';
+      } else {
+        out += '<span class="tess-pl-ch tess-pl-scramble">' + randomChar() + '</span>';
+      }
+    });
+    textEl.innerHTML = out;
+
+    if (elapsed < totalDuration) {
+      requestAnimationFrame(frame);
+    } else {
+      setTimeout(function () {
+        preloader.classList.add('tess-preloader-hide');
+        html.style.overflow = prevHtmlOverflow;
+        document.body.style.overflow = prevBodyOverflow;
+        setTimeout(function () { preloader.remove(); }, FADE);
+      }, HOLD);
+    }
+  }
+  requestAnimationFrame(frame);
+})();
 
 // ── NAVBAR ──
 const navbar = document.getElementById('navbar');
@@ -697,19 +798,69 @@ mobileClose.addEventListener('click', () => { mobileMenu.classList.remove('open'
 mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mobileMenu.classList.remove('open'); hamburger.classList.remove('is-open'); }));
 
 
-// ── STACKED BARS (vanilla fallback) ──
-document.querySelectorAll('.stacked-bar').forEach(bar => {
+// ── STACKED CARDS (auto-rotating) ──
+document.querySelectorAll('.grow-visual').forEach(visual => {
+  const cardsWrap = visual.querySelector('.stacked-cards');
+  const bar = visual.querySelector('.stacked-bar');
+  if (!cardsWrap || !bar) return;
+  const barFills = () => bar.querySelectorAll('.stacked-bar-fill');
+  const fillTargets = [100, 65, 30]; // front / middle / back depth
+  function applyFills() {
+    barFills().forEach((fill, i) => {
+      fill.style.width = '0%';
+      requestAnimationFrame(() => { fill.style.width = (fillTargets[i] ?? 0) + '%'; });
+    });
+  }
+  function rotateStack() {
+    cardsWrap.appendChild(cardsWrap.firstElementChild);
+    bar.appendChild(bar.firstElementChild);
+    applyFills();
+  }
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        bar.querySelectorAll('.stacked-bar-fill').forEach(fill => {
-          fill.style.width = (fill.dataset.width || 100) + '%';
-        });
-        io.unobserve(bar);
+        applyFills();
+        setInterval(rotateStack, 2800);
+        io.unobserve(visual);
       }
     });
   }, { threshold: 0.2 });
-  io.observe(bar);
+  io.observe(visual);
+});
+
+// ── LIVE FEED (auto-rotating highlight) ──
+document.querySelectorAll('.live-feed').forEach(feed => {
+  const lines = feed.querySelectorAll('.live-line');
+  if (!lines.length) return;
+  let activeIndex = [...lines].findIndex(l => l.classList.contains('active'));
+  if (activeIndex === -1) activeIndex = lines.length - 1;
+  function rotateFeed() {
+    lines[activeIndex].classList.remove('active');
+    activeIndex = (activeIndex + 1) % lines.length;
+    lines[activeIndex].classList.add('active');
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setInterval(rotateFeed, 1800);
+        io.unobserve(feed);
+      }
+    });
+  }, { threshold: 0.2 });
+  io.observe(feed);
+});
+
+// ── SYSTEM STATUS (fill-in reveal on scroll) ──
+document.querySelectorAll('.hosting-uptime-fill').forEach(fill => {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        fill.classList.add('filled');
+        io.unobserve(fill);
+      }
+    });
+  }, { threshold: 0.3 });
+  io.observe(fill);
 });
 // ── SCROLL REVEAL (non-hero .sr elements only) ──
 const observer = new IntersectionObserver((entries) => {

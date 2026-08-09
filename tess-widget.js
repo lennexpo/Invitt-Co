@@ -34,156 +34,87 @@
     storageKey: 'tess_session',
   }, window.TESS_CONFIG || {});
 
-  // ─── KNOWLEDGE BASE (inline — expanded to 55+ entries for 85% FAQ coverage) ─
-  const KB = {
-    company: "Invitt Co is Harare's #1 web design agency. We build custom websites, local SEO, and digital marketing systems for Zimbabwe SMEs. Results guaranteed in 14 days. Website: invitt.co.zw",
-    founder: "Lennon founded Invitt Co at 17. He personally handles every project — direct founder-level attention on every build.",
-    services: [
-      { name: "Starter Website", price: "$399", desc: "5 pages, mobile responsive, contact form, Google Business Profile, basic SEO, 14-day delivery, 1 month support." },
-      { name: "Growth Website", price: "$599", desc: "8-10 pages, advanced SEO, local SEO, analytics, CMS for self-editing, 3 months support." },
-      { name: "Authority Website", price: "$799", desc: "Full unlimited website + complete SEO strategy + social media + monthly reports + 6 months support. Best for scaling businesses." }
-    ],
-    faqs: [
-      // ── PRICING ──────────────────────────────────────────────────────────
-      { q: "price|cost|how much|pricing|fee|charge|rate|package|tier|afford", a: "Three packages: Starter $399 (5 pages, SEO basics, 14-day delivery), Growth $599 (full SEO, CMS, local optimization), Authority $799 (everything + ongoing management). All include a 14-day delivery guarantee." },
-      { q: "starter|basic|cheapest|entry level|smallest|simple website|five page", a: "The Starter package is $399 — 5 pages, mobile responsive, contact form, Google Business Profile setup, basic SEO, delivered in 14 days, with 1 month of support." },
-      { q: "growth package|mid|middle|599|eight page|ten page|advanced seo", a: "The Growth package is $599 — 8-10 pages, advanced SEO, local SEO, Google Analytics, CMS so you can edit content yourself, 3 months support." },
-      { q: "authority|premium|799|best package|full package|complete|top tier|everything", a: "The Authority package is $799 — unlimited pages, complete SEO strategy, social media setup, monthly performance reports, 6 months of support. Best for businesses serious about scaling." },
-      { q: "payment plan|installment|deposit|split|pay later|part payment|lay-by", a: "Yes, flexible payment arrangements are available. Typically a deposit upfront and the remainder on delivery. Message Lennon on WhatsApp to set up your plan." },
-      { q: "refund|money back|guarantee|if you fail|miss deadline|not delivered", a: "If we miss the agreed deadline, you get your full deposit back — no questions asked. That's our delivery guarantee." },
-      { q: "discount|cheaper|negotiate|reduce|lower price|special offer|promo", a: "Packages are priced to deliver real value, not padded for negotiation. That said, Lennon personally handles every client — reach out on WhatsApp and have a direct conversation." },
-      { q: "ecocash|mobile money|usd|payment method|how to pay|zimdollar|rtgs|transfer", a: "We accept USD (preferred), EcoCash, and bank transfers. Payment details are confirmed when you book your project with Lennon." },
+  // ─── SESSION ID ─────────────────────────────────────────────────────────
+  function generateSessionId() {
+    return 'sess_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
+  }
 
-      // ── TIMELINE & PROCESS ───────────────────────────────────────────────
-      { q: "how long|timeline|deadline|when|delivery|days|weeks|turnaround|fast|quick", a: "14-day delivery guarantee on all packages. Most projects are done in 7–10 days. Rush delivery available — ask Lennon directly." },
-      { q: "how does it work|process|steps|what happens|next step|workflow|procedure", a: "Simple 3-step process: 1) Discovery call with Lennon (free, 20 min). 2) We build your site — you approve the design. 3) We launch and hand it over with full training. Done in 14 days." },
-      { q: "get started|start|begin|sign up|hire|engage|proceed|how do i|ready", a: "Leave your name, business, and what you need — I'll log it and Lennon will reach out within 24 hours. Or book directly: calendly.com/invittco" },
-      { q: "consultation|discovery call|meeting|free call|talk to lennon|speak to someone|call me", a: "Lennon offers a free 20-minute discovery call. Book at calendly.com/invittco or leave your number and he'll call you." },
-      { q: "contract|agreement|terms|legal|sign|paperwork", a: "Yes, every project starts with a simple written agreement that covers scope, timeline, payment terms, and ownership. You own your website fully." },
-      { q: "what do you need from me|requirements|content|what should i prepare|photos|logo|text", a: "We need your logo, any photos you have, your business details, and a sense of your style. No worries if you don't have everything — we can source and create what's missing." },
-      { q: "revision|changes|edits|feedback|review|not happy|adjust|modify", a: "All packages include revision rounds before final delivery. We build until you're happy — within the agreed scope." },
-
-      // ── SERVICES ─────────────────────────────────────────────────────────
-      { q: "what do you do|services|offer|what can you|capabilities|specialise|specialize", a: "We build custom websites, set up local SEO (Google Business Profile, local ranking), run digital marketing, and create complete digital growth systems for Zimbabwe businesses." },
-      { q: "ecommerce|online store|sell online|shop|products|woocommerce|shopify|selling", a: "Yes, we build ecommerce sites — from simple product showcases to full online stores with payment integration. Tell Lennon your requirements for a custom quote." },
-      { q: "social media|facebook|instagram|tiktok|twitter|linkedin|posting|content", a: "Social media management is included in the Authority package ($799). We set up your profiles and can manage monthly content. Ask about standalone social packages too." },
-      { q: "google ads|paid ads|ppc|advertising|facebook ads|sponsored|boost|run ads", a: "We set up and manage Google Ads and Facebook Ads campaigns. This is a separate service — reach out for a custom quote based on your budget and goals." },
-      { q: "seo|google|ranking|search|found online|appear|organic|keyword", a: "All packages include SEO. The Growth and Premium packages include full local SEO — optimizing your Google Business Profile so locals find you first for searches like 'plumber Harare'." },
-      { q: "local seo|google business|gbp|gmb|maps|harare|local search|near me", a: "We fully optimize your Google Business Profile — name, photos, categories, reviews setup, and local keyword targeting. This alone drives massive local traffic." },
-      { q: "branding|logo|identity|design|colours|color palette|brand guide", a: "We can handle basic logo and brand guide creation as an add-on. For full branding projects, reach out to Lennon for a custom scope." },
-      { q: "maintenance|support|after launch|ongoing|monthly|keep updated|update content", a: "All packages include post-launch support (1–6 months depending on tier). After that, affordable monthly maintenance plans are available." },
-      { q: "hosting|server|domain|where is it hosted|cpanel|ssl|certificate|https", a: "We set up fully managed hosting with SSL certificate, optimized for Zimbabwe's internet bandwidth. Domain registration included or we connect your existing one." },
-      { q: "mobile|responsive|phone|tablet|smartphone|iphone|android|looks on mobile", a: "Every website we build is 100% mobile-first and responsive. Looks sharp on every screen — phone, tablet, desktop." },
-      { q: "cms|edit myself|update myself|wordpress|content management|backend|dashboard", a: "Growth and Premium packages include a CMS (content management system) — a simple dashboard where you can update text, images, and prices yourself. No code needed." },
-      { q: "wordpress|wix|squarespace|webflow|platform|which platform|what do you use", a: "We build primarily on WordPress for flexibility and long-term control. For simpler sites we may use other platforms — Lennon recommends the best fit based on your needs." },
-      { q: "speed|fast|performance|loading|pagespeed|slow website", a: "We optimize every site for speed — compressed images, caching, local CDN where possible. Fast load times are especially important for Zimbabwe's variable internet speeds." },
-      { q: "analytics|tracking|google analytics|visitors|traffic|stats|how many people", a: "Growth and Premium packages include Google Analytics setup. You'll see exactly how many people visit, where they come from, and what they do on your site." },
-      { q: "email|email marketing|newsletter|mailchimp|contact form|inbox", a: "We set up professional email (yourname@yourbusiness.com) and contact forms. Email marketing campaigns are available as an add-on service." },
-      { q: "mobile app|app|android app|ios app|application", a: "Mobile app development is outside our current core offering. We focus on high-converting websites and digital marketing. For app projects, Lennon can refer you to the right partners." },
-      { q: "whatsapp business|whatsapp integration|chat widget|chat button", a: "Yes, we add a WhatsApp chat button to every website so visitors can contact you instantly. We can also integrate WhatsApp Business API for larger operations." },
-      { q: "security|hack|safe|backup|protect|secure|firewall", a: "All sites include SSL, regular backups, and security hardening. We monitor for issues during your support period." },
-
-      // ── COMPANY / TRUST ───────────────────────────────────────────────────
-      { q: "who are you|about invitt|about you|who is invitt|company|agency|tell me about", a: "Invitt Co is Harare's #1 web design agency for Zimbabwe SMEs. We build fast, professional websites with guaranteed 14-day delivery. Founded by Lennon at 17, we're young, hungry, and results-driven." },
-      { q: "lennon|founder|owner|who started|who runs|who will i work with|team|staff", a: "Lennon founded Invitt Co at 17. He personally handles every project — you get direct founder-level attention, not a junior account manager. No middlemen." },
-      { q: "portfolio|work|examples|case studies|previous|clients you worked with|show me", a: "See our work at invitt.co.zw — recent projects include Topiary Marketing, Mwiwa Borehole Drilling, and more. Real businesses, real results." },
-      { q: "testimonial|review|feedback|what do clients say|happy|satisfied|rating", a: "Our clients consistently rate us on speed, communication, and results. Check reviews on our Google Business Profile and website at invitt.co.zw" },
-      { q: "why choose|different|why you|stand out|what makes you|vs other agencies|better than", a: "Three things: 14-day delivery guarantee, direct founder attention from Lennon on every project, and deep Zimbabwe local market knowledge. We're not a faceless agency — we're invested in your growth." },
-      { q: "experience|how long|years|since when|established|history|track record", a: "Lennon started Invitt Co at 17 and has built dozens of sites for Zimbabwe businesses. Young company, but proven results and a rapidly growing portfolio." },
-      { q: "where are you|location|office|harare|in person|face to face|visit you|physical", a: "We're based in Harare, Zimbabwe. We work remotely with clients across the country — meetings are via Zoom/WhatsApp. In-person meetings in Harare can be arranged." },
-      { q: "outside harare|bulawayo|mutare|gweru|kwekwe|masvingo|other cities|zimbabwe wide|countrywide", a: "Yes, we work with businesses across Zimbabwe — Bulawayo, Mutare, Gweru, Masvingo, and everywhere in between. Our edge is deep local Zimbabwe market knowledge." },
-      { q: "outside zimbabwe|south africa|zambia|botswana|uk|usa|international", a: "Our core focus is Zimbabwe businesses where our local SEO expertise shines. International projects are taken case by case — reach out to discuss." },
-      { q: "results|roi|will it work|worth it|return on investment|does it actually help|proof", a: "Our goal is measurable results — more Google visibility, more enquiries, more sales. We've helped businesses double their online enquiries within 30 days of launch. See our portfolio at invitt.co.zw" },
-
-      // ── SPECIFIC INDUSTRIES ───────────────────────────────────────────────
-      { q: "restaurant|cafe|food|catering|takeaway|menu|hospitality", a: "We've built websites for Harare food businesses. A great site shows your menu, location, and lets customers book or order — we know exactly what works in this space." },
-      { q: "school|church|ngo|non profit|charity|organization|institution", a: "Yes, we work with schools, churches, and NGOs. Custom pricing available for non-profit organizations — reach out to discuss." },
-      { q: "lawyer|legal|law firm|attorney|doctor|medical|clinic|dentist|health", a: "We build professional, trust-building websites for law firms, clinics, and medical practices. These require a specific tone and structure we know well." },
-      { q: "property|real estate|agent|rent|sell property|landlord|estate agent", a: "Real estate websites are a strong suit for us — property listings, search filters, WhatsApp enquiry buttons. Lennon can scope this out for you." },
-      { q: "contractor|builder|plumber|electrician|construction|trades|services|artisan", a: "Trades businesses get massive ROI from local SEO. A site that shows up when someone searches 'plumber Harare' is pure gold. That's exactly what we build." },
-
-      // ── PROCESS / MISC ───────────────────────────────────────────────────
-      { q: "rush|urgent|fast delivery|asap|quickly|need it now|emergency", a: "Rush delivery is available on request. Depending on scope, we can often deliver in 5–7 days. Message Lennon on WhatsApp directly to discuss a rush project." },
-      { q: "compare|vs|alternative|other options|check around|competitor|agency", a: "We focus on being the best for Zimbabwe SMEs — 14-day delivery, founder-level attention, local expertise. Many clients come to us after bad experiences elsewhere. We'd love to show you the difference." },
-      { q: "hello|hi|hey|good morning|good afternoon|howzit|greetings|sup", a: "Hey! I'm Tess, Invitt Co's AI assistant. I can answer questions about our web design packages, pricing, process, and more. What can I help you with?" },
-      { q: "thank|thanks|appreciate|great|awesome|perfect|cool|nice|helpful", a: "Happy to help! Is there anything else you'd like to know about Invitt Co? Or I can log your details and get Lennon to reach out." },
-      { q: "bye|goodbye|see you|later|done|that's all|no thanks|not now", a: "No problem! Feel free to come back anytime. You can also reach Lennon directly on WhatsApp — button below." },
-      { q: "contact|reach|talk to|speak|call|email|whatsapp|phone number|get in touch", a: "Best way is WhatsApp — hit the button below. Or book a free 20-min call with Lennon at calendly.com/invittco" }
-    ]
-  };
-
-  // ─── STATE ────────────────────────────────────────────────────────────────
-  let state = {
-    isOpen: false,
-    mode: 'select',
+  // ─── STATE ──────────────────────────────────────────────────────────────
+  const state = {
+    sessionId: generateSessionId(),
     messages: [],
-    lead: {},
-    leadStep: 0,
+    mode: 'select',
+    isOpen: false,
     isHumanMode: false,
     isAdmin: false,
-    sessionId: Date.now().toString(36),
-    popupShown: false,
-    typingTimeout: null,
     ws: null,
     wsReady: false,
     wsRetries: 0,
-    msgQueue: [],         // queued messages to send once WS connects
-    pendingImage: null,  // base64 data URL of image to send
-    voiceMode: false,
-    recognition: null,
-    synthesis: window.speechSynthesis || null,
-    voiceUtterance: null,
-    silenceTimer: null,
-    tessVoice: null,      // selected SpeechSynthesisVoice
+    pendingImage: null,
+    leadStep: 0,
+    lead: {},
+    voiceCall: null
   };
 
+  // ─── LEAD FLOW STEPS ────────────────────────────────────────────────────
   const leadSteps = [
-    { field: 'name', prompt: "Your full name?" },
-    { field: 'email', prompt: "Business email?" },
-    { field: 'phone', prompt: "WhatsApp/phone number?" },
-    { field: 'business', prompt: "What type of business are you running?" },
-    { field: 'budget', prompt: "Budget range? (e.g. under $500, $500-$1000, $1000+)" }
+    { field: 'name', prompt: "What's your name?" },
+    { field: 'phone', prompt: "What's the best phone or WhatsApp number to reach you on?" },
+    { field: 'email', prompt: "And your email address?" },
+    { field: 'business', prompt: "What's the name of your business?" },
+    { field: 'budget', prompt: "Roughly what budget are you working with?" }
   ];
 
-  // ─── STORAGE ─────────────────────────────────────────────────────────────
-  function saveSession() {
-    try {
-      sessionStorage.setItem(CFG.storageKey, JSON.stringify({
-        messages: state.messages.slice(-20),
-        lead: state.lead,
-        sessionId: state.sessionId
-      }));
-    } catch (e) {}
-  }
-
-  function loadSession() {
-    try {
-      const saved = JSON.parse(sessionStorage.getItem(CFG.storageKey) || '{}');
-      if (saved.messages) state.messages = saved.messages;
-      if (saved.lead) state.lead = saved.lead;
-      if (saved.sessionId) state.sessionId = saved.sessionId;
-    } catch (e) {}
-  }
-
-  // ─── LEAD SCORING ─────────────────────────────────────────────────────────
   function scoreLead(lead) {
     let score = 0;
-    if (lead.email && lead.email.includes('@')) score += 25;
+    if (lead.name) score += 20;
     if (lead.phone) score += 20;
-    if (lead.business) score += 15;
-    if (lead.budget) {
-      if (lead.budget.includes('1000') || lead.budget.includes('1,000')) score += 40;
-      else if (lead.budget.includes('500')) score += 25;
-      else score += 10;
-    }
-    if (state.messages.length > 6) score += 10;
-    return Math.min(score, 100);
+    if (lead.email) score += 20;
+    if (lead.business) score += 20;
+    if (lead.budget) score += 20;
+    return score;
   }
 
-  // ─── AI RESPONSE ENGINE ───────────────────────────────────────────────────
-  // All messages go to backend AI via WebSocket (needs_ai: true).
-  // The backend handles all intelligence using uploaded documents + OpenRouter.
+  // ─── SESSION PERSISTENCE ────────────────────────────────────────────────
+  function loadSession() {
+    try {
+      const raw = localStorage.getItem(CFG.storageKey);
+      if (!raw) return;
+      const saved = JSON.parse(raw);
+      if (saved && saved.sessionId) state.sessionId = saved.sessionId;
+      if (saved && Array.isArray(saved.messages)) state.messages = saved.messages;
+    } catch (e) {
+      // Corrupt or inaccessible storage — start fresh
+    }
+  }
 
+  function saveSession() {
+    try {
+      localStorage.setItem(CFG.storageKey, JSON.stringify({
+        sessionId: state.sessionId,
+        messages: state.messages
+      }));
+    } catch (e) {
+      // Storage full or unavailable — safe to ignore
+    }
+  }
+
+  // ─── AI RESPONSE — all messages go to backend via WebSocket ───────────────
+  // FAQ matching removed. Backend handles all responses using document context.
+
+  async function sendToAI(userMessage) {
+    // Signal backend to handle with AI — no local matching
+    if (state.ws && state.ws.readyState === WebSocket.OPEN) {
+      state.ws.send(JSON.stringify({
+        role: 'user',
+        content: userMessage,
+        image_data: null,
+        needs_ai: true
+      }));
+      return '__AI_PENDING__'; // typing indicator stays until ws.onmessage fires
+    }
+    return null;
+  }
 
   // ─── LEAD STORAGE ────────────────────────────────────────────────────────
   async function saveLead(lead) {
@@ -231,7 +162,9 @@
   }
 
   async function saveMessageToBackend(role, content, imageData = null) {
-    // Persist to Supabase via REST (for message history)
+    // Send via WebSocket for real-time admin view
+    sendViaWebSocket(role, content, imageData);
+    // Also persist via REST as fallback
     if (!CFG.backendUrl) return;
     try {
       await fetch(CFG.backendUrl + '/messages', {
@@ -266,11 +199,6 @@
       state.ws.onopen = () => {
         state.wsReady = true;
         state.wsRetries = 0;
-        // Flush any queued messages
-        while (state.msgQueue.length > 0) {
-          const queued = state.msgQueue.shift();
-          try { state.ws.send(queued); } catch (e) {}
-        }
       };
       state.ws.onmessage = (e) => {
         try {
@@ -298,10 +226,6 @@
               }
             }
             addMessage(data.content, 'assistant');
-            // Speak reply if in voice mode
-            if (state.voiceMode) {
-              speakReply(data.content);
-            }
           }
         } catch (err) {}
       };
@@ -318,22 +242,12 @@
     } catch (err) {}
   }
 
-  function sendOrQueue(payload) {
-    const msg = JSON.stringify(payload);
-    if (state.ws && state.ws.readyState === WebSocket.OPEN) {
-      try { state.ws.send(msg); } catch (e) {}
-    } else {
-      // Queue it — will be flushed on next onopen
-      state.msgQueue.push(msg);
-      // Also try to reconnect if socket is dead
-      if (!state.ws || state.ws.readyState === WebSocket.CLOSED) {
-        connectWebSocket();
-      }
-    }
-  }
-
   function sendViaWebSocket(role, content, imageData = null) {
-    sendOrQueue({ role, content, image_data: imageData || null, needs_ai: false });
+    if (state.ws && state.ws.readyState === WebSocket.OPEN) {
+      try {
+        state.ws.send(JSON.stringify({ role, content, image_data: imageData || null }));
+      } catch (err) {}
+    }
   }
 
 
@@ -376,7 +290,7 @@
       #tess-popup-body { font-size: 13px; color: #444; line-height: 1.5; }
       #tess-panel {
         position: fixed; bottom: 92px; right: 24px; z-index: 999998;
-        width: 380px; max-width: calc(100vw - 32px); max-height: 580px;
+        width: 380px; max-width: calc(100vw - 32px); height: 580px; max-height: calc(100vh - 116px); max-height: calc(100dvh - 116px);
         background: #ffffff; border-radius: 20px;
         box-shadow: 0 16px 64px rgba(0,0,0,0.18);
         display: none; flex-direction: column; overflow: hidden;
@@ -411,16 +325,16 @@
       #tess-header-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
       #tess-header-info { flex: 1; }
       #tess-header-name { font-weight: 800; font-size: 15px; color: ${CFG.bgDark}; text-transform: uppercase; letter-spacing: 0.5px; }
-      #tess-header-sub { font-size: 12px; color: rgba(26,26,26,0.65); font-weight: 500; }
-      #tess-header-status { display: flex; align-items: center; gap: 5px; font-size: 11px; color: ${CFG.bgDark}; font-weight: 600; }
-      #tess-header-dot { width: 7px; height: 7px; border-radius: 50%; background: ${CFG.bgDark}; animation: tess-pulse 2s infinite; }
-      #tess-messages {
-        flex: 1; overflow-y: auto; padding: 16px;
-        display: flex; flex-direction: column; gap: 10px;
+      #tess-body {
+        flex: 1; overflow-y: auto; overflow-x: hidden;
+        display: flex; flex-direction: column;
         scrollbar-width: thin; scrollbar-color: #ddd transparent;
-        background: #f7f7f7;
+        background: #ffffff;
         min-height: 0;
-        max-height: 340px;
+      }
+      #tess-messages {
+        flex-shrink: 0; padding: 16px;
+        display: flex; flex-direction: column; gap: 10px;
       }
       .tess-msg { display: flex; gap: 8px; animation: tess-fade-in 0.2s ease; }
       .tess-msg-avatar {
@@ -429,10 +343,16 @@
         font-size: 11px; font-weight: 800; color: ${CFG.bgDark}; flex-shrink: 0; margin-top: 2px;
       }
       .tess-msg-bubble {
-        background: #ffffff; color: #111; border-radius: 4px 16px 16px 16px;
+        background: #f3f4f6; color: #111; border-radius: 4px 16px 16px 16px;
         padding: 10px 14px; font-size: 13.5px; line-height: 1.55; max-width: 85%;
-        border: 1px solid #e8e8e8; box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        border: 1px solid #ececec; box-shadow: none;
+        overflow-wrap: anywhere; word-break: break-word; min-width: 0;
       }
+      .tess-msg-bubble a {
+        overflow-wrap: anywhere; word-break: break-word;
+        color: ${CFG.accentDark}; text-decoration: underline; font-weight: 600;
+      }
+      .tess-msg-user .tess-msg-bubble a { color: ${CFG.bgDark}; }
       .tess-msg-user { flex-direction: row-reverse; }
       .tess-msg-user .tess-msg-bubble {
         background: ${CFG.accentColor}; color: ${CFG.bgDark}; font-weight: 600;
@@ -443,7 +363,7 @@
       .tess-typing span { width: 6px; height: 6px; border-radius: 50%; background: ${CFG.accentColor}; animation: tess-bounce 1.2s infinite; }
       .tess-typing span:nth-child(2) { animation-delay: 0.2s; }
       .tess-typing span:nth-child(3) { animation-delay: 0.4s; }
-      #tess-options { padding: 0 16px 12px; display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; background: #ffffff; }
+      #tess-options { padding: 0 16px 12px; display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
       .tess-option-btn {
         background: #f5f5f5; border: 1.5px solid #e0e0e0; color: #111;
         border-radius: 12px; padding: 13px 18px; font-size: 14px; font-weight: 600;
@@ -452,6 +372,70 @@
       }
       .tess-option-btn:hover { background: rgba(200,245,62,0.15); border-color: ${CFG.accentColor}; }
       .tess-option-btn svg { flex-shrink: 0; stroke: #555; }
+      .tess-voice-card {
+        padding: 32px 24px 24px; display: flex; flex-direction: column; align-items: center;
+        text-align: center; animation: tess-fade-in 0.25s ease;
+      }
+      .tess-voice-avatar {
+        width: 92px; height: 92px; border-radius: 50%; overflow: hidden; margin-bottom: 14px;
+        border: 2px solid ${CFG.accentColor}; box-shadow: 0 4px 20px rgba(200,245,62,0.3); flex-shrink: 0;
+      }
+      .tess-voice-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .tess-voice-name {
+        font-size: 17px; font-weight: 800; color: #111;
+        display: flex; align-items: center; justify-content: center; gap: 7px;
+      }
+      .tess-voice-badge {
+        background: ${CFG.accentColor}; color: ${CFG.bgDark}; font-size: 10px; font-weight: 800;
+        padding: 3px 7px; border-radius: 6px; letter-spacing: 0.5px;
+      }
+      .tess-voice-role { font-size: 13px; color: #888; margin-top: 4px; margin-bottom: 20px; font-weight: 500; }
+      .tess-voice-btn {
+        display: flex; align-items: center; justify-content: center; gap: 8px;
+        background: #ffffff; border: 1.5px solid ${CFG.accentColor}; color: ${CFG.bgDark};
+        font-size: 14px; font-weight: 700; padding: 12px 24px; border-radius: 30px; cursor: pointer;
+        transition: background 0.15s, transform 0.1s; width: 100%; max-width: 220px;
+      }
+      .tess-voice-btn:hover { background: rgba(200,245,62,0.15); }
+      .tess-voice-btn:active { transform: scale(0.97); }
+      .tess-voice-btn svg { flex-shrink: 0; stroke: ${CFG.bgDark}; }
+      .tess-voice-note { font-size: 11.5px; color: #aaa; margin-top: 14px; line-height: 1.5; max-width: 260px; }
+      .tess-voice-avatar.tess-call-live {
+        border-color: ${CFG.accentColor}; box-shadow: 0 0 0 0 rgba(200,245,62,0.5);
+        animation: tess-call-pulse 1.8s infinite;
+      }
+      .tess-voice-avatar.tess-call-live.tess-speaking {
+        animation: tess-call-pulse-fast 0.9s infinite;
+      }
+      @keyframes tess-call-pulse {
+        0% { box-shadow: 0 0 0 0 rgba(200,245,62,0.45); }
+        70% { box-shadow: 0 0 0 14px rgba(200,245,62,0); }
+        100% { box-shadow: 0 0 0 0 rgba(200,245,62,0); }
+      }
+      @keyframes tess-call-pulse-fast {
+        0% { box-shadow: 0 0 0 0 rgba(200,245,62,0.55); }
+        70% { box-shadow: 0 0 0 10px rgba(200,245,62,0); }
+        100% { box-shadow: 0 0 0 0 rgba(200,245,62,0); }
+      }
+      .tess-voice-status { font-size: 13px; color: #888; margin-top: 4px; margin-bottom: 22px; font-weight: 600; display: flex; align-items: center; gap: 7px; }
+      .tess-voice-status .tess-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; flex-shrink: 0; }
+      .tess-voice-status .tess-dot.tess-connecting { background: #f5b400; animation: tess-bounce 1s infinite; }
+      .tess-voice-controls { display: flex; align-items: center; justify-content: center; gap: 18px; }
+      .tess-voice-round-btn {
+        width: 52px; height: 52px; border-radius: 50%; border: 1.5px solid #e0e0e0;
+        background: #f5f5f5; cursor: pointer; display: flex; align-items: center; justify-content: center;
+        transition: background 0.15s, border-color 0.15s, transform 0.1s; flex-shrink: 0;
+      }
+      .tess-voice-round-btn:hover { background: #eee; }
+      .tess-voice-round-btn:active { transform: scale(0.95); }
+      .tess-voice-round-btn svg { stroke: #333; }
+      .tess-voice-round-btn.tess-muted { background: ${CFG.accentColor}; border-color: ${CFG.accentColor}; }
+      .tess-voice-round-btn.tess-muted svg { stroke: ${CFG.bgDark}; }
+      .tess-voice-round-btn.tess-end-call { background: #e6453a; border-color: #e6453a; }
+      .tess-voice-round-btn.tess-end-call svg { stroke: #fff; }
+      .tess-voice-round-btn.tess-end-call:hover { background: #cc3b31; }
+      .tess-voice-btn-label { font-size: 10.5px; color: #999; text-align: center; margin-top: 6px; font-weight: 600; }
+      .tess-voice-btn-col { display: flex; flex-direction: column; align-items: center; }
       #tess-input-area {
         padding: 12px 16px; border-top: 1px solid #e8e8e8;
         display: flex; gap: 8px; flex-shrink: 0; background: #ffffff;
@@ -505,69 +489,6 @@
         border-top: 1px solid #e8e8e8; flex-shrink: 0; background: #ffffff;
       }
       #tess-footer a { color: ${CFG.accentDark}; text-decoration: none; }
-      /* ── PRIVACY MODAL ── */
-      #tess-privacy-overlay {
-        display: none; position: fixed; inset: 0; z-index: 9999999;
-        background: rgba(0,0,0,0.45); backdrop-filter: blur(4px);
-        align-items: center; justify-content: center; padding: 20px;
-      }
-      #tess-privacy-overlay.open { display: flex; }
-      #tess-privacy-modal {
-        background: #ffffff; border-radius: 18px;
-        width: 100%; max-width: 480px; max-height: 82vh;
-        display: flex; flex-direction: column;
-        box-shadow: 0 24px 80px rgba(0,0,0,0.22);
-        overflow: hidden; animation: tess-slide-up 0.28s cubic-bezier(0.34,1.56,0.64,1);
-      }
-      #tess-privacy-header {
-        padding: 20px 24px 16px; border-bottom: 1px solid #f0f0f0;
-        display: flex; align-items: flex-start; justify-content: space-between; flex-shrink: 0;
-      }
-      #tess-privacy-header h2 {
-        font-size: 17px; font-weight: 800; color: #111; letter-spacing: -0.3px; margin: 0;
-      }
-      #tess-privacy-header p {
-        font-size: 11px; color: #999; margin: 3px 0 0; font-weight: 500;
-      }
-      #tess-privacy-close {
-        background: #f5f5f5; border: none; cursor: pointer;
-        width: 28px; height: 28px; border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        font-size: 16px; color: #555; flex-shrink: 0; margin-left: 12px;
-        transition: background 0.15s;
-      }
-      #tess-privacy-close:hover { background: #ebebeb; }
-      #tess-privacy-body {
-        overflow-y: auto; padding: 20px 24px 24px;
-        scrollbar-width: thin; scrollbar-color: #ddd transparent;
-      }
-      .tpp-section { margin-bottom: 22px; }
-      .tpp-section:last-child { margin-bottom: 0; }
-      .tpp-label {
-        font-size: 10px; font-weight: 700; letter-spacing: 2px;
-        text-transform: uppercase; color: #999; margin-bottom: 6px;
-      }
-      .tpp-section h3 { font-size: 13px; font-weight: 700; color: #111; margin-bottom: 8px; }
-      .tpp-section p { font-size: 12.5px; color: #555; line-height: 1.6; margin-bottom: 6px; }
-      .tpp-section p:last-child { margin-bottom: 0; }
-      .tpp-list { list-style: none; margin: 8px 0 0; display: flex; flex-direction: column; gap: 6px; }
-      .tpp-list li { font-size: 12.5px; color: #555; display: flex; gap: 8px; align-items: flex-start; }
-      .tpp-list li::before {
-        content: ''; width: 5px; height: 5px; border-radius: 50%;
-        background: #bbb; flex-shrink: 0; margin-top: 7px;
-      }
-      .tpp-divider { height: 1px; background: #f0f0f0; margin: 6px 0 22px; }
-      #tess-privacy-footer {
-        padding: 14px 24px; border-top: 1px solid #f0f0f0; flex-shrink: 0;
-        display: flex; align-items: center; justify-content: space-between;
-        background: #fafafa;
-      }
-      #tess-privacy-footer span { font-size: 11px; color: #aaa; }
-      #tess-privacy-footer a {
-        font-size: 12px; font-weight: 700; color: #111;
-        text-decoration: none; display: flex; align-items: center; gap: 4px;
-      }
-      #tess-privacy-footer a:hover { text-decoration: underline; }
       #tess-wa-btn {
         margin: 0 16px 12px; background: #25D366; color: white; border: none;
         border-radius: 12px; padding: 12px; font-size: 14px; font-weight: 700;
@@ -575,6 +496,36 @@
         transition: background 0.15s;
       }
       #tess-wa-btn:hover { background: #1da851; }
+      #tess-footer button {
+        background: none; border: none; padding: 0; margin: 0; cursor: pointer;
+        color: ${CFG.accentDark}; text-decoration: none; font-size: 11px; font-family: inherit;
+      }
+      #tess-privacy-overlay {
+        position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2147483001;
+        display: none; align-items: center; justify-content: center; padding: 20px;
+      }
+      #tess-privacy-overlay.show { display: flex; }
+      #tess-privacy-modal {
+        background: #fff; border-radius: 16px; max-width: 480px; width: 100%;
+        max-height: 80vh; display: flex; flex-direction: column; overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      }
+      #tess-privacy-header {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 16px 20px; border-bottom: 1px solid #eee; flex-shrink: 0;
+      }
+      #tess-privacy-header h3 { margin: 0; font-size: 16px; font-weight: 700; color: ${CFG.bgDark}; }
+      #tess-privacy-close {
+        background: none; border: none; cursor: pointer; font-size: 20px; line-height: 1;
+        color: #888; padding: 4px; border-radius: 6px;
+      }
+      #tess-privacy-close:hover { background: #f0f0f0; }
+      #tess-privacy-body {
+        padding: 20px; overflow-y: auto; font-size: 13px; line-height: 1.6; color: #444;
+      }
+      #tess-privacy-body h4 { font-size: 13px; color: ${CFG.bgDark}; margin: 16px 0 6px; }
+      #tess-privacy-body h4:first-child { margin-top: 0; }
+      #tess-privacy-body p { margin: 0 0 8px; }
       #tess-human-banner {
         margin: 8px 16px; background: rgba(200,245,62,0.12); border: 1px solid rgba(200,245,62,0.4);
         border-radius: 8px; padding: 8px 12px; font-size: 12px; color: #5a7a00;
@@ -585,36 +536,6 @@
         display: block; margin-top: 6px; object-fit: cover;
         border: 1px solid rgba(0,0,0,0.08);
       }
-      @keyframes tess-mic-pulse {
-        0%, 100% { box-shadow: 0 0 0 0 rgba(200,245,62,0.5); }
-        50% { box-shadow: 0 0 0 12px rgba(200,245,62,0); }
-      }
-      #tess-voice-ui {
-        display: none; flex-direction: column; align-items: center; justify-content: center;
-        gap: 14px; padding: 24px 20px 20px; background: #f7f7f7; flex: 1;
-      }
-      #tess-voice-ui.active { display: flex; }
-      #tess-voice-transcript {
-        font-size: 13px; color: #555; text-align: center; min-height: 36px;
-        font-style: italic; line-height: 1.5; max-width: 280px;
-      }
-      #tess-mic-btn {
-        width: 64px; height: 64px; border-radius: 50%; border: none; cursor: pointer;
-        background: ${CFG.accentColor}; display: flex; align-items: center; justify-content: center;
-        transition: background 0.2s; flex-shrink: 0;
-      }
-      #tess-mic-btn.listening { animation: tess-mic-pulse 1.2s infinite; }
-      #tess-mic-btn.speaking { background: #ddd; cursor: default; }
-      #tess-mic-btn svg { width: 26px; height: 26px; }
-      #tess-voice-status {
-        font-size: 12px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.5px;
-      }
-      #tess-stop-voice {
-        background: none; border: 1.5px solid #ddd; border-radius: 20px; padding: 7px 18px;
-        font-size: 13px; font-weight: 600; color: #555; cursor: pointer; margin-top: 4px;
-        transition: border-color 0.15s, color 0.15s;
-      }
-      #tess-stop-voice:hover { border-color: #aaa; color: #222; }
       @keyframes tess-fade-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
       @keyframes tess-slide-up { from { opacity: 0; transform: translateY(20px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
       @keyframes tess-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
@@ -625,10 +546,10 @@
           right: 0;
           bottom: 0;
           border-radius: 20px 20px 0 0;
+          height: 85vh;
           max-height: 85vh;
-        }
-        #tess-messages {
-          max-height: calc(85vh - 220px);
+          height: 85dvh;
+          max-height: 85dvh;
         }
         #tess-bubble {
           bottom: 16px;
@@ -663,9 +584,9 @@
           <div id="tess-popup-avatar">
             <img src="data:image/png;base64,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" alt="Invitt Co"/>
           </div>
-          <div id="tess-popup-title">Tess — Invitt Co AI</div>
+          <div id="tess-popup-title">Invitt Co</div>
         </div>
-        <div id="tess-popup-body">Hi there! Have a question? Talk with us here 👋</div>
+        <div id="tess-popup-body">Hi there! Have a question? Talk with us here</div>
       </div>
 
       <!-- Main panel -->
@@ -676,9 +597,7 @@
           </div>
           <div id="tess-header-info">
             <div id="tess-header-name">HAVE A QUESTION?</div>
-            <div id="tess-header-sub">Tess</div>
           </div>
-          <div id="tess-header-status"><span id="tess-header-dot"></span> Online</div>
           <button id="tess-header-close" aria-label="Close chat">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="${CFG.bgDark}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9"/>
@@ -695,43 +614,31 @@
           </button>
         </div>
 
-        <div id="tess-messages"></div>
+        <div id="tess-body">
+          <div id="tess-messages"></div>
 
-        <!-- Voice mode UI (hidden until activated) -->
-        <div id="tess-voice-ui">
-          <div id="tess-voice-transcript">Tap mic to speak...</div>
-          <button id="tess-mic-btn" aria-label="Speak">
-            <svg viewBox="0 0 24 24" fill="none" stroke="${CFG.bgDark}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
-              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/>
-              <line x1="8" y1="23" x2="16" y2="23"/>
-            </svg>
-          </button>
-          <div id="tess-voice-status">Ready</div>
-          <button id="tess-stop-voice">Stop Voice</button>
-        </div>
+          <div id="tess-human-banner">You are now chatting with a human</div>
 
-        <div id="tess-human-banner">You are now chatting with a human</div>
+          <div id="tess-options">
+            <button class="tess-option-btn" data-action="livechat">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="${CFG.accentColor}" stroke-width="2" stroke-linecap="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+              Chat via Live Chat
+            </button>
+            <button class="tess-option-btn" data-action="voice">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="${CFG.accentColor}" stroke-width="2" stroke-linecap="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              Chat with Voice
+            </button>
+          </div>
 
-        <div id="tess-options">
-          <button class="tess-option-btn" data-action="livechat">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="${CFG.accentColor}" stroke-width="2" stroke-linecap="round">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-            </svg>
-            Chat via Live Chat
-          </button>
-          <button class="tess-option-btn" data-action="voice">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="${CFG.accentColor}" stroke-width="2" stroke-linecap="round">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-            </svg>
-            Chat with Voice
+          <button id="tess-wa-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+            Continue on WhatsApp
           </button>
         </div>
-
-        <button id="tess-wa-btn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-          Continue on WhatsApp
-        </button>
 
         <div id="tess-input-area" style="display:none">
           <div id="tess-img-preview-row">
@@ -756,87 +663,25 @@
           </button>
         </div>
 
-        <div id="tess-footer">Powered by <strong style="color:${CFG.accentDark}">Invitt Co</strong> &nbsp;·&nbsp; <a href="#" id="tess-privacy-link">Privacy Policy</a></div>
+        <div id="tess-footer">Powered by <span style="color:${CFG.accentDark};font-weight:600;">Invitt Co</span> &nbsp;·&nbsp; <button id="tess-privacy-link" type="button">Privacy Policy</button></div>
       </div>
 
-      <!-- Privacy Policy Modal -->
+      <!-- Privacy policy modal -->
       <div id="tess-privacy-overlay">
-        <div id="tess-privacy-modal">
+        <div id="tess-privacy-modal" role="dialog" aria-modal="true" aria-labelledby="tess-privacy-title">
           <div id="tess-privacy-header">
-            <div>
-              <h2>Privacy Policy</h2>
-              <p>Invitt Co · Last updated June 2026</p>
-            </div>
+            <h3 id="tess-privacy-title">Privacy Policy</h3>
             <button id="tess-privacy-close" aria-label="Close">×</button>
           </div>
           <div id="tess-privacy-body">
-
-            <div class="tpp-section">
-              <div class="tpp-label">Overview</div>
-              <h3>What this policy covers</h3>
-              <p>This policy explains what Invitt Co collects when you visit invitt.co.zw or chat with Tess, how we use that information, and how we protect it.</p>
-              <p>We collect only what we need to help you. We don't sell your data.</p>
-            </div>
-            <div class="tpp-divider"></div>
-
-            <div class="tpp-section">
-              <div class="tpp-label">Data Collection</div>
-              <h3>What we collect</h3>
-              <ul class="tpp-list">
-                <li>Name — to address you when Lennon follows up</li>
-                <li>Email — to send quotes or follow-up communication</li>
-                <li>Phone / WhatsApp — so Lennon can reach you directly</li>
-                <li>Business name &amp; type — to recommend the right package</li>
-                <li>Budget range — to match you with the right service tier</li>
-                <li>Chat messages — to provide context and improve Tess</li>
-              </ul>
-              <p style="margin-top:10px">We do not collect payment details, government IDs, or sensitive personal data.</p>
-            </div>
-            <div class="tpp-divider"></div>
-
-            <div class="tpp-section">
-              <div class="tpp-label">How we use it</div>
-              <h3>What we do with your data</h3>
-              <ul class="tpp-list">
-                <li>Follow up on your project enquiry</li>
-                <li>Prepare a relevant quote or proposal</li>
-                <li>Book discovery calls with Lennon</li>
-                <li>Improve Tess's responses over time</li>
-              </ul>
-              <p style="margin-top:10px">We do not use your data for advertising or remarketing.</p>
-            </div>
-            <div class="tpp-divider"></div>
-
-            <div class="tpp-section">
-              <div class="tpp-label">Third Parties</div>
-              <h3>Who we share data with</h3>
-              <ul class="tpp-list">
-                <li>Supabase — secure database storage</li>
-                <li>OpenRouter / NVIDIA Nemotron — powers Tess's AI responses</li>
-                <li>Render — backend hosting infrastructure</li>
-              </ul>
-              <p style="margin-top:10px">We do not sell, rent, or trade your information to any other parties.</p>
-            </div>
-            <div class="tpp-divider"></div>
-
-            <div class="tpp-section">
-              <div class="tpp-label">Your Rights</div>
-              <h3>Control over your data</h3>
-              <ul class="tpp-list">
-                <li>Request a copy of the data we hold about you</li>
-                <li>Ask us to correct inaccurate information</li>
-                <li>Ask us to delete your data at any time</li>
-                <li>Opt out of future communication</li>
-              </ul>
-              <p style="margin-top:10px">Contact Lennon directly on WhatsApp to exercise any of these rights.</p>
-            </div>
-
-          </div>
-          <div id="tess-privacy-footer">
-            <span>© 2026 Invitt Co, Harare</span>
-            <a href="https://wa.me/263787412809" target="_blank">
-              Questions? WhatsApp Lennon →
-            </a>
+            <h4>What we collect</h4>
+            <p>When you chat with Tess, we collect the messages you send, any images you attach, and basic contact details you choose to share (like your name, phone number, or email) so we can respond to you and follow up if needed.</p>
+            <h4>How we use it</h4>
+            <p>Your information is used to answer your questions, provide quotes, and, where relevant, follow up about your enquiry. We do not sell your data to third parties.</p>
+            <h4>Storage & security</h4>
+            <p>Conversations are stored securely and are only accessible to Invitt Co staff supporting your enquiry.</p>
+            <h4>Contact</h4>
+            <p>Questions about this policy? Reach out to us via WhatsApp or email at hello@invitt.co.zw.</p>
           </div>
         </div>
       </div>
@@ -860,6 +705,41 @@
     renderMessage(msg);
     scrollToBottom();
     saveMessageToBackend(role, content, imageDataUrl || null);
+    if (role !== 'user') playNotificationSound();
+  }
+
+  let tessAudioCtx = null;
+  function playNotificationSound() {
+    try {
+      if (!tessAudioCtx) {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        tessAudioCtx = new AudioCtx();
+      }
+      if (tessAudioCtx.state === 'suspended') tessAudioCtx.resume();
+
+      const now = tessAudioCtx.currentTime;
+      const notes = [
+        { freq: 880, start: 0, dur: 0.11 },
+        { freq: 1318.51, start: 0.09, dur: 0.16 }
+      ];
+
+      notes.forEach(({ freq, start, dur }) => {
+        const osc = tessAudioCtx.createOscillator();
+        const gain = tessAudioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, now + start);
+        gain.gain.setValueAtTime(0, now + start);
+        gain.gain.linearRampToValueAtTime(0.18, now + start + 0.015);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + start + dur);
+        osc.connect(gain);
+        gain.connect(tessAudioCtx.destination);
+        osc.start(now + start);
+        osc.stop(now + start + dur + 0.02);
+      });
+    } catch (e) {
+      // Silently ignore if audio isn't available (autoplay restrictions, etc.)
+    }
   }
 
   function renderMessage(msg) {
@@ -868,8 +748,17 @@
     div.className = `tess-msg${msg.role === 'user' ? ' tess-msg-user' : ''}`;
 
     const avatarText = msg.role === 'user' ? 'YOU' : 'T';
-    const formattedContent = msg.content
+    const escapeHtml = (str) => str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+    const formattedContent = escapeHtml(msg.content)
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/(https?:\/\/[^\s<]+)/g, (url) => {
+        const clean = url.replace(/[.,)\]]+$/, '');
+        const trailing = url.slice(clean.length);
+        return `<a href="${clean}" target="_blank" rel="noopener noreferrer">${clean}</a>${trailing}`;
+      })
       .replace(/\n/g, '<br>');
 
     const imgHtml = msg.image
@@ -902,7 +791,7 @@
   }
 
   function scrollToBottom() {
-    const el = document.getElementById('tess-messages');
+    const el = document.getElementById('tess-body');
     if (el) el.scrollTop = el.scrollHeight;
   }
 
@@ -968,7 +857,7 @@
     }
 
     if (state.isHumanMode && !state.isAdmin) {
-      // Message already sent to backend via the user addMessage call above
+      // Message is sent to admin via WebSocket (handled in saveMessageToBackend → sendViaWebSocket)
       // Show subtle acknowledgment only if WS is connected
       if (!state.wsReady) {
         addMessage("Message sent. A human agent will reply shortly.");
@@ -989,32 +878,30 @@
       return;
     }
 
-    // Send to backend AI via WebSocket — response comes back via ws.onmessage
+    // All messages go to backend AI via WebSocket
     showTyping();
     const aiInput = input || (image ? '[User sent an image]' : '');
 
     if (image && !input) {
-      // Image-only: acknowledge immediately, no AI call needed
+      // Image-only message: show friendly reply immediately
       hideTyping();
-      addMessage("Thanks for sharing that image! If you have a question about it, feel free to ask.");
+      addMessage("Thanks for sharing that image! If you have a question about it or anything else, feel free to ask.");
       return;
     }
 
+    // Send to backend — response comes back via ws.onmessage
     if (state.ws && state.ws.readyState === WebSocket.OPEN) {
-      state.ws.send(JSON.stringify({ role: 'user', content: aiInput, image_data: null, needs_ai: true }));
-      // typing indicator stays until ws.onmessage fires with the AI reply
+      state.ws.send(JSON.stringify({
+        role: 'user',
+        content: aiInput,
+        image_data: null,
+        needs_ai: true
+      }));
+      // typing indicator cleared when ws.onmessage fires
     } else {
-      // Queue the message — typing indicator stays until WS connects and reply arrives
-      sendOrQueue({ role: 'user', content: aiInput, image_data: null, needs_ai: true });
-      // If still not connected after 12s, show fallback
-      setTimeout(() => {
-        const typing = document.getElementById('tess-typing-indicator');
-        if (typing) {
-          hideTyping();
-          addMessage("Still connecting to Tess... If this keeps happening, reach us on WhatsApp below.");
-          showWAButton();
-        }
-      }, 12000);
+      hideTyping();
+      addMessage("Connection issue. Reach us directly on WhatsApp — button below.");
+      showWAButton();
     }
   }
 
@@ -1061,199 +948,291 @@
     window.open(`https://wa.me/${CFG.whatsappNumber.replace(/\D/g, '')}?text=${text}`, '_blank');
   }
 
-  // ─── VOICE MODE ───────────────────────────────────────────────────────────
-  function pickTessVoice() {
-    if (!state.synthesis) return null;
-    const voices = state.synthesis.getVoices();
-    // Prefer British or US female voices
-    const preferred = voices.find(v =>
-      /female|woman/i.test(v.name) && /en-GB|en_GB/i.test(v.lang)
-    ) || voices.find(v =>
-      /female|woman/i.test(v.name) && /en-US|en_US/i.test(v.lang)
-    ) || voices.find(v => /en-GB|en_GB/i.test(v.lang))
-      || voices.find(v => /en-US|en_US/i.test(v.lang))
-      || voices[0] || null;
-    return preferred;
+  function handleVoice() {
+    document.getElementById('tess-options').style.display = 'none';
+    trackEvent('voice_request');
+    renderVoiceCard();
   }
 
-  function speakReply(text) {
-    if (!state.synthesis || !state.voiceMode) return;
-    state.synthesis.cancel();
-    setVoiceStatus('speaking');
+  function renderVoiceCard() {
+    const container = document.getElementById('tess-messages');
+    const div = document.createElement('div');
+    div.className = 'tess-voice-card';
+    div.id = 'tess-voice-card';
+    div.innerHTML = `
+      <div class="tess-voice-avatar" id="tess-voice-avatar"><img src="${LOGO_IMG}" alt="Tess"/></div>
+      <div class="tess-voice-name">Tess <span class="tess-voice-badge">AI</span></div>
+      <div class="tess-voice-role" id="tess-voice-role">Live Voice Call</div>
+      <button id="tess-voice-start-btn" class="tess-voice-btn" type="button">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        Start voice call
+      </button>
+      <div class="tess-voice-note" id="tess-voice-note">Talk to Tess directly, right here in your browser. No phone call needed.</div>
+    `;
+    container.appendChild(div);
+    scrollToBottom();
 
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'en-GB';
-    utterance.rate = 0.92;
-    utterance.pitch = 1.05;
-    if (!state.tessVoice) state.tessVoice = pickTessVoice();
-    if (state.tessVoice) utterance.voice = state.tessVoice;
-
-    utterance.onend = () => {
-      if (state.voiceMode) {
-        setVoiceStatus('listening');
-        startListening();
-      }
-    };
-    utterance.onerror = () => {
-      if (state.voiceMode) {
-        setVoiceStatus('listening');
-        startListening();
-      }
-    };
-    state.voiceUtterance = utterance;
-    state.synthesis.speak(utterance);
+    document.getElementById('tess-voice-start-btn').addEventListener('click', () => startVoiceCall(div));
   }
 
-  function setVoiceStatus(status) {
-    const micBtn = document.getElementById('tess-mic-btn');
-    const statusEl = document.getElementById('tess-voice-status');
-    if (!micBtn || !statusEl) return;
-    micBtn.className = '';
-    if (status === 'listening') {
-      micBtn.classList.add('listening');
-      statusEl.textContent = 'Listening...';
-      micBtn.setAttribute('aria-label', 'Listening');
-    } else if (status === 'speaking') {
-      micBtn.classList.add('speaking');
-      statusEl.textContent = 'Tess is speaking...';
-    } else {
-      statusEl.textContent = 'Ready';
-    }
-  }
+  // ─── LIVE VOICE CALL ────────────────────────────────────────────────────
+  async function startVoiceCall(cardEl) {
+    trackEvent('voice_call_start');
 
-  function startListening() {
-    if (!state.voiceMode) return;
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognition) return;
+    const roleEl = document.getElementById('tess-voice-role');
+    const noteEl = document.getElementById('tess-voice-note');
+    const startBtn = document.getElementById('tess-voice-start-btn');
+    startBtn.disabled = true;
+    startBtn.textContent = 'Connecting…';
+    if (roleEl) roleEl.textContent = 'Connecting…';
 
+    let micStream;
     try {
-      const recog = new SpeechRecognition();
-      recog.lang = 'en-ZW';
-      recog.interimResults = true;
-      recog.continuous = false;
-      recog.maxAlternatives = 1;
-      state.recognition = recog;
-
-      const transcriptEl = document.getElementById('tess-voice-transcript');
-
-      recog.onresult = (e) => {
-        clearTimeout(state.silenceTimer);
-        let interim = '';
-        let final = '';
-        for (let i = e.resultIndex; i < e.results.length; i++) {
-          const t = e.results[i][0].transcript;
-          if (e.results[i].isFinal) final += t;
-          else interim += t;
-        }
-        if (transcriptEl) transcriptEl.textContent = final || interim || '...';
-        if (final) {
-          recog.stop();
-          setVoiceStatus('speaking');
-          addMessage(final, 'user');
-          if (transcriptEl) transcriptEl.textContent = 'Tap mic to speak...';
-          // Send to AI via WebSocket
-          showTyping();
-          sendOrQueue({ role: 'user', content: final, image_data: null, needs_ai: true });
-        }
-      };
-
-      recog.onspeechend = () => {
-        // Silence timeout — if 8s no speech, pause mic and prompt
-        state.silenceTimer = setTimeout(() => {
-          if (state.voiceMode) {
-            recog.stop();
-            setVoiceStatus('ready');
-            if (transcriptEl) transcriptEl.textContent = 'Tap mic to speak again, or stop voice chat.';
-          }
-        }, 8000);
-      };
-
-      recog.onerror = (e) => {
-        // Silently handle errors; re-prompt
-        if (state.voiceMode) {
-          setVoiceStatus('ready');
-          if (transcriptEl) transcriptEl.textContent = 'Tap mic to speak again.';
-        }
-      };
-
-      recog.onend = () => {
-        // If no final result & still in voice mode, do nothing (user can tap mic again)
-      };
-
-      recog.start();
-      setVoiceStatus('listening');
-      if (transcriptEl) transcriptEl.textContent = 'Listening...';
+      micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
     } catch (err) {
-      setVoiceStatus('ready');
-    }
-  }
-
-  function startVoiceMode() {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-    if (!SpeechRecognition || !window.speechSynthesis) {
-      // Graceful fallback to callback flow
-      document.getElementById('tess-back-row').classList.add('show');
-      handleVoiceCallbackFallback();
+      if (noteEl) noteEl.textContent = "Couldn't access your microphone. Check your browser's site permissions and try again.";
+      startBtn.disabled = false;
+      startBtn.textContent = 'Start voice call';
+      if (roleEl) roleEl.textContent = 'Live Voice Call';
       return;
     }
 
-    state.voiceMode = true;
-    state.tessVoice = null;
-
-    // Populate voice list (async on some browsers)
-    if (state.synthesis) {
-      state.synthesis.getVoices(); // trigger load
-      state.synthesis.onvoiceschanged = () => {
-        state.tessVoice = pickTessVoice();
-      };
-      state.tessVoice = pickTessVoice();
+    if (!CFG.backendUrl) {
+      if (noteEl) noteEl.textContent = 'Voice call is not available right now.';
+      micStream.getTracks().forEach(t => t.stop());
+      startBtn.disabled = false;
+      startBtn.textContent = 'Start voice call';
+      return;
     }
 
-    // Hide chat area, show voice UI
+    const wsUrl = CFG.backendUrl
+      .replace(/^https:\/\//, 'wss://')
+      .replace(/^http:\/\//, 'ws://')
+      + '/ws/voice/' + state.sessionId;
+
+    const voiceWs = new WebSocket(wsUrl);
+    const call = {
+      ws: voiceWs,
+      micStream,
+      micCtx: null,
+      processor: null,
+      micSource: null,
+      playbackCtx: null,
+      nextPlayTime: 0,
+      muted: false,
+      seconds: 0,
+      timerInterval: null,
+      ended: false,
+    };
+    state.voiceCall = call;
+
+    voiceWs.onopen = () => {
+      // Wait for the server's {type:'ready'} before streaming mic audio —
+      // Gemini's Live session needs to finish its setup handshake first.
+    };
+
+    voiceWs.onmessage = async (e) => {
+      let data;
+      try { data = JSON.parse(e.data); } catch (err) { return; }
+
+      if (data.type === 'ready') {
+        beginMicStreaming(call);
+        renderInCallUI(cardEl, call);
+      } else if (data.type === 'audio' && data.data) {
+        playVoiceChunk(call, data.data);
+      } else if (data.type === 'interrupted') {
+        // Visitor talked over Tess — drop whatever's still queued to play.
+        if (call.playbackCtx) call.nextPlayTime = call.playbackCtx.currentTime;
+      } else if (data.type === 'turn_complete') {
+        setSpeaking(false);
+      } else if (data.type === 'error') {
+        endVoiceCall(cardEl, data.message || 'Call ended unexpectedly.');
+      }
+    };
+
+    voiceWs.onclose = () => {
+      if (!call.ended) endVoiceCall(cardEl, 'Call ended.');
+    };
+
+    voiceWs.onerror = () => {
+      if (!call.ended) endVoiceCall(cardEl, "Couldn't connect. Check your connection and try again.");
+    };
+  }
+
+  function beginMicStreaming(call) {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    call.micCtx = new AudioCtx();
+    call.micSource = call.micCtx.createMediaStreamSource(call.micStream);
+    // ScriptProcessorNode is deprecated but has the broadest browser support
+    // for raw PCM access without shipping a separate AudioWorklet module file.
+    call.processor = call.micCtx.createScriptProcessor(2048, 1, 1);
+    const inRate = call.micCtx.sampleRate;
+
+    call.processor.onaudioprocess = (e) => {
+      if (call.muted || call.ws.readyState !== WebSocket.OPEN) return;
+      const input = e.inputBuffer.getChannelData(0);
+      const pcm16 = downsampleTo16kPCM16(input, inRate);
+      const b64 = arrayBufferToBase64(pcm16.buffer);
+      call.ws.send(JSON.stringify({ type: 'audio', data: b64 }));
+    };
+
+    call.micSource.connect(call.processor);
+    // Some browsers require the processor connected to a destination to
+    // keep firing onaudioprocess, even though we don't want mic passthrough.
+    const silentGain = call.micCtx.createGain();
+    silentGain.gain.value = 0;
+    call.processor.connect(silentGain);
+    silentGain.connect(call.micCtx.destination);
+  }
+
+  function downsampleTo16kPCM16(float32Data, inputSampleRate) {
+    const targetRate = 16000;
+    const ratio = inputSampleRate / targetRate;
+    const outLength = Math.floor(float32Data.length / ratio);
+    const out = new Int16Array(outLength);
+    for (let i = 0; i < outLength; i++) {
+      const srcIndex = Math.floor(i * ratio);
+      let s = float32Data[srcIndex];
+      s = Math.max(-1, Math.min(1, s));
+      out[i] = s < 0 ? s * 0x8000 : s * 0x7fff;
+    }
+    return out;
+  }
+
+  function arrayBufferToBase64(buffer) {
+    let binary = '';
+    const bytes = new Uint8Array(buffer);
+    for (let i = 0; i < bytes.byteLength; i++) binary += String.fromCharCode(bytes[i]);
+    return btoa(binary);
+  }
+
+  function base64ToInt16Array(b64) {
+    const binary = atob(b64);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+    return new Int16Array(bytes.buffer);
+  }
+
+  function playVoiceChunk(call, b64Audio) {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!call.playbackCtx) {
+      call.playbackCtx = new AudioCtx({ sampleRate: 24000 });
+      call.nextPlayTime = call.playbackCtx.currentTime;
+    }
+    const int16 = base64ToInt16Array(b64Audio);
+    const float32 = new Float32Array(int16.length);
+    for (let i = 0; i < int16.length; i++) float32[i] = int16[i] / 0x8000;
+
+    const buffer = call.playbackCtx.createBuffer(1, float32.length, 24000);
+    buffer.copyToChannel(float32, 0);
+
+    const source = call.playbackCtx.createBufferSource();
+    source.buffer = buffer;
+    source.connect(call.playbackCtx.destination);
+
+    const now = call.playbackCtx.currentTime;
+    const startAt = Math.max(now, call.nextPlayTime);
+    source.start(startAt);
+    call.nextPlayTime = startAt + buffer.duration;
+
+    setSpeaking(true);
+    source.onended = () => {
+      if (call.playbackCtx && call.nextPlayTime <= call.playbackCtx.currentTime + 0.05) {
+        setSpeaking(false);
+      }
+    };
+  }
+
+  function setSpeaking(isSpeaking) {
+    const avatar = document.getElementById('tess-voice-avatar');
+    if (avatar) avatar.classList.toggle('tess-speaking', isSpeaking);
+  }
+
+  function renderInCallUI(cardEl, call) {
+    const avatar = document.getElementById('tess-voice-avatar');
+    if (avatar) avatar.classList.add('tess-call-live');
+
+    const startBtn = document.getElementById('tess-voice-start-btn');
+    const roleEl = document.getElementById('tess-voice-role');
+    const noteEl = document.getElementById('tess-voice-note');
+    if (startBtn) startBtn.remove();
+    if (noteEl) noteEl.remove();
+
+    if (roleEl) {
+      roleEl.innerHTML = `<span class="tess-voice-status"><span class="tess-dot"></span><span id="tess-voice-timer">Talking 00:00</span></span>`;
+    }
+
+    call.timerInterval = setInterval(() => {
+      call.seconds++;
+      const m = String(Math.floor(call.seconds / 60)).padStart(2, '0');
+      const s = String(call.seconds % 60).padStart(2, '0');
+      const timerEl = document.getElementById('tess-voice-timer');
+      if (timerEl) timerEl.textContent = `Talking ${m}:${s}`;
+    }, 1000);
+
+    const controls = document.createElement('div');
+    controls.className = 'tess-voice-controls';
+    controls.innerHTML = `
+      <div class="tess-voice-btn-col">
+        <button id="tess-voice-mute-btn" class="tess-voice-round-btn" type="button" title="Mute">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/>
+          </svg>
+        </button>
+        <span class="tess-voice-btn-label">Mute</span>
+      </div>
+      <div class="tess-voice-btn-col">
+        <button id="tess-voice-end-btn" class="tess-voice-round-btn tess-end-call" type="button" title="End call">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            <line x1="2" y1="2" x2="22" y2="22"/>
+          </svg>
+        </button>
+        <span class="tess-voice-btn-label">End Call</span>
+      </div>
+    `;
+    cardEl.appendChild(controls);
+
+    document.getElementById('tess-voice-mute-btn').addEventListener('click', () => {
+      call.muted = !call.muted;
+      const btn = document.getElementById('tess-voice-mute-btn');
+      const label = btn.parentElement.querySelector('.tess-voice-btn-label');
+      btn.classList.toggle('tess-muted', call.muted);
+      if (label) label.textContent = call.muted ? 'Unmute' : 'Mute';
+    });
+
+    document.getElementById('tess-voice-end-btn').addEventListener('click', () => {
+      trackEvent('voice_call_end');
+      try { call.ws.send(JSON.stringify({ type: 'end' })); } catch (err) {}
+      endVoiceCall(cardEl, null);
+    });
+  }
+
+  function endVoiceCall(cardEl, message) {
+    const call = state.voiceCall;
+    if (!call || call.ended) return;
+    call.ended = true;
+
+    if (call.timerInterval) clearInterval(call.timerInterval);
+    try { call.ws.close(); } catch (err) {}
+    call.micStream.getTracks().forEach(t => t.stop());
+    if (call.processor) call.processor.disconnect();
+    if (call.micSource) call.micSource.disconnect();
+    if (call.micCtx) call.micCtx.close();
+    if (call.playbackCtx) call.playbackCtx.close();
+
+    state.voiceCall = null;
+    if (cardEl && cardEl.parentElement) cardEl.remove();
+
     document.getElementById('tess-options').style.display = 'none';
-    document.getElementById('tess-input-area').style.display = 'none';
-    document.getElementById('tess-messages').style.display = 'flex';
-    document.getElementById('tess-voice-ui').classList.add('active');
-    document.getElementById('tess-back-row').classList.add('show');
-    state.mode = 'chat';
-
-    trackEvent('voice_request');
-    const greeting = "Hi! I'm Tess. Go ahead and speak — I'm listening.";
-    addMessage(greeting, 'assistant');
-    speakReply(greeting);
-  }
-
-  function stopVoiceMode() {
-    state.voiceMode = false;
-    clearTimeout(state.silenceTimer);
-
-    if (state.recognition) {
-      try { state.recognition.abort(); } catch (e) {}
-      state.recognition = null;
-    }
-    if (state.synthesis) {
-      state.synthesis.cancel();
-    }
-
-    document.getElementById('tess-voice-ui').classList.remove('active');
-    document.getElementById('tess-input-area').style.display = 'flex';
-    document.getElementById('tess-messages').style.display = 'flex';
-  }
-
-  function handleVoiceCallbackFallback() {
     showInputArea();
-    trackEvent('voice_request');
-    addMessage("Voice chat isn't supported in your browser (try Chrome or Safari). Leave your number and Lennon will call you back within the hour.");
-    state.mode = 'lead';
-    state.leadStep = 2;
-    state.lead.intent = 'voice_callback';
-    setTimeout(() => addMessage("Phone number?"), 400);
+    addMessage(message || 'Voice call ended. Want to keep chatting here, or leave your details and our team will follow up?');
+    state.mode = 'chat';
   }
 
-  function handleVoice() {
-    startVoiceMode();
-  }
 
   // ─── INIT ─────────────────────────────────────────────────────────────────
   function init() {
@@ -1297,7 +1276,7 @@
           document.getElementById('tess-back-row').classList.add('show');
           showInputArea();
           trackEvent('livechat_start');
-          addMessage("Tess here. Invitt Co AI assistant. What do you need?");
+          addMessage("Enter your question below and a representative will get right back to you.");
           state.mode = 'chat';
         } else if (action === 'voice') {
           document.getElementById('tess-back-row').classList.add('show');
@@ -1306,17 +1285,28 @@
       });
     });
 
+    // Privacy policy modal
+    document.getElementById('tess-privacy-link').addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('tess-privacy-overlay').classList.add('show');
+    });
+    document.getElementById('tess-privacy-close').addEventListener('click', () => {
+      document.getElementById('tess-privacy-overlay').classList.remove('show');
+    });
+    document.getElementById('tess-privacy-overlay').addEventListener('click', (e) => {
+      if (e.target.id === 'tess-privacy-overlay') {
+        document.getElementById('tess-privacy-overlay').classList.remove('show');
+      }
+    });
+
     // Close button (chevron-down in header)
     document.getElementById('tess-header-close').addEventListener('click', () => closePanel());
 
     // Back button — return to options screen
     document.getElementById('tess-header-back').addEventListener('click', () => {
-      // Stop voice mode if active
-      if (state.voiceMode) stopVoiceMode();
       // Reset to options view
       document.getElementById('tess-options').style.display = 'flex';
       document.getElementById('tess-input-area').style.display = 'none';
-      document.getElementById('tess-voice-ui').classList.remove('active');
       document.getElementById('tess-messages').innerHTML = '';
       document.getElementById('tess-back-row').classList.remove('show');
       state.mode = 'select';
@@ -1389,32 +1379,6 @@
 
     // WhatsApp button
     document.getElementById('tess-wa-btn').addEventListener('click', openWhatsApp);
-
-    // Mic button — tap to start listening
-    document.getElementById('tess-mic-btn').addEventListener('click', () => {
-      if (!state.voiceMode) return;
-      if (state.synthesis) state.synthesis.cancel();
-      startListening();
-    });
-
-    // Stop voice button
-    document.getElementById('tess-stop-voice').addEventListener('click', () => {
-      stopVoiceMode();
-    });
-
-    // Privacy policy modal
-    document.getElementById('tess-privacy-link').addEventListener('click', (e) => {
-      e.preventDefault();
-      document.getElementById('tess-privacy-overlay').classList.add('open');
-    });
-    document.getElementById('tess-privacy-close').addEventListener('click', () => {
-      document.getElementById('tess-privacy-overlay').classList.remove('open');
-    });
-    document.getElementById('tess-privacy-overlay').addEventListener('click', (e) => {
-      if (e.target === e.currentTarget) {
-        e.currentTarget.classList.remove('open');
-      }
-    });
 
     // Popup timing
     setTimeout(showPopup, CFG.popupDelay);

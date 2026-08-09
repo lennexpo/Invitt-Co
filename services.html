@@ -142,9 +142,14 @@
     .portfolio-grid{display:flex;flex-direction:column;gap:1.5rem}
     .portfolio-card{background:#141414;border:1px solid rgba(255,255,255,0.07);border-radius:1.25rem;overflow:hidden;transition:border-color .3s,transform .3s;display:flex;flex-direction:column}
     .portfolio-card:hover{border-color:rgba(200,245,62,.25);transform:translateY(-4px)}
-    .portfolio-thumb-wrap{overflow:hidden;aspect-ratio:16/9;background:var(--surface2);flex-shrink:0}
+    .portfolio-thumb-wrap{position:relative;overflow:hidden;aspect-ratio:16/9;background:var(--surface2);flex-shrink:0}
     .portfolio-thumb{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform .5s ease}
     .portfolio-card:hover .portfolio-thumb{transform:scale(1.03)}
+    .portfolio-iframe{position:absolute;top:0;left:0;width:400%;height:400%;transform:scale(.25);transform-origin:0 0;border:0;pointer-events:none;background:#fff;transition:transform .5s ease}
+    .portfolio-card:hover .portfolio-iframe{transform:scale(.255)}
+    .portfolio-live-tag{position:absolute;top:.6rem;right:.6rem;z-index:2;background:rgba(10,10,10,.75);backdrop-filter:blur(4px);color:#c8f53e;font-size:.65rem;font-weight:700;letter-spacing:.08em;padding:.25rem .55rem;border-radius:99px;display:flex;align-items:center;gap:.35rem;pointer-events:none}
+    .portfolio-live-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 0 rgba(74,222,128,.6);animation:portfolio-live-pulse 2s infinite}
+    @keyframes portfolio-live-pulse{0%{box-shadow:0 0 0 0 rgba(74,222,128,.55)}70%{box-shadow:0 0 0 6px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
     .portfolio-placeholder{width:100%;height:100%;background:linear-gradient(135deg,#1a1a1a,#0f0f0f);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.08em;color:rgba(200,245,62,.2)}
     .portfolio-info{padding:1.25rem 1.25rem 1rem;display:flex;flex-direction:column;flex:1}
     .p-industry{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:.6rem;display:block}
@@ -474,7 +479,8 @@
 
       <article class="portfolio-card sr" itemscope itemtype="https://schema.org/CreativeWork">
         <div class="portfolio-thumb-wrap">
-          <img src="/images/tanyamuch.jpg" alt="TanyaMuch Wellness Mental Clinic website — counselling and therapy services Harare" class="portfolio-thumb" width="800" height="450" loading="lazy" />
+          <span class="portfolio-live-tag">LIVE</span>
+          <iframe src="https://tanyamuchwellness.co.zw" class="portfolio-iframe" loading="lazy" tabindex="-1" aria-hidden="true" title="Live preview of TanyaMuch Wellness Mental Clinic"></iframe>
         </div>
         <div class="portfolio-info">
           <span class="p-industry">Counselling & Therapy — Harare</span>
@@ -492,7 +498,8 @@
 
       <article class="portfolio-card sr d1" itemscope itemtype="https://schema.org/CreativeWork">
         <div class="portfolio-thumb-wrap">
-          <img src="/images/precision.jpg" alt="Precision Boreholes website — borehole services Harare" class="portfolio-thumb" width="800" height="450" loading="lazy" />
+          <span class="portfolio-live-tag">LIVE</span>
+          <iframe src="https://precisionboreholes.co.zw" class="portfolio-iframe" loading="lazy" tabindex="-1" aria-hidden="true" title="Live preview of Precision Boreholes"></iframe>
         </div>
         <div class="portfolio-info">
           <span class="p-industry">Borehole Services — Harare</span>
@@ -510,7 +517,8 @@
 
       <article class="portfolio-card sr d2" itemscope itemtype="https://schema.org/CreativeWork">
         <div class="portfolio-thumb-wrap">
-          <img src="/images/mwiwa-preview.jpg" alt="Mwiwa Borehole Drilling website — Zimbabwe borehole drilling" class="portfolio-thumb" width="800" height="450" loading="lazy" />
+          <span class="portfolio-live-tag">LIVE</span>
+          <iframe src="https://mwiwaboreholedrilling.co.zw" class="portfolio-iframe" loading="lazy" tabindex="-1" aria-hidden="true" title="Live preview of Mwiwa Borehole Drilling"></iframe>
         </div>
         <div class="portfolio-info">
           <span class="p-industry">Borehole Drilling — Zimbabwe</span>
@@ -528,7 +536,8 @@
 
       <article class="portfolio-card sr" itemscope itemtype="https://schema.org/CreativeWork">
         <div class="portfolio-thumb-wrap">
-          <img src="/images/topiary-preview.jpg" alt="Topiary Marketing website — office supplies and marketing Harare" class="portfolio-thumb" width="800" height="450" loading="lazy" />
+          <span class="portfolio-live-tag">LIVE</span>
+          <iframe src="https://topiarymarketing.co.zw" class="portfolio-iframe" loading="lazy" tabindex="-1" aria-hidden="true" title="Live preview of Topiary Marketing"></iframe>
         </div>
         <div class="portfolio-info">
           <span class="p-industry">Marketing & Supplies — Harare</span>
@@ -544,11 +553,28 @@
         </div>
       </article>
 
+      <article class="portfolio-card sr d3" itemscope itemtype="https://schema.org/CreativeWork">
+        <div class="portfolio-thumb-wrap">
+          <span class="portfolio-live-tag">LIVE</span>
+          <iframe src="https://gtechdrilling.co.zw" class="portfolio-iframe" loading="lazy" tabindex="-1" aria-hidden="true" title="Live preview of G-Tech Drilling"></iframe>
+        </div>
+        <div class="portfolio-info">
+          <span class="p-industry">Borehole Drilling & Water Solutions — Zimbabwe</span>
+          <h3 itemprop="name">G-Tech Drilling</h3>
+          <p class="p-desc">Dark navy/cyan site with a six-step process walkthrough, project gallery, and geological siting explainer built to convert site-visit requests fast.</p>
+          <div class="p-card-footer">
+            <span class="p-url">gtechdrilling.co.zw</span>
+            <a href="https://gtechdrilling.co.zw" target="_blank" rel="noopener noreferrer" class="btn-view">
+              View Site
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
     </div>
   </div>
 </section>
-
-<!-- MID CTA -->
 <div class="mid-cta sr">
   <div class="container">
     <h2>Websites That Work <span class="ia">While You Sleep</span></h2>
@@ -764,7 +790,7 @@
     <div class="f-col">
       <h4>Contact</h4>
       <div class="f-contact">
-        <a href="mailto:lennnyamajiwa@gmail.com">lennnyamajiwa@gmail.com</a>
+        <a href="mailto:support@invitt.co.zw">support@invitt.co.zw</a>
         <a href="https://wa.me/263787412809">+263 787 412 809</a>
         <p>Harare, Zimbabwe</p>
       </div>
@@ -834,28 +860,28 @@
     const btn=document.getElementById('btnSubmit');
     btn.disabled=true;btn.textContent='Sending…';
     const goals=[...document.querySelectorAll('input[name="goal"]:checked')].map(i=>i.value).join(', ');
+    const pkgRaw=document.querySelector('input[name="pkg"]:checked')?.value||'Not sure yet';
+    const pkgMatch=pkgRaw.match(/^(.*?)\s*\(([^)]+)\)$/);
     const payload={
       name:document.getElementById('fName').value,
       email:document.getElementById('fEmail').value||'Not provided',
       whatsapp:document.getElementById('fPhone').value,
-      website_url:'Not applicable',
-      biggest_challenge:
-        'Business: '+document.getElementById('fBiz').value+' | '+
-        'Type: '+document.getElementById('fType').value+' | '+
-        'Goals: '+(goals||'Not specified')+' | '+
-        'Has website: '+(document.querySelector('input[name="hasWeb"]:checked')?.value||'Not specified')+' | '+
-        'Package: '+(document.querySelector('input[name="pkg"]:checked')?.value||'Not specified')+' | '+
-        'Reference sites: '+(document.getElementById('fRef').value||'Not provided')+' | '+
-        'Brand vibe: '+(document.getElementById('fVibe').value||'Not specified')+' | '+
-        'Contact via: '+contact.value+' | '+
-        'Source: services.html'
+      whatsapp_link:document.getElementById('fPhone').value.replace(/[^\d]/g,'').replace(/^0/,'263'),
+      business:document.getElementById('fBiz').value,
+      business_type:document.getElementById('fType').value,
+      goals:goals||'Not specified',
+      has_website:document.querySelector('input[name="hasWeb"]:checked')?.value||'Not specified',
+      package:pkgMatch?pkgMatch[1]:pkgRaw,
+      package_price:pkgMatch?pkgMatch[2]:'',
+      reference_sites:document.getElementById('fRef').value||'Not provided',
+      brand_vibe:document.getElementById('fVibe').value||'Not specified',
+      contact_via:contact.value,
+      source:'services.html',
+      submitted_at:new Date().toLocaleString('en-ZW',{timeZone:'Africa/Harare',dateStyle:'medium',timeStyle:'short'})
     };
     try{
       await emailjs.send('service_f721n9g','template_ckh9e9d',payload);
-      step2.classList.remove('active');
-      success.style.display='block';
-      stepWrap.style.display='none';
-      document.querySelector('.step-labs').style.display='none';
+      window.location.href='/thank-you';
     }catch(e){
       alert('Something went wrong. Please WhatsApp us directly at +263 787 412 809');
       btn.disabled=false;btn.textContent='Submit →';
